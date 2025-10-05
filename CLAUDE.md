@@ -17,6 +17,39 @@ This project was created to migrate content from a Grav-based website (located a
 
 ## Architecture Decisions
 
+### Navigation Rail System (2025-10-05)
+**Problem:** Mobile navigation was broken - clicking icons did nothing. Desktop navigation lacked pinning functionality and proper rail mode behavior.
+
+**Solution:** Synchronized navigation system with assessor project architecture:
+- **AppBar Component** (`/app/components/AppBar.vue`):
+  - Dynamic margin and width adjustment for navigation rail (`56px` offset on desktop)
+  - Receives `showMenuToggle` prop from parent layout
+  - Theme toggle with localStorage persistence
+- **AppNavigation Component** (`/app/components/AppNavigation.vue`):
+  - Pin toggle button (desktop only) with animated icon rotation
+  - Accepts props: `isOpen`, `isRail`, `isPinned`
+  - Emits: `update:is-open`, `update:is-pinned`, `menu-item-click`
+  - Hover state management for expand-on-hover (tracks hover always, not just in rail mode)
+  - Custom navigation buttons with active route highlighting
+  - Rail mode visual adaptations (icon-only when collapsed, text visible when expanded/hovered)
+- **Layout** (`/app/layouts/default.vue`):
+  - `loadPinState()` and `savePinState()` functions for localStorage persistence
+  - Pin state defaults to `true` (pinned) on desktop via `savedPinState !== 'false'` logic
+  - `isInitialized` flag prevents race conditions during screen resize
+  - Navigation drawer: temporary overlay on mobile, permanent rail on desktop
+  - Fixed positioning with proper z-index layering
+- **Theme Persistence** (`/app/composables/useAppTheme.ts`):
+  - Theme preference stored in localStorage with key `theme-preference`
+  - Auto-loads and applies saved theme on mount
+  - `toggleTheme()` function switches between light/dark and saves preference
+
+**Result:**
+- Desktop: Navigation pinned and expanded by default, users can unpin to enable rail mode with hover expansion
+- Mobile: Hamburger menu opens temporary drawer overlay, closes after navigation
+- Pin button visible on desktop only
+- Text remains visible while hovering even after unpinning (smooth transition)
+- Theme preference persists across page refreshes
+
 ### Multi-Domain Content System (2025-10-05)
 **Environment-based content selection** with build-time path stripping:
 
@@ -83,17 +116,19 @@ This project was created to migrate content from a Grav-based website (located a
 ## Project Structure
 
 ```
-/root/new/
+/root/ofgod/
 ├── app/                      # Nuxt application directory
 │   ├── components/
-│   │   ├── AppNavigation.vue      # Site navigation
+│   │   ├── AppBar.vue             # Top app bar with menu toggle and theme button
+│   │   ├── AppNavigation.vue      # Navigation rail with pin button and hover expansion
 │   │   ├── BibleVerse.vue         # Interactive Bible verse popup component
 │   │   └── MarkdownRenderer.vue   # Parses markdown and BibleVerse tags
 │   ├── composables/
+│   │   ├── useAppTheme.ts         # Theme management with localStorage persistence
 │   │   ├── useContentConfig.ts    # Environment-based content root configuration
 │   │   └── useContent.ts          # Hybrid content loader with path prefixing
 │   ├── layouts/
-│   │   └── default.vue            # Main layout with navigation
+│   │   └── default.vue            # Main layout with navigation rail and pin state management
 │   ├── pages/
 │   │   ├── index.vue              # Home page (loads from content root)
 │   │   └── [...slug].vue          # Dynamic content pages (SSR pre-rendered)
@@ -450,7 +485,41 @@ navigation:
 - **Example fix:** Change `color: #1976d2` → `color: rgb(var(--v-theme-primary))`
 - **Testing:** Toggle light/dark mode to verify text readability in both themes
 
+### Navigation Rail Issues
+- **Mobile navigation not working:** Ensure `showMenuToggle` prop is passed to AppBar, hamburger button should appear on xs/sm screens
+- **Pin state not persisting:** Check localStorage key `navigationRailPinned`, should default to pinned (`savedPinState !== 'false'`)
+- **Text disappears immediately when unpinning:** Hover state must be tracked always (not conditionally), see AppNavigation.vue `handleMouseEnter/Leave`
+- **AppBar overlaps navigation rail:** Verify AppBar has `marginLeft: '56px'` and `width: 'calc(100% - 56px)'` on desktop
+- **Navigation drawer scrolls with content:** Check layout has `position: fixed !important` and `height: 100vh !important` on navigation-rail class
+
+### Theme Not Persisting
+- **Theme reverts to light on refresh:** Ensure `useAppTheme` composable is used in AppBar, not direct Vuetify theme manipulation
+- **localStorage not saving:** Check `import.meta.client` guard in `useAppTheme.ts`, localStorage operations must be client-side only
+- **Theme key:** Stored as `theme-preference` in localStorage, defaults to `'light'` if not set
+
 ## Recent Refactorings
+
+### 2025-10-05: Navigation Rail and Theme Persistence Implementation
+**Problem:** Mobile navigation broken (clicks did nothing), desktop lacked pin functionality, theme preference not persisting across refreshes.
+
+**Solution:**
+- Created comprehensive navigation rail system matching assessor project:
+  - `AppBar.vue`: Dynamic sizing with `56px` offset for rail, receives `showMenuToggle` prop
+  - `AppNavigation.vue`: Pin button, hover expansion, custom navigation buttons with active highlighting
+  - `default.vue`: Pin state management with `loadPinState/savePinState`, defaults to pinned on desktop
+  - Hover state tracked always (not conditionally) for smooth unpin transition
+- Created `useAppTheme.ts` composable:
+  - Stores theme in localStorage with key `theme-preference`
+  - Auto-loads and applies saved theme on mount
+  - `toggleTheme()` function for AppBar button
+
+**Result:**
+- Mobile: Hamburger menu → temporary overlay → closes after navigation
+- Desktop: Pinned by default, pin button toggles rail mode with hover expansion
+- Theme persists across page refreshes
+- Text stays visible while hovering after unpinning (smooth UX)
+
+## Recent Refactorings (Archived)
 
 ### 2025-10-05: Theme Synchronization and Color Fixes
 **Problem:** Unreadable text due to hardcoded colors in Bible tooltips plugin and undefined CSS variable (`--v-theme-on-surface-variant`) in blockquotes. Missing comprehensive component defaults compared to assessor project.

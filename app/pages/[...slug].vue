@@ -1,6 +1,5 @@
 <template>
   <article>
-    <v-card flat>
       <v-card-title class="text-h4 font-weight-bold">
         {{ pageTitle }}
       </v-card-title>
@@ -16,7 +15,6 @@
         </div>
         <MarkdownRenderer v-else-if="page?.body" :content="page.body" />
       </v-card-text>
-    </v-card>
   </article>
 </template>
 
