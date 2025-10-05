@@ -99,7 +99,7 @@ function parseRegularMarkdown(content: string): ParsedItem[] {
     if (blockquoteMatch) {
       // This is a blockquote line
       inBlockquote = true
-      blockquoteContent.push(blockquoteMatch[1])
+      blockquoteContent.push(blockquoteMatch[1] ?? '')
     } else {
       // Not a blockquote line
       if (inBlockquote) {

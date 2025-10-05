@@ -11,9 +11,7 @@ export default defineNuxtConfig({
   // Runtime config for environment-based content selection
   runtimeConfig: {
     public: {
-      // Content root directory (e.g., 'son', 'kingdom', 'church', 'ofgod')
-      // Defaults to 'eternal' for backward compatibility
-      content: process.env.CONTENT || 'eternal'
+      content: process.env.CONTENT
     }
   },
 
@@ -34,6 +32,14 @@ export default defineNuxtConfig({
   modules: [
     'vuetify-nuxt-module'
   ],
+
+  vite: {
+    build: {
+      rollupOptions: {
+        external: ['fs/promises', 'path']
+      }
+    }
+  },
 
   vuetify: {
     vuetifyOptions: {
