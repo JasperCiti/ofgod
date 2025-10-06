@@ -16,6 +16,7 @@
 
 <script setup lang="ts">
 import { nextTick } from 'vue'
+import { formatHtmlContent } from '~/utils/markdown-utils'
 
 interface Props {
   content: string
@@ -54,6 +55,9 @@ function parseMarkdownToBlocks(markdown: string): ContentBlock[] {
 function parseTextContent(text: string): ContentBlock[] {
   const blocks: ContentBlock[] = []
   let html = text
+
+  // Normalize line endings first (Windows \r\n, Mac \r → Unix \n)
+  html = html.replace(/\r\n/g, '\n').replace(/\r/g, '\n')
 
   // Convert headers
   html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>')
@@ -108,22 +112,6 @@ function parseTextContent(text: string): ContentBlock[] {
   }
 
   return blocks
-}
-
-function formatHtmlContent(html: string): string {
-  // Convert double line breaks to paragraph breaks
-  const paragraphs = html.split('\n\n').filter(p => p.trim())
-
-  return paragraphs.map(p => {
-    p = p.trim()
-    // Don't wrap headers in paragraphs
-    if (p.startsWith('<h')) {
-      return p
-    }
-    // Replace single line breaks with spaces
-    p = p.replace(/\n/g, ' ')
-    return `<p>${p}</p>`
-  }).join('\n')
 }
 
 const { $bibleTooltips } = useNuxtApp()

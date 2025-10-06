@@ -5,8 +5,6 @@ import { createBibleReferencePatterns } from '~/utils/bible-book-names'
 export default defineNuxtPlugin((nuxtApp) => {
   if (process.server) return
 
-  console.log('🔗 Bible Tooltips plugin starting...')
-
   class BibleTooltips {
     private cache = new Map<string, string>()
     private tooltip: HTMLElement | null = null
@@ -550,7 +548,6 @@ export default defineNuxtPlugin((nuxtApp) => {
     }
 
     public scan() {
-      console.log('📖 Scanning page for Bible references...')
       this.processInlineBibleVerses()
       this.detectBibleReferences()
     }
