@@ -17,6 +17,20 @@ This project was created to migrate content from a Grav-based website (located a
 
 ## Architecture Decisions
 
+### Print Functionality (2025-10-06)
+**Problem:** Users needed ability to print pages in printer-friendly format without navigation elements.
+
+**Solution:**
+- Print button in AppBar (`/app/components/AppBar.vue`) triggers `window.print()`
+- Print CSS (`/app/assets/css/print.css`) with `@media print` rules:
+  - Hides navigation rail, app bar, and all interactive elements
+  - Renders links and Bible verses as plain text (no underlines, inherits color)
+  - Removes margins, optimizes layout for printing
+  - Page break handling for headings, blockquotes, images
+- Tooltips on AppBar icons (menu toggle, print, theme) using Vuetify v-tooltip
+
+**Result:** Clean print output with content only, no navigation or styling distractions.
+
 ### Navigation Rail System (2025-10-05)
 **Problem:** Mobile navigation was broken - clicking icons did nothing. Desktop navigation lacked pinning functionality and proper rail mode behavior.
 
@@ -25,6 +39,7 @@ This project was created to migrate content from a Grav-based website (located a
   - Dynamic margin and width adjustment for navigation rail (`56px` offset on desktop)
   - Receives `showMenuToggle` prop from parent layout
   - Theme toggle with localStorage persistence
+  - Print button with tooltip support
 - **AppNavigation Component** (`/app/components/AppNavigation.vue`):
   - Pin toggle button (desktop only) with animated icon rotation
   - Accepts props: `isOpen`, `isRail`, `isPinned`
@@ -109,9 +124,12 @@ This project was created to migrate content from a Grav-based website (located a
 - Caches API responses for performance
 - Uses `data-reference` attribute for full expanded reference while displaying shorthand text
 
-**MarkdownRenderer** (`/app/components/MarkdownRenderer.vue`):
-- Parses `<BibleVerse>` tags from markdown and renders as Vue components
-- Component-based approach allows full Vuetify functionality in markdown content
+**MarkdownContent** (`/app/components/MarkdownContent.vue`):
+- Single, consolidated markdown rendering component
+- Parses markdown into blocks: `blockquote`, `bible-verse`, or `html`
+- Renders blockquotes as VCard components with serif font styling
+- Extracts and renders `<BibleVerse>` tags as Vue components
+- Integrates with Bible tooltips plugin for auto-detection
 
 ## Project Structure
 
@@ -120,12 +138,13 @@ This project was created to migrate content from a Grav-based website (located a
 ├── app/                      # Nuxt application directory
 │   ├── assets/
 │   │   └── css/
-│   │       └── markdown.css       # Shared markdown styles (DRY)
+│   │       ├── markdown.css       # Shared markdown styles (DRY)
+│   │       └── print.css          # Print-friendly styles (@media print)
 │   ├── components/
-│   │   ├── AppBar.vue             # Top app bar with menu toggle and theme button
+│   │   ├── AppBar.vue             # Top app bar with menu, print, theme buttons (all with tooltips)
 │   │   ├── AppNavigation.vue      # Navigation rail with pin button and hover expansion
 │   │   ├── BibleVerse.vue         # Interactive Bible verse popup component
-│   │   └── MarkdownRenderer.vue   # Parses markdown and BibleVerse tags
+│   │   └── MarkdownContent.vue    # Consolidated markdown renderer (blockquotes as VCards)
 │   ├── composables/
 │   │   ├── useAppTheme.ts         # Theme management with localStorage persistence
 │   │   ├── useContentConfig.ts    # Environment-based content root configuration
@@ -475,6 +494,12 @@ navigation:
 - Verify bible-api.com is not blocked by firewall/adblocker
 - Inspect element: `data-reference` should contain full expanded reference (e.g., "John 14:26" for shorthand ",26")
 
+### Print Preview Issues
+- **Links still styled:** Ensure `/app/assets/css/print.css` is imported in `nuxt.config.ts` css array
+- **Bible verses underlined:** Plugin uses `.bible-ref` class - print.css must target both `.bible-reference` and `.bible-ref`
+- **Navigation still visible:** Check `@media print` rules hide `.v-app-bar`, `.v-navigation-drawer`, `.app-bar`, `.app-navigation`
+- **Test print preview:** Use browser's print dialog (Ctrl+P / Cmd+P) or click print button in AppBar
+
 ### TypeScript Errors
 - Run `npx nuxi prepare` to regenerate types
 - Ensure all imports are correct
@@ -488,12 +513,13 @@ navigation:
 - **Example fix:** Change `color: #1976d2` → `color: rgb(var(--v-theme-primary))`
 - **Testing:** Toggle light/dark mode to verify text readability in both themes
 
-### Markdown Styles Not Applying
-- **Symptom:** Markdown content has no styling (headings, blockquotes, links appear unstyled)
-- **Cause:** Using `:deep()` pseudo-class in global CSS files (only works in scoped styles)
-- **Solution:** Global CSS files (`/app/assets/css/*.css`) should use direct selectors without `:deep()`
-- **Example:** `.content-body h1` not `.content-body :deep(h1)`
-- **Location:** All shared markdown styles are in `/app/assets/css/markdown.css`
+### Markdown Rendering Issues
+- **Symptom:** Markdown content has no styling, or blockquotes not rendering as VCards
+- **Cause 1:** Using `:deep()` pseudo-class in global CSS files (only works in scoped styles)
+- **Solution 1:** Global CSS files (`/app/assets/css/*.css`) should use direct selectors without `:deep()`
+- **Cause 2:** Multiple markdown rendering components with conflicting logic
+- **Solution 2:** Use single `MarkdownContent.vue` component for all markdown rendering
+- **Location:** All markdown rendering in `/app/components/MarkdownContent.vue`, styles in `/app/assets/css/markdown.css`
 
 ### Navigation Rail Issues
 - **Mobile navigation not working:** Ensure `showMenuToggle` prop is passed to AppBar, hamburger button should appear on xs/sm screens
@@ -509,20 +535,36 @@ navigation:
 
 ## Recent Refactorings
 
-### 2025-10-06: Markdown Styles Consolidation
-**Problem:** Duplicate markdown styles scattered across three files (`index.vue`, `[...slug].vue`, `MarkdownRenderer.vue`) violating DRY principle. Blockquotes using italics instead of serif font.
+### 2025-10-06: Print Functionality with Tooltips
+**Problem:** No way to print pages without navigation elements. AppBar icons lacked tooltips for usability.
 
 **Solution:**
-- Created `/app/assets/css/markdown.css` with all shared markdown styles
-- Globally imported in `nuxt.config.ts` via `css` array
-- Removed duplicate `<style>` blocks from page and component files
-- Changed blockquote styling from `font-style: italic` to `font-family: Georgia, 'Times New Roman', serif`
-- Removed `:deep()` pseudo-class (only needed in scoped styles, not global CSS)
+- Added print button to AppBar that calls `window.print()`
+- Created `/app/assets/css/print.css` with `@media print` rules
+- Print CSS hides navigation, renders links and Bible verses as plain text
+- Added Vuetify v-tooltip to all AppBar icons (menu, print, theme)
 
 **Result:**
-- Single source of truth for markdown styling
-- Blockquotes display in serif font instead of italics
-- Easier maintenance and consistent styling across all pages
+- Printer-friendly output with content only
+- Icon tooltips improve usability and discoverability
+
+### 2025-10-06: Markdown Rendering Consolidation & Blockquote VCards
+**Problem:** Multiple markdown rendering components (`MarkdownRenderer.vue`, `ContentRenderer.vue`) with duplicate logic. Blockquotes rendered as plain HTML `<blockquote>` tags instead of Material Design cards.
+
+**Solution:**
+- Created single `MarkdownContent.vue` component consolidating all markdown rendering
+- Parses markdown into typed blocks: `blockquote`, `bible-verse`, `html`
+- Renders blockquotes directly as VCard components in template (not dynamic component creation)
+- Blockquote styling: serif font (Georgia, Times New Roman), no left border (VCard elevation provides distinction)
+- Removed old components: `MarkdownRenderer.vue`, `ContentRenderer.vue`, `BlockquoteCard.vue`
+- Created `/app/assets/css/markdown.css` for shared styles (DRY principle)
+- Globally imported in `nuxt.config.ts` via `css` array
+
+**Result:**
+- Single source of truth for markdown rendering
+- Blockquotes display as Material Design VCards with serif font
+- Cleaner architecture, easier to maintain and debug
+- All markdown features work: headers, bold, italic, links, BibleVerse components, Bible tooltips
 
 ### 2025-10-05: Navigation Rail and Theme Persistence Implementation
 **Problem:** Mobile navigation broken (clicks did nothing), desktop lacked pin functionality, theme preference not persisting across refreshes.

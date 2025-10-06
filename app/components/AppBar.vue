@@ -9,12 +9,17 @@
     }"
     flat
   >
-    <v-app-bar-nav-icon
-      v-if="showMenuToggle"
-      class="mr-1"
-      icon="mdi-menu"
-      @click="$emit('toggle-menu')"
-    />
+    <v-tooltip text="Toggle menu" location="bottom">
+      <template v-slot:activator="{ props }">
+        <v-app-bar-nav-icon
+          v-if="showMenuToggle"
+          v-bind="props"
+          class="mr-1"
+          icon="mdi-menu"
+          @click="$emit('toggle-menu')"
+        />
+      </template>
+    </v-tooltip>
 
     <v-spacer />
 
@@ -22,7 +27,17 @@
 
     <v-spacer />
 
-    <v-btn icon="mdi-brightness-6" @click="toggleTheme" />
+    <v-tooltip text="Print page" location="bottom">
+      <template v-slot:activator="{ props }">
+        <v-btn v-bind="props" icon="mdi-printer" @click="handlePrint" class="mr-2" />
+      </template>
+    </v-tooltip>
+
+    <v-tooltip text="Toggle theme" location="bottom">
+      <template v-slot:activator="{ props }">
+        <v-btn v-bind="props" icon="mdi-brightness-6" @click="toggleTheme" />
+      </template>
+    </v-tooltip>
   </v-app-bar>
 </template>
 
@@ -37,6 +52,10 @@ defineEmits<{
 }>()
 
 const { toggleTheme } = useAppTheme()
+
+const handlePrint = () => {
+  window.print()
+}
 </script>
 
 <style scoped>

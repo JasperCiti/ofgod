@@ -30,7 +30,8 @@ export default defineNuxtConfig({
   },
 
   css: [
-    '~/assets/css/markdown.css'
+    '~/assets/css/markdown.css',
+    '~/assets/css/print.css'
   ],
 
   modules: [
