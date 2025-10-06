@@ -37,14 +37,13 @@
   line-height: 1.7;
 }
 
-/* Blockquotes */
-.content-body blockquote,
-.markdown-content blockquote {
-  border-left: 4px solid rgb(var(--v-theme-primary));
-  padding-left: 1rem;
-  margin: 1rem 0;
+/* Blockquotes - rendered as VCards */
+.content-body .blockquote-content,
+.markdown-content .blockquote-content {
   font-family: Georgia, 'Times New Roman', serif;
   color: rgb(var(--v-theme-on-surface));
+  font-size: 1.05rem;
+  line-height: 1.7;
 }
 
 /* Links */

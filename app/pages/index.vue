@@ -13,7 +13,7 @@
         <div v-else-if="error" class="text-center py-8">
           <v-alert type="error">Home page not found</v-alert>
         </div>
-        <MarkdownRenderer v-else-if="page?.body" :content="page.body" />
+        <MarkdownContent v-else-if="page?.body" :content="page.body" />
       </v-card-text>
   </article>
 </template>
