@@ -21,8 +21,6 @@
       </template>
     </v-tooltip>
 
-    <v-spacer />
-
     <v-app-bar-title>{{ title }}</v-app-bar-title>
 
     <v-spacer />
@@ -42,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   title?: string
   showMenuToggle?: boolean
 }>()
