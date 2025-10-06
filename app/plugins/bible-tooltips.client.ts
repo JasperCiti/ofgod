@@ -223,10 +223,12 @@ export default defineNuxtPlugin((nuxtApp) => {
             if (parent.classList.contains('bible-tooltip') ||
                 parent.classList.contains('no-bible') ||
                 parent.classList.contains('bible-verse') ||
+                parent.classList.contains('bible-verse-inline') ||
                 parent.tagName === 'SCRIPT' ||
                 parent.tagName === 'STYLE' ||
-                // Skip if inside Vue component wrapper for BibleVerse
-                parent.closest('.bible-verse')) {
+                // Skip if inside Vue component wrapper for BibleVerse or inline verse
+                parent.closest('.bible-verse') ||
+                parent.closest('.bible-verse-inline')) {
               return NodeFilter.FILTER_REJECT
             }
 
@@ -457,8 +459,99 @@ export default defineNuxtPlugin((nuxtApp) => {
       })
     }
 
+    private processInlineBibleVerses() {
+      // Find all .bible-verse-inline spans and attach tooltips
+      const inlineVerses = document.querySelectorAll('.bible-verse-inline:not([data-tooltip-processed])')
+
+      inlineVerses.forEach(element => {
+        const reference = element.getAttribute('data-reference')
+        if (!reference) return
+
+        // Mark as processed to avoid duplicate listeners
+        element.setAttribute('data-tooltip-processed', 'true')
+
+        let isTooltipVisible = false
+
+        element.addEventListener('mouseenter', async (e) => {
+          // Only process if THIS element doesn't already own the tooltip
+          if (!this.currentElement || this.currentElement !== element) {
+            // Clear any pending close timeout from previous element
+            if (this.currentCloseTimeout) {
+              clearTimeout(this.currentCloseTimeout)
+              this.currentCloseTimeout = null
+            }
+
+            this.handleMouseEnter(element as HTMLElement, reference, e as MouseEvent)
+            isTooltipVisible = true
+            this.currentElement = element as HTMLElement
+
+            this.onHideCallback = () => {
+              isTooltipVisible = false
+            }
+          }
+        })
+
+        element.addEventListener('mouseleave', () => {
+          if (!this.currentLockState && this.currentElement === element) {
+            this.currentCloseTimeout = setTimeout(() => {
+              if (!this.currentLockState && this.currentElement === element) {
+                this.hideTooltip()
+                isTooltipVisible = false
+              }
+            }, 300)
+          }
+        })
+
+        element.addEventListener('click', (e) => {
+          e.preventDefault()
+          e.stopPropagation()
+
+          if (this.currentCloseTimeout) {
+            clearTimeout(this.currentCloseTimeout)
+            this.currentCloseTimeout = null
+          }
+
+          this.currentLockState = true
+          if (this.overlay) {
+            this.overlay.style.display = 'block'
+          }
+
+          if (!isTooltipVisible) {
+            this.handleMouseEnter(element as HTMLElement, reference, e as MouseEvent)
+            isTooltipVisible = true
+          }
+        })
+
+        // Touch events for mobile
+        element.addEventListener('touchstart', async (e: Event) => {
+          const touchEvent = e as TouchEvent
+          touchEvent.preventDefault()
+          touchEvent.stopPropagation()
+
+          if (this.currentCloseTimeout) {
+            clearTimeout(this.currentCloseTimeout)
+            this.currentCloseTimeout = null
+          }
+
+          if (!isTooltipVisible) {
+            this.handleMouseEnter(element as HTMLElement, reference, touchEvent.touches[0] as any)
+            isTooltipVisible = true
+            this.currentElement = element as HTMLElement
+            this.currentLockState = true
+            if (this.overlay) {
+              this.overlay.style.display = 'block'
+            }
+          } else {
+            this.hideTooltip()
+            isTooltipVisible = false
+          }
+        })
+      })
+    }
+
     public scan() {
       console.log('📖 Scanning page for Bible references...')
+      this.processInlineBibleVerses()
       this.detectBibleReferences()
     }
 

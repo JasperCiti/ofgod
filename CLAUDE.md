@@ -63,13 +63,16 @@ This project was created to migrate content from a Grav-based website (located a
 - Clean text flow throughout content
 
 ### Grav Migration Script Enhancement (2025-10-06)
-**Problem:** Migration script needed to handle root article files and support section-specific migrations for multi-domain deployment.
+**Problem:** Migration script needed to handle root article files and support section-specific migrations for multi-domain deployment. Previous structure used redundant directories with `index.md`.
 
 **Solution:**
 - **Root File Handling**: Detects `article.md` in root directory and converts to `index.md`
 - **Number Prefix Stripping**: Grav pattern `XX.name` → `name` (e.g., `04.kingdom` → `kingdom`)
 - **Order Preservation**: Numeric prefix stored in `navigation.order` frontmatter
-- **All index.md Structure**: Every page becomes `index.md` in its directory (Nuxt standard)
+- **Flat File Structure**: Root pages use `index.md`, nested pages use direct `.md` files (no redundant directories)
+  - Root: `/content/kingdom/index.md`
+  - Nested: `/content/kingdom/darkness.md` (not `/darkness/index.md`)
+  - Sub-nested: `/content/kingdom/church/history.md` (not `/history/index.md`)
 - **Section-Specific Migration**: `--section=XX.name --domain=target` for targeted migrations
 - **Reusable Script**: Single script handles all sections without overwriting components
 
@@ -82,6 +85,7 @@ npm run migrate -- --section=04.kingdom --domain=kingdom
 - Successfully migrated 31 kingdom pages (350 Bible verses, 289 links)
 - Clean routes without number prefixes
 - Navigation order preserved in frontmatter
+- Flat file structure (no redundant directories)
 - Reusable for future sections
 
 ### Print Functionality (2025-10-06)
@@ -144,18 +148,27 @@ npm run migrate -- --section=04.kingdom --domain=kingdom
 **Content Structure:**
 ```
 /public/content/
-├── son/index.md       → https://son.ofgod.info/
-├── kingdom/index.md   → https://kingdom.ofgod.info/
-├── church/index.md    → https://church.ofgod.info/
-├── ofgod/index.md     → https://ofgod.info/
-└── eternal/index.md   → https://eternal.ofgod.info/ (backward compat)
+├── son/
+│   ├── index.md       → https://son.ofgod.info/
+│   └── page.md        → https://son.ofgod.info/page
+├── kingdom/
+│   ├── index.md       → https://kingdom.ofgod.info/
+│   ├── darkness.md    → https://kingdom.ofgod.info/darkness
+│   └── church/
+│       └── history.md → https://kingdom.ofgod.info/church/history
+├── church/
+│   └── index.md       → https://church.ofgod.info/
+├── ofgod/
+│   └── index.md       → https://ofgod.info/
+└── eternal/
+    └── index.md       → https://eternal.ofgod.info/ (backward compat)
 ```
 
 **How It Works:**
 1. Set `CONTENT=son` environment variable
 2. Build with `npm run generate`
 3. All routes map to `/content/son/` directory
-4. `/subpage` → loads `/content/son/subpage/index.md`
+4. `/subpage` → loads `/content/son/subpage.md` (direct file, no directory)
 5. Deploy `.output/public/` to `son.ofgod.info`
 6. URLs are clean (no `/son` prefix in routes)
 
@@ -230,9 +243,13 @@ npm run migrate -- --section=04.kingdom --domain=kingdom
 ├── public/                   # Static files served directly
 │   └── content/             # Markdown source files (SINGLE SOURCE OF TRUTH)
 │       ├── son/             # Content for son.ofgod.info
-│       │   └── index.md
+│       │   ├── index.md     # Root page
+│       │   └── page.md      # Nested pages (direct .md files)
 │       ├── kingdom/         # Content for kingdom.ofgod.info
-│       │   └── index.md
+│       │   ├── index.md     # Root page
+│       │   ├── darkness.md  # Nested page
+│       │   └── church/      # Subdirectory
+│       │       └── history.md
 │       ├── church/          # Content for church.ofgod.info
 │       │   └── index.md
 │       ├── ofgod/           # Content for ofgod.info
@@ -339,11 +356,12 @@ CONTENT=son npm run generate
 1. `useContentConfig()` reads `CONTENT=son` environment variable
 2. Nitro prerenderer discovers routes (`/`, `/subpage`, etc.)
 3. For each route, pages execute server-side
-4. `useContentPage('/')` → reads `/public/content/son/index.md` (path prefixed automatically)
-5. YAML frontmatter extracted (title, description, etc.)
-6. `MarkdownRenderer` converts markdown to HTML with BibleVerse components
-7. Complete HTML written to `.output/public/index.html` (clean path, no `/son` prefix)
-8. **SEO benefit:** Search engines see fully-rendered HTML with all content
+4. `useContentPage('/')` → reads `/public/content/son/index.md` (root page)
+5. `useContentPage('/subpage')` → reads `/public/content/son/subpage.md` (direct file)
+6. YAML frontmatter extracted (title, description, etc.)
+7. `MarkdownRenderer` converts markdown to HTML with BibleVerse components
+8. Complete HTML written to `.output/public/index.html` (clean path, no `/son` prefix)
+9. **SEO benefit:** Search engines see fully-rendered HTML with all content
 
 ### Runtime (Client Navigation)
 When users navigate between pages on `son.ofgod.info`:
@@ -351,7 +369,7 @@ When users navigate between pages on `son.ofgod.info`:
 1. User navigates to `/subpage`
 2. Browser loads pre-rendered HTML (instant content visibility)
 3. Vue hydrates the page (makes it interactive)
-4. For client-side navigation, `useContentPage('/subpage')` fetches `/content/son/subpage/index.md`
+4. For client-side navigation, `useContentPage('/subpage')` fetches `/content/son/subpage.md`
 5. Bible tooltips plugin enhances plain-text references after DOM update
 6. Internal links work via Vue Router (no page reload)
 
@@ -468,7 +486,7 @@ netlify deploy --prod --dir=.output/public
 **URL Structure:**
 - Clean URLs with no content prefix
 - `son.ofgod.info/` loads from `/content/son/index.md`
-- `son.ofgod.info/subpage` loads from `/content/son/subpage/index.md`
+- `son.ofgod.info/subpage` loads from `/content/son/subpage.md`
 - No `/son` prefix in URLs
 
 ## Theme Configuration
@@ -531,7 +549,9 @@ navigation:
 ### Content Not Loading
 - Verify markdown files exist in `/public/content/{domain}/` directory (SINGLE SOURCE OF TRUTH)
 - Check `CONTENT` environment variable is set correctly (son, kingdom, church, ofgod, eternal)
-- Test direct access: `curl http://localhost:3000/content/eternal/index.md`
+- Test direct access:
+  - Root: `curl http://localhost:3000/content/eternal/index.md`
+  - Nested: `curl http://localhost:3000/content/kingdom/darkness.md`
 - Check browser console for fetch errors
 - Ensure frontmatter is valid YAML (title, published, etc.)
 - **IMPORTANT:** Content must be in `/public/content/{domain}/`, not `/content/` or `/app/public/content/`
@@ -541,7 +561,9 @@ navigation:
 - Check `CONTENT` env var: `echo $CONTENT` or check `.env` file
 - Ensure you're using correct content directory name (lowercase: son, not Son)
 - Restart dev server after changing `.env` file
-- Verify content exists in `/public/content/{CONTENT}/index.md`
+- Verify content exists:
+  - Root: `/public/content/{CONTENT}/index.md`
+  - Nested: `/public/content/{CONTENT}/page.md`
 
 ### Bible Verses Not Working
 **BibleVerse Component Issues:**

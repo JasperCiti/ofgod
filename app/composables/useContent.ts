@@ -73,7 +73,6 @@ function parseFrontmatter(content: string): { frontmatter: Record<string, any>, 
 
     return { frontmatter, body: body || '' }
   } catch (error) {
-    console.error('Error parsing frontmatter:', error)
     return { frontmatter: {}, body: content }
   }
 }
@@ -105,9 +104,10 @@ export const useContentPage = async (path: string): Promise<ContentPage | null> 
     const contentPath = getContentPath(path)
 
     // Try multiple possible file paths
+    // Prioritize direct .md files over index.md for cleaner structure
     const possiblePaths = [
-      `${contentPath}/index.md`,
       `${contentPath}.md`,
+      `${contentPath}/index.md`, // fallback for backward compatibility
     ]
 
     let content: string | null = null
@@ -156,17 +156,8 @@ export const useContentPage = async (path: string): Promise<ContentPage | null> 
       _path: path
     } as ContentPage
 
-    // Debug logging
-    if (import.meta.client) {
-      console.log(`📄 Loaded content for ${path}:`, {
-        title: page.title,
-        navigation: page.navigation
-      })
-    }
-
     return page
   } catch (error) {
-    console.error('Error fetching content:', error)
     return null
   }
 }

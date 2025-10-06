@@ -153,8 +153,7 @@ async function loadNavigation() {
       })
     }
   } catch (error) {
-    console.error('Error loading home page:', error)
-    // Add fallback home
+    // Add fallback home on error
     navItems.push({
       id: 'home',
       title: 'Home',
@@ -178,20 +177,15 @@ async function loadNavigation() {
           path: `/${subPath}`,
           order: page.navigation.order ?? 999
         })
-        console.log(`✓ Loaded navigation for: ${subPath}`, page.navigation)
-      } else {
-        console.log(`✗ Skipping ${subPath} - no navigation data`)
       }
     } catch (error) {
       // Skip if page doesn't exist
-      console.log(`✗ Skipping ${subPath} - not found:`, error)
     }
   }
 
   // Sort by navigation order
   navItems.sort((a, b) => (a.order ?? 999) - (b.order ?? 999))
 
-  console.log('📋 Final navigation items:', navItems)
   menuItems.value = navItems
 }
 
