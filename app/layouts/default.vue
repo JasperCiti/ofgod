@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <AppBar
-      :title="'Eternal Life'"
+      :title="pageTitle"
       :show-menu-toggle="showMenuToggle"
       @toggle-menu="isMenuOpen = !isMenuOpen"
     />
@@ -50,6 +50,10 @@ const { xs, sm } = display
 const isMenuOpen = ref(false)
 const isPinned = ref(false)
 const isInitialized = ref(false)
+const pageTitle = ref('Loading...')
+
+// Get current route
+const route = useRoute()
 
 // Show menu toggle on xs and sm resolutions
 const showMenuToggle = computed(() => {
@@ -78,6 +82,26 @@ const savePinState = (pinned: boolean) => {
   }
 }
 
+// Load page title from current route
+async function loadPageTitle() {
+  try {
+    const page = await useContentPage(route.path)
+    if (page?.title) {
+      pageTitle.value = page.title
+    } else {
+      pageTitle.value = 'Page Not Found'
+    }
+  } catch (error) {
+    console.error('Error loading page title:', error)
+    pageTitle.value = 'Error Loading Page'
+  }
+}
+
+// Watch for route changes to update title
+watch(() => route.path, () => {
+  loadPageTitle()
+}, { immediate: true })
+
 // Initialize menu state on mount
 onMounted(() => {
   // Load pin state from localStorage
@@ -88,6 +112,9 @@ onMounted(() => {
 
   // Mark as initialized after setup is complete
   isInitialized.value = true
+
+  // Load initial page title
+  loadPageTitle()
 })
 
 // Handle pin toggle

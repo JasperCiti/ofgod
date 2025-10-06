@@ -4,48 +4,96 @@ export interface ContentPage {
   _path?: string
   body?: string
   published?: boolean
+  navigation?: {
+    title?: string
+    order?: number
+  }
   [key: string]: any
 }
 
 // Parse frontmatter from markdown content
+// Works in both server and client environments
 function parseFrontmatter(content: string): { frontmatter: Record<string, any>, body: string } {
-  const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/
-  const match = content.match(frontmatterRegex)
+  try {
+    const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/
+    const match = content.match(frontmatterRegex)
 
-  if (!match) {
-    return { frontmatter: {}, body: content }
-  }
+    if (!match) {
+      return { frontmatter: {}, body: content }
+    }
 
-  const [, yamlContent, body] = match
-  const frontmatter: Record<string, any> = {}
+    const [, yamlContent, body] = match
+    const frontmatter: Record<string, any> = {}
 
-  // Simple YAML parser for basic key: value pairs
-  if (yamlContent) {
-    yamlContent.split('\n').forEach(line => {
-      const colonIndex = line.indexOf(':')
-      if (colonIndex > 0) {
-        const key = line.substring(0, colonIndex).trim()
-        let value: string | boolean = line.substring(colonIndex + 1).trim()
+    if (yamlContent) {
+      const lines = yamlContent.split('\n')
+      let currentKey: string | null = null
+      let currentIndent = 0
+      let currentObject: Record<string, any> | null = null
 
-        // Remove quotes if present
-        if ((value.startsWith("'") && value.endsWith("'")) ||
-            (value.startsWith('"') && value.endsWith('"'))) {
-          value = value.slice(1, -1)
-        }
+      for (const line of lines) {
+        if (!line.trim()) continue
 
-        // Convert boolean strings
-        if (value === 'true') {
-          frontmatter[key] = true
-        } else if (value === 'false') {
-          frontmatter[key] = false
-        } else {
-          frontmatter[key] = value
+        const indent = line.search(/\S/)
+        const trimmedLine = line.trim()
+
+        if (indent === 0 && trimmedLine.includes(':')) {
+          // Top-level key
+          const [key, ...valueParts] = trimmedLine.split(':')
+          const value = valueParts.join(':').trim()
+
+          if (!key) continue
+
+          currentKey = key.trim()
+
+          if (value) {
+            // Has a value on the same line
+            frontmatter[currentKey] = parseValue(value)
+            currentObject = null
+          } else {
+            // Object follows
+            frontmatter[currentKey] = {}
+            currentObject = frontmatter[currentKey]
+            currentIndent = indent
+          }
+        } else if (currentObject && indent > currentIndent && trimmedLine.includes(':')) {
+          // Nested property
+          const [key, ...valueParts] = trimmedLine.split(':')
+          const value = valueParts.join(':').trim()
+
+          if (!key) continue
+
+          currentObject[key.trim()] = parseValue(value)
+        } else if (indent === 0) {
+          // Reset
+          currentObject = null
         }
       }
-    })
+    }
+
+    return { frontmatter, body: body || '' }
+  } catch (error) {
+    console.error('Error parsing frontmatter:', error)
+    return { frontmatter: {}, body: content }
+  }
+}
+
+function parseValue(value: string): any {
+  // Remove quotes
+  if ((value.startsWith("'") && value.endsWith("'")) ||
+      (value.startsWith('"') && value.endsWith('"'))) {
+    return value.slice(1, -1)
   }
 
-  return { frontmatter, body: body || '' }
+  // Parse booleans
+  if (value === 'true') return true
+  if (value === 'false') return false
+
+  // Parse numbers
+  const num = Number(value)
+  if (!isNaN(num) && value !== '') return num
+
+  return value
 }
 
 // Composable to handle content queries - works both server-side and client-side
@@ -102,11 +150,21 @@ export const useContentPage = async (path: string): Promise<ContentPage | null> 
 
     const { frontmatter, body } = parseFrontmatter(content)
 
-    return {
+    const page = {
       ...frontmatter,
       body,
       _path: path
     } as ContentPage
+
+    // Debug logging
+    if (import.meta.client) {
+      console.log(`📄 Loaded content for ${path}:`, {
+        title: page.title,
+        navigation: page.navigation
+      })
+    }
+
+    return page
   } catch (error) {
     console.error('Error fetching content:', error)
     return null

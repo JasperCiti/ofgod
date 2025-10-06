@@ -63,6 +63,7 @@ interface MenuItem {
   title: string
   icon: string
   path: string
+  order?: number
 }
 
 // Props
@@ -122,28 +123,80 @@ const togglePinned = () => {
 const route = useRoute()
 
 // Menu items
-const menuItems = ref<MenuItem[]>([
-  { id: 'home', title: 'Home', icon: 'mdi-home', path: '/' }
-])
+const menuItems = ref<MenuItem[]>([])
 
 // Load menu items dynamically from content
 const { contentRoot } = useContentConfig()
 
-onMounted(async () => {
+// Icon mapping for different sections
+const iconMap: Record<string, string> = {
+  'home': 'mdi-home',
+  'darkness': 'mdi-weather-night',
+  'body': 'mdi-account-group',
+  'church': 'mdi-church',
+  'default': 'mdi-file-document'
+}
+
+async function loadNavigation() {
+  const navItems: MenuItem[] = []
+
   try {
-    // Load home page to get navigation data if available
+    // Add home page
     const homePage = await useContentPage('/')
     if (homePage) {
-      menuItems.value = [{
+      navItems.push({
         id: 'home',
         title: homePage.title || 'Home',
-        icon: 'mdi-home',
-        path: '/'
-      }]
+        icon: iconMap['home'] ?? 'mdi-home',
+        path: '/',
+        order: -1 // Always first
+      })
     }
   } catch (error) {
-    console.log('Using static navigation fallback')
+    console.error('Error loading home page:', error)
+    // Add fallback home
+    navItems.push({
+      id: 'home',
+      title: 'Home',
+      icon: 'mdi-home',
+      path: '/',
+      order: -1
+    })
   }
+
+  // Try to load known subdirectories based on content structure
+  const subPaths = ['darkness', 'body', 'church']
+
+  for (const subPath of subPaths) {
+    try {
+      const page = await useContentPage(`/${subPath}`)
+      if (page && page.navigation) {
+        navItems.push({
+          id: subPath,
+          title: page.navigation.title || page.title || subPath,
+          icon: iconMap[subPath] ?? iconMap['default'] ?? 'mdi-file-document',
+          path: `/${subPath}`,
+          order: page.navigation.order ?? 999
+        })
+        console.log(`✓ Loaded navigation for: ${subPath}`, page.navigation)
+      } else {
+        console.log(`✗ Skipping ${subPath} - no navigation data`)
+      }
+    } catch (error) {
+      // Skip if page doesn't exist
+      console.log(`✗ Skipping ${subPath} - not found:`, error)
+    }
+  }
+
+  // Sort by navigation order
+  navItems.sort((a, b) => (a.order ?? 999) - (b.order ?? 999))
+
+  console.log('📋 Final navigation items:', navItems)
+  menuItems.value = navItems
+}
+
+onMounted(() => {
+  loadNavigation()
 })
 
 // Check if a menu item is active

@@ -17,6 +17,73 @@ This project was created to migrate content from a Grav-based website (located a
 
 ## Architecture Decisions
 
+### Dynamic Navigation & Page Titles (2025-10-06)
+**Problem:** Navigation rail only showed "Home" instead of all subdirectories. AppBar title was static and didn't update with route changes.
+
+**Solution:**
+- **Custom YAML Parser** (`/app/composables/useContent.ts`):
+  - Replaced `gray-matter` with custom client/server compatible parser
+  - Supports nested objects (e.g., `navigation: { title, order }`)
+  - Works in both SSR and client environments
+  - Parses frontmatter with proper type handling (strings, numbers, booleans)
+- **Dynamic Navigation Loading** (`/app/components/AppNavigation.vue`):
+  - Loads subdirectory pages on mount using `useContentPage()`
+  - Extracts navigation metadata (title, order) from frontmatter
+  - Icon mapping for different sections (darkness, body, church)
+  - Sorts menu items by `navigation.order` from frontmatter
+- **Dynamic Page Titles** (`/app/layouts/default.vue`):
+  - Watches route changes to update AppBar title
+  - Fetches current page's title using `useContentPage(route.path)`
+  - Center-aligned title with spacers on both sides
+  - Menu icon left, toolbar icons (print, theme) right
+
+**Result:**
+- Navigation rail displays all pages: Home, World of Darkness, The Body of Christ, The Church
+- AppBar shows current page title (updates on navigation)
+- Sorted by navigation order (0, 1, 5, etc.)
+- Clean, centered layout
+
+### Inline Bible Verse Display (2025-10-06)
+**Problem:** Bible verses displayed on separate lines with icons, breaking text flow.
+
+**Solution:**
+- **MarkdownContent.vue Update**:
+  - Converts `<BibleVerse>` tags to inline `<span>` elements
+  - Pattern: `<span class="bible-verse-inline" data-reference="..." data-translation="...">reference</span>`
+  - Keeps verses inline with surrounding text
+- **Plugin Enhancement** (`/app/plugins/bible-tooltips.client.ts`):
+  - Added `processInlineBibleVerses()` to handle `.bible-verse-inline` spans
+  - Attaches tooltips to inline verses (same as auto-detected references)
+  - Prevents duplicate processing with `data-tooltip-processed` attribute
+- **BibleVerse Component**: Simplified to display inline (no icon)
+
+**Result:**
+- Bible verses appear inline: "Read John 3:16 for God's love" (no line breaks)
+- Hover/tap shows tooltip popup with verse text
+- Clean text flow throughout content
+
+### Grav Migration Script Enhancement (2025-10-06)
+**Problem:** Migration script needed to handle root article files and support section-specific migrations for multi-domain deployment.
+
+**Solution:**
+- **Root File Handling**: Detects `article.md` in root directory and converts to `index.md`
+- **Number Prefix Stripping**: Grav pattern `XX.name` → `name` (e.g., `04.kingdom` → `kingdom`)
+- **Order Preservation**: Numeric prefix stored in `navigation.order` frontmatter
+- **All index.md Structure**: Every page becomes `index.md` in its directory (Nuxt standard)
+- **Section-Specific Migration**: `--section=XX.name --domain=target` for targeted migrations
+- **Reusable Script**: Single script handles all sections without overwriting components
+
+**Usage:**
+```bash
+npm run migrate -- --section=04.kingdom --domain=kingdom
+```
+
+**Result:**
+- Successfully migrated 31 kingdom pages (350 Bible verses, 289 links)
+- Clean routes without number prefixes
+- Navigation order preserved in frontmatter
+- Reusable for future sections
+
 ### Print Functionality (2025-10-06)
 **Problem:** Users needed ability to print pages in printer-friendly format without navigation elements.
 
@@ -333,10 +400,14 @@ npm run preview
 
 ### Content Migration
 ```bash
-# Migrate content from Grav
-npm run migrate -- --test      # Test with single page
-npm run migrate                # Migrate all pages
-npm run migrate -- --dry-run   # Preview changes without writing
+# Migrate specific section to domain
+npm run migrate -- --section=04.kingdom --domain=kingdom
+npm run migrate -- --section=02.god --domain=ofgod
+
+# Test and dry-run options
+npm run migrate -- --section=XX.name --domain=target --dry-run  # Preview
+npm run migrate -- --test                                       # Single page
+npm run migrate -- --limit=10                                   # Limit pages
 ```
 
 ## Production Deployment
@@ -522,11 +593,17 @@ navigation:
 - **Location:** All markdown rendering in `/app/components/MarkdownContent.vue`, styles in `/app/assets/css/markdown.css`
 
 ### Navigation Rail Issues
+- **Navigation shows only "Home":**
+  - Check YAML frontmatter parsing - must support nested `navigation:` objects
+  - Verify `useContent.ts` parses frontmatter correctly (check console logs)
+  - Ensure subdirectory pages have `navigation: { title, order }` in frontmatter
+  - AppNavigation.vue must load pages with `useContentPage()` on mount
 - **Mobile navigation not working:** Ensure `showMenuToggle` prop is passed to AppBar, hamburger button should appear on xs/sm screens
 - **Pin state not persisting:** Check localStorage key `navigationRailPinned`, should default to pinned (`savedPinState !== 'false'`)
 - **Text disappears immediately when unpinning:** Hover state must be tracked always (not conditionally), see AppNavigation.vue `handleMouseEnter/Leave`
 - **AppBar overlaps navigation rail:** Verify AppBar has `marginLeft: '56px'` and `width: 'calc(100% - 56px)'` on desktop
 - **Navigation drawer scrolls with content:** Check layout has `position: fixed !important` and `height: 100vh !important` on navigation-rail class
+- **Page title not showing/updating:** Layout must watch `route.path` and call `loadPageTitle()` to fetch current page title
 
 ### Theme Not Persisting
 - **Theme reverts to light on refresh:** Ensure `useAppTheme` composable is used in AppBar, not direct Vuetify theme manipulation
@@ -534,6 +611,17 @@ navigation:
 - **Theme key:** Stored as `theme-preference` in localStorage, defaults to `'light'` if not set
 
 ## Recent Refactorings
+
+### 2025-10-06: Dynamic Navigation & Inline Bible Verses
+**Changes:**
+- **Custom YAML Parser**: Replaced `gray-matter` with custom parser supporting nested objects in both SSR/client
+- **Dynamic Navigation**: AppNavigation loads subdirectory pages and navigation metadata from frontmatter
+- **Dynamic Page Titles**: AppBar title updates based on current route
+- **Inline Bible Verses**: Converted block-level BibleVerse to inline spans with tooltips
+- **Migration Script**: Enhanced to support section-specific migrations (`--section=XX.name --domain=target`)
+- **Centered AppBar**: Title center-aligned with spacers, icons properly positioned
+
+**Result:** Navigation shows all pages, titles update on route change, Bible verses flow inline with text
 
 ### 2025-10-06: Print Functionality with Tooltips
 **Problem:** No way to print pages without navigation elements. AppBar icons lacked tooltips for usability.

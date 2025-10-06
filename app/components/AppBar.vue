@@ -21,7 +21,9 @@
       </template>
     </v-tooltip>
 
-    <v-app-bar-title>{{ title }}</v-app-bar-title>
+    <v-spacer />
+
+    <v-app-bar-title class="text-center">{{ title }}</v-app-bar-title>
 
     <v-spacer />
 

@@ -65,3 +65,15 @@
 .markdown-content em {
   font-style: italic;
 }
+
+/* Bible verse inline references */
+.markdown-content .bible-verse-inline {
+  color: rgb(var(--v-theme-primary));
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  cursor: pointer;
+}
+
+.markdown-content .bible-verse-inline:hover {
+  text-decoration-style: solid;
+}

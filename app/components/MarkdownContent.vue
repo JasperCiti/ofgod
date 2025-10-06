@@ -8,13 +8,6 @@
         </v-card-text>
       </v-card>
 
-      <!-- BibleVerse Component -->
-      <BibleVerse
-        v-else-if="block.type === 'bible-verse' && block.reference && block.translation"
-        :reference="block.reference"
-        :translation="block.translation"
-      />
-
       <!-- Regular HTML content -->
       <div v-else v-html="block.content"></div>
     </template>
@@ -29,10 +22,8 @@ interface Props {
 }
 
 interface ContentBlock {
-  type: 'blockquote' | 'bible-verse' | 'html'
-  content?: string
-  reference?: string
-  translation?: string
+  type: 'blockquote' | 'html'
+  content: string
 }
 
 const props = defineProps<Props>()
@@ -46,41 +37,16 @@ const parsedBlocks = computed(() => {
 function parseMarkdownToBlocks(markdown: string): ContentBlock[] {
   const blocks: ContentBlock[] = []
 
-  // Step 1: Extract BibleVerse components first
-  const bibleVerseRegex = /<BibleVerse\s+reference="([^"]+)"\s+translation="([^"]+)"\s*\/>/g
-  const parts: Array<{ type: 'text' | 'bible-verse', content?: string, reference?: string, translation?: string }> = []
-  let lastIndex = 0
-  let match
+  // Convert BibleVerse components to inline spans with data attributes
+  // This keeps them inline with the text instead of as separate blocks
+  let processedMarkdown = markdown.replace(
+    /<BibleVerse\s+reference="([^"]+)"\s+translation="([^"]+)"\s*\/>/g,
+    '<span class="bible-verse-inline" data-reference="$1" data-translation="$2">$1</span>'
+  )
 
-  while ((match = bibleVerseRegex.exec(markdown)) !== null) {
-    // Add text before BibleVerse
-    if (match.index > lastIndex) {
-      parts.push({ type: 'text', content: markdown.slice(lastIndex, match.index) })
-    }
-    // Add BibleVerse
-    parts.push({ type: 'bible-verse', reference: match[1], translation: match[2] })
-    lastIndex = match.index + match[0].length
-  }
-
-  // Add remaining text
-  if (lastIndex < markdown.length) {
-    parts.push({ type: 'text', content: markdown.slice(lastIndex) })
-  }
-
-  // Step 2: Process each text part for markdown
-  for (const part of parts) {
-    if (part.type === 'bible-verse') {
-      blocks.push({
-        type: 'bible-verse',
-        reference: part.reference!,
-        translation: part.translation!
-      })
-    } else {
-      // Parse markdown in text content
-      const textBlocks = parseTextContent(part.content || '')
-      blocks.push(...textBlocks)
-    }
-  }
+  // Parse the markdown content with inline Bible verses
+  const textBlocks = parseTextContent(processedMarkdown)
+  blocks.push(...textBlocks)
 
   return blocks
 }
