@@ -118,6 +118,9 @@ This project was created to migrate content from a Grav-based website (located a
 ```
 /root/ofgod/
 ├── app/                      # Nuxt application directory
+│   ├── assets/
+│   │   └── css/
+│   │       └── markdown.css       # Shared markdown styles (DRY)
 │   ├── components/
 │   │   ├── AppBar.vue             # Top app bar with menu toggle and theme button
 │   │   ├── AppNavigation.vue      # Navigation rail with pin button and hover expansion
@@ -485,6 +488,13 @@ navigation:
 - **Example fix:** Change `color: #1976d2` → `color: rgb(var(--v-theme-primary))`
 - **Testing:** Toggle light/dark mode to verify text readability in both themes
 
+### Markdown Styles Not Applying
+- **Symptom:** Markdown content has no styling (headings, blockquotes, links appear unstyled)
+- **Cause:** Using `:deep()` pseudo-class in global CSS files (only works in scoped styles)
+- **Solution:** Global CSS files (`/app/assets/css/*.css`) should use direct selectors without `:deep()`
+- **Example:** `.content-body h1` not `.content-body :deep(h1)`
+- **Location:** All shared markdown styles are in `/app/assets/css/markdown.css`
+
 ### Navigation Rail Issues
 - **Mobile navigation not working:** Ensure `showMenuToggle` prop is passed to AppBar, hamburger button should appear on xs/sm screens
 - **Pin state not persisting:** Check localStorage key `navigationRailPinned`, should default to pinned (`savedPinState !== 'false'`)
@@ -498,6 +508,21 @@ navigation:
 - **Theme key:** Stored as `theme-preference` in localStorage, defaults to `'light'` if not set
 
 ## Recent Refactorings
+
+### 2025-10-06: Markdown Styles Consolidation
+**Problem:** Duplicate markdown styles scattered across three files (`index.vue`, `[...slug].vue`, `MarkdownRenderer.vue`) violating DRY principle. Blockquotes using italics instead of serif font.
+
+**Solution:**
+- Created `/app/assets/css/markdown.css` with all shared markdown styles
+- Globally imported in `nuxt.config.ts` via `css` array
+- Removed duplicate `<style>` blocks from page and component files
+- Changed blockquote styling from `font-style: italic` to `font-family: Georgia, 'Times New Roman', serif`
+- Removed `:deep()` pseudo-class (only needed in scoped styles, not global CSS)
+
+**Result:**
+- Single source of truth for markdown styling
+- Blockquotes display in serif font instead of italics
+- Easier maintenance and consistent styling across all pages
 
 ### 2025-10-05: Navigation Rail and Theme Persistence Implementation
 **Problem:** Mobile navigation broken (clicks did nothing), desktop lacked pin functionality, theme preference not persisting across refreshes.

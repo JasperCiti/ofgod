@@ -1,0 +1,68 @@
+/* Shared Markdown Content Styles */
+
+/* Content body wrapper */
+.content-body,
+.markdown-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+/* Headings */
+.content-body h1,
+.markdown-content h1 {
+  font-size: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.content-body h2,
+.markdown-content h2 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.markdown-content h3 {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+/* Paragraphs */
+.markdown-content p {
+  margin: 0.75rem 0;
+  line-height: 1.7;
+}
+
+/* Blockquotes */
+.content-body blockquote,
+.markdown-content blockquote {
+  border-left: 4px solid rgb(var(--v-theme-primary));
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: rgb(var(--v-theme-on-surface));
+}
+
+/* Links */
+.content-body a,
+.markdown-content a {
+  color: rgb(var(--v-theme-primary));
+  text-decoration: none;
+}
+
+.markdown-content a:hover {
+  text-decoration: underline;
+}
+
+/* Text formatting */
+.markdown-content strong {
+  font-weight: 600;
+}
+
+.markdown-content em {
+  font-style: italic;
+}

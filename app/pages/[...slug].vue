@@ -78,32 +78,3 @@ useHead({
 })
 </script>
 
-<style scoped>
-.content-body {
-  font-size: 1.1rem;
-  line-height: 1.8;
-}
-
-.content-body :deep(h1) {
-  font-size: 2rem;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-}
-
-.content-body :deep(h2) {
-  font-size: 1.5rem;
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-}
-
-.content-body :deep(blockquote) {
-  border-left: 4px solid rgb(var(--v-theme-primary));
-  padding-left: 1rem;
-  margin: 1rem 0;
-  font-style: italic;
-}
-
-.content-body :deep(a) {
-  color: rgb(var(--v-theme-primary));
-}
-</style>

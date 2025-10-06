@@ -29,6 +29,10 @@ export default defineNuxtConfig({
     payloadExtraction: false
   },
 
+  css: [
+    '~/assets/css/markdown.css'
+  ],
+
   modules: [
     'vuetify-nuxt-module'
   ],
