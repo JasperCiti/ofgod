@@ -17,6 +17,28 @@ This project was created to migrate content from a Grav-based website (located a
 
 ## Architecture Decisions
 
+### Tree Navigation System (2025-10-07)
+**Problem:** Simple icon-based navigation rail couldn't scale to hundreds of hierarchical articles across multiple levels without unique icons for each page.
+
+**Solution:** Implemented hierarchical tree navigation with breadcrumb system:
+- **Composables**: `useBreadcrumbs.ts`, `useNavigationTree.ts`, `useTableOfContents.ts`, `useSmartScroll.ts`, `useSidebarState.ts`
+- **Components**: `BreadcrumbNav.vue`, `SearchBox.vue`, `TreeNode.vue`, `TocItem.vue`, `NavigationTree.vue`, `AppTableOfContents.vue`
+- **Layout**: Desktop 3-column (280px nav + flexible content + 240px TOC), mobile overlay drawer
+- **Features**:
+  - Breadcrumbs show last 2 levels with `...` for 3 levels up
+  - Tree auto-expands current path, collapses siblings (Option B behavior)
+  - TOC detects H1-H3 headings (shows highest 2 levels, min 2 headings)
+  - Client-side search across title + content
+  - Smart hide app bar (scroll down hides, scroll up shows)
+  - Fade gradients on sidebars (no scrollbars)
+  - Fixed content width on desktop (prevents scroll jump)
+
+**Result:**
+- Scales to unlimited hierarchy depth without icons
+- Mobile-friendly drawer with TOC expansion panel
+- Search, tree navigation, and TOC all integrated
+- No state persistence (resets on refresh)
+
 ### @nuxt/content v3 Migration & Plain Text Bible Verses (2025-10-07)
 **Problem:** Custom regex-based markdown parser was reinventing the wheel. Bible verses used MDC/XML syntax (`<BibleVerse reference="..." />`) which broke SEO and GitHub readability.
 
@@ -50,31 +72,6 @@ export default defineContentConfig({
 - Single scan per page load (optimized performance)
 - ~446 Bible verses across 31 kingdom pages working correctly
 
-### Dynamic Navigation & Page Titles (2025-10-06)
-**Problem:** Navigation rail only showed "Home" instead of all subdirectories. AppBar title was static and didn't update with route changes.
-
-**Solution:**
-- **Custom YAML Parser** (`/app/composables/useContent.ts`):
-  - Replaced `gray-matter` with custom client/server compatible parser
-  - Supports nested objects (e.g., `navigation: { title, order }`)
-  - Works in both SSR and client environments
-  - Parses frontmatter with proper type handling (strings, numbers, booleans)
-- **Dynamic Navigation Loading** (`/app/components/AppNavigation.vue`):
-  - Loads subdirectory pages on mount using `useContentPage()`
-  - Extracts navigation metadata (title, order) from frontmatter
-  - Icon mapping for different sections (darkness, body, church)
-  - Sorts menu items by `navigation.order` from frontmatter
-- **Dynamic Page Titles** (`/app/layouts/default.vue`):
-  - Watches route changes to update AppBar title
-  - Fetches current page's title using `useContentPage(route.path)`
-  - Center-aligned title with spacers on both sides
-  - Menu icon left, toolbar icons (print, theme) right
-
-**Result:**
-- Navigation rail displays all pages: Home, World of Darkness, The Body of Christ, The Church
-- AppBar shows current page title (updates on navigation)
-- Sorted by navigation order (0, 1, 5, etc.)
-- Clean, centered layout
 
 ### Grav Migration Script Enhancement (2025-10-07)
 **Problem:** Migration script needed to write to correct @nuxt/content location and preserve plain text Bible references.
@@ -112,39 +109,6 @@ npm run migrate -- --section=04.kingdom --domain=kingdom
 
 **Result:** Clean print output with content only, no navigation or styling distractions.
 
-### Navigation Rail System (2025-10-05)
-**Problem:** Mobile navigation was broken - clicking icons did nothing. Desktop navigation lacked pinning functionality and proper rail mode behavior.
-
-**Solution:** Synchronized navigation system with assessor project architecture:
-- **AppBar Component** (`/app/components/AppBar.vue`):
-  - Dynamic margin and width adjustment for navigation rail (`56px` offset on desktop)
-  - Receives `showMenuToggle` prop from parent layout
-  - Theme toggle with localStorage persistence
-  - Print button with tooltip support
-- **AppNavigation Component** (`/app/components/AppNavigation.vue`):
-  - Pin toggle button (desktop only) with animated icon rotation
-  - Accepts props: `isOpen`, `isRail`, `isPinned`
-  - Emits: `update:is-open`, `update:is-pinned`, `menu-item-click`
-  - Hover state management for expand-on-hover (tracks hover always, not just in rail mode)
-  - Custom navigation buttons with active route highlighting
-  - Rail mode visual adaptations (icon-only when collapsed, text visible when expanded/hovered)
-- **Layout** (`/app/layouts/default.vue`):
-  - `loadPinState()` and `savePinState()` functions for localStorage persistence
-  - Pin state defaults to `true` (pinned) on desktop via `savedPinState !== 'false'` logic
-  - `isInitialized` flag prevents race conditions during screen resize
-  - Navigation drawer: temporary overlay on mobile, permanent rail on desktop
-  - Fixed positioning with proper z-index layering
-- **Theme Persistence** (`/app/composables/useAppTheme.ts`):
-  - Theme preference stored in localStorage with key `theme-preference`
-  - Auto-loads and applies saved theme on mount
-  - `toggleTheme()` function switches between light/dark and saves preference
-
-**Result:**
-- Desktop: Navigation pinned and expanded by default, users can unpin to enable rail mode with hover expansion
-- Mobile: Hamburger menu opens temporary drawer overlay, closes after navigation
-- Pin button visible on desktop only
-- Text remains visible while hovering even after unpinning (smooth transition)
-- Theme preference persists across page refreshes
 
 ### Multi-Domain Content System with @nuxt/content (2025-10-07)
 **Environment-based content selection** using @nuxt/content v3 collections:
@@ -232,14 +196,25 @@ onMounted(() => {
 │   │       ├── markdown.css       # Markdown & list styles (ul, ol, blockquotes)
 │   │       └── print.css          # Print-friendly styles (@media print)
 │   ├── components/
-│   │   ├── AppBar.vue             # Top app bar with menu, print, theme buttons
-│   │   ├── AppNavigation.vue      # Navigation rail with pin button and hover expansion
+│   │   ├── AppBar.vue             # Top app bar with breadcrumbs, print, theme buttons
+│   │   ├── AppNavigation.vue      # Left sidebar with search and navigation tree
+│   │   ├── AppTableOfContents.vue # Right sidebar with TOC and fade gradient
+│   │   ├── BreadcrumbNav.vue      # Breadcrumb navigation (last 2 levels + ellipsis)
+│   │   ├── NavigationTree.vue     # Tree container with expand/collapse logic
+│   │   ├── SearchBox.vue          # Client-side search across all pages
+│   │   ├── TreeNode.vue           # Recursive tree node component
+│   │   ├── TocItem.vue            # Single TOC item with active state
 │   │   └── content/
 │   │       └── ProseBlockquote.vue   # Custom blockquote rendering as VCard
 │   ├── composables/
-│   │   └── useAppTheme.ts         # Theme management with localStorage persistence
+│   │   ├── useAppTheme.ts         # Theme management with localStorage persistence
+│   │   ├── useBreadcrumbs.ts      # Generate breadcrumbs from route path
+│   │   ├── useNavigationTree.ts   # Build hierarchical tree from flat pages
+│   │   ├── useTableOfContents.ts  # Generate TOC from rendered HTML headings
+│   │   ├── useSmartScroll.ts      # Smart hide/show app bar on scroll
+│   │   └── useSidebarState.ts     # Manage sidebar visibility (no persistence)
 │   ├── layouts/
-│   │   └── default.vue            # Main layout with navigation rail and pin state
+│   │   └── default.vue            # 3-column desktop / overlay drawer mobile
 │   ├── pages/
 │   │   ├── index.vue              # Home page (queries content collection)
 │   │   └── [...slug].vue          # Dynamic pages (queries content collection)
@@ -519,10 +494,12 @@ The Vuetify theme is configured in `nuxt.config.ts` with Material Design 3 compl
 
 ## Future Enhancements
 
-1. **Full Migration**: Complete migration of all 454 pages
-2. **Search**: Implement client-side search without database
-3. **Navigation**: Build dynamic navigation from directory structure
-4. **Markdown**: Enhance MarkdownRenderer with more features (tables, code blocks, etc.)
+1. **Full Migration**: Complete migration of all 454 pages from Grav CMS
+2. **Search Enhancements**: Add debouncing, result highlighting, keyboard navigation
+3. **Navigation Features**: Add bookmarking, recently visited pages, navigation history
+4. **TOC Enhancements**: Add scroll progress indicator, sticky headers, smooth scroll animations
+5. **Performance**: Implement virtual scrolling for large navigation trees (100+ pages)
+6. **Accessibility**: Add ARIA labels, keyboard shortcuts, screen reader support
 
 ## Important Notes
 
@@ -553,14 +530,11 @@ navigation:
 - Clear `.nuxt/` directory and rebuild: `rm -rf .nuxt && npm run dev`
 
 ### Content Not Loading
-- Verify markdown files exist in `/public/content/{domain}/` directory (SINGLE SOURCE OF TRUTH)
+- Verify markdown files exist in `/content/{domain}/` directory (SINGLE SOURCE OF TRUTH for @nuxt/content)
 - Check `CONTENT` environment variable is set correctly (son, kingdom, church, ofgod, eternal)
-- Test direct access:
-  - Root: `curl http://localhost:3000/content/eternal/index.md`
-  - Nested: `curl http://localhost:3000/content/kingdom/darkness.md`
 - Check browser console for fetch errors
 - Ensure frontmatter is valid YAML (title, published, etc.)
-- **IMPORTANT:** Content must be in `/public/content/{domain}/`, not `/content/` or `/app/public/content/`
+- **IMPORTANT:** Content must be in `/content/{domain}/` (default @nuxt/content location)
 - If duplicate content directories exist, delete the wrong ones to avoid confusion
 
 ### Wrong Content Loading
@@ -568,8 +542,93 @@ navigation:
 - Ensure you're using correct content directory name (lowercase: son, not Son)
 - Restart dev server after changing `.env` file
 - Verify content exists:
-  - Root: `/public/content/{CONTENT}/index.md`
-  - Nested: `/public/content/{CONTENT}/page.md`
+  - Root: `/content/{CONTENT}/index.md`
+  - Nested: `/content/{CONTENT}/page.md`
+
+### Tree Navigation Issues
+- **Navigation tree not loading:**
+  - Check `useNavigationTree.ts` is building tree correctly
+  - Verify all pages have `navigation: { title, order }` in frontmatter
+  - Check browser console for errors in `buildTreeFromPages()`
+- **Tree not expanding to current page:**
+  - Verify `NavigationTree.vue` is calling `expandToPath()` on mount
+  - Check that route path matches page paths in tree
+- **Siblings not collapsing (Option B behavior):**
+  - Ensure `handleToggle()` in `NavigationTree.vue` collapses siblings at same level
+  - Check that `expandedIds` Set is properly managed
+- **Chevron icons not showing:**
+  - Verify `mdi-chevron-right` and `mdi-chevron-down` icons are available
+  - Check that nodes with children render chevrons
+
+### Breadcrumb Issues
+- **Breadcrumbs not showing:**
+  - Check `generateBreadcrumbs()` is querying pages successfully
+  - Verify `BreadcrumbNav.vue` receives breadcrumbs prop
+  - Check browser console for errors
+- **Wrong page titles in breadcrumbs:**
+  - Ensure pages have `title` in frontmatter
+  - Verify `queryCollection('content').path().first()` returns correct pages
+- **Ellipsis not working:**
+  - Check breadcrumb logic in `useBreadcrumbs.ts` (3+ segments → ellipsis)
+  - Verify ellipsis navigates 3 levels up
+  - Test with different path depths
+
+### Table of Contents Issues
+- **TOC showing wrong headings (from different page):**
+  - Check `generateTOC()` clears `tocItems` immediately at start
+  - Verify observer is disconnected before creating new one
+  - Ensure layout calls `generateTOC(null)` on route change
+  - Add 100ms timeout after ContentRenderer completes
+- **TOC not showing at all:**
+  - Verify page has 2+ headings (H1-H3)
+  - Check `shouldShowTOC` computed property
+  - Ensure `contentContainer` ref is properly set
+- **Wrong headings detected:**
+  - Check selector specificity in `useTableOfContents.ts`
+  - Should use: `article h1, article h2, article h3, .content-body h1, ...`
+  - Avoid picking up navigation headings
+- **Active heading not highlighting:**
+  - Verify IntersectionObserver is properly initialized
+  - Check `rootMargin` and `threshold` options
+  - Ensure heading elements have IDs
+
+### Search Issues
+- **Search not finding pages:**
+  - Check `queryCollection('content').all()` returns all pages
+  - Verify filter logic checks both `title` and `body` fields
+  - Test with different search terms
+- **Search results not clickable:**
+  - Ensure `@select` emit is handled correctly
+  - Check router navigation works
+- **Mobile drawer not closing after search:**
+  - Verify `SearchBox` emits `select` event
+  - Check drawer `v-model` is set to false on selection
+
+### Layout Issues
+- **Content width jumps when toggling sidebars:**
+  - Desktop layout should reserve 280px (left) + 240px (right) always
+  - Check `sidebar-hidden` class only hides content, not space
+  - Verify content area has fixed width, not flex
+- **Mobile drawer not appearing:**
+  - Check `v-navigation-drawer` has `temporary` prop
+  - Verify `v-model` is bound to `drawerOpen` ref
+  - Ensure hamburger button toggles `drawerOpen`
+- **Sidebars scroll with content:**
+  - Check `position: sticky` with `top: 56px` (app bar height)
+  - Verify `height: calc(100vh - 56px)` is set
+  - Ensure sidebar has `overflow-y: auto`
+
+### Smart Scroll Issues
+- **App bar not hiding on scroll down:**
+  - Check `useSmartScroll.ts` is properly initialized
+  - Verify scroll threshold (100px) is appropriate
+  - Ensure `handleScroll()` is attached to window
+- **App bar not showing on scroll up:**
+  - Check scroll direction detection logic
+  - Verify `isAppBarVisible` is set to true on upward scroll
+- **App bar flickers:**
+  - Increase scroll threshold if too sensitive
+  - Check for conflicting scroll event listeners
 
 ### Bible Verses Not Working
 **BibleVerse Component Issues:**
@@ -613,25 +672,10 @@ navigation:
 - **Testing:** Toggle light/dark mode to verify text readability in both themes
 
 ### Markdown Rendering Issues
-- **Symptom:** Markdown content has no styling, or blockquotes not rendering as VCards
-- **Cause 1:** Using `:deep()` pseudo-class in global CSS files (only works in scoped styles)
-- **Solution 1:** Global CSS files (`/app/assets/css/*.css`) should use direct selectors without `:deep()`
-- **Cause 2:** Multiple markdown rendering components with conflicting logic
-- **Solution 2:** Use single `MarkdownContent.vue` component for all markdown rendering
-- **Location:** All markdown rendering in `/app/components/MarkdownContent.vue`, styles in `/app/assets/css/markdown.css`
-
-### Navigation Rail Issues
-- **Navigation shows only "Home":**
-  - Check YAML frontmatter parsing - must support nested `navigation:` objects
-  - Verify `useContent.ts` parses frontmatter correctly (check console logs)
-  - Ensure subdirectory pages have `navigation: { title, order }` in frontmatter
-  - AppNavigation.vue must load pages with `useContentPage()` on mount
-- **Mobile navigation not working:** Ensure `showMenuToggle` prop is passed to AppBar, hamburger button should appear on xs/sm screens
-- **Pin state not persisting:** Check localStorage key `navigationRailPinned`, should default to pinned (`savedPinState !== 'false'`)
-- **Text disappears immediately when unpinning:** Hover state must be tracked always (not conditionally), see AppNavigation.vue `handleMouseEnter/Leave`
-- **AppBar overlaps navigation rail:** Verify AppBar has `marginLeft: '56px'` and `width: 'calc(100% - 56px)'` on desktop
-- **Navigation drawer scrolls with content:** Check layout has `position: fixed !important` and `height: 100vh !important` on navigation-rail class
-- **Page title not showing/updating:** Layout must watch `route.path` and call `loadPageTitle()` to fetch current page title
+- **Symptom:** Blockquotes not rendering as VCards
+- **Cause:** `ProseBlockquote.vue` component missing or not registered
+- **Solution:** Ensure `/app/components/content/ProseBlockquote.vue` exists and is properly configured
+- **Location:** Blockquote styles in `/app/assets/css/markdown.css`
 
 ### Theme Not Persisting
 - **Theme reverts to light on refresh:** Ensure `useAppTheme` composable is used in AppBar, not direct Vuetify theme manipulation
@@ -651,6 +695,35 @@ navigation:
 - **Bible Tooltips Timing:** Plugin scans after ContentRenderer completes via `watch` + `nextTick`
 
 ## Recent Refactorings
+
+### 2025-10-07: Tree Navigation System Implementation
+**Problem:** Icon-based navigation rail couldn't scale to hundreds of hierarchical articles. Needed comprehensive navigation with breadcrumbs, tree structure, and table of contents.
+
+**Changes:**
+- **Created 5 composables**: `useBreadcrumbs.ts`, `useNavigationTree.ts`, `useTableOfContents.ts`, `useSmartScroll.ts`, `useSidebarState.ts`
+- **Created 6 components**: `BreadcrumbNav.vue`, `SearchBox.vue`, `TreeNode.vue`, `TocItem.vue`, `NavigationTree.vue`, `AppTableOfContents.vue`
+- **Refactored layout**: Desktop 3-column (280px nav + flexible content + 240px TOC), mobile overlay drawer
+- **Refactored AppBar**: Replaced static title with breadcrumb navigation
+- **Refactored AppNavigation**: Replaced icon menu with tree navigation + search
+- **Fixed 7 bugs**: TypeScript readonly types, navigateTo, search API, breadcrumb async, type safety, TOC timing, ProseBlockquote restoration
+
+**Features:**
+- Breadcrumbs show last 2 levels, `...` for 3+ levels (navigates 3 levels up)
+- Tree auto-expands current path, collapses siblings (Option B behavior)
+- TOC detects H1-H3 (shows highest 2 levels, min 2 headings)
+- Client-side search filters by title + content
+- Smart scroll app bar (hide on down, show on up)
+- Fade gradients on sidebars (no scrollbars)
+- Fixed content width (prevents scroll jump)
+- Mobile: "On This Page" expansion panel above navigation
+- No state persistence (resets on refresh)
+
+**Result:**
+- Scales to unlimited hierarchy without icons
+- Three navigation systems working together (breadcrumbs, tree, TOC)
+- Responsive mobile-first design
+- Fixed TOC cross-page pollution bug
+- Restored ProseBlockquote for VCard blockquotes
 
 ### 2025-10-07: @nuxt/content v3 Migration & Plain Text Bible Verses
 **Changes:**

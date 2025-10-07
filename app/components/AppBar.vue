@@ -2,31 +2,25 @@
   <v-app-bar
     height="56"
     class="app-bar"
-    :class="{ 'with-rail': !showMenuToggle }"
-    :style="{
-      marginLeft: showMenuToggle ? '0px' : '56px',
-      width: showMenuToggle ? '100%' : 'calc(100% - 56px)'
-    }"
+    :class="{ 'is-hidden': !isVisible }"
     flat
   >
+    <!-- Hamburger menu (always visible) -->
     <v-tooltip text="Toggle menu" location="bottom">
       <template v-slot:activator="{ props }">
         <v-app-bar-nav-icon
-          v-if="showMenuToggle"
           v-bind="props"
-          class="mr-1"
+          class="mr-2"
           icon="mdi-menu"
           @click="$emit('toggle-menu')"
         />
       </template>
     </v-tooltip>
 
-    <v-spacer />
+    <!-- Breadcrumb navigation -->
+    <BreadcrumbNav :breadcrumbs="breadcrumbs" class="flex-grow-1" />
 
-    <v-app-bar-title class="text-center">{{ title }}</v-app-bar-title>
-
-    <v-spacer />
-
+    <!-- Action buttons (right-aligned) -->
     <v-tooltip text="Print page" location="bottom">
       <template v-slot:activator="{ props }">
         <v-btn v-bind="props" icon="mdi-printer" @click="handlePrint" class="mr-2" />
@@ -42,16 +36,31 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  title?: string
-  showMenuToggle?: boolean
+import { generateBreadcrumbs } from '~/composables/useBreadcrumbs'
+import type { BreadcrumbItem } from '~/composables/useBreadcrumbs'
+
+const props = defineProps<{
+  isVisible?: boolean
 }>()
 
-defineEmits<{
+const emit = defineEmits<{
   'toggle-menu': []
 }>()
 
+const route = useRoute()
 const { toggleTheme } = useAppTheme()
+
+// Generate breadcrumbs for current route
+const breadcrumbs = ref<BreadcrumbItem[]>([])
+
+async function loadBreadcrumbs() {
+  breadcrumbs.value = await generateBreadcrumbs(route.path)
+}
+
+// Watch for route changes
+watch(() => route.path, () => {
+  loadBreadcrumbs()
+}, { immediate: true })
 
 const handlePrint = () => {
   window.print()
@@ -61,10 +70,17 @@ const handlePrint = () => {
 <style scoped>
 .app-bar {
   z-index: 1000 !important;
+  transition: transform 0.2s ease;
+  transform: translateY(0);
 }
 
-/* Add padding when rail is showing to space content properly */
-.app-bar.with-rail {
-  padding-left: 16px !important;
+.app-bar.is-hidden {
+  transform: translateY(-100%);
+}
+
+/* Ensure breadcrumbs don't overlap with buttons */
+.flex-grow-1 {
+  flex-grow: 1;
+  min-width: 0;
 }
 </style>
