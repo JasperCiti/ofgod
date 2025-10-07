@@ -25,7 +25,9 @@ This project was created to migrate content from a Grav-based website (located a
 - **Components**: `BreadcrumbNav.vue`, `SearchBox.vue`, `TreeNode.vue`, `TocItem.vue`, `NavigationTree.vue`, `AppTableOfContents.vue`
 - **Layout**: Desktop 3-column (280px nav + flexible content + 240px TOC), mobile overlay drawer
 - **Features**:
-  - Breadcrumbs show last 2 levels with `...` for 3 levels up
+  - Breadcrumbs use actual page titles from frontmatter (root page shows site title like "Kingdom of God")
+  - Shows last 3 segments for paths ≤3 levels, ellipsis + last 3 for deeper paths
+  - For `/a/b/c/d`: shows `... > B > C > D` (ellipsis links to `/a`)
   - Tree auto-expands current path, collapses siblings (Option B behavior)
   - TOC detects H1-H3 headings (shows highest 2 levels, min 2 headings)
   - Client-side search with deduplication (searches title, description, navigation title, excerpt)

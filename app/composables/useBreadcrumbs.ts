@@ -37,13 +37,13 @@ export async function generateBreadcrumbs(path: string): Promise<BreadcrumbItem[
         if (page?.title) {
           pageTitles.set(pagePath, page.title)
         } else {
-          // Fallback: use last segment as title
-          const lastSegment = pagePath === '/' ? 'Home' : pagePath.split('/').filter(Boolean).pop() || 'Page'
+          // Fallback: use last segment as title (or 'Root' for home)
+          const lastSegment = pagePath === '/' ? 'Root' : pagePath.split('/').filter(Boolean).pop() || 'Page'
           pageTitles.set(pagePath, lastSegment)
         }
       } catch (error) {
         // If page not found, use path segment as title
-        const lastSegment = pagePath === '/' ? 'Home' : pagePath.split('/').filter(Boolean).pop() || 'Page'
+        const lastSegment = pagePath === '/' ? 'Root' : pagePath.split('/').filter(Boolean).pop() || 'Page'
         pageTitles.set(pagePath, lastSegment)
       }
     }
@@ -51,31 +51,35 @@ export async function generateBreadcrumbs(path: string): Promise<BreadcrumbItem[
     console.error('Error generating breadcrumbs:', error)
   }
 
-  // Apply breadcrumb logic: show last 2 levels
-  if (segments.length === 1) {
-    // /church → "Home > Church"
-    breadcrumbs.push(
-      { title: pageTitles.get('/') || 'Home', path: '/' },
-      { title: pageTitles.get(path) || segments[0] || 'Page', path: path }
-    )
-  } else if (segments.length === 2) {
-    // /church/history → "Home > Church" (still show parent)
-    const parentPath = '/' + segments[0]
-    breadcrumbs.push(
-      { title: pageTitles.get('/') || 'Home', path: '/' },
-      { title: pageTitles.get(parentPath) || segments[0] || 'Page', path: parentPath }
-    )
-  } else {
-    // /church/history/messianic → "... > History > Messianic"
-    // "..." goes 3 levels up from current: /church/history/messianic → /church
-    const ellipsisPath = '/' + segments.slice(0, segments.length - 2).join('/')
-    const parentPath = '/' + segments.slice(0, segments.length - 1).join('/')
+  // Apply breadcrumb logic: show last 3 levels or all if <= 3 segments
+  if (segments.length <= 3) {
+    // Show root + all segments
+    breadcrumbs.push({ title: pageTitles.get('/') || 'Root', path: '/' })
 
-    breadcrumbs.push(
-      { title: '...', path: ellipsisPath },
-      { title: pageTitles.get(parentPath) || segments[segments.length - 2] || 'Page', path: parentPath },
-      { title: pageTitles.get(path) || segments[segments.length - 1] || 'Page', path: path }
-    )
+    for (let i = 0; i < segments.length; i++) {
+      const segmentPath = '/' + segments.slice(0, i + 1).join('/')
+      breadcrumbs.push({
+        title: pageTitles.get(segmentPath) || segments[i] || 'Page',
+        path: segmentPath
+      })
+    }
+  } else {
+    // Show ellipsis + last 3 segments
+    // For /a/b/c/d: show ... > b > c > d, ellipsis links to /a
+    const firstVisibleIndex = segments.length - 3
+    const ellipsisPath = firstVisibleIndex > 0
+      ? '/' + segments.slice(0, firstVisibleIndex).join('/')
+      : '/'
+
+    breadcrumbs.push({ title: '...', path: ellipsisPath })
+
+    for (let i = firstVisibleIndex; i < segments.length; i++) {
+      const segmentPath = '/' + segments.slice(0, i + 1).join('/')
+      breadcrumbs.push({
+        title: pageTitles.get(segmentPath) || segments[i] || 'Page',
+        path: segmentPath
+      })
+    }
   }
 
   return breadcrumbs
