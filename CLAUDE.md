@@ -28,15 +28,23 @@ This project was created to migrate content from a Grav-based website (located a
   - Breadcrumbs show last 2 levels with `...` for 3 levels up
   - Tree auto-expands current path, collapses siblings (Option B behavior)
   - TOC detects H1-H3 headings (shows highest 2 levels, min 2 headings)
-  - Client-side search across title + content
+  - Client-side search with deduplication (searches title, description, navigation title, excerpt)
   - Smart hide app bar (scroll down hides, scroll up shows)
   - Fade gradients on sidebars (no scrollbars)
   - Fixed content width on desktop (prevents scroll jump)
+
+**Search Implementation:**
+- Uses `queryCollection('content').all()` to fetch all pages
+- Filters by metadata fields (title, description, navigation.title, excerpt)
+- Single-pass filter+deduplicate algorithm for performance
+- Path normalization prevents duplicate results
+- Helper functions: `normalizePath()`, `pageMatchesQuery()`
 
 **Result:**
 - Scales to unlimited hierarchy depth without icons
 - Mobile-friendly drawer with TOC expansion panel
 - Search, tree navigation, and TOC all integrated
+- No duplicate search results
 - No state persistence (resets on refresh)
 
 ### @nuxt/content v3 Migration & Plain Text Bible Verses (2025-10-07)
@@ -594,15 +602,20 @@ navigation:
 
 ### Search Issues
 - **Search not finding pages:**
-  - Check `queryCollection('content').all()` returns all pages
-  - Verify filter logic checks both `title` and `body` fields
-  - Test with different search terms
+  - Verify `queryCollection('content').all()` returns all pages
+  - Search only works on metadata fields: `title`, `description`, `navigation.title`, `excerpt`
+  - Full-text content search not available (limitation of current implementation)
+  - Test with page titles or descriptions
+- **Duplicate search results:**
+  - Fixed by path normalization in `SearchBox.vue` (2025-10-07)
+  - Uses `normalizePath()` to remove trailing slashes
+  - Single-pass filter+deduplicate algorithm
 - **Search results not clickable:**
-  - Ensure `@select` emit is handled correctly
-  - Check router navigation works
+  - Ensure `@select` emit is handled correctly in `AppNavigation.vue`
+  - Check `navigateTo()` function works
 - **Mobile drawer not closing after search:**
   - Verify `SearchBox` emits `select` event
-  - Check drawer `v-model` is set to false on selection
+  - Check drawer `v-model` is set to false on selection in layout
 
 ### Layout Issues
 - **Content width jumps when toggling sidebars:**
@@ -696,6 +709,21 @@ navigation:
 
 ## Recent Refactorings
 
+### 2025-10-07: Search Deduplication & Performance Optimization
+**Problem:** Search showing duplicate results for same page. Inefficient algorithm with redundant calculations.
+
+**Changes:**
+- **Added deduplication**: Path normalization prevents duplicates in search results
+- **Optimized algorithm**: Combined filter+deduplicate into single-pass loop (was: filter → deduplicate → map)
+- **Extracted helpers**: `normalizePath()`, `pageMatchesQuery()` for DRY principle
+- **Removed redundancy**: Eliminated duplicate path calculations (calculated once instead of twice)
+- **Cleaned up**: Removed unused `isSearching` variable
+
+**Result:**
+- No duplicate search results
+- More performant single-pass algorithm
+- Cleaner, more maintainable code with helper functions
+
 ### 2025-10-07: Tree Navigation System Implementation
 **Problem:** Icon-based navigation rail couldn't scale to hundreds of hierarchical articles. Needed comprehensive navigation with breadcrumbs, tree structure, and table of contents.
 
@@ -711,7 +739,7 @@ navigation:
 - Breadcrumbs show last 2 levels, `...` for 3+ levels (navigates 3 levels up)
 - Tree auto-expands current path, collapses siblings (Option B behavior)
 - TOC detects H1-H3 (shows highest 2 levels, min 2 headings)
-- Client-side search filters by title + content
+- Client-side search with deduplication (metadata only: title, description, navigation.title, excerpt)
 - Smart scroll app bar (hide on down, show on up)
 - Fade gradients on sidebars (no scrollbars)
 - Fixed content width (prevents scroll jump)

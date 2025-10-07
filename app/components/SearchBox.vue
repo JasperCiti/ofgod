@@ -58,7 +58,26 @@ const emit = defineEmits<{
 
 const searchQuery = ref('')
 const searchResults = ref<SearchResult[]>([])
-const isSearching = ref(false)
+
+/**
+ * Normalize page path by removing trailing slashes
+ */
+function normalizePath(page: any): string {
+  const path = page.path || page.id || '/'
+  return path === '/' ? '/' : path.replace(/\/$/, '')
+}
+
+/**
+ * Check if page matches search query
+ */
+function pageMatchesQuery(page: any, queryLower: string): boolean {
+  return (
+    page.title?.toLowerCase().includes(queryLower) ||
+    page.description?.toLowerCase().includes(queryLower) ||
+    page.navigation?.title?.toLowerCase().includes(queryLower) ||
+    page.excerpt?.toLowerCase().includes(queryLower)
+  )
+}
 
 /**
  * Handle search input
@@ -71,44 +90,38 @@ async function handleSearch(query: string) {
   }
 
   emit('search-active', true)
-  isSearching.value = true
 
   try {
-    // Use @nuxt/content search - simple query all and filter
     const allPages = await queryCollection('content').all()
-
-    // Simple search: filter by title and content
     const queryLower = query.toLowerCase()
-    const filtered = allPages
-      .filter((page: any) => {
-        const titleMatch = page.title?.toLowerCase().includes(queryLower)
-        const bodyMatch = page.body?.toLowerCase().includes(queryLower)
-        return titleMatch || bodyMatch
-      })
-      .slice(0, 50) // Limit to 50 results
 
-    // Process results
-    searchResults.value = filtered.map((result: any) => {
-      const path = result.path || result.id || '/'
-      const title = result.title || 'Untitled'
-
-      // Generate breadcrumb from path
-      const segments = path.split('/').filter(Boolean)
-      const breadcrumb = segments.length > 0
-        ? segments.slice(0, -1).join(' > ') || 'Home'
-        : 'Home'
-
-      return {
-        path,
-        title,
-        breadcrumb
+    // Filter and deduplicate in single pass
+    const uniquePages = new Map<string, any>()
+    for (const page of allPages) {
+      if (pageMatchesQuery(page, queryLower)) {
+        const path = normalizePath(page)
+        if (!uniquePages.has(path)) {
+          uniquePages.set(path, { ...page, normalizedPath: path })
+        }
       }
-    })
+    }
+
+    // Map unique results (limit to 50)
+    searchResults.value = Array.from(uniquePages.values())
+      .slice(0, 50)
+      .map((page: any) => {
+        const segments = page.normalizedPath.split('/').filter(Boolean)
+        return {
+          path: page.normalizedPath,
+          title: page.title || page.navigation?.title || 'Untitled',
+          breadcrumb: segments.length > 0
+            ? segments.slice(0, -1).join(' > ') || 'Home'
+            : 'Home'
+        }
+      })
   } catch (error) {
     console.error('Search error:', error)
     searchResults.value = []
-  } finally {
-    isSearching.value = false
   }
 }
 
