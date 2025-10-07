@@ -203,14 +203,14 @@ class GravMigrator {
         let filePath: string
         if (!page.path || page.path === '') {
           // Root page: /content/{domain}/index.md
-          const contentDir = path.join(this.targetDir, 'public', 'content', this.targetDomain)
+          const contentDir = path.join(this.targetDir, 'content', this.targetDomain)
           filePath = path.join(contentDir, 'index.md')
           if (!this.dryRun) {
             await fs.ensureDir(contentDir)
           }
         } else {
           // Nested page: /content/{domain}/path/to/page.md (no directory)
-          const contentDir = path.join(this.targetDir, 'public', 'content', this.targetDomain, path.dirname(page.path))
+          const contentDir = path.join(this.targetDir, 'content', this.targetDomain, path.dirname(page.path))
           const fileName = `${path.basename(page.path)}.md`
           filePath = path.join(contentDir, fileName)
           if (!this.dryRun) {
@@ -316,8 +316,9 @@ class GravMigrator {
   }
 
   private processBibleVerses(content: string): string {
-    // Enhanced pattern to match various Bible verse formats
-    // Matches: Book Chapter:Verse[-Verse][,Verse]* (Translation)
+    // Count Bible verses for statistics, but preserve original text format
+    // The client-side plugin will handle tooltip injection dynamically
+
     const biblePatterns = [
       // Standard format: John 3:16 (ESV)
       /\b(\d?\s?[A-Z][a-z]+(?:\s+[A-Z]?[a-z]+)?)\s+(\d+):(\d+(?:-\d+)?(?:,\s*\d+(?:-\d+)?)*)\s*\(([A-Z]+)\)/g,
@@ -327,49 +328,20 @@ class GravMigrator {
       /\b(\d?\s?[A-Z][a-z]+(?:\s+[A-Z]?[a-z]+)?)\s+(\d+):(\d+(?:-\d+)?(?:,\s*\d+(?:-\d+)?)*)\b(?!\s*\()/g
     ]
 
-    let result = content
+    // Count Bible verses for stats, but don't modify content
+    let tempContent = content
 
-    // First pass: Replace all Bible verses with placeholders to avoid nested replacements
-    const placeholders: { id: string; replacement: string }[] = []
-    let placeholderIndex = 0
-
-    // Handle multi-chapter ranges first
-    result = result.replace(biblePatterns[1], (match, book, chapterStart, verseStart, chapterEnd, verseEnd, translation) => {
-      this.stats.bibleVerses++
-      const reference = `${book} ${chapterStart}:${verseStart}-${chapterEnd}:${verseEnd}`
-      const id = `__BIBLE_VERSE_${placeholderIndex++}__`
-      placeholders.push({ id, replacement: `<BibleVerse reference="${reference}" translation="${translation}" />` })
-      return id
-    })
-
-    // Handle standard format with translation
-    result = result.replace(biblePatterns[0], (match, book, chapter, verses, translation) => {
-      this.stats.bibleVerses++
-      const reference = `${book} ${chapter}:${verses}`
-      const id = `__BIBLE_VERSE_${placeholderIndex++}__`
-      placeholders.push({ id, replacement: `<BibleVerse reference="${reference}" translation="${translation}" />` })
-      return id
-    })
-
-    // Handle format without translation (default to ESV)
-    result = result.replace(biblePatterns[2], (match, book, chapter, verses) => {
-      // Skip if it's already a placeholder
-      if (match.includes('__BIBLE_VERSE_')) {
-        return match
+    biblePatterns.forEach(pattern => {
+      const matches = tempContent.match(pattern)
+      if (matches) {
+        this.stats.bibleVerses += matches.length
       }
-      this.stats.bibleVerses++
-      const reference = `${book} ${chapter}:${verses}`
-      const id = `__BIBLE_VERSE_${placeholderIndex++}__`
-      placeholders.push({ id, replacement: `<BibleVerse reference="${reference}" translation="ESV" />` })
-      return id
+      // Reset regex state
+      pattern.lastIndex = 0
     })
 
-    // Second pass: Replace all placeholders with actual components
-    placeholders.forEach(({ id, replacement }) => {
-      result = result.replace(new RegExp(id, 'g'), replacement)
-    })
-
-    return result
+    // Return content unchanged - client-side plugin handles enhancement
+    return content
   }
 
 

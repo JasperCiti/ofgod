@@ -42,8 +42,8 @@ However, not all of Tertullian's views were acceptable to the church. For exampl
 * Tertullian expressed some reservations about Mary's virginity.
 
 [^1]: McGowan 2006:437
-[^2]: AP2 and 3; <BibleVerse reference="Migne 1844:157-158" translation="ESV" />; ed. Schaff 1885a:1337-1338; cf. <BibleVerse reference="Hillar 2012:190-220" translation="ESV" />; <BibleVerse reference="Quasten 1950:286" translation="ESV" />
-[^3]: Haykin 2017; cf. <BibleVerse reference="Carl 2009:1, 3" translation="ESV" />; <BibleVerse reference="Holmes 2012:69-70" translation="ESV" />
-[^4]: AP12; <BibleVerse reference="Migne 1844:168" translation="ESV" />; ed. Schaff 1885a:1358
-[^5]: <BibleVerse reference="Litfin 2019:92" translation="ESV" />
-[^6]: <BibleVerse reference="Quasten 1950:326" translation="ESV" />
+[^2]: AP2 and 3; Migne 1844:157-158; ed. Schaff 1885a:1337-1338; cf. Hillar 2012:190-220; Quasten 1950:286
+[^3]: Haykin 2017; cf. Carl 2009:1, 3; Holmes 2012:69-70
+[^4]: AP12; Migne 1844:168; ed. Schaff 1885a:1358
+[^5]: Litfin 2019:92
+[^6]: Quasten 1950:326

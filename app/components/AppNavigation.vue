@@ -125,9 +125,6 @@ const route = useRoute()
 // Menu items
 const menuItems = ref<MenuItem[]>([])
 
-// Load menu items dynamically from content
-const { contentRoot } = useContentConfig()
-
 // Icon mapping for different sections
 const iconMap: Record<string, string> = {
   'home': 'mdi-home',
@@ -141,18 +138,31 @@ async function loadNavigation() {
   const navItems: MenuItem[] = []
 
   try {
-    // Add home page
-    const homePage = await useContentPage('/')
-    if (homePage) {
+    // Query all content pages using @nuxt/content v3 API
+    const pages = await queryCollection('content').all()
+
+    // Process each page
+    for (const page of pages) {
+      const path = page.path || '/'
+      const pathParts = path.split('/').filter(Boolean)
+      const pageId = pathParts.length === 0 ? 'home' : pathParts[pathParts.length - 1] || 'home'
+
+      // Get navigation metadata or use defaults
+      const navData = typeof page.navigation === 'object' && page.navigation !== null ? page.navigation as Record<string, any> : null
+      const navTitle = navData?.title || page.title || pageId
+      const navOrder = typeof navData?.order === 'number' ? navData.order : (pageId === 'home' ? -1 : 999)
+      const icon = iconMap[pageId] ?? iconMap['default'] ?? 'mdi-file-document'
+
       navItems.push({
-        id: 'home',
-        title: homePage.title || 'Home',
-        icon: iconMap['home'] ?? 'mdi-home',
-        path: '/',
-        order: -1 // Always first
+        id: pageId,
+        title: navTitle,
+        icon: icon,
+        path: path,
+        order: navOrder
       })
     }
   } catch (error) {
+    console.error('Failed to load navigation:', error)
     // Add fallback home on error
     navItems.push({
       id: 'home',
@@ -161,26 +171,6 @@ async function loadNavigation() {
       path: '/',
       order: -1
     })
-  }
-
-  // Try to load known subdirectories based on content structure
-  const subPaths = ['darkness', 'body', 'church']
-
-  for (const subPath of subPaths) {
-    try {
-      const page = await useContentPage(`/${subPath}`)
-      if (page && page.navigation) {
-        navItems.push({
-          id: subPath,
-          title: page.navigation.title || page.title || subPath,
-          icon: iconMap[subPath] ?? iconMap['default'] ?? 'mdi-file-document',
-          path: `/${subPath}`,
-          order: page.navigation.order ?? 999
-        })
-      }
-    } catch (error) {
-      // Skip if page doesn't exist
-    }
   }
 
   // Sort by navigation order

@@ -6,7 +6,7 @@ navigation:
   order: 5
 ---
 
-<BibleVerse reference="Acts 8:9-24" translation="ESV" /> possibly refers to [Simon Magus](https://en.wikipedia.org/wiki/Simon_Magus) as a Gnostic teacher. Whether he originated [Gnosticism](https://en.wikipedia.org/wiki/Gnosticism) is debatable, however from this we can see the Gnosticism was already active when [the first Christian gatherings](/church/history/christian) was formed.
+Acts 8:9-24 possibly refers to [Simon Magus](https://en.wikipedia.org/wiki/Simon_Magus) as a Gnostic teacher. Whether he originated [Gnosticism](https://en.wikipedia.org/wiki/Gnosticism) is debatable, however from this we can see the Gnosticism was already active when [the first Christian gatherings](/church/history/christian) was formed.
 
 Like [Christianity](/church/history/christian), Gnosis also originates from the Middle East.
 

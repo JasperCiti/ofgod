@@ -1,37 +1,35 @@
-/* Shared Markdown Content Styles */
+/* Content Body Styles - Used by @nuxt/content ContentRenderer */
 
 /* Headings */
-.content-body h1,
-.markdown-content h1 {
+.content-body h1 {
   font-size: 1.8rem;
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-weight: 600;
 }
 
-.content-body h2,
-.markdown-content h2 {
+.content-body h2 {
   font-size: 1.4rem;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
   font-weight: 600;
 }
 
-.markdown-content h3 {
+.content-body h3 {
   font-size: 1.2rem;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
   font-weight: 600;
 }
 
-.markdown-content h4 {
+.content-body h4 {
   font-size: 1.1rem;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
   font-weight: 600;
 }
 
-.markdown-content h5 {
+.content-body h5 {
   font-size: 1.05rem;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
@@ -39,46 +37,76 @@
 }
 
 /* Paragraphs */
-.markdown-content p {
+.content-body p {
   margin: 0.8rem 0;
 }
 
-/* Blockquotes - rendered as VCards */
-.content-body .blockquote-content,
-.markdown-content .blockquote-content {
+/* Blockquotes - rendered as VCards via ProseBlockquote.vue */
+.content-body .blockquote-content {
   font-family: Georgia, 'Times New Roman', serif;
   color: rgb(var(--v-theme-on-surface));
   font-size: 1.05rem;
 }
 
 /* Links */
-.content-body a,
-.markdown-content a {
+.content-body a {
   color: rgb(var(--v-theme-primary));
   text-decoration: none;
 }
 
-.markdown-content a:hover {
+.content-body a:hover {
   text-decoration: underline;
 }
 
 /* Text formatting */
-.markdown-content strong {
+.content-body strong {
   font-weight: 600;
 }
 
-.markdown-content em {
+.content-body em {
   font-style: italic;
 }
 
-/* Bible verse inline references */
-.markdown-content .bible-verse-inline {
-  color: rgb(var(--v-theme-primary));
-  text-decoration: underline;
-  text-decoration-style: dotted;
-  cursor: pointer;
+/* Lists */
+.content-body ul,
+.content-body ol {
+  margin: 0.8rem 0;
+  padding-left: 2rem;
 }
 
-.markdown-content .bible-verse-inline:hover {
-  text-decoration-style: solid;
+.content-body ul {
+  list-style-type: disc;
+}
+
+.content-body ol {
+  list-style-type: decimal;
+}
+
+.content-body ul ul {
+  margin: 0.4rem 0;
+  list-style-type: circle;
+}
+
+.content-body ul ul ul {
+  list-style-type: square;
+}
+
+.content-body ol ol {
+  margin: 0.4rem 0;
+  list-style-type: lower-alpha;
+}
+
+.content-body ol ol ol {
+  list-style-type: lower-roman;
+}
+
+.content-body li {
+  margin: 0.4rem 0;
+  line-height: 1.6;
+}
+
+/* Lists inside blockquotes (VCard) need extra padding */
+.content-body .blockquote-content ul,
+.content-body .blockquote-content ol {
+  padding-left: 2.5rem;
 }

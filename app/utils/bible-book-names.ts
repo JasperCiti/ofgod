@@ -26,11 +26,11 @@ export function createBibleReferencePatterns(): RegExp[] {
   return [
     // Cross-chapter range: "2 Corinthians 4:16-5:9"
     new RegExp(`\\b(${bookPattern})\\s+(\\d+):(\\d+)-(\\d+):(\\d+)\\b`, 'g'),
-    // Same chapter range: "John 3:16-18"
-    new RegExp(`\\b(${bookPattern})\\s+(\\d+):(\\d+)-(\\d+)\\b`, 'g'),
-    // Single verse: "John 3:16"
-    new RegExp(`\\b(${bookPattern})\\s+(\\d+):(\\d+)\\b`, 'g'),
-    // Chapter only: "John 3", "Psalm 23"
+    // Same chapter range: "John 3:16-18" - ensure we don't match if followed by another colon
+    new RegExp(`\\b(${bookPattern})\\s+(\\d+):(\\d+)-(\\d+)\\b(?!:)`, 'g'),
+    // Single verse: "John 3:16" - ensure we don't match if followed by dash or comma
+    new RegExp(`\\b(${bookPattern})\\s+(\\d+):(\\d+)\\b(?![-:])`, 'g'),
+    // Chapter only: "John 3", "Psalm 23" - ensure not followed by colon
     new RegExp(`\\b(${bookPattern})\\s+(\\d+)\\b(?!\\s*:)`, 'g')
   ]
 }

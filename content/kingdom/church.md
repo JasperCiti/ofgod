@@ -10,16 +10,16 @@ Today [the meaning of "church" has changed](/bible/translations/differences/ekkl
 
 # The original [body of Christ](/body)
 
-From the bible we can tell that the earliest believers in Jesus Christ were persecuted by both Jew and Roman. They were the minority and considered as sect (<BibleVerse reference="Acts 24:2-5" translation="ESV" />). These congregations:
+From the bible we can tell that the earliest believers in Jesus Christ were persecuted by both Jew and Roman. They were the minority and considered as sect (Acts 24:2-5). These congregations:
 
-* **Guidance of the Holy Spirit**: The early church believed that the Holy Spirit was actively guiding them in their decisions. This led to a reliance on spiritual discernment and a willingness to follow the leading of the Spirit (<BibleVerse reference="Acts 1:24-26, 13" translation="ESV" />:2-3, 15:28).
-* **Focus on missionary work**: The early church was committed to spreading the gospel (<BibleVerse reference="Matthew 28:19-20" translation="ESV" />; <BibleVerse reference="Acts 1:8" translation="ESV" />; <BibleVerse reference="Romans 10:14-15" translation="ESV" />), and this was a primary focus of their activity. They were not as concerned with building up physical structures as they were with reaching out to others with the message of Christ.
-* **Shared possessions**: In the face of persecution, believers often had to rely on one another for support. This led to a strong sense of community and a willingness to share resources (<BibleVerse reference="Acts 2:44-45, 4" translation="ESV" />:32-35).
-* **No written Bible**: The New Testament was not yet written, so believers relied on oral tradition, the teachings of the apostles like Paul's letters or the guidance of [God's Holy Spirit](/god/spirit) (<BibleVerse reference="John 14:26" translation="ESV" />).
+* **Guidance of the Holy Spirit**: The early church believed that the Holy Spirit was actively guiding them in their decisions. This led to a reliance on spiritual discernment and a willingness to follow the leading of the Spirit (Acts 1:24-26, 13:2-3, 15:28).
+* **Focus on missionary work**: The early church was committed to spreading the gospel (Matthew 28:19-20; Acts 1:8; Romans 10:14-15), and this was a primary focus of their activity. They were not as concerned with building up physical structures as they were with reaching out to others with the message of Christ.
+* **Shared possessions**: In the face of persecution, believers often had to rely on one another for support. This led to a strong sense of community and a willingness to share resources (Acts 2:44-45, 4:32-35).
+* **No written Bible**: The New Testament was not yet written, so believers relied on oral tradition, the teachings of the apostles like Paul's letters or the guidance of [God's Holy Spirit](/god/spirit) (John 14:26).
 * **No creeds or rule books**: Creeds were only declared during and after the reign on Constantine and rule books written after church councils were formed.
-* **No church buildings**: The early church did not officially meet in public church buildings. Instead, they often gathered in homes or other private spaces (<BibleVerse reference="Acts 12:12" translation="ESV" />; <BibleVerse reference="Romans 16:5" translation="ESV" />; <BibleVerse reference="1 Corinthians 16:19" translation="ESV" />; <BibleVerse reference="Colossians 4:15" translation="ESV" />).
+* **No church buildings**: The early church did not officially meet in public church buildings. Instead, they often gathered in homes or other private spaces (Acts 12:12; Romans 16:5; 1 Corinthians 16:19; Colossians 4:15).
 * **Informal structure**: The early church did not have a formal hierarchy or a centralised institutional structure.
-* **Informal sacraments**: The early church did not have a formal sacramental system, like [Holy Communion](/life/communion). Instead, they participated in informal gatherings (<BibleVerse reference="Acts 2:46" translation="ESV" />) that were focused on fellowship and [praise](/bible/concepts/praise).
+* **Informal sacraments**: The early church did not have a formal sacramental system, like [Holy Communion](/life/communion). Instead, they participated in informal gatherings (Acts 2:46) that were focused on fellowship and [praise](/bible/concepts/praise).
 
 These congregations represented [the body of Christ](/body) on Earth after Christ himself ascended to heaven. Christ Himself often referred to his body as [the bread of life](/bible/metaphors/bread) which meant members of his body is supposed to "feed" upon or "feed" each other (support) with their "gifts", resources, teachings and testimonies which is only possible with a great deal of trust. Trust comes with [fellowship](/bible/concepts/fellowship) a key aspect of the gospel of Christ to the glory of the Father (see Paul's letter openings and endings).  
 
@@ -45,7 +45,7 @@ Myth: *You need to be called a [Christian](/bible/concepts/christian) to be save
 
 Truth: It does not matter what people call you.
 
-Around 62 AD the Greek-speaking citizens of Antioch started to call the believers "Christians" which means those who believed in "Christ" (<BibleVerse reference="Acts 11:26" translation="ESV" />). This was intended to be an insult (<BibleVerse reference="Acts 26:24-28" translation="ESV" />; <BibleVerse reference="1 Peter 4:12-16" translation="ESV" />), but later became the norm.
+Around 62 AD the Greek-speaking citizens of Antioch started to call the believers "Christians" which means those who believed in "Christ" (Acts 11:26). This was intended to be an insult (Acts 26:24-28; 1 Peter 4:12-16), but later became the norm.
 
 ## Baptism does not require faith
 
@@ -67,9 +67,9 @@ The doctrine the "Christians cannot be cursed" originates from Tertullian (155-2
 
 Myth: *You need institutional hierarchies within the church to delegate authority and order.*
 
-Truth: Jesus was against hierarchies (<BibleVerse reference="Matthew 23:1-12" translation="ESV" />)
+Truth: Jesus was against hierarchies (Matthew 23:1-12)
 
-> And **call no man your father on earth**, for you have one Father, who is in heaven. **Neither be called instructors**, for you have one instructor, the Christ. -- <BibleVerse reference="Matthew 23:9-10" translation="ESV" />
+> And **call no man your father on earth**, for you have one Father, who is in heaven. **Neither be called instructors**, for you have one instructor, the Christ. -- Matthew 23:9-10 (ESV)
 
 ## Christians gatherings are contained in expensive church buildings
 
@@ -207,7 +207,7 @@ In 731, Pope Gregory III instituted "All Saints' Day" on the 1st of November a u
 
 ### Birthdays
 
-Although birthdays were never officially instituted by any church and the only mentions of birthdays in the bible are in negative contexts (<BibleVerse reference="Genesis 40:20-22" translation="ESV" />; <BibleVerse reference="Job 1:13-14" translation="ESV" />; <BibleVerse reference="Matthew 14:6-11" translation="ESV" />; <BibleVerse reference="Mark 6:21-29" translation="ESV" />), yet Christians did adopt the birthday celebration tradition. Whether Birthdays have any pagan roots are debatable, however certain pagan practices did creep into the celebration of birthdays for example:
+Although birthdays were never officially instituted by any church and the only mentions of birthdays in the bible are in negative contexts (Genesis 40:20-22; Job 1:13-14; Matthew 14:6-11; Mark 6:21-29), yet Christians did adopt the birthday celebration tradition. Whether Birthdays have any pagan roots are debatable, however certain pagan practices did creep into the celebration of birthdays for example:
 
 * Birthday wishes: In ancient Rome, people would make wishes for the birthday person, hoping that they would have a happy and prosperous year.
 * Candles on the cake: In Ancient Greece, candles were placed on cakes as an offering to the moon goddess Artemis. The number of candles represented the number of years the person had lived.
@@ -301,7 +301,7 @@ It was only until 1382 when John Wycliffe translated the Bible into English that
 
 Although the Council of Toulouse's decision was later reversed, the tradition is still very strong in modern churches. Many church members still belief that the bible is hard to understand and that we need a "preacher" with a theological degree to interpret the bible for us.
 
-The Bible says, let [God's Spirit](/god/spirit) teach you (<BibleVerse reference="John 14:26" translation="ESV" />). There are also many Bible translations and resources available for free [online](/bible).
+The Bible says, let [God's Spirit](/god/spirit) teach you (John 14:26). There are also many Bible translations and resources available for free [online](/bible).
 
 ## The Catholic Church require pardons (money) for forgiveness of sin
 

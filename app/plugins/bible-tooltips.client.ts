@@ -93,10 +93,16 @@ export default defineNuxtPlugin((nuxtApp) => {
     private createTooltip(): HTMLElement {
       const tooltip = document.createElement('div')
       tooltip.className = 'bible-tooltip'
+
+      // Get computed theme colors from document root
+      const computedStyle = getComputedStyle(document.documentElement)
+      const primaryColor = computedStyle.getPropertyValue('--v-theme-primary') || '53, 116, 240'
+      const onPrimaryColor = computedStyle.getPropertyValue('--v-theme-on-primary') || '255, 255, 255'
+
       tooltip.style.cssText = `
         position: fixed;
-        background: rgb(var(--v-theme-primary));
-        color: rgb(var(--v-theme-on-primary));
+        background: rgb(${primaryColor});
+        color: rgb(${onPrimaryColor});
         padding: 12px 16px;
         border-radius: 8px;
         font-size: 14px;
@@ -220,13 +226,8 @@ export default defineNuxtPlugin((nuxtApp) => {
             // Skip if already processed or in excluded elements
             if (parent.classList.contains('bible-tooltip') ||
                 parent.classList.contains('no-bible') ||
-                parent.classList.contains('bible-verse') ||
-                parent.classList.contains('bible-verse-inline') ||
                 parent.tagName === 'SCRIPT' ||
-                parent.tagName === 'STYLE' ||
-                // Skip if inside Vue component wrapper for BibleVerse or inline verse
-                parent.closest('.bible-verse') ||
-                parent.closest('.bible-verse-inline')) {
+                parent.tagName === 'STYLE') {
               return NodeFilter.FILTER_REJECT
             }
 
@@ -323,23 +324,40 @@ export default defineNuxtPlugin((nuxtApp) => {
           addExpanded(match.index, match.length, match.text, match.text)
         })
 
-        // Sort by index (reverse order for replacement)
-        expanded.sort((a, b) => b.index - a.index)
+        // Replace matches by creating nodes manually (more reliable than innerHTML)
+        if (hasMatches && textNode.parentElement && textNode.parentNode) {
+          // Sort matches by index (forward order for sequential processing)
+          expanded.sort((a, b) => a.index - b.index)
 
-        // Replace matches from end to start to preserve indices
-        let newHTML = text
-        expanded.forEach(match => {
-          const replacement = `<span class="bible-ref" data-reference="${match.text}" style="color: rgb(var(--v-theme-primary)); text-decoration: underline; cursor: help;">${match.displayText}</span>`
-          newHTML = newHTML.substring(0, match.index) + replacement + newHTML.substring(match.index + match.length)
-        })
+          let lastIndex = 0
+          const fragment = document.createDocumentFragment()
 
-        if (hasMatches && textNode.parentElement) {
-          const tempDiv = document.createElement('div')
-          tempDiv.innerHTML = newHTML
+          expanded.forEach(match => {
+            // Add text before the match
+            if (match.index > lastIndex) {
+              const beforeText = text.substring(lastIndex, match.index)
+              fragment.appendChild(document.createTextNode(beforeText))
+            }
 
-          while (tempDiv.firstChild) {
-            textNode.parentNode?.insertBefore(tempDiv.firstChild, textNode)
+            // Create the span element
+            const span = document.createElement('span')
+            span.className = 'bible-ref'
+            span.setAttribute('data-reference', match.text)
+            span.style.cssText = 'color: rgb(var(--v-theme-primary)); text-decoration: underline; cursor: help;'
+            span.textContent = match.displayText
+            fragment.appendChild(span)
+
+            lastIndex = match.index + match.length
+          })
+
+          // Add remaining text after last match
+          if (lastIndex < text.length) {
+            const afterText = text.substring(lastIndex)
+            fragment.appendChild(document.createTextNode(afterText))
           }
+
+          // Replace the original text node with the fragment
+          textNode.parentNode.insertBefore(fragment, textNode)
           textNode.remove()
         }
       })
@@ -457,124 +475,22 @@ export default defineNuxtPlugin((nuxtApp) => {
       })
     }
 
-    private processInlineBibleVerses() {
-      // Find all .bible-verse-inline spans and attach tooltips
-      const inlineVerses = document.querySelectorAll('.bible-verse-inline:not([data-tooltip-processed])')
-
-      inlineVerses.forEach(element => {
-        const reference = element.getAttribute('data-reference')
-        if (!reference) return
-
-        // Mark as processed to avoid duplicate listeners
-        element.setAttribute('data-tooltip-processed', 'true')
-
-        let isTooltipVisible = false
-
-        element.addEventListener('mouseenter', async (e) => {
-          // Only process if THIS element doesn't already own the tooltip
-          if (!this.currentElement || this.currentElement !== element) {
-            // Clear any pending close timeout from previous element
-            if (this.currentCloseTimeout) {
-              clearTimeout(this.currentCloseTimeout)
-              this.currentCloseTimeout = null
-            }
-
-            this.handleMouseEnter(element as HTMLElement, reference, e as MouseEvent)
-            isTooltipVisible = true
-            this.currentElement = element as HTMLElement
-
-            this.onHideCallback = () => {
-              isTooltipVisible = false
-            }
-          }
-        })
-
-        element.addEventListener('mouseleave', () => {
-          if (!this.currentLockState && this.currentElement === element) {
-            this.currentCloseTimeout = setTimeout(() => {
-              if (!this.currentLockState && this.currentElement === element) {
-                this.hideTooltip()
-                isTooltipVisible = false
-              }
-            }, 300)
-          }
-        })
-
-        element.addEventListener('click', (e) => {
-          e.preventDefault()
-          e.stopPropagation()
-
-          if (this.currentCloseTimeout) {
-            clearTimeout(this.currentCloseTimeout)
-            this.currentCloseTimeout = null
-          }
-
-          this.currentLockState = true
-          if (this.overlay) {
-            this.overlay.style.display = 'block'
-          }
-
-          if (!isTooltipVisible) {
-            this.handleMouseEnter(element as HTMLElement, reference, e as MouseEvent)
-            isTooltipVisible = true
-          }
-        })
-
-        // Touch events for mobile
-        element.addEventListener('touchstart', async (e: Event) => {
-          const touchEvent = e as TouchEvent
-          touchEvent.preventDefault()
-          touchEvent.stopPropagation()
-
-          if (this.currentCloseTimeout) {
-            clearTimeout(this.currentCloseTimeout)
-            this.currentCloseTimeout = null
-          }
-
-          if (!isTooltipVisible) {
-            this.handleMouseEnter(element as HTMLElement, reference, touchEvent.touches[0] as any)
-            isTooltipVisible = true
-            this.currentElement = element as HTMLElement
-            this.currentLockState = true
-            if (this.overlay) {
-              this.overlay.style.display = 'block'
-            }
-          } else {
-            this.hideTooltip()
-            isTooltipVisible = false
-          }
-        })
-      })
-    }
-
     public scan() {
-      this.processInlineBibleVerses()
       this.detectBibleReferences()
     }
 
     private initializeTooltips() {
-      // Initial scan after DOM is ready
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-          setTimeout(() => this.scan(), 500)
-        })
-      } else {
-        setTimeout(() => this.scan(), 500)
-      }
+      // No initial scan - pages will trigger manually after ContentRenderer completes
+      // This prevents unnecessary duplicate scans
     }
   }
 
   // Create global instance
   const bibleTooltips = new BibleTooltips()
 
-  // Provide scan function for manual triggering
+  // Provide scan function for manual triggering after ContentRenderer completes
   nuxtApp.provide('bibleTooltips', {
     scan: () => bibleTooltips.scan()
-  })
-
-  // Re-scan on route changes
-  nuxtApp.hook('page:finish', () => {
-    setTimeout(() => bibleTooltips.scan(), 300)
   })
 })
 

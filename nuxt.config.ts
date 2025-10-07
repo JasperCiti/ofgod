@@ -8,13 +8,6 @@ export default defineNuxtConfig({
     typeCheck: true
   },
 
-  // Runtime config for environment-based content selection
-  runtimeConfig: {
-    public: {
-      content: process.env.CONTENT
-    }
-  },
-
   nitro: {
     prerender: {
       routes: ['/'],
@@ -35,7 +28,8 @@ export default defineNuxtConfig({
   ],
 
   modules: [
-    'vuetify-nuxt-module'
+    'vuetify-nuxt-module',
+    '@nuxt/content'
   ],
 
   vite: {
@@ -54,7 +48,7 @@ export default defineNuxtConfig({
           light: {
             dark: false,
             colors: {
-              primary: '#3574f0',
+              primary: '#2564e0',
               secondary: '#ffffff',
               selectable: '#dfe1e5',
               error: '#d64d5b',
@@ -85,7 +79,7 @@ export default defineNuxtConfig({
           dark: {
             dark: true,
             colors: {
-              primary: '#3574f0',
+              primary: '#4584ff',
               secondary: '#2b2d30',
               selectable: '#454749',
               error: '#d64d5b',

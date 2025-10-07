@@ -12,26 +12,26 @@ Also known as "the Kingdom of Heaven" according to Matthew.
 
 It is not a physical territory:
 
-> Being asked by the Pharisees when the kingdom of God would come, he *(Jesus)* answered them, “**The kingdom of God is not coming in ways that can be observed**, nor will they say, ‘Look, here it is!’ or ‘There!’ for behold, the kingdom of God is in the midst of you.” -- <BibleVerse reference="Luke 17:20-21" translation="ESV" />
+> Being asked by the Pharisees when the kingdom of God would come, he *(Jesus)* answered them, “**The kingdom of God is not coming in ways that can be observed**, nor will they say, ‘Look, here it is!’ or ‘There!’ for behold, the kingdom of God is in the midst of you.” -- Luke 17:20-21 (ESV)
 
 It spans across multiple realms:
 
-> Your kingdom come, Your will be done, on **earth as it is in heaven**. -- <BibleVerse reference="Matthew 6:10" translation="ESV" />
+> Your kingdom come, Your will be done, on **earth as it is in heaven**. -- Matthew 6:10 (ESV)
 
 # Why do we need the Kingdom of God?
 
 > * Whoever believes in the Son has eternal life.
 > * Whoever does not obey the Son shall not see life, but the wrath of God remains on him.
 >
-> -- <BibleVerse reference="John 3:36" translation="ESV" />
+> -- John 3:36 (ESV)
 
 and
 
-> Then the King will say to those on his right, "Come, you who are blessed by my Father, **inherit the kingdom prepared for you** from the foundation of the world." -- <BibleVerse reference="Matthew 25:34" translation="ESV" />
+> Then the King will say to those on his right, "Come, you who are blessed by my Father, **inherit the kingdom prepared for you** from the foundation of the world." -- Matthew 25:34 (ESV)
 
 Paul taught:
 
-> And we know that for those who love God **all things work together for good**, for those who are called according to his purpose. -- <BibleVerse reference="Romans 8:28" translation="ESV" />
+> And we know that for those who love God **all things work together for good**, for those who are called according to his purpose. -- Romans 8:28 (ESV)
 
 and
 
@@ -46,11 +46,11 @@ and
 > * giving thanks to the Father, who has qualified you to **share in the inheritance of the saints in light**.
 > * He has **delivered us from the domain of darkness** and
 > * **transferred us to the kingdom of His beloved son**,
-> * in whom **we have redemption**, the forgiveness of sins. -- <BibleVerse reference="Colossians 1:2,11-14" translation="ESV" />
+> * in whom **we have redemption**, the forgiveness of sins. -- Colossians 1:2,11-14 (ESV)
 
 In short, it is privilege to be able to "dwell" with the trustworthy Almighty God:
 
-> He who **dwells in the shelter of the Most High will abide in the shadow of the Almighty**. I will say to the LORD, “My refuge and my fortress, my God, **in whom I trust**.” -- <BibleVerse reference="Psalm 91:1-2" translation="ESV" />
+> He who **dwells in the shelter of the Most High will abide in the shadow of the Almighty**. I will say to the LORD, “My refuge and my fortress, my God, **in whom I trust**.” -- Psalm 91:1-2 (ESV)
 
 and this is how God respond:
 
@@ -63,13 +63,13 @@ and this is how God respond:
 > 6. With **long life** I will satisfy him and
 > 7. **show him** My salvation.”
 >
-> -- <BibleVerse reference="Psalm 91:14-16" translation="ESV" />
+> -- Psalm 91:14-16 (ESV)
 
 # Who is part of the Kingdom of God?
 
 Jesus very first teaching recorded by Matthew 5-7, was about "the Kingdom of Heaven" and he opens with the statement:
 
-> Blessed are [the poor in spirit](/bible/idioms#poor-in-the-spirit): **for theirs is the kingdom of heaven**. -- <BibleVerse reference="Matthew 5:3" translation="ESV" />
+> Blessed are [the poor in spirit](/bible/idioms#poor-in-the-spirit): **for theirs is the kingdom of heaven**. -- Matthew 5:3 (ESV)
 
 This is perhaps a reference to:
 
@@ -77,7 +77,7 @@ This is perhaps a reference to:
 > though you look carefully at his place, he will not be there.    
 > But **the *meek (humble/lowly/poor)* shall inherit the land and delight themselves in abundant peace**.
 >
-> -- <BibleVerse reference="Psalm 37:10" translation="ESV" />
+> -- Psalm 37:10 (ESV)
 
 James also warned:
 
@@ -101,7 +101,7 @@ James also warned:
 >
 > **Humble yourselves before the Lord**, and he will exalt you.
 >
-> -- <BibleVerse reference="James 4:4-10" translation="ESV" />
+> -- James 4:4-10 (ESV)
 
 "Poor in spirit" or "the meek" could also refer to those who are convicted of their sin and willing to repent. For example:
 
@@ -113,7 +113,7 @@ James also warned:
 >
 > So those who received his word were baptized, and there were **added that day about three thousand souls**.
 >
-> -- <BibleVerse reference="Acts 2:37-41" translation="ESV" />
+> -- Acts 2:37-41 (ESV)
 
 # Who rules over the Kingdom of God?
 
@@ -124,34 +124,34 @@ James also warned:
 > Bless the LORD, all His works, in all places of His dominion.  
 > Bless the LORD, O my soul!
 >
-> -- <BibleVerse reference="Psalm 103:19-22" translation="ESV" />
+> -- Psalm 103:19-22 (ESV)
 
 However, many centuries later, Jesus claim that he received all authority from God:
 
-> And Jesus came and said to them, “**All authority in heaven and on earth has been given to me.**” -- <BibleVerse reference="Matthew 28:18" translation="ESV" />
+> And Jesus came and said to them, “**All authority in heaven and on earth has been given to me.**” -- Matthew 28:18 (ESV)
 
 and
 
-> All things have been handed over to me by my Father... -- <BibleVerse reference="Luke 10:22" translation="ESV" />
+> All things have been handed over to me by my Father... -- Luke 10:22 (ESV)
 
 and
 
-> The Father loves the Son and has given all things into his hand. -- <BibleVerse reference="John 3:35" translation="ESV" />
+> The Father loves the Son and has given all things into his hand. -- John 3:35 (ESV)
 
 Paul also wrote:
 
 > I do not cease to give thanks for you, remembering you in my prayers, that **the God of our Lord Jesus Christ**, the Father of glory, may give you the Spirit of wisdom and of revelation in the knowledge of Him, having the eyes of your hearts enlightened, that you may know what is the hope to which He has called you, what are the riches of His glorious inheritance in the saints, and what is the immeasurable greatness of His power toward us who believe, according to the working of His great might that He worked in Christ when
 > 1. He raised him from the dead and
 > 2. seated him at His right hand in the heavenly places, far above all rule and authority and power and dominion, and above every name that is named, not only in this age but also in the one to come.
-> 3. And He put all things under his feet and gave him as head over all things to the church, which is [his body](/body), the fullness of Him who fills all in all. -- <BibleVerse reference="Ephesians 1:16-23" translation="ESV" />
+> 3. And He put all things under his feet and gave him as head over all things to the church, which is [his body](/body), the fullness of Him who fills all in all. -- Ephesians 1:16-23 (ESV)
 
-According to Paul, Jesus did not replace God, but instead that Jesus acts as a delegate under the authority of his God. (<BibleVerse reference="1 Corinthians 3:23, 11" translation="ESV" />:3)
+According to Paul, Jesus did not replace God, but instead that Jesus acts as a delegate under the authority of his God. (1 Corinthians 3:23, 11:3)
 
-> Now when all things are made subject to him, then **the Son himself will also be subject to Him** who put all things under him, that God may be all in all. -- <BibleVerse reference="1 Corinthians 15:28" translation="NKJV" />
+> Now when all things are made subject to him, then **the Son himself will also be subject to Him** who put all things under him, that God may be all in all. -- 1 Corinthians 15:28 (NKJV)
 
 # When is the Kingdom of God?
 
-> Now after John was arrested, Jesus came into Galilee, proclaiming the gospel of God, and saying, “**The time is fulfilled, and the kingdom of God is at hand** *[near or has approached]*; [repent](/eternal/saved/repent) and [believe in the gospel](/eternal/saved/belief).” -- <BibleVerse reference="Mark 1:14" translation="ESV" />
+> Now after John was arrested, Jesus came into Galilee, proclaiming the gospel of God, and saying, “**The time is fulfilled, and the kingdom of God is at hand** *[near or has approached]*; [repent](/eternal/saved/repent) and [believe in the gospel](/eternal/saved/belief).” -- Mark 1:14 (ESV)
 
 # What is the Kingdom of God?
 
@@ -162,7 +162,7 @@ According to Paul, Jesus did not replace God, but instead that Jesus acts as a d
 >
 > for it is written,
 >
->> “As I live, says [the LORD](/god/father/name#lord), every knee shall bow to me, and every tongue shall confess to God.” -- <BibleVerse reference="Isaiah 45:23" translation="ESV" />
+>> “As I live, says [the LORD](/god/father/name#lord), every knee shall bow to me, and every tongue shall confess to God.” -- Isaiah 45:23
 >
 > So then [each of us will give an account of himself to God](/eternal/judgement).
 >
@@ -172,9 +172,9 @@ According to Paul, Jesus did not replace God, but instead that Jesus acts as a d
 >
 > Whoever thus serves [Christ](/god/son/christ) is **acceptable to God** and approved by men. So then let us pursue what makes for **peace and for mutual upbuilding**.
 >
-> -- <BibleVerse reference="Romans 14:10-19" translation="ESV" />
+> -- Romans 14:10-19 (ESV)
 
-Jesus explains the Kingdom of God with parables (<BibleVerse reference="Matthew 13:10-17" translation="ESV" />; <BibleVerse reference="Mark 4:10-12" translation="ESV" />).
+Jesus explains the Kingdom of God with parables (Matthew 13:10-17; Mark 4:10-12).
 
 ## The parable of the wedding invitation
 
@@ -200,24 +200,24 @@ Jesus explains the Kingdom of God with parables (<BibleVerse reference="Matthew 
 > 
 > In that place there will be weeping and gnashing of teeth. For many are called, but few are chosen.” 
 > 
-> -- <BibleVerse reference="Matthew 22:1-14" translation="ESV" />
+> -- Matthew 22:1-14 (ESV)
 
 Comparison:
 
 | Parable                        | Reality                                                                                               |
 | ------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| The king                       | [God the Father](/god/father) (<BibleVerse reference="Matthew 25:34" translation="ESV" />)                                                         |
-| The king's son                 | [The Son of God](/god/son) (<BibleVerse reference="Matthew 3:17" translation="ESV" />)                                                             |
-| The feast                      | God the Father's rewards (<BibleVerse reference="Matthew 5:12" translation="ESV" />)                                                               |
-| The king's servants            | God's servants like John (<BibleVerse reference="Matthew 3:1-3" translation="ESV" />), Jesus (<BibleVerse reference="Matthew 4:17" translation="ESV" />) and their disciples (<BibleVerse reference="Matthew 28:19-20" translation="ESV" />) |
-| Those who were invited         | Israel (<BibleVerse reference="Matthew 3:5-6" translation="ESV" />)                                                                                |
-| Those who seized the servants  | The scribes and pharisees (<BibleVerse reference="Matthew 21:45-46, 23" translation="ESV" />:13-36)                                                |
-| The city which got burned      | Jerusalem (in 70 AD) (<BibleVerse reference="Matthew 23:37-38" translation="ESV" />)                                                               |
-| Those who are not worthy       | The "gentiles" who accept Christ's authority (<BibleVerse reference="Matthew 21:43-45, 23" translation="ESV" />:39)                                |
-| The king looking at the guests | The judgement day (<BibleVerse reference="John 12:48" translation="ESV" />)                                                                        |
-| A man with no wedding garment  | The "wicked servants" that dishonor God's son (<BibleVerse reference="Matthew 24:48-51" translation="ESV" />)                                      |
-| Outer darkness                 | [Hell](/bible/concepts/hell) (<BibleVerse reference="Matthew 24:51" translation="ESV" />)                                                          |
-| The few chosen                 | The "faithful servants" of God (<BibleVerse reference="Matthew 24:45-47" translation="ESV" />)                                                     |
+| The king                       | [God the Father](/god/father) (Matthew 25:34)                                                         |
+| The king's son                 | [The Son of God](/god/son) (Matthew 3:17)                                                             |
+| The feast                      | God the Father's rewards (Matthew 5:12)                                                               |
+| The king's servants            | God's servants like John (Matthew 3:1-3), Jesus (Matthew 4:17) and their disciples (Matthew 28:19-20) |
+| Those who were invited         | Israel (Matthew 3:5-6)                                                                                |
+| Those who seized the servants  | The scribes and pharisees (Matthew 21:45-46, 23:13-36)                                                |
+| The city which got burned      | Jerusalem (in 70 AD) (Matthew 23:37-38)                                                               |
+| Those who are not worthy       | The "gentiles" who accept Christ's authority (Matthew 21:43-45, 23:39)                                |
+| The king looking at the guests | The judgement day (John 12:48)                                                                        |
+| A man with no wedding garment  | The "wicked servants" that dishonor God's son (Matthew 24:48-51)                                      |
+| Outer darkness                 | [Hell](/bible/concepts/hell) (Matthew 24:51)                                                          |
+| The few chosen                 | The "faithful servants" of God (Matthew 24:45-47)                                                     |
 
 Explanation:
 
@@ -237,7 +237,7 @@ When the almighty God of the universe invite guests to His son's special occasio
     * with the proper garment (to honor His son)
     * to live in "[righteousness](/bible/concepts/righteousness), peace and joy" with the other attendees which is God Himself, His son and the other guests
 
-Only these will be "chosen" for "the wedding feast". In other words, God, the Father will selectively reward (<BibleVerse reference="Matthew 5:44-6" translation="ESV" />:20) those who honored His invitation.
+Only these will be "chosen" for "the wedding feast". In other words, God, the Father will selectively reward (Matthew 5:44-6:20) those who honored His invitation.
 
 Earlier in the same book, Matthew recorded Jesus first teaching:
 
@@ -249,7 +249,7 @@ Earlier in the same book, Matthew recorded Jesus first teaching:
 > Blessed are the pure in heart, for they shall see God.  
 > Blessed are the peacemakers, for they shall be called [sons of God](/god/sons-of-god).  
 >
-> -- <BibleVerse reference="Matthew 5:3-9" translation="ESV" />
+> -- Matthew 5:3-9 (ESV)
 
 God's children are humble, genuine, merciful, pure and be peacemakers. Someone cannot be a "son of God", but not be part of God's kingdom.
 
@@ -260,11 +260,11 @@ But then Jesus warns:
 >
 > Rejoice and be glad, for **your reward is great in [heaven](/bible/concepts/heaven)**, for so they persecuted the prophets who were before you.
 >
-> -- <BibleVerse reference="Matthew 5:3-12" translation="ESV" />
+> -- Matthew 5:3-12 (ESV)
 
 As explained by the above parable, those who are serving God's kingdom will be "persecuted" by the world.  But then Jesus also warned that the persecution should be "for righteousness' sake" and not because we lost our ability to "preserve" the Jesus' gospel: 
 
-> "You are the salt of the earth, but if salt has lost its taste, how shall its saltiness be restored? It is no longer good for anything except to be **thrown out and trampled under people's feet**." -- <BibleVerse reference="Matthew 5:13" translation="ESV" />
+> "You are the salt of the earth, but if salt has lost its taste, how shall its saltiness be restored? It is no longer good for anything except to be **thrown out and trampled under people's feet**." -- Matthew 5:13 (ESV)
 
 Our goal should not be to get persecuted, but to be effective on Earth.
 
@@ -276,11 +276,11 @@ Then Jesus explains with the parable...
 > 
 > In the same way, let your light shine before others, so that they may **see your good works** and **give glory to your Father** Who is in heaven.
 > 
-> -- <BibleVerse reference="Matthew 5:14-16" translation="ESV" />
+> -- Matthew 5:14-16 (ESV)
 
 Because of the way that many modern bibles are divided into sections, people often think this is where Jesus' teaching stops with an open ending. However, if you consider that the original text of Matthew continued with the statement:
 
-> Do not think that I have come to abolish **the Law or the Prophets**; I have not come to abolish them but to fulfill them. For truly, I say to you, until heaven and earth pass away, not an iota, not a dot, will pass from **the Law** until all is accomplished. -- <BibleVerse reference="Matthew 5:17-18" translation="ESV" />
+> Do not think that I have come to abolish **the Law or the Prophets**; I have not come to abolish them but to fulfill them. For truly, I say to you, until heaven and earth pass away, not an iota, not a dot, will pass from **the Law** until all is accomplished. -- Matthew 5:17-18 (ESV)
 
 The world will measure "the good works" of "the sons of God" according to "the laws or the prophets". If their works are not good, it cannot "give glory to the Father". This means there is a moral standard for "the sons of God".
 
@@ -289,14 +289,14 @@ Now some Christians would argue, these laws were only relevant to the Jews in Je
 There are 3 problems with this assumption:
 
 1. Jesus' condition was "until heaven and earth pass away". This did not happen yet.
-2. Jesus was not teaching the general Jewish population or "the world", but instead he was specifically teaching his disciples (<BibleVerse reference="Matthew 5:1" translation="ESV" />). Therefore, these "laws" applied to his disciples.
+2. Jesus was not teaching the general Jewish population or "the world", but instead he was specifically teaching his disciples (Matthew 5:1). Therefore, these "laws" applied to his disciples.
 3. If Jesus was about to deprecate the laws, the following warning would make no sense:
 
-> Therefore whoever relaxes one of the least of these commandments and teaches others to do the same will be called least **in the kingdom of heaven**, but whoever does them and teaches them will be called great **in the kingdom of heaven**. -- <BibleVerse reference="Matthew 5:19" translation="ESV" />
+> Therefore whoever relaxes one of the least of these commandments and teaches others to do the same will be called least **in the kingdom of heaven**, but whoever does them and teaches them will be called great **in the kingdom of heaven**. -- Matthew 5:19 (ESV)
 
 Note, that both those who "relaxes" and those who "teaches" these commandments are "in the kingdom of heaven". This implies that "good works" is not a condition for [salvation](/eternal/saved). [You cannot earn your salvation](/god/son/crucifixion), no matter how hard you try. Jesus also makes this point in the next verse:
 
-> For I tell you, unless your [righteousness](/bible/concepts/righteousness) exceeds that of the scribes and Pharisees, **you will never enter the kingdom of heaven**. -- <BibleVerse reference="Matthew 5:20" translation="ESV" />
+> For I tell you, unless your [righteousness](/bible/concepts/righteousness) exceeds that of the scribes and Pharisees, **you will never enter the kingdom of heaven**. -- Matthew 5:20 (ESV)
 
 Preachers, translators and commentators often have difficulty to explain what "righteousness" mean. In perhaps an over simplified layman's terms it simply mean, to be in a right standing (good relationship) with God. However, you cannot be in right standing with any person if you do not trust the person or if there are unforgiven issues between you. The same applies to God. 
 
@@ -306,11 +306,11 @@ Preachers, translators and commentators often have difficulty to explain what "r
 
 Obviously this requires [humility](#who-is-part-of-the-kingdom-of-god). 
 
-Then in the next few chapters Jesus what he meant by "the laws and the prophets" (<BibleVerse reference="Matthew 7:12" translation="ESV" />). He starts by explaining that righteousness is not limited to our relationship with God, but we should also live in right standing with other (<BibleVerse reference="Matthew 6:14-15" translation="ESV" />):
+Then in the next few chapters Jesus what he meant by "the laws and the prophets" (Matthew 7:12). He starts by explaining that righteousness is not limited to our relationship with God, but we should also live in right standing with other (Matthew 6:14-15):
 
 > “You have heard that it was said to those of old, 
 > 
->> You shall not murder -- <BibleVerse reference="Exodus 20:13" translation="ESV" />; <BibleVerse reference="Deuteronomy 5:17" translation="ESV" />
+>> You shall not murder -- Exodus 20:13; Deuteronomy 5:17
 > 
 > and whoever murders will be liable to judgment. 
 > 
@@ -320,9 +320,9 @@ Then in the next few chapters Jesus what he meant by "the laws and the prophets"
 > 
 > So if you are offering your gift at the altar and there remember that your brother has something against you, **leave your gift there before the altar and go. First be reconciled to your brother, and then come and offer your gift.** Come to terms quickly with your accuser while you are going with him to court, lest your accuser hand you over to the judge, and the judge to the guard, and you be put in prison. Truly, I say to you, you will never get out until you have paid the last penny.
 > 
-> -- <BibleVerse reference="Matthew 5:21-26" translation="ESV" />
+> -- Matthew 5:21-26 (ESV)
 
-This is not limited to strive, but also include lust (<BibleVerse reference="Matthew 5:27-30" translation="ESV" />), divorce (<BibleVerse reference="Matthew 5:31-32" translation="ESV" />), breaking commitments (<BibleVerse reference="Matthew 5:33-37" translation="ESV" />) and retaliation (<BibleVerse reference="Matthew 5:38-42" translation="ESV" />). All of these destroy relationships, and we should guard against those so that we can live in right standing with other as well.
+This is not limited to strive, but also include lust (Matthew 5:27-30), divorce (Matthew 5:31-32), breaking commitments (Matthew 5:33-37) and retaliation (Matthew 5:38-42). All of these destroy relationships, and we should guard against those so that we can live in right standing with other as well.
 
 But staying out of trouble is not Jesus' standard. He goes even another step further, and teach:
 
@@ -339,19 +339,19 @@ But staying out of trouble is not Jesus' standard. He goes even another step fur
 > 
 > **You therefore must be *perfect [complete or mature](https://biblehub.com/greek/5046.htm)***, as your heavenly Father is *perfect*.
 > 
-> -- <BibleVerse reference="Matthew 5:43-48" translation="ESV" />
+> -- Matthew 5:43-48 (ESV)
 
 This is God's standard for His sons.
 
-Then Jesus warns that God does not approve hypocrisy (<BibleVerse reference="Matthew 6:1-5" translation="ESV" />; 16-18) and explains that our relationship of God is not something to boast about (<BibleVerse reference="Matthew 6:6-8" translation="ESV" />).
+Then Jesus warns that God does not approve hypocrisy (Matthew 6:1-5; 16-18) and explains that our relationship of God is not something to boast about (Matthew 6:6-8).
 
-Jesus also warns against distractions from God's kingdom work, like greed (<BibleVerse reference="Matthew 6:19-24" translation="ESV" />), anxiety (<BibleVerse reference="Matthew 6:25-34" translation="ESV" />), judgemental behaviour (<BibleVerse reference="Matthew 7:1-6" translation="ESV" />) or any attempt to live independent of God (<BibleVerse reference="Matthew 7:7-11" translation="ESV" />). If you take God out of His kingdom, it is no longer God's kingdom.
+Jesus also warns against distractions from God's kingdom work, like greed (Matthew 6:19-24), anxiety (Matthew 6:25-34), judgemental behaviour (Matthew 7:1-6) or any attempt to live independent of God (Matthew 7:7-11). If you take God out of His kingdom, it is no longer God's kingdom.
 
 Then Jesus summarizes his teaching by saying:
 
-> So whatever you wish that others would do to you, do also to them, for **this is the Law and the Prophets**. -- <BibleVerse reference="Matthew 7:12" translation="ESV" />
+> So whatever you wish that others would do to you, do also to them, for **this is the Law and the Prophets**. -- Matthew 7:12 (ESV)
 
-These "laws" are not comfortable. It is hard but worth it because it leads to life (<BibleVerse reference="Matthew 7:13-14" translation="ESV" />).
+These "laws" are not comfortable. It is hard but worth it because it leads to life (Matthew 7:13-14).
 
 ## Parable of the good and bad fruit
 
@@ -365,7 +365,7 @@ These "laws" are not comfortable. It is hard but worth it because it leads to li
 > 
 > Thus you will **recognize them by their fruits**.
 > 
-> -- <BibleVerse reference="Matthew 7:15-20" translation="ESV" />
+> -- Matthew 7:15-20 (ESV)
 
 This is also the reason why those who do no bear "good fruit" (will of God) are [ineffective in God's kingdom](#parable-of-the-lamp).
 
@@ -377,7 +377,7 @@ Jesus will also judge people according to their "fruit":
 > 
 > And then will I declare to them, ‘I never knew you; depart from me, you workers of lawlessness.’
 > 
-> -- <BibleVerse reference="Matthew 7:21-23" translation="ESV" />
+> -- Matthew 7:21-23 (ESV)
 
 ## Parable of the house on the rock
 
@@ -389,7 +389,7 @@ To guard against [false teachings](#parable-of-the-good-and-bad-fruit), we aught
 > 
 > And when Jesus finished these sayings, the crowds were astonished at his teaching, for he was teaching them as one who had authority, and not as their scribes.
 > 
-> -- <BibleVerse reference="Matthew 7:24-28" translation="ESV" />
+> -- Matthew 7:24-28 (ESV)
 
 Any theory, whether secular or spiritual, require some proof. 
 
@@ -418,7 +418,7 @@ Then Jesus explains why their ministry is ineffective in some cases.
 > 
 > He who has ears, let him hear.”
 > 
-> -- <BibleVerse reference="Matthew 13:3-9" translation="ESV" />
+> -- Matthew 13:3-9 (ESV)
 
 Then Jesus explain the parable:
 
@@ -430,7 +430,7 @@ Then Jesus explain the parable:
 > 3. As for what was sown among thorns, this is the one who hears the word, but the cares of the world and the deceitfulness of riches choke the word, and it proves unfruitful. 
 > 4. As for what was sown on good soil, this is the one who hears the word and *understand [[put together / to comprehend](https://biblehub.com/greek/4920.htm)]* it. He indeed bears fruit and yields, in one case a hundredfold, in another sixty, and in another thirty.
 > 
-> -- <BibleVerse reference="Matthew 13:18-23" translation="ESV" />
+> -- Matthew 13:18-23 (ESV)
 
 The English definition of "understand" is to become aware..., to know..., to learn... This seems unfair towards the audience who failed to understand what Jesus had said. Was Jesus a bad teacher?
 
@@ -445,7 +445,7 @@ Jesus also warns that [God's judgement](/eternal/judgement), will be unexpected:
 > Then two men will be in the field; one will be taken and one left.   
 > Two women will be grinding at the mill; one will be taken and one left.
 >
-> -- <BibleVerse reference="Matthew 24:36-42" translation="ESV" />
+> -- Matthew 24:36-42 (ESV)
 
 Jesus warns that the Lord's judgement will come at an unexpected time:
 
@@ -455,7 +455,7 @@ Jesus warns that the Lord's judgement will come at an unexpected time:
 > 
 > Therefore **you also must be ready, for the Son of Man is coming at an hour you do not expect**.
 > 
-> -- <BibleVerse reference="Matthew 24:43-44" translation="ESV" />
+> -- Matthew 24:43-44 (ESV)
 
 According to what will we be judged?
 
@@ -469,7 +469,7 @@ Jesus' next parables give the answer.
 > 
 > But if that wicked servant says to himself, ‘My master is delayed,’ and begins to beat his fellow servants and eats and drinks with drunkards, the master of that servant will come on a day when he does not expect him and at an hour he does not know and will cut him in pieces and put him with the hypocrites. In that place there will be weeping and gnashing of teeth. 
 > 
-> -- <BibleVerse reference="Matthew 24:45-51" translation="ESV" />
+> -- Matthew 24:45-51 (ESV)
 
 ## Parable of the virgins
 
@@ -489,7 +489,7 @@ Jesus' next parables give the answer.
 > 
 > Watch therefore, for **you know neither the day nor the hour**.
 > 
-> -- <BibleVerse reference="Matthew 25:1-13" translation="ESV" />
+> -- Matthew 25:1-13 (ESV)
 
 ## Parable of the stewards
 
@@ -511,7 +511,7 @@ Jesus' next parables give the answer.
 > 
 > For to everyone who has will more be given, and he will have an abundance. But from the one who has not, even what he has will be taken away. And cast the worthless servant into the outer darkness. In that place there will be weeping and gnashing of teeth.
 > 
-> -- <BibleVerse reference="Matthew 25:14-30" translation="ESV" />
+> -- Matthew 25:14-30 (ESV)
 
 ## Meaning of the parables
 
@@ -543,7 +543,7 @@ Jesus' next parables give the answer.
 > 
 > And these will go away into eternal punishment, but the righteous into eternal life.”
 >
-> -- <BibleVerse reference="Matthew 25:31-46" translation="ESV" />
+> -- Matthew 25:31-46 (ESV)
 
 # What is the counter of the Kingdom of God?
 
@@ -570,4 +570,4 @@ Some church denomination even claims to be [the body of Christ](/body). While in
 | Serve in humility with often no recognition                                | Serve a hierarchical system recognized by titles, special seats and public honour  |
 | Often doing dangerous tasks or suffer persecution                          | Often convenient in the safety of the church                                      |
 
-When any group of people meet, it is natural for a leader to arise and to guide the group such that there is order and collaboration. But this does not mean that the leader owns the group or is more important than the group. It is only a function in "the body" (<BibleVerse reference="Ephesians 4:11-12" translation="ESV" />). Jesus warned that leaders should serve the group in humility, instead of claiming special titles (<BibleVerse reference="Matthew 23:1-12" translation="ESV" />).
+When any group of people meet, it is natural for a leader to arise and to guide the group such that there is order and collaboration. But this does not mean that the leader owns the group or is more important than the group. It is only a function in "the body" (Ephesians 4:11-12). Jesus warned that leaders should serve the group in humility, instead of claiming special titles (Matthew 23:1-12).

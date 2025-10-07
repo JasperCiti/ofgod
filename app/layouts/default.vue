@@ -85,7 +85,9 @@ const savePinState = (pinned: boolean) => {
 // Load page title from current route
 async function loadPageTitle() {
   try {
-    const page = await useContentPage(route.path)
+    const page = await queryCollection('content')
+      .path(route.path)
+      .first()
     if (page?.title) {
       pageTitle.value = page.title
     } else {

@@ -179,4 +179,81 @@ describe('Bible Reference Parsing', () => {
     const matches = findAllMatches(text)
     expect(matches).toEqual(['Matthew 9:18-19', 'Matthew 9:23-26'])
   })
+
+  it('should correctly identify match indices in parentheses', () => {
+    const text = 'Our life is short (Ecclesiastes 1:2-4) compared to eternity.'
+    const matches: Array<{index: number, length: number, text: string}> = []
+
+    patterns.forEach(pattern => {
+      let match
+      while ((match = pattern.exec(text)) !== null) {
+        matches.push({
+          index: match.index,
+          length: match[0].length,
+          text: match[0]
+        })
+      }
+      pattern.lastIndex = 0
+    })
+
+    expect(matches.length).toBe(1)
+    expect(matches[0]).toEqual({
+      index: 19,
+      length: 18,
+      text: 'Ecclesiastes 1:2-4'
+    })
+
+    // Verify reconstruction works
+    const match = matches[0]
+    if (match) {
+      const before = text.substring(0, match.index)
+      const after = text.substring(match.index + match.length)
+      const reconstructed = before + '[MATCH]' + after
+
+      expect(reconstructed).toBe('Our life is short ([MATCH]) compared to eternity.')
+    }
+  })
+
+  it('should correctly replace text in parentheses without losing brackets', () => {
+    const text = 'Our life is short (Ecclesiastes 1:2-4) compared to eternity.'
+
+    // Simulate the replacement logic from the plugin
+    const matches: Array<{index: number, length: number, text: string, displayText: string}> = []
+
+    patterns.forEach(pattern => {
+      let match: RegExpExecArray | null
+      while ((match = pattern.exec(text)) !== null) {
+        const matchIndex = match.index
+        const matchLength = match[0].length
+        const matchText = match[0]
+
+        const overlaps = matches.some(m =>
+          (matchIndex >= m.index && matchIndex < m.index + m.length) ||
+          (matchIndex + matchLength > m.index && matchIndex + matchLength <= m.index + m.length)
+        )
+
+        if (!overlaps) {
+          matches.push({
+            index: matchIndex,
+            length: matchLength,
+            text: matchText,
+            displayText: matchText
+          })
+        }
+      }
+      pattern.lastIndex = 0
+    })
+
+    // Sort in reverse order for replacement
+    matches.sort((a, b) => b.index - a.index)
+
+    // Replace from end to start
+    let newHTML = text
+    matches.forEach(match => {
+      const replacement = `<span class="bible-ref">${match.displayText}</span>`
+      newHTML = newHTML.substring(0, match.index) + replacement + newHTML.substring(match.index + match.length)
+    })
+
+    expect(newHTML).toBe('Our life is short (<span class="bible-ref">Ecclesiastes 1:2-4</span>) compared to eternity.')
+  })
 })

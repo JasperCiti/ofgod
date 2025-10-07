@@ -12,7 +12,7 @@ If one consider all the suffering, injustice and wickeness in our world, it is e
 
 ## God owns everything
 
-> **The earth is [the LORD](/god/father/name#yhvh)’s, and all its fullness, the world and those who dwell therein.** -- <BibleVerse reference="Psalms 24:1" translation="NKJV" />
+> **The earth is [the LORD](/god/father/name#yhvh)’s, and all its fullness, the world and those who dwell therein.** -- Psalms 24:1 (NKJV)
 
 And King David believed God is the supreme ruler:
 
@@ -22,7 +22,7 @@ And King David believed God is the supreme ruler:
 > Bless the LORD, all His works, in all places of His dominion.  
 > Bless the LORD, O my soul!
 >
-> -- <BibleVerse reference="Psalms 103:19-22" translation="NKJV" />
+> -- Psalms 103:19-22 (NKJV)
 
 and
 
@@ -36,9 +36,9 @@ and
 > In Your hand is power and might;
 > In Your hand it is to make great and to give strength to all.
 >
-> -- <BibleVerse reference="1 Chronicles 29:10-12" translation="NKJV" />
+> -- 1 Chronicles 29:10-12 (NKJV)
 
-This teaching was also echoed by Jehoshaphat (<BibleVerse reference="2 Chronicles 20:5-9" translation="ESV" />).
+This teaching was also echoed by Jehoshaphat (2 Chronicles 20:5-9).
 
 In addition, Jesus also implied that God is in control even to the smallest detail:
 
@@ -48,7 +48,7 @@ In addition, Jesus also implied that God is in control even to the smallest deta
 >
 > But the very hairs of your head are all numbered.
 >
-> -- <BibleVerse reference="Matthew 10:29-30" translation="NKJV" />
+> -- Matthew 10:29-30 (NKJV)
 
 ## Delegated authority to humanity
 
@@ -60,7 +60,7 @@ Though God is the absolute sovereign and owner, He chose to delegate real author
 > - over the birds of the air, and
 > - over the cattle, over all the earth and over every creeping thing that creeps on the earth.”
 >
-> -- <BibleVerse reference="Genesis 1:26" translation="NKJV" />
+> -- Genesis 1:26 (NKJV)
 
 Some reason that [the fall of man](/eternal) cancelled this privilege based on the devil's own words: 
 
@@ -68,7 +68,7 @@ Some reason that [the fall of man](/eternal) cancelled this privilege based on t
 >
 > “To you I will give all this authority and their glory, for **it has been delivered to me**, and I give it to whom I will. 
 >
-> -- <BibleVerse reference="Luke 4:5-6" translation="ESV" /> ESV
+> -- Luke 4:5-6 ESV
 
 Jesus never challenged this claim. However, in the same book of Genesis we also read:
 
@@ -76,7 +76,7 @@ Jesus never challenged this claim. However, in the same book of Genesis we also 
 >
 > “Be fruitful and multiply, and fill the earth. And the fear of you and the dread of you shall be on every beast of the earth, on every bird of the air, on all that move on the earth, and on all the fish of the sea. **They are given into your hand**.”
 >
-> -- <BibleVerse reference="Genesis 9:1-2" translation="NKJV" />
+> -- Genesis 9:1-2 (NKJV)
 
 This means that the original command God gave Adam and Eve never expired. Noah and his sons were still authorized to have dominion. God never delivered the world to the devil. We, as humans who are supposed to have dominion, deliver it to him.
 
@@ -90,7 +90,7 @@ King David also wrote:
 > **You have made him to have dominion** over the works of Your hands;
 > **You have put all things under his feet**, all sheep and oxen — even the beasts of the field, the birds of the air, and the fish of the sea that pass through the paths of the seas.
 >
-> -- <BibleVerse reference="Psalms 8:4-8" translation="NKJV" />
+> -- Psalms 8:4-8 (NKJV)
 
 God gave humans genuine dominion - authority that could be used properly or abused. This sets the stage for understanding how evil entered the world.
 
@@ -98,33 +98,33 @@ God gave humans genuine dominion - authority that could be used properly or abus
 
 We were given dominion, but we lost it. How? Through idolatry - the root of all sin:
 
-> Therefore put to death your members which are on the earth: fornication, uncleanness, passion, evil desire, and covetousness, **which is idolatry**. -- <BibleVerse reference="Colossians 3:5" translation="NKJV" />
+> Therefore put to death your members which are on the earth: fornication, uncleanness, passion, evil desire, and covetousness, **which is idolatry**. -- Colossians 3:5 (NKJV)
 
 [Sin](/bible/concepts/sin) is caused by [idolatry](/bible/concepts/idolatry).
 
-> Then his mind changes, and he **transgresses; He commits offense, ascribing this [power](https://biblehub.com/hebrew/3581.htm) to his god**. -- <BibleVerse reference="Habakkuk 1:11" translation="NKJV" />
+> Then his mind changes, and he **transgresses; He commits offense, ascribing this [power](https://biblehub.com/hebrew/3581.htm) to his god**. -- Habakkuk 1:11 (NKJV)
 
 According to Habakkuk, idolatry is "ascribing power" [(ability, might, strength, wealth)](https://biblehub.com/hebrew/3581.htm) to another "god". Simply put: 
 
 **Prioritizing anything above God is the root of all sin.**
 
-> **No one can serve two masters**; for either he will hate the one and love the other, or else he will be loyal to the one and despise the other. **You cannot serve God and mammon.**. Therefore I say to you, **do not worry** about your life, what you will eat or what you will drink; nor about your body, what you will put on. Is not life more than food and the body more than clothing? -- <BibleVerse reference="Matthew 6:24-25" translation="NKJV" />
+> **No one can serve two masters**; for either he will hate the one and love the other, or else he will be loyal to the one and despise the other. **You cannot serve God and mammon.**. Therefore I say to you, **do not worry** about your life, what you will eat or what you will drink; nor about your body, what you will put on. Is not life more than food and the body more than clothing? -- Matthew 6:24-25 (NKJV)
 
 The reason why we worry or serve two masters is because we don't trust God. 
 
 ## 1. Doubting God
 
-Jesus explained through the parable of the sower why we fail to trust God (<BibleVerse reference="Mark 4:2-20" translation="ESV" />; <BibleVerse reference="Matthew 13:3-23" translation="ESV" />; <BibleVerse reference="Luke 8:4-18" translation="ESV" />):
+Jesus explained through the parable of the sower why we fail to trust God (Mark 4:2-20; Matthew 13:3-23; Luke 8:4-18):
 
-* Deception (wayside) (<BibleVerse reference="1 Timothy 4:1-2" translation="ESV" />):
-  * Ignorance: We become vulnerable to deception when uninformed about God (for example the Athenes (<BibleVerse reference="Acts 17:22-23" translation="ESV" />))
-  * Lies: We may know about God but have a distorted view (for example the samaritan woman (<BibleVerse reference="John 4:1-42" translation="ESV" />))
-  * Skepticism: We may know the truth but won't commit until we see evidence (for example Moses (Exodus 3-4), Gideon (Judges 6-7), Thomas (<BibleVerse reference="John 20:24-29" translation="ESV" />))
-  * Rejection: We may refuse to believe despite evidence (for example the "fools" mentioned in<BibleVerse reference=" Psalm 14:1" translation="ESV" />; 53:1)
-* Convenience (rocky ground): We trust God as long as it's comfortable, but when persecution comes, we abandon Him (for example the Israelites (Exodus 32), Peter (<BibleVerse reference="Matthew 26:69-75" translation="ESV" />), Demas (<BibleVerse reference="2 Timothy 4:10" translation="ESV" />))
+* Deception (wayside) (1 Timothy 4:1-2):
+  * Ignorance: We become vulnerable to deception when uninformed about God (for example the Athenes (Acts 17:22-23))
+  * Lies: We may know about God but have a distorted view (for example the samaritan woman (John 4:1-42))
+  * Skepticism: We may know the truth but won't commit until we see evidence (for example Moses (Exodus 3-4), Gideon (Judges 6-7), Thomas (John 20:24-29))
+  * Rejection: We may refuse to believe despite evidence (for example the "fools" mentioned in Psalm 14:1; 53:1)
+* Convenience (rocky ground): We trust God as long as it's comfortable, but when persecution comes, we abandon Him (for example the Israelites (Exodus 32), Peter (Matthew 26:69-75), Demas (2 Timothy 4:10))
 * Distractions (thorny ground): Our distractions come in different forms:
-  * Obligations: We prioritize "the cares of this world" above God (for example the refuser (<BibleVerse reference="Luke 9:59-62" translation="ESV" />))
-  * Wealth: We prioritize "the riches of this world" above God (for example the rich man (<BibleVerse reference="Luke 18:18-25" translation="ESV" />))
+  * Obligations: We prioritize "the cares of this world" above God (for example the refuser (Luke 9:59-62))
+  * Wealth: We prioritize "the riches of this world" above God (for example the rich man (Luke 18:18-25))
   * Popularity: We prioritize "the desires of others" above God (for example Adam (Genesis 3), King Saul (1 Samuel 13, 15), King Solomon (1 Kings 11), King Ahab (1 Kings 18))
 
 ### Consequences of doubt
@@ -143,7 +143,7 @@ Even Jesus had to face these same temptations (Matthew 4; Luke 4):
 * "throw yourself down" (challenge God's protection by testing God)
 * "all these things I will give you" (challenge God's authority by providing an alternative to the crucifixion)
 
-> **Trust in the LORD** with all your heart, and lean not on your own understanding; In all your ways acknowledge Him, And He shall direct your paths. Do not be wise in your own eyes; **Fear the LORD and depart from evil**. -- <BibleVerse reference="Proverbs 3:5-7" translation="NKJV" />
+> **Trust in the LORD** with all your heart, and lean not on your own understanding; In all your ways acknowledge Him, And He shall direct your paths. Do not be wise in your own eyes; **Fear the LORD and depart from evil**. -- Proverbs 3:5-7 (NKJV)
 
 Our lack of trust in God makes us vulnerable to temptations.
 
@@ -158,7 +158,7 @@ It would be impossible to list every single sin here. These are just some over-s
 * Gluttony: Discontent with situation, therefore resorting to overconsumption as a coping mechanism - often at the cost of their health
 * Lust: Discontent with the level of intimacy with God, therefore they resort to sexual gratification as a substitute which leads to sexual fantasies, seduction, kidnapping or rape.
 * Greed: Discontent with God's provision, therefore they hoard resources - often at the cost of others
-* Slothfulness: Often associated with people who gave up hope (<BibleVerse reference="Proverbs 21:25" translation="ESV" />–26) - often leads to despair
+* Slothfulness: Often associated with people who gave up hope (Proverbs 21:25–26) - often leads to despair
 
 ### Coping with fear
 * Wrath: Fear they need to defend themselves against an offender by responding with wrath which may lead to malice.
@@ -166,7 +166,7 @@ It would be impossible to list every single sin here. These are just some over-s
 * Compromise: Some fear rejections by people more than God's authority. This often leads to disobedience.
 * Apostasy: Fear of divine abandonment, therefore they create substitute gods or systems to replace God
 * Greed: Fear that they may lack in the future, therefore they hoard resources - often at the cost of others
-* Slothfulness: Some fear failure (<BibleVerse reference="Proverbs 22:13" translation="ESV" />; <BibleVerse reference="Ecclesiastes 11:4" translation="ESV" />) - leads to unnecessary procrastination and damage
+* Slothfulness: Some fear failure (Proverbs 22:13; Ecclesiastes 11:4) - leads to unnecessary procrastination and damage
 
 ### Pride
 Pride is present when we do not acknowledge God's authority.
@@ -174,48 +174,48 @@ Pride is present when we do not acknowledge God's authority.
 * Impatience: Disregard God's timing because they believe they know better than God - this often leads to theft, disobedience, rebellion or violence
 * Revenge: Disregard God's judgement, therefore they choose to execute their own justice to "get even" which leads to an active sin like spite, slander, theft, vandalism, murder, etc.
 * Resentment: Disregard God's judgement, but cannot execute own justice, so they resort to passive sin like envy, bitterness and unforgiveness.
-* Slothfulness: Caused by entitlement or pride (<BibleVerse reference="Proverbs 26:16" translation="ESV" />) - leads to neglecting responsibilities and damage
+* Slothfulness: Caused by entitlement or pride (Proverbs 26:16) - leads to neglecting responsibilities and damage
 
 ## 3. Defilement
 
 Sin always defiles what God declared [holy](/bible/concepts/holy) or honoured like:
 
-* Time: Dedicated time for special events or sabaths (<BibleVerse reference="Genesis 2:3" translation="ESV" />; <BibleVerse reference="Exodus 16:22-26, 31" translation="ESV" />:14-15, 35:2; <BibleVerse reference="Deuteronomy 5:12" translation="ESV" />)
-* Environment: Land, cities, water and air (<BibleVerse reference="Exodus 3:4-5, 15" translation="ESV" />:13, 26:33-34, 28:35, 28:42-43, 29:31, 40:9-11, <BibleVerse reference="Joshua 5:15" translation="ESV" />).
-* Life: Human and animal bodies or lifes (<BibleVerse reference="Exodus 12:16-17" translation="ESV" />; 19:3-6; 29:21, 29:32-33, 30:29-30; <BibleVerse reference="Leviticus 11:44-45" translation="ESV" />; 19:1-2; 20:7; 21:1-9; <BibleVerse reference="2 Peter 3:1-2" translation="ESV" />)
-* Objects: Sacred items (<BibleVerse reference="Exodus 28:2-4,36" translation="ESV" />; 29:21,29; 29:6; 30:33; 39:30; 40:10; <BibleVerse reference="Numbers 5:17" translation="ESV" />; <BibleVerse reference="Joshua 6:19" translation="ESV" />; <BibleVerse reference="2 Chronicles 35:3" translation="ESV" />)
-* Data: Truth, knowledge and wisdom (<BibleVerse reference="Proverbs 9:10" translation="ESV" />; <BibleVerse reference="Daniel 11:32" translation="ESV" />; <BibleVerse reference="Hosea 4:6" translation="ESV" />; <BibleVerse reference="John 17:17" translation="ESV" />)
-* Sound: Praise and music (<BibleVerse reference="Hebrews 13:15" translation="ESV" />; <BibleVerse reference="Psalm 99:5" translation="ESV" />, <BibleVerse reference="Psalm 150:6" translation="ESV" />)
-* Relationship: Marriage and covenants (<BibleVerse reference="Hebrews 13:4" translation="ESV" />; <BibleVerse reference="Malachi 2:14-15" translation="ESV" />)
+* Time: Dedicated time for special events or sabaths (Genesis 2:3; Exodus 16:22-26, 31:14-15, 35:2; Deuteronomy 5:12)
+* Environment: Land, cities, water and air (Exodus 3:4-5, 15:13, 26:33-34, 28:35, 28:42-43, 29:31, 40:9-11, Joshua 5:15).
+* Life: Human and animal bodies or lifes (Exodus 12:16-17; 19:3-6; 29:21, 29:32-33, 30:29-30; Leviticus 11:44-45; 19:1-2; 20:7; 21:1-9; 2 Peter 3:1-2)
+* Objects: Sacred items (Exodus 28:2-4,36; 29:21,29; 29:6; 30:33; 39:30; 40:10; Numbers 5:17; Joshua 6:19; 2 Chronicles 35:3)
+* Data: Truth, knowledge and wisdom (Proverbs 9:10; Daniel 11:32; Hosea 4:6; John 17:17)
+* Sound: Praise and music (Hebrews 13:15; Psalm 99:5, Psalm 150:6)
+* Relationship: Marriage and covenants (Hebrews 13:4; Malachi 2:14-15)
 
 | Person/Group                      | Doubted God's | Coping Mechanism                                                  | Sin Committed                                    | Defilement          | Consequence                            |
 | --------------------------------- | ------------- | ------------------------------------------------------------------| ------------------------------------------------ | ------------------- | -------------------------------------- |
 | Eve (Genesis 3)                   | Authority     | Arrogance - desired to be like God                                | Ate forbidden fruit                              | Data                | Expelled from Eden                     |
 | Adam (Genesis 3)                  | Protection    | Compromise - chose Eve's approval over God's command              | Ate forbidden fruit                              | Environment         | Ground cursed, expelled from Eden      |
 | Cain (Genesis 4)                  | Provision     | Jealousy - coveted Abel's favor with God                          | Murder of Abel                                   | Life, Environment   | Marked as wanderer, ground cursed      |
-| Noah (<BibleVerse reference="Genesis 9:20-21" translation="ESV" />)            | Provision     | Gluttony - excessive drinking                                     | Drunkenness, exposed himself                     | Relationship        | Shame, cursed Ham's lineage            |
+| Noah (Genesis 9:20-21)            | Provision     | Gluttony - excessive drinking                                     | Drunkenness, exposed himself                     | Relationship        | Shame, cursed Ham's lineage            |
 | Babel builders (Genesis 11)       | Authority     | Arrogance - disregarded God's authority by self-glorification     | Built tower to make a name                       | Environment         | Forced to scattered                    |
 | Sodom (Genesis 19)                | Provision     | Lust - discontent with God's design for intimacy                  | Sexual perversion/violence                       | Life, Environment   | City destroyed by fire                 |
 | Jacob (Genesis 27)                | Protection    | Manipulation - feared losing inheritance                          | Stole Esau's blessing                            | Relationship        | Brothers estranged for years           |
 | Simeon & Levi (Genesis 34)        | Authority     | Revenge - executed their own justice                              | Massacred whole city                             | Life, Relationship  | Family endangered, cursed              |
 | Joseph's brothers (Genesis 37-45) | Provision     | Jealousy - coveted father's favor                                 | Betrayal, human trafficking                      | Relationship        | Family broken for decades              |
 | Israel (Exodus 32)                | Protection    | Apostasy - feared divine abandonment so created substitute god    | Idolatry, broke covenant                         | Objects             | 3000 died, plague struck               |
-| Nadab & Abihu (<BibleVerse reference="Leviticus 10:1-2" translation="ESV" />)  | Authority     | Arrogance - disregarded God's authority by doing their own way    | Offered strange fire                             | Objects             | Both died instantly                    |
+| Nadab & Abihu (Leviticus 10:1-2)  | Authority     | Arrogance - disregarded God's authority by doing their own way    | Offered strange fire                             | Objects             | Both died instantly                    |
 | Israelites (Numbers 14)           | Protection    | Slothfulness - gave up hope due to fear                           | Refused to enter Promised Land                   | Time                | 40 years wandering in wilderness       |
 | Moses (Numbers 20)                | Protection    | Wrath - feared need to defend against complainers                 | Struck rock in anger                             | Objects             | Denied entry to Promised Land          |
 | Achan (Joshua 7)                  | Protection    | Greed - feared future lack so hoarded resources                   | Stole devoted things                             | Objects             | Israel defeated, family destroyed      |
-| Eli's sons (<BibleVerse reference="1 Samuel 2:12-36" translation="ESV" />)     | Authority     | Arrogance - disregard God's laws for personal desires             | Despised offerings, lay with women               | Objects, Life       | Both died same day                     |
+| Eli's sons (1 Samuel 2:12-36)     | Authority     | Arrogance - disregard God's laws for personal desires             | Despised offerings, lay with women               | Objects, Life       | Both died same day                     |
 | King Saul (1 Samuel 13)           | Authority     | Impatience - disregarded God's timing believing he knew better    | Unlawful sacrifice                               | Time                | Lost kingdom                           |
-| Uzzah (<BibleVerse reference="2 Samuel 6:6-7" translation="ESV" />)            | Protection    | Manipulation - feared need to control situation                   | Touched the ark                                  | Objects             | Died instantly                         |
+| Uzzah (2 Samuel 6:6-7)            | Protection    | Manipulation - feared need to control situation                   | Touched the ark                                  | Objects             | Died instantly                         |
 | David (2 Samuel 11-12)            | Provision     | Lust - saw Bathsheba and coveted her                              | Adultery with Bathsheba, murdered Uriah          | Relationship, Life  | Child died, sword never left his house |
 | Absalom (2 Samuel 13-18)          | Authority     | Revenge - didn't trust God's judgment so executed his own justice | Fratricide and rebellion                         | Relationship, Life  | Father-son destroyed, civil war        |
 | Jonah (Jonah 1-4)                 | Authority     | Resentment - wanted Nineveh destroyed for their wickedness        | Fled from God, angry at His compassion           | Relationship        | Swallowed by fish, bitter isolation    |
-| False prophets (<BibleVerse reference="Jeremiah 23:16" translation="ESV" />)   | Protection    | Manipulation - feared losing control so deceived people           | Spoke lies in God's name                         | Data                | Corrupted truth, led nation astray     |
+| False prophets (Jeremiah 23:16)   | Protection    | Manipulation - feared losing control so deceived people           | Spoke lies in God's name                         | Data                | Corrupted truth, led nation astray     |
 | Nebuchadnezzar (Daniel 4)         | Authority     | Arrogance - disregarded God's authority by self-idolization       | Pride: "Is not this great Babylon that I built?" | Sound               | Lived like animal, ate grass           |
 | Belshazzar (Daniel 5)             | Authority     | Arrogance - disregarded God's authority by abusing sacred vessels | Drank from temple vessels                        | Objects             | Kingdom fell that night                |
 | Peter (Matthew 26)                | Protection    | Compromise - feared people's rejection more than God's authority  | Denied Jesus three times                         | Sound               | Wept bitterly                          |
-| Judas (<BibleVerse reference="Matthew 26:14-16" translation="ESV" />)          | Protection    | Greed - discontent with God's provision so hoarded silver         | Betrayed Jesus for 30 pieces of silver           | Objects             | Hanged himself                         |
-| Herod (<BibleVerse reference="Acts 12:21-23" translation="ESV" />)             | Authority     | Arrogance - disregarded God's authority by accepting worship      | Blasphemy - didn't give God glory                | Sound               | Eaten by worms, died                   |
+| Judas (Matthew 26:14-16)          | Protection    | Greed - discontent with God's provision so hoarded silver         | Betrayed Jesus for 30 pieces of silver           | Objects             | Hanged himself                         |
+| Herod (Acts 12:21-23)             | Authority     | Arrogance - disregarded God's authority by accepting worship      | Blasphemy - didn't give God glory                | Sound               | Eaten by worms, died                   |
 
 There are many more example in the Bible.
 
@@ -232,11 +232,11 @@ Our sins create a cascade of defilement which separates us from our Holy God.
 > * **Your lips have spoken lies**, 
 > * **Your tongue has muttered perversity**.
 >
-> -- <BibleVerse reference="Isaiah 59:1-3" translation="NKJV" />
+> -- Isaiah 59:1-3 (NKJV)
 
 ## 5. Guilt
 
-The universal principle is that when someone was wronged, someone needs to "pay" for the damage (for example: <BibleVerse reference="Exodus 22:1-15" translation="ESV" />; <BibleVerse reference="Numbers 5:6-7" translation="ESV" />; <BibleVerse reference="Leviticus 6:1-5" translation="ESV" />).
+The universal principle is that when someone was wronged, someone needs to "pay" for the damage (for example: Exodus 22:1-15; Numbers 5:6-7; Leviticus 6:1-5).
 
 > But in accordance with your hardness and your impenitent heart **you are treasuring up for yourself wrath** in the day of wrath and revelation of the righteous judgment of God, who 
 >
@@ -245,9 +245,9 @@ The universal principle is that when someone was wronged, someone needs to "pay"
 > * eternal life to those who by patient continuance in doing good seek for glory, honor, and immortality; 
 > * but to those who are **self-seeking** and do not obey the truth, but obey unrighteousness—indignation and wrath, tribulation and anguish, on every soul of man who does evil
 >
-> -- <BibleVerse reference="Romans 2:5-9" translation="NKJV" />
+> -- Romans 2:5-9 (NKJV)
 
-That is why the accuser as the right to condemn sinners (for example<BibleVerse reference=" Job 1:6-12" translation="ESV" />; 2:1-7 and<BibleVerse reference=" Zechariah 3:1-5" translation="ESV" />). Therefore sinners experience condemning emotions like anxiety, guilt and shame (<BibleVerse reference="Numbers 32:23" translation="ESV" />). Genesis 3 provides a detailed illustration how this played out for the first humans who committed the first sin.
+That is why the accuser as the right to condemn sinners (for example Job 1:6-12; 2:1-7 and Zechariah 3:1-5). Therefore sinners experience condemning emotions like anxiety, guilt and shame (Numbers 32:23). Genesis 3 provides a detailed illustration how this played out for the first humans who committed the first sin.
 
 To cope with condemnation, we resort to more coping mechanisms, creating more sin. It's like trying to extinguish fire with oil. We believe the lie that we have "no choice" or must "temporarily" do wrong.
 
@@ -255,7 +255,7 @@ To cope with condemnation, we resort to more coping mechanisms, creating more si
 
 While it might seem like the devil is the god of this world, he technically does not own anyone or even have any dominion by himself. 
 
-> Satan [the adversary] stood up against Israel and incited David to count [the population of] Israel. -- <BibleVerse reference="1 Chronicles 21:1" translation="AMP" />
+> Satan [the adversary] stood up against Israel and incited David to count [the population of] Israel. -- 1 Chronicles 21:1 (AMP)
 
 This is how the devil "rules" the world:
 1. The devil tempts us to **doubt God** usually by:
@@ -317,28 +317,28 @@ independance/separation from God -> discontent/fear/pride -> coping mechanisms -
 >
 > For our **transgressions are multiplied** before You, and **our sins testify against us**; For our transgressions are with us, and as for our iniquities, we know them: In transgressing and lying against the LORD, and **departing from our God**, speaking oppression and revolt, Conceiving and uttering from the heart words of falsehood.
 >
-> -- <BibleVerse reference="Isaiah 59:4-13" translation="NKJV" />
+> -- Isaiah 59:4-13 (NKJV)
 
 Isaiah noticed the same pattern we experience: iniquity -> cover up by (running to more evil) -> even more iniquity
 
 We become trapped in this vicious cycle experiencing no peace, no justice, spiritual blindness (deception) because our sin separates us from God.
  
-> Jesus answered them, "Most assuredly, I say to you, whoever commits sin **is a slave of sin**." -- <BibleVerse reference="John 8:34" translation="NKJV" />
+> Jesus answered them, "Most assuredly, I say to you, whoever commits sin **is a slave of sin**." -- John 8:34 (NKJV)
 
-According to (<BibleVerse reference="Luke 4:18-21" translation="ESV" />), Jesus also quoted:
+According to (Luke 4:18-21), Jesus also quoted:
 
 > “The Spirit of the Lord God is upon me, because the Lord has anointed me to preach good tidings to **the poor**; He has sent me to 
 > * heal **the brokenhearted**, 
 > * to proclaim liberty to **the captives**, and 
 > * the opening of the prison to **those who are bound**;
 >
-> -- <BibleVerse reference="Isaiah 61:1" translation="NKJV" />
+> -- Isaiah 61:1 (NKJV)
 
 ## The Kingdom of Darkness
 
 Scripture does not reveals two competing gods, but one sovereign God and a rebellious creature who exploits human disobedience. Paul clarifies:
 
-> But even if our gospel is veiled, it is veiled to those who are perishing, **whose minds the god of this age has blinded**, who do not [believe](/life/faith)... -- <BibleVerse reference="2 Corinthians 4:3-4" translation="NKJV" />
+> But even if our gospel is veiled, it is veiled to those who are perishing, **whose minds the god of this age has blinded**, who do not [believe](/life/faith)... -- 2 Corinthians 4:3-4 (NKJV)
 
 However, in this context it means that "those whose minds are blinded" follow a false "god" instead of the true God. Paul explains it more clearly in Ephesians:
 
@@ -346,13 +346,13 @@ However, in this context it means that "those whose minds are blinded" follow a 
 > - in **the lusts of our flesh**, doing the desires of the flesh and of the mind, and 
 > were by nature children of **wrath**, as also the rest.
 >
-> -- Eph`siyim / <BibleVerse reference="Ephesians 2:1-3" translation="ESV" /> TS2009 
+> -- Eph`siyim / Ephesians 2:1-3 TS2009 
 
 *Note: Some [bible translations](/bible/translations) like the NIV replace "authority" with "kingdom" which is an incorrect translation of the book of Ephesians according to the Strong's Concordance. Other bible translations like the KJV or ESV replaces "authority" with "power" which could be correct as long as we understand that the devil received his "power" by "the authority" that we gave him in our disobedience to God.*
 
 "The ruler" is an evil spirit that tempt us to be disobedient by lust and wrath so that we may loose our God given authority. Sin makes us vulnerable to "the wicked one"'s influence according to John:
 
-> We know that **whoever is born of God does not sin**; but he who has been born of God keeps himself, and **the wicked one does not touch him**. We know that we are of God, and **the whole world lies under the sway of the wicked one**. -- <BibleVerse reference="1 John 5:18-19" translation="NKJV" />
+> We know that **whoever is born of God does not sin**; but he who has been born of God keeps himself, and **the wicked one does not touch him**. We know that we are of God, and **the whole world lies under the sway of the wicked one**. -- 1 John 5:18-19 (NKJV)
 
 Jesus identified the devil's primary weapon against us: deception
 
@@ -375,55 +375,55 @@ Jesus identified the devil's primary weapon against us: deception
 >
 > Whoever is of God hears the words of God. The reason why you do not hear them is that you are not of God.”
 >
-> -- <BibleVerse reference="John 8:42-47" translation="ESV" /> ESV
+> -- John 8:42-47 ESV
 
-A few chapters further, Jesus calls himself "the shepherd" (also a ruler) and then contrast himself with "the thief" in<BibleVerse reference=" John 10:1-16" translation="ESV" /> which we can assume is "the devil".
+A few chapters further, Jesus calls himself "the shepherd" (also a ruler) and then contrast himself with "the thief" in John 10:1-16 which we can assume is "the devil".
 
-> The thief does not come except to steal, and to kill, and to destroy. -- <BibleVerse reference="John 10:10" translation="NKJV" />
+> The thief does not come except to steal, and to kill, and to destroy. -- John 10:10 (NKJV)
 
 Then a few chapters later Jesus announced:
 
-> Now is the judgment of this world; now **the ruler of this world** will be cast out. -- <BibleVerse reference="John 12:31" translation="NKJV" />
+> Now is the judgment of this world; now **the ruler of this world** will be cast out. -- John 12:31 (NKJV)
 
-This implies, that "the ruler of this world" has no legal right to own a kingdom in this world. <BibleVerse reference="In John 16:7-11" translation="ESV" /> Jesus explained that the Holy Spirit will judge "the ruler of this world".
+This implies, that "the ruler of this world" has no legal right to own a kingdom in this world. In John 16:7-11 Jesus explained that the Holy Spirit will judge "the ruler of this world".
 
-> I will no longer talk much with you, for **the ruler of this world** is coming. He has no claim on me, but **I do as the Father has commanded me**, so that the world may know that I love the Father. Rise, let us go from here. -- <BibleVerse reference="John 14:30-31" translation="ESV" /> ESV
+> I will no longer talk much with you, for **the ruler of this world** is coming. He has no claim on me, but **I do as the Father has commanded me**, so that the world may know that I love the Father. Rise, let us go from here. -- John 14:30-31 ESV
 
 This implies, that "the ruler of this world" was trying to get Jesus to disobey the Father to break down his relationship with his Father.
 
 Jesus also prayed:
 
-> I do not pray that You should take them out of the world, but that You should keep them from **the evil one**. They are **not of the world**, just as **I am not of the world**. -- <BibleVerse reference="John 17:15-16" translation="NKJV" />
+> I do not pray that You should take them out of the world, but that You should keep them from **the evil one**. They are **not of the world**, just as **I am not of the world**. -- John 17:15-16 (NKJV)
 
 Jesus was not referring to the devil's kingdom, but instead he addressed the people who were trapped in the deceptions of the world, because after this statement he prayed:
 
-> As You sent me into the world, **I also have sent them into the world**. -- <BibleVerse reference="John 17:18" translation="NKJV" />
+> As You sent me into the world, **I also have sent them into the world**. -- John 17:18 (NKJV)
 
 Jesus would never sent his disciples away to join "the evil one's" kingdom. Instead, "the world" are the people who are deceived and by "the evil one".
 
-> When he *(Jesus)* saw the crowds, he had compassion for them, because they were harassed and helpless, like sheep **without a shepherd**. Then he said to his disciples, “The harvest is plentiful, but the laborers are few; therefore pray earnestly to the Lord of the harvest **to send out laborers into his harvest**.” -- <BibleVerse reference="Matthew 9:36-38" translation="ESV" /> ESV
+> When he *(Jesus)* saw the crowds, he had compassion for them, because they were harassed and helpless, like sheep **without a shepherd**. Then he said to his disciples, “The harvest is plentiful, but the laborers are few; therefore pray earnestly to the Lord of the harvest **to send out laborers into his harvest**.” -- Matthew 9:36-38 ESV
 
 One of these disciples were Paul, who explained that he saw in his vision where Jesus told him:
 
-> I will deliver you from the Jewish people, as well as from the Gentiles, to whom I now send you, to open their eyes, in order to **turn them from darkness to light**, and **from the power of Satan to God**, that they may receive forgiveness of sins and an inheritance among those who are sanctified by faith in me.’ -- <BibleVerse reference="Acts 26:17" translation="NKJV" />
+> I will deliver you from the Jewish people, as well as from the Gentiles, to whom I now send you, to open their eyes, in order to **turn them from darkness to light**, and **from the power of Satan to God**, that they may receive forgiveness of sins and an inheritance among those who are sanctified by faith in me.’ -- Acts 26:17 (NKJV)
 
-We have not been left under the mercy of evil rulers who are under the influence of "the evil one". Paul testified it in<BibleVerse reference=" Acts 26:17" translation="ESV" /> and well as Daniel who were exiled to Babilon said:
+We have not been left under the mercy of evil rulers who are under the influence of "the evil one". Paul testified it in Acts 26:17 and well as Daniel who were exiled to Babilon said:
 
-> He *(God)* removes kings and raises up kings. -- <BibleVerse reference="Daniel 2:21" translation="NKJV" />
+> He *(God)* removes kings and raises up kings. -- Daniel 2:21 (NKJV)
 
 # Defeating darkness
 
 ## Deliverance
 
-> He *(God, the Father)* has **delivered us from the power of darkness** and conveyed us into [the kingdom of the Son](/kingdom) of His love, in whom we have [redemption through his blood](/god/covenants/christ), the forgiveness of sins. -- <BibleVerse reference="Colossians 1:13-14" translation="NKJV" />
+> He *(God, the Father)* has **delivered us from the power of darkness** and conveyed us into [the kingdom of the Son](/kingdom) of His love, in whom we have [redemption through his blood](/god/covenants/christ), the forgiveness of sins. -- Colossians 1:13-14 (NKJV)
 
 "The power" that the devil have is nothing but a "legal demand" of "debt":
 
-> And you, who were dead in your trespasses and the uncircumcision of your flesh, God made alive together with him, having forgiven us all our trespasses, by **canceling the record of debt that stood against us with its legal demands**. This He set aside, nailing it to the cross. **He disarmed the rulers and authorities** and put them to open shame, by triumphing over them in him. -- <BibleVerse reference="Colossians 2:13-15" translation="ESV" /> ESV
+> And you, who were dead in your trespasses and the uncircumcision of your flesh, God made alive together with him, having forgiven us all our trespasses, by **canceling the record of debt that stood against us with its legal demands**. This He set aside, nailing it to the cross. **He disarmed the rulers and authorities** and put them to open shame, by triumphing over them in him. -- Colossians 2:13-15 ESV
 
 Our enemy is not people, but the evil spirits that influence them (especially those in authority) to make bad decisions.
 
-> Therefore I exhort first of all that [supplications, prayers, intercessions](#the-armor-of-god), and giving of thanks be made for all men, **for kings and all who are in authority**, that we may lead a quiet and peaceable life in all godliness and reverence. For this is good and acceptable in the sight of God our Savior, **Who desires all men to be saved** and to come to the knowledge of the truth. -- <BibleVerse reference="1 Timothy 2:1-4" translation="NKJV" />
+> Therefore I exhort first of all that [supplications, prayers, intercessions](#the-armor-of-god), and giving of thanks be made for all men, **for kings and all who are in authority**, that we may lead a quiet and peaceable life in all godliness and reverence. For this is good and acceptable in the sight of God our Savior, **Who desires all men to be saved** and to come to the knowledge of the truth. -- 1 Timothy 2:1-4 (NKJV)
 
 Evil spirit are not limited to temptation, they could also cause disabilities:
 
@@ -433,7 +433,7 @@ Evil spirit are not limited to temptation, they could also cause disabilities:
 > 
 > And he laid his hands on her, and immediately she was made straight, and she glorified God. 
 >
-> -- <BibleVerse reference="Luke 13:11-13" translation="ESV" /> ESV 
+> -- Luke 13:11-13 ESV 
 
 This authority was not limited to Jesus only:
 
@@ -455,7 +455,7 @@ This authority was not limited to Jesus only:
 11. Simon the Zealot, and 
 12. **Judas Iscariot, who betrayed him**. 
 >
-> -- <BibleVerse reference="Matthew 10:1-4" translation="ESV" />
+> -- Matthew 10:1-4 (ESV)
 
 If Judas the betrayer was given this authority, then it means that this authority was not based on the person's character.
 
@@ -467,7 +467,7 @@ If Judas the betrayer was given this authority, then it means that this authorit
 >
 > You received without paying; give without pay. 
 >
-> -- <BibleVerse reference="Matthew 10:7-8" translation="ESV" />; <BibleVerse reference="Mark 6:7" translation="ESV" />; <BibleVerse reference="Luke 10:17" translation="ESV" />
+> -- Matthew 10:7-8 (ESV); Mark 6:7; Luke 10:17
 
 Some argue that this command was only given to Jesus' direct disciples, but Mark 6 and Luke 10 clearly shows that this authority was also given to the "72 others":
 
@@ -477,11 +477,11 @@ Some argue that this command was only given to Jesus' direct disciples, but Mark
 >
 > The seventy-two returned with joy, saying, “Lord, even the demons are subject to us in your [name *(authority)*](/bible/concepts/name)!” 
 >
-> -- <BibleVerse reference="Luke 10:1,17" translation="ESV" />
+> -- Luke 10:1,17 (ESV)
 
 John witnessed that Jesus taught:
 
-> “Truly, truly, I say to you, **whoever** believes in me **will also do the works that I do; and greater works than these will he do**, because I am going to the Father. Whatever you ask in my [name *(authority)*](/bible/concepts/name), this I will do, that the Father may be glorified in the Son. If you ask me anything in my [name *(authority)*](/bible/concepts/name), I will do it. -- <BibleVerse reference="John 14:12-14" translation="ESV" /> ESV
+> “Truly, truly, I say to you, **whoever** believes in me **will also do the works that I do; and greater works than these will he do**, because I am going to the Father. Whatever you ask in my [name *(authority)*](/bible/concepts/name), this I will do, that the Father may be glorified in the Son. If you ask me anything in my [name *(authority)*](/bible/concepts/name), I will do it. -- John 14:12-14 ESV
 
 The name "Jesus" is not some magic word that forces demons into submission. The key is to ask in Jesus' authority. Authority is received by humility:
 
@@ -501,13 +501,13 @@ The name "Jesus" is not some magic word that forces demons into submission. The 
 > * **Cleanse your hands**, you sinners; and **purify your hearts**, you double-minded. Lament and mourn and weep! Let your laughter be turned to mourning and your joy to gloom. 
 > * **Humble yourselves** in the sight of the Lord, and **He will lift you up**. 
 >
-> -- <BibleVerse reference="James 4:4-10" translation="NKJV" />
+> -- James 4:4-10 (NKJV)
 
 Submition is often associated with weekness. Ironically when we submit to God, He gives us the authority to resist the devil such that he will flee from us. Submition to God means to set ourselves apart for God purposes which often conflicts with "friendship with the world". We cannot be "double-minded" and expect the devil to "flee" from us.
 
 However, chasing devils around should neve be our main focus. After the 72 disciples reported to Jesus their success, Jesus responded:
 
-> Nevertheless do not rejoice in this, that the spirits are subject to you, but **rather rejoice because your names are written in heaven**.” -- <BibleVerse reference="Luke 10:20" translation="NKJV" />
+> Nevertheless do not rejoice in this, that the spirits are subject to you, but **rather rejoice because your names are written in heaven**.” -- Luke 10:20 (NKJV)
 
 Your goal should be to "draw near to God": This means you need to "cleanse" (repent) from our sin, "purity your heart" (thoughts) in humility.
 
@@ -524,30 +524,30 @@ Humility is often associated with powerlessness, but ironically it is the humble
 > * whatever things are of good report, 
 > if there is any virtue and if there is anything praiseworthy — **meditate on these things**. The things which you learned and received and heard and saw in me, these do, and **the God of peace will be with you**. 
 >
-> -- <BibleVerse reference="Philippians 4:6-7" translation="NKJV" />
+> -- Philippians 4:6-7 (NKJV)
 
 You need to guard your thoughts ("heart"):
 
-> **Watch over your heart** with all diligence, for from it flow the springs of life. -- <BibleVerse reference="Proverbs 4:23" translation="AMP" />
+> **Watch over your heart** with all diligence, for from it flow the springs of life. -- Proverbs 4:23 (AMP)
 
 Paul advises:
 
-> If then you were raised with Christ, **seek those things which are above**, where Christ is, sitting at the right hand of God. **Set your mind on things above**, not on things on the earth. -- <BibleVerse reference="Colossians 3:1-2" translation="NKJV" />
+> If then you were raised with Christ, **seek those things which are above**, where Christ is, sitting at the right hand of God. **Set your mind on things above**, not on things on the earth. -- Colossians 3:1-2 (NKJV)
 
 However, a positive attitude is not enough. You must also get rid of anything that even tempts you to commit sin in your thoughts:
 
-> But I say to you that whoever looks at a woman to lust for her **has already committed adultery with her in his heart**. If your right eye causes you to sin, pluck it out and cast it from you; for it is more profitable for you that one of your members perish, than for your whole body to be cast into hell. And if your right hand causes you to sin, cut it off and cast it from you; for **it is more profitable for you that one of your members perish, than for your whole body to be cast into hell**. -- <BibleVerse reference="Matthew 5:28-30" translation="NKJV" />
+> But I say to you that whoever looks at a woman to lust for her **has already committed adultery with her in his heart**. If your right eye causes you to sin, pluck it out and cast it from you; for it is more profitable for you that one of your members perish, than for your whole body to be cast into hell. And if your right hand causes you to sin, cut it off and cast it from you; for **it is more profitable for you that one of your members perish, than for your whole body to be cast into hell**. -- Matthew 5:28-30 (NKJV)
 
 For example, you should avoid bad company who tempt you to commit sin and instead focus on God's teachings:
 
 > Blessed is the man who walks not in the counsel of the ungodly, nor stands in the path of sinners, nor sits in the seat of the scornful;  
 > But his **delight is in the law *[(teachings)](https://biblehub.com/hebrew/8451.htm)* of the LORD**, and **in His law *[(teachings)](https://biblehub.com/hebrew/8451.htm)* he meditates day and night**. 
 >
-> -- <BibleVerse reference="Psalm 1:1-2" translation="NKJV" />
+> -- Psalm 1:1-2 (NKJV)
 
 God personally said to Job that we should "depart from evil".
 
-> Behold, the fear of the Lord, that is wisdom, and to **depart from evil** is understanding. -- <BibleVerse reference="Job 28:28" translation="NKJV" />
+> Behold, the fear of the Lord, that is wisdom, and to **depart from evil** is understanding. -- Job 28:28 (NKJV)
 
 ## The armor of God
 
@@ -557,21 +557,21 @@ None of us is invincible. We all need to be on guard and willing to fight back f
 >
 > Therefore take up [the whole armor of God](/life/armor), that you may be able to withstand in the evil day, and having done all, to stand.
 >
-> -- <BibleVerse reference="Ephesians 6:12-13" translation="NKJV" />
+> -- Ephesians 6:12-13 (NKJV)
 
 The "armor of God" is:
 
-1. [truth](/bible/metaphors/light): Guard your [reputation](/bible/concepts/name) by speaking the truth (<BibleVerse reference="2 Corinthians 6:7" translation="ESV" />)
-2. [righteousness](/bible/concepts/righteousness): Guard your heart against [idols](/bible/concepts/idolatry) by [loving God instead](/eternal/saved/love) (<BibleVerse reference="1 Thessalonians 5:8" translation="ESV" />; <BibleVerse reference="2 Corinthians 6:6" translation="ESV" />)
+1. [truth](/bible/metaphors/light): Guard your [reputation](/bible/concepts/name) by speaking the truth (2 Corinthians 6:7)
+2. [righteousness](/bible/concepts/righteousness): Guard your heart against [idols](/bible/concepts/idolatry) by [loving God instead](/eternal/saved/love) (1 Thessalonians 5:8; 2 Corinthians 6:6)
 3. [the good news](/bible/concepts/testimony): [Spread the revelation of God's Kingdom](/bible/concepts/testimony)
 4. [faith/trust](/life/faith): [Trust God](/bible/concepts/faith) when under attack in difficult times
-5. [salvation](/bible/concepts/salvation): Guard your mind against temptations, [sin](/bible/concepts/sin) and condemnation (<BibleVerse reference="1 Thessalonians 5:8-9" translation="ESV" />; <BibleVerse reference="Romans 12:2" translation="ESV" />)
-6. [word of God](/bible/concepts/word): Obey God's word (<BibleVerse reference="1 John 2:3-6" translation="ESV" />)
-7. [prayer & supplication](/life/prayer): Persevere by earnestly and [humbly](/bible/concepts/humility) praying for all the saints (<BibleVerse reference="Romans 12:12" translation="ESV" />)
+5. [salvation](/bible/concepts/salvation): Guard your mind against temptations, [sin](/bible/concepts/sin) and condemnation (1 Thessalonians 5:8-9; Romans 12:2)
+6. [word of God](/bible/concepts/word): Obey God's word (1 John 2:3-6)
+7. [prayer & supplication](/life/prayer): Persevere by earnestly and [humbly](/bible/concepts/humility) praying for all the saints (Romans 12:12)
 
 ## The Importance of Prayer
 
-> **Watch and pray**, **lest you enter into temptation**. The spirit indeed is willing, but the flesh is weak. -- <BibleVerse reference="Matthew 26:41" translation="NKJV" />
+> **Watch and pray**, **lest you enter into temptation**. The spirit indeed is willing, but the flesh is weak. -- Matthew 26:41 (NKJV)
 
 And Jesus taught his disciples to pray:
 
@@ -592,7 +592,7 @@ And Jesus taught his disciples to pray:
 >
 > Amen.
 >
-> -- <BibleVerse reference="Matthew 6:9-13" translation="NKJV" />
+> -- Matthew 6:9-13 (NKJV)
 
 Jesus' first recorded sermon was about fighting for God's Kingdom so that His "kingdom come" and His "will be done". You were not called to live a comfortable life, but you were called to honor "Our Father" in obedience. 
 
@@ -606,21 +606,21 @@ In contrast, "the evil one" tempts you to do things according to his will:
 
 Paul also advises:
 
-> **Be anxious for nothing**, but in everything **by prayer and supplication, with thanksgiving, let your requests be made known to God**; and the peace of God, which surpasses all understanding, will **guard your hearts and minds** through Christ Jesus. -- <BibleVerse reference="Philippians 4:6-7" translation="NKJV" />
+> **Be anxious for nothing**, but in everything **by prayer and supplication, with thanksgiving, let your requests be made known to God**; and the peace of God, which surpasses all understanding, will **guard your hearts and minds** through Christ Jesus. -- Philippians 4:6-7 (NKJV)
 
 ## The Importance of the Kingdom of God
 
 When you doubt God and try to handle things yourself, Jesus advises:
 
-> **Seek first the kingdom of God and His righteousness**, and all these things shall be added to you. Therefore **do not worry** about tomorrow, for tomorrow will worry about its own things. Sufficient for the day is its own trouble. -- <BibleVerse reference="Matthew 6:34" translation="NKJV" />
+> **Seek first the kingdom of God and His righteousness**, and all these things shall be added to you. Therefore **do not worry** about tomorrow, for tomorrow will worry about its own things. Sufficient for the day is its own trouble. -- Matthew 6:34 (NKJV)
 
-That is why Jesus' first recorded sermon was "preaching [the gospel of the kingdom](/kingdom)" (<BibleVerse reference="Matthew 4:23" translation="ESV" /> NKJV)
+That is why Jesus' first recorded sermon was "preaching [the gospel of the kingdom](/kingdom)" (Matthew 4:23 NKJV)
 
 ## Eternal life through obedience
 
-We need to obey God according to Jesus's word (<BibleVerse reference="John 14:23-24" translation="ESV" />) and be taught by the Holy Spirit (<BibleVerse reference="John 14:26" translation="ESV" />) so that we can live in union with the Father and Jesus (<BibleVerse reference="John 14:20" translation="ESV" />) as Jesus repeatedly taught in John 14, confirmed with the parable of the vine in John 15, explained in John 16 and prayed in John 17.
+We need to obey God according to Jesus's word (John 14:23-24) and be taught by the Holy Spirit (John 14:26) so that we can live in union with the Father and Jesus (John 14:20) as Jesus repeatedly taught in John 14, confirmed with the parable of the vine in John 15, explained in John 16 and prayed in John 17.
 
-Where Adam's **disobedience** brought death (<BibleVerse reference="Romans 5:12" translation="ESV" />), Christ's **obedience** brings life (<BibleVerse reference="Romans 5:17" translation="ESV" />). Paul explains the choice before us:
+Where Adam's **disobedience** brought death (Romans 5:12), Christ's **obedience** brings life (Romans 5:17). Paul explains the choice before us:
 
 > Do you not know that to whom you present yourselves slaves to obey, **you are that one’s slaves whom you obey**, whether 
 > * of sin leading to death, or 
@@ -634,7 +634,7 @@ Where Adam's **disobedience** brought death (<BibleVerse reference="Romans 5:12"
 > 
 > For the end of those things is death. But now having been set **free from sin**, and having become slaves of God, you have your fruit to holiness, and the end, everlasting life. For **the wages of sin is death**, but **the gift of God is eternal life** in Christ Jesus our Lord.
 >
-> -- <BibleVerse reference="Romans 6:16-23" translation="NKJV" />
+> -- Romans 6:16-23 (NKJV)
 
 James summarized [the devil's strategy](#how-the-devil-rules):
 
@@ -642,13 +642,13 @@ James summarized [the devil's strategy](#how-the-devil-rules):
 > 2. Then, when desire has conceived, it gives birth to **sin**;
 > 3. and **sin**, when it is full-grown, brings forth **death**.
 >
-> -- <BibleVerse reference="James 1:14-15" translation="NKJV" />
+> -- James 1:14-15 (NKJV)
 
 Then James, provide 5 practical defenses against sin:
 
 ### 1. Addressing Discontentment
 
-Instead of focusing on what you lack, focus on "every perfect gift from the Father" (<BibleVerse reference="James 1:16-18" translation="ESV" />).
+Instead of focusing on what you lack, focus on "every perfect gift from the Father" (James 1:16-18).
 
 Habakkuk shows you can choose to focus on your lack or choose to rejoice in God:
 
@@ -658,49 +658,49 @@ Habakkuk shows you can choose to focus on your lack or choose to rejoice in God:
 > —
 > Yet I will rejoice in the Lord, I will joy in the God of my salvation.
 >
-> -- <BibleVerse reference="Habakkuk 3:17-18" translation="NKJV" />
+> -- Habakkuk 3:17-18 (NKJV)
 
 Moses even commanded:
 
-> When you have eaten and are full, then you shall bless the Lord your God for the good land which He has given you. -- <BibleVerse reference="Deuteronomy 8:10" translation="NKJV" />
+> When you have eaten and are full, then you shall bless the Lord your God for the good land which He has given you. -- Deuteronomy 8:10 (NKJV)
 
 ### 2. Addressing Wrath
 
-Instead of focusing on retaliation, stay calm and focus on understanding the offender's view in "meekness" to resolve the conflict (<BibleVerse reference="James 1:19-21" translation="ESV" />).
+Instead of focusing on retaliation, stay calm and focus on understanding the offender's view in "meekness" to resolve the conflict (James 1:19-21).
 
 The book of Proverbs contains many wise sayings like:
 
-> A **soft answer** turns away wrath, but a **harsh word** stirs up anger. -- <BibleVerse reference="Proverbs 15:1" translation="NKJV" />
+> A **soft answer** turns away wrath, but a **harsh word** stirs up anger. -- Proverbs 15:1 (NKJV)
 
-> He who is **slow to anger** is better than the mighty, and he who **rules his spirit** than he who takes a city. -- <BibleVerse reference="Proverbs 16:32" translation="NKJV" />
+> He who is **slow to anger** is better than the mighty, and he who **rules his spirit** than he who takes a city. -- Proverbs 16:32 (NKJV)
 
-> The **discretion** of a man makes him **slow to anger**, and his glory is to **overlook a transgression**. -- <BibleVerse reference="Proverbs 19:11" translation="NKJV" />
+> The **discretion** of a man makes him **slow to anger**, and his glory is to **overlook a transgression**. -- Proverbs 19:11 (NKJV)
 
 The reason you usually want to retaliate is because you either doubt God's judgment or become impatient with His judgment:
 
 > Cease from anger, and forsake wrath; **Do not fret — it only causes harm**.
 > For evildoers shall be cut off, but **those who wait** on the LORD, they shall inherit the earth.
 >
-> -- <BibleVerse reference="Psalm 37:8-9" translation="NKJV" />
+> -- Psalm 37:8-9 (NKJV)
 
 ### 3. Addressing Slothfulness
 
-Instead of being slothful, be a "doer of the word" because God "blesses" obedience (<BibleVerse reference="James 1:22-25" translation="ESV" />).
+Instead of being slothful, be a "doer of the word" because God "blesses" obedience (James 1:22-25).
 
-Slothfulness is condemned by multiple proverbs like<BibleVerse reference=" Proverbs 10:4, 12" translation="ESV" />:24, 13:4, 15:19, 18:9, 19:15 and<BibleVerse reference=" Ecclesiastes 10:18" translation="ESV" /> and so forth.
+Slothfulness is condemned by multiple proverbs like Proverbs 10:4, 12:24, 13:4, 15:19, 18:9, 19:15 and Ecclesiastes 10:18 and so forth.
 
 Slothfulness is caused by:
-* hoplessness - a form of discontentment (<BibleVerse reference="Proverbs 21:25" translation="ESV" />–26)
-* fear of failure (<BibleVerse reference="Proverbs 22:13" translation="ESV" />; <BibleVerse reference="Ecclesiastes 11:4" translation="ESV" />)
-* self-deception - a form of pride (<BibleVerse reference="Proverbs 26:16" translation="ESV" />) which may include
-  * lack of dicipline (<BibleVerse reference="Proverbs 6:6-11, 20" translation="ESV" />:13, 24:30-34)
-  * avoiding discomfort (<BibleVerse reference="Proverbs 20:4, 21" translation="ESV" />:17, 26:13-16)
+* hoplessness - a form of discontentment (Proverbs 21:25–26)
+* fear of failure (Proverbs 22:13; Ecclesiastes 11:4)
+* self-deception - a form of pride (Proverbs 26:16) which may include
+  * lack of dicipline (Proverbs 6:6-11, 20:13, 24:30-34)
+  * avoiding discomfort (Proverbs 20:4, 21:17, 26:13-16)
 
 ### 4. Addressing Pride
 
-Instead of being proud, seek your reward by serving the weak (<BibleVerse reference="James 1:26-27" translation="ESV" />)
+Instead of being proud, seek your reward by serving the weak (James 1:26-27)
 
-> A haughty look, a proud heart, and the plowing of the wicked **are sin**. -- <BibleVerse reference="Proverbs 21:4" translation="NKJV" />
+> A haughty look, a proud heart, and the plowing of the wicked **are sin**. -- Proverbs 21:4 (NKJV)
 
 Moses commands:
 
@@ -714,13 +714,23 @@ Moses commands:
 >
 > Then it shall be, if you **by any means forget** the LORD your God, and follow other gods, and serve them and worship them, I testify against you this day that **you shall surely perish**.
 >
-> -- <BibleVerse reference="Deuteronomy 8:11-19" translation="NKJV" />
+> -- Deuteronomy 8:11-19 (NKJV)
+
+Peter advised:
+
+> **Humble yourselves**, therefore, under the mighty hand of God so that at the proper time He may exalt you, **casting all your anxieties on Him**, because He cares for you.
+>
+> **Be sober-minded; be watchful**. Your adversary the devil prowls around like a roaring lion, seeking someone to devour. **Resist him**, **firm in your faith [*(trust in God)*](/life/faith)**, knowing that the same kinds of suffering are being experienced by your brotherhood throughout the world. And after you have suffered a little while, the God of all grace, Who has called you to his eternal glory in Christ, will Himself restore, confirm, strengthen, and establish you. 
+>
+> To Him be the dominion forever and ever. Amen.
+>
+> -- 1 Peter 5:6-11 (ESV)
 
 ### 5. Addressing Partiality
 
-Instead of favoring the rich, be impartial (<BibleVerse reference="James 2:1-11" translation="ESV" />).
+Instead of favoring the rich, be impartial (James 2:1-11).
 
-> If you show partiality, **you commit sin**, and are convicted by the law as transgressors. -- <BibleVerse reference="James 2:9" translation="NKJV" />
+> If you show partiality, **you commit sin**, and are convicted by the law as transgressors. -- James 2:9 (NKJV)
 
 ## Accountability
 
@@ -738,7 +748,7 @@ The kingdom of God is not a Jesus fan-club for convenience. It's a place where y
 > Then Peter came up and said to him, “Lord, how often will my brother sin against me, and I forgive him? As many as seven times?”   
 > Jesus said to him, “I do not say to you seven times, but seventy-seven times. Therefore the kingdom of heaven may be compared to...”
 >
-> -- <BibleVerse reference="Matthew 18:15-23" translation="ESV" />
+> -- Matthew 18:15-23 (ESV)
 
 Then Jesus tells the parable of the servant who refused to forgive his debtor as a warning of how important it is to forgive others. Therefore, you need to intercede ("bind on earth" and "bind in heaven") for those who sin against you, instead of condemning them.
 
@@ -746,7 +756,7 @@ The kingdom of God advances in the light of community and accountability. When y
 
 # The Kingdom of God
 
-> He who **dwells in the shelter of the Most High will abide in the shadow of the Almighty**. I will say to the LORD, “My refuge and my fortress, my God, **in whom I trust**.” -- <BibleVerse reference="Psalm 91:1-2" translation="ESV" />
+> He who **dwells in the shelter of the Most High will abide in the shadow of the Almighty**. I will say to the LORD, “My refuge and my fortress, my God, **in whom I trust**.” -- Psalm 91:1-2 (ESV)
 
 and this is how God respond:
 
@@ -759,7 +769,7 @@ and this is how God respond:
 > 6. With **long life** I will satisfy him and
 > 7. **show him** My salvation.”
 >
-> -- <BibleVerse reference="Psalm 91:14-16" translation="ESV" />
+> -- Psalm 91:14-16 (ESV)
 
 In contrast to those who live in darkness, Paul wrote:
 
@@ -776,10 +786,10 @@ In contrast to those who live in darkness, Paul wrote:
 > * **transferred us to the kingdom of His beloved son**,
 > * in whom **we have redemption**, the forgiveness of sins. 
 >
-> -- <BibleVerse reference="Colossians 1:2,11-14" translation="ESV" />
+> -- Colossians 1:2,11-14 (ESV)
 
 Jesus very first and most important teaching was:
 
 > He *(Jesus)* went throughout all Galilee, teaching in their synagogues and proclaiming **the gospel of the kingdom** and healing every disease and every affliction among the people. 
 >
-> So his fame spread throughout all Syria, and they brought him all the sick, those afflicted with various diseases and pains, those oppressed by demons, those having seizures, and paralytics, and he healed them. And great crowds followed him from Galilee and the Decapolis, and from Jerusalem and Judea, and from beyond the Jordan. -- <BibleVerse reference="Matthew 4:23-25" translation="ESV" />
+> So his fame spread throughout all Syria, and they brought him all the sick, those afflicted with various diseases and pains, those oppressed by demons, those having seizures, and paralytics, and he healed them. And great crowds followed him from Galilee and the Decapolis, and from Jerusalem and Judea, and from beyond the Jordan. -- Matthew 4:23-25 (ESV)

@@ -13,9 +13,9 @@ The [Church History](/church/history) have a significant impact on how translato
 * Some bibles capitalised all references to Jesus to [imply that Jesus is God](/god/son/essence/as-god).
 * ["The Word"](/bible/concepts/word) is capitalised to imply that Jesus as God.
 * "The Word" and "the Holy Spirit" were personified in favour of the [Trinity doctrine](/bible/doctrines/trinitarian).
-* Adding words to the bible in favour of [the Trinity](/bible/doctrines/trinitarian), for example compare <BibleVerse reference="1 John 5:7-8" translation="ESV" /> in KJV with other translations like ESV, NIV, NLT, NASB95, DARBY, CSB, HCSB.
+* Adding words to the bible in favour of [the Trinity](/bible/doctrines/trinitarian), for example compare 1 John 5:7-8 in KJV with other translations like ESV, NIV, NLT, NASB95, DARBY, CSB, HCSB.
 * Unrelated cross-references were added, for example supposed [references to Jesus in the Old Testament](/bible/books/psalms) to "proof" that Jesus is God.
-* Some bibles print Jesus' words in a bold red colour, but God's words are printed in the usual font, for example [<BibleVerse reference="Luke 3:22" translation="ESV" /> NIV](https://www.biblica.com/bible/niv/luke/3/). This gives the impression that only Jesus is God or that Jesus' words are more important than God's.
+* Some bibles print Jesus' words in a bold red colour, but God's words are printed in the usual font, for example [Luke 3:22 NIV](https://www.biblica.com/bible/niv/luke/3/). This gives the impression that only Jesus is God or that Jesus' words are more important than God's.
 * The ["with" preposition was changed to "in"](/bible/translations/differences/en) (to make Jesus seem more god-like).
 
 # Changes to make the bible less Jewish or more Christian
