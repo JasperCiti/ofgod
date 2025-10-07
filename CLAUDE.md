@@ -17,6 +17,39 @@ This project was created to migrate content from a Grav-based website (located a
 
 ## Architecture Decisions
 
+### @nuxt/content v3 Migration & Plain Text Bible Verses (2025-10-07)
+**Problem:** Custom regex-based markdown parser was reinventing the wheel. Bible verses used MDC/XML syntax (`<BibleVerse reference="..." />`) which broke SEO and GitHub readability.
+
+**Solution:**
+- **Enabled @nuxt/content v3**: Replaced custom markdown parser with professional SQL-based content system
+- **Plain Text Bible References**: Markdown files use human-readable text: `John 3:16 (ESV)` instead of MDC components
+- **Client-Side Enhancement**: Plugin scans rendered HTML and injects tooltips dynamically
+- **Correct Content Location**: Content moved from `/public/content/` to `/content/` (default @nuxt/content location)
+- **Multi-Domain Support**: `content.config.ts` uses `CONTENT` env var to select domain subdirectory
+- **Migration Script Updated**: Preserves plain text Bible references, writes to `/content/{domain}/`
+
+**Configuration** (`/root/ofgod/content.config.ts`):
+```typescript
+export default defineContentConfig({
+  collections: {
+    content: defineCollection({
+      type: 'page',
+      source: {
+        cwd: path.resolve(`content/${process.env.CONTENT}`),
+        include: '**/*.md'
+      }
+    })
+  }
+})
+```
+
+**Result:**
+- Professional markdown parsing with full spec support
+- SEO-friendly plain text Bible references
+- Authors can read/edit content on GitHub easily
+- Single scan per page load (optimized performance)
+- ~446 Bible verses across 31 kingdom pages working correctly
+
 ### Dynamic Navigation & Page Titles (2025-10-06)
 **Problem:** Navigation rail only showed "Home" instead of all subdirectories. AppBar title was static and didn't update with route changes.
 
@@ -43,38 +76,17 @@ This project was created to migrate content from a Grav-based website (located a
 - Sorted by navigation order (0, 1, 5, etc.)
 - Clean, centered layout
 
-### Inline Bible Verse Display (2025-10-06)
-**Problem:** Bible verses displayed on separate lines with icons, breaking text flow.
+### Grav Migration Script Enhancement (2025-10-07)
+**Problem:** Migration script needed to write to correct @nuxt/content location and preserve plain text Bible references.
 
 **Solution:**
-- **MarkdownContent.vue Update**:
-  - Converts `<BibleVerse>` tags to inline `<span>` elements
-  - Pattern: `<span class="bible-verse-inline" data-reference="..." data-translation="...">reference</span>`
-  - Keeps verses inline with surrounding text
-- **Plugin Enhancement** (`/app/plugins/bible-tooltips.client.ts`):
-  - Added `processInlineBibleVerses()` to handle `.bible-verse-inline` spans
-  - Attaches tooltips to inline verses (same as auto-detected references)
-  - Prevents duplicate processing with `data-tooltip-processed` attribute
-- **BibleVerse Component**: Simplified to display inline (no icon)
-
-**Result:**
-- Bible verses appear inline: "Read John 3:16 for God's love" (no line breaks)
-- Hover/tap shows tooltip popup with verse text
-- Clean text flow throughout content
-
-### Grav Migration Script Enhancement (2025-10-06)
-**Problem:** Migration script needed to handle root article files and support section-specific migrations for multi-domain deployment. Previous structure used redundant directories with `index.md`.
-
-**Solution:**
+- **Correct Output Path**: Changed from `/public/content/{domain}/` to `/content/{domain}/`
+- **Plain Text Preservation**: Bible verses stay as `John 3:16 (ESV)` instead of converting to MDC components
 - **Root File Handling**: Detects `article.md` in root directory and converts to `index.md`
 - **Number Prefix Stripping**: Grav pattern `XX.name` → `name` (e.g., `04.kingdom` → `kingdom`)
 - **Order Preservation**: Numeric prefix stored in `navigation.order` frontmatter
-- **Flat File Structure**: Root pages use `index.md`, nested pages use direct `.md` files (no redundant directories)
-  - Root: `/content/kingdom/index.md`
-  - Nested: `/content/kingdom/darkness.md` (not `/darkness/index.md`)
-  - Sub-nested: `/content/kingdom/church/history.md` (not `/history/index.md`)
+- **Flat File Structure**: Root pages use `index.md`, nested pages use direct `.md` files
 - **Section-Specific Migration**: `--section=XX.name --domain=target` for targeted migrations
-- **Reusable Script**: Single script handles all sections without overwriting components
 
 **Usage:**
 ```bash
@@ -82,11 +94,9 @@ npm run migrate -- --section=04.kingdom --domain=kingdom
 ```
 
 **Result:**
-- Successfully migrated 31 kingdom pages (350 Bible verses, 289 links)
+- Migrated 31 kingdom pages with 446 plain text Bible verses, 290 internal links
 - Clean routes without number prefixes
-- Navigation order preserved in frontmatter
-- Flat file structure (no redundant directories)
-- Reusable for future sections
+- Human-readable markdown files for GitHub editing
 
 ### Print Functionality (2025-10-06)
 **Problem:** Users needed ability to print pages in printer-friendly format without navigation elements.
@@ -136,18 +146,18 @@ npm run migrate -- --section=04.kingdom --domain=kingdom
 - Text remains visible while hovering even after unpinning (smooth transition)
 - Theme preference persists across page refreshes
 
-### Multi-Domain Content System (2025-10-05)
-**Environment-based content selection** with build-time path stripping:
+### Multi-Domain Content System with @nuxt/content (2025-10-07)
+**Environment-based content selection** using @nuxt/content v3 collections:
 
 **Architecture:**
-- `/app/composables/useContentConfig.ts` - Reads `CONTENT` env var to determine content root (e.g., 'son', 'kingdom')
-- `/app/composables/useContent.ts` - Hybrid composable that prefixes paths with content root
-- `/app/components/MarkdownRenderer.vue` - Markdown to HTML renderer with BibleVerse component support
-- `/public/content/{domain}/` - Content directories organized by domain
+- `content.config.ts` - Defines collection with dynamic `cwd` based on `CONTENT` env var
+- `@nuxt/content` - Professional SQL-based content system with WASM SQLite for static sites
+- Pages use `queryCollection('content').path().first()` to load content
+- `/content/{domain}/` - Content directories organized by domain (default @nuxt/content location)
 
 **Content Structure:**
 ```
-/public/content/
+/content/
 ├── son/
 │   ├── index.md       → https://son.ofgod.info/
 │   └── page.md        → https://son.ofgod.info/page
@@ -160,56 +170,57 @@ npm run migrate -- --section=04.kingdom --domain=kingdom
 │   └── index.md       → https://church.ofgod.info/
 ├── ofgod/
 │   └── index.md       → https://ofgod.info/
-└── eternal/
-    └── index.md       → https://eternal.ofgod.info/ (backward compat)
 ```
 
 **How It Works:**
-1. Set `CONTENT=son` environment variable
-2. Build with `npm run generate`
-3. All routes map to `/content/son/` directory
-4. `/subpage` → loads `/content/son/subpage.md` (direct file, no directory)
-5. Deploy `.output/public/` to `son.ofgod.info`
-6. URLs are clean (no `/son` prefix in routes)
+1. Set `CONTENT=kingdom` environment variable
+2. `content.config.ts` resolves `cwd` to `/content/kingdom/`
+3. Build with `npm run generate`
+4. @nuxt/content queries only files in `/content/kingdom/`
+5. Deploy `.output/public/` to `kingdom.ofgod.info`
+6. URLs are clean (no `/kingdom` prefix in routes)
 
 **Benefits:**
-- **Server-side rendering enabled** - SSR is enabled (`ssr: true` in nuxt.config.ts) for SEO
-- **Static pre-rendering at build time** - All pages rendered to HTML during `npm run generate`
-- **No backend API required** - Content is baked into static HTML files
-- **SEO-friendly** - Search engines see complete rendered HTML with all content
-- **Clean URLs** - Path stripping removes content root from routes
-- **Single codebase** - One codebase deploys to multiple domains
-- Works perfectly for static hosting (Netlify, Vercel, GitHub Pages, etc.)
+- Professional markdown parsing (full spec support, syntax highlighting, MDC components)
+- Static pre-rendering with SSR for SEO
+- Search functionality available via `queryCollectionSearchSections()`
+- Clean URLs with path stripping
+- Single codebase deploys to multiple domains
 
-### Bible Verse Interactive Popups (2025-10-03)
-**Problem**: Original RefTagger service was discontinued. Users needed interactive Bible verse popups with translation support and ability to open full context.
+### Bible Verse Interactive Popups (2025-10-07)
+**Problem**: Original RefTagger service was discontinued. Bible verses needed interactive popups while keeping markdown human-readable.
 
-**Solution**: Dual-approach system combining Vue components with enhanced plugin tooltips:
+**Solution**: Client-side plugin auto-detects plain text Bible references and injects interactive tooltips:
 
-**BibleVerse Component** (`/app/components/BibleVerse.vue`):
-- Vuetify v-menu popup with verse text, translation chips, and "Read Full Context" button
-- Props: `reference` (e.g., "John 3:16") and `translation` (ESV, KJV, NIV, etc.)
-- Mobile touch and desktop hover support
-- Fetches from bible-api.com with translation mapping
-- Generates BibleGateway URLs with correct translation for full context
-- Example: `<BibleVerse reference="John 3:16" translation="ESV" />`
+**Plain Text in Markdown**:
+```markdown
+Jesus said, "I am the way, the truth, and the life" in John 14:6 (ESV).
+```
 
 **Enhanced Plugin** (`/app/plugins/bible-tooltips.client.ts`):
-- **Whitelist-based detection**: Uses Bible book names whitelist to avoid false positives (e.g., "Read John" won't match)
-- **Shorthand expansion**: Supports "John 14:16,26" → creates two popups (John 14:16 and John 14:26)
-- **Multi-chapter shorthand**: "Revelation 1:5, 17:14, 19:16" → three separate popups
-- **Context-aware parsing**: Expands comma-separated references with book name + chapter context
+- **Whitelist-based detection**: Uses 66 Bible book names to avoid false positives
+- **Shorthand expansion**: `John 14:16,26` → two separate popups (John 14:16 and John 14:26)
+- **Multi-chapter shorthand**: `Revelation 1:5, 17:14, 19:16` → three separate popups
+- **Context-aware parsing**: Expands comma-separated references with book name + chapter
+- **Dynamic DOM manipulation**: Creates `<span class="bible-ref">` elements with tooltips
+- **Manual scan trigger**: Pages call `$bibleTooltips.scan()` after ContentRenderer completes
 - Touch/click locks tooltip; overlay dismisses on outside tap
-- Desktop hover with intelligent ownership tracking (prevents flicker when moving between adjacent verses)
+- Desktop hover with intelligent ownership tracking
 - Caches API responses for performance
-- Uses `data-reference` attribute for full expanded reference while displaying shorthand text
 
-**MarkdownContent** (`/app/components/MarkdownContent.vue`):
-- Single, consolidated markdown rendering component
-- Parses markdown into blocks: `blockquote`, `bible-verse`, or `html`
-- Renders blockquotes as VCard components with serif font styling
-- Extracts and renders `<BibleVerse>` tags as Vue components
-- Integrates with Bible tooltips plugin for auto-detection
+**Page Integration** (`/app/pages/index.vue`, `/app/pages/[...slug].vue`):
+```typescript
+const { $bibleTooltips } = useNuxtApp()
+
+onMounted(() => {
+  if (page.value) {
+    nextTick(() => $bibleTooltips.scan())
+  }
+  watch(() => page.value, (newPage) => {
+    if (newPage) nextTick(() => $bibleTooltips.scan())
+  })
+})
+```
 
 ## Project Structure
 
@@ -218,50 +229,45 @@ npm run migrate -- --section=04.kingdom --domain=kingdom
 ├── app/                      # Nuxt application directory
 │   ├── assets/
 │   │   └── css/
-│   │       ├── markdown.css       # Shared markdown styles (DRY)
+│   │       ├── markdown.css       # Markdown & list styles (ul, ol, blockquotes)
 │   │       └── print.css          # Print-friendly styles (@media print)
 │   ├── components/
-│   │   ├── AppBar.vue             # Top app bar with menu, print, theme buttons (all with tooltips)
+│   │   ├── AppBar.vue             # Top app bar with menu, print, theme buttons
 │   │   ├── AppNavigation.vue      # Navigation rail with pin button and hover expansion
-│   │   ├── BibleVerse.vue         # Interactive Bible verse popup component
-│   │   └── MarkdownContent.vue    # Consolidated markdown renderer (blockquotes as VCards)
+│   │   └── content/
+│   │       └── ProseBlockquote.vue   # Custom blockquote rendering as VCard
 │   ├── composables/
-│   │   ├── useAppTheme.ts         # Theme management with localStorage persistence
-│   │   ├── useContentConfig.ts    # Environment-based content root configuration
-│   │   └── useContent.ts          # Hybrid content loader with path prefixing
+│   │   └── useAppTheme.ts         # Theme management with localStorage persistence
 │   ├── layouts/
-│   │   └── default.vue            # Main layout with navigation rail and pin state management
+│   │   └── default.vue            # Main layout with navigation rail and pin state
 │   ├── pages/
-│   │   ├── index.vue              # Home page (loads from content root)
-│   │   └── [...slug].vue          # Dynamic content pages (SSR pre-rendered)
+│   │   ├── index.vue              # Home page (queries content collection)
+│   │   └── [...slug].vue          # Dynamic pages (queries content collection)
 │   ├── plugins/
-│   │   ├── bible-tooltips.client.ts      # Auto-detection with shorthand expansion
-│   │   └── bible-tooltips.test.ts        # Unit tests for regex patterns
+│   │   ├── bible-tooltips.client.ts   # Plain text Bible reference detection
+│   │   └── bible-tooltips.test.ts     # Unit tests (14 passing tests)
 │   ├── utils/
-│   │   └── bible-verse-utils.ts          # Shared verse processing (DRY)
+│   │   ├── bible-verse-utils.ts       # Shared verse processing
+│   │   └── bible-book-names.ts        # 66 Bible book whitelist + regex patterns
 │   └── app.vue                    # Root component
-├── public/                   # Static files served directly
-│   └── content/             # Markdown source files (SINGLE SOURCE OF TRUTH)
-│       ├── son/             # Content for son.ofgod.info
-│       │   ├── index.md     # Root page
-│       │   └── page.md      # Nested pages (direct .md files)
-│       ├── kingdom/         # Content for kingdom.ofgod.info
-│       │   ├── index.md     # Root page
-│       │   ├── darkness.md  # Nested page
-│       │   └── church/      # Subdirectory
-│       │       └── history.md
-│       ├── church/          # Content for church.ofgod.info
-│       │   └── index.md
-│       ├── ofgod/           # Content for ofgod.info
-│       │   └── index.md
-│       └── eternal/         # Content for eternal.ofgod.info (backward compat)
-│           └── index.md
+├── content/                  # @nuxt/content default location (SINGLE SOURCE OF TRUTH)
+│   ├── son/                  # Content for son.ofgod.info
+│   │   ├── index.md          # Root page
+│   │   └── page.md           # Nested pages (direct .md files)
+│   ├── kingdom/              # Content for kingdom.ofgod.info
+│   │   ├── index.md          # Root page
+│   │   ├── darkness.md       # Nested page
+│   │   └── church/           # Subdirectory
+│   │       └── history.md
+│   ├── church/               # Content for church.ofgod.info
+│   │   └── index.md
+│   └── ofgod/                # Content for ofgod.info
+│       └── index.md
+├── content.config.ts         # Multi-domain collection configuration (@nuxt/content)
 ├── scripts/
-│   └── migrate-grav.ts      # Migration script from Grav
-├── .env.example             # Environment configuration template
-├── nuxt.config.ts           # Nuxt configuration (SSR enabled, multi-domain support)
+│   └── migrate-grav.ts       # Grav to Nuxt migration (writes to /content/)
+├── nuxt.config.ts            # Nuxt configuration (SSR enabled, @nuxt/content module)
 └── package.json
-
 ```
 
 ## Migration Script
@@ -632,69 +638,44 @@ navigation:
 - **localStorage not saving:** Check `import.meta.client` guard in `useAppTheme.ts`, localStorage operations must be client-side only
 - **Theme key:** Stored as `theme-preference` in localStorage, defaults to `'light'` if not set
 
+### Hydration Mismatches & Bible Tooltips Not Working
+- **Symptom:** Vue warns about hydration class/node mismatches, Bible tooltips don't appear
+- **Cause:** Cached `.nuxt` build with old template, DOM replaced during hydration removes tooltip spans
+- **Solution:**
+  ```bash
+  rm -rf .nuxt .output
+  npx nuxi prepare
+  npm run dev
+  ```
+- **Prevention:** Always clear build cache after template changes (removing/adding v-card-subtitle, etc.)
+- **Bible Tooltips Timing:** Plugin scans after ContentRenderer completes via `watch` + `nextTick`
+
 ## Recent Refactorings
 
-### 2025-10-06: Dynamic Navigation & Inline Bible Verses
+### 2025-10-07: @nuxt/content v3 Migration & Plain Text Bible Verses
 **Changes:**
-- **Custom YAML Parser**: Replaced `gray-matter` with custom parser supporting nested objects in both SSR/client
-- **Dynamic Navigation**: AppNavigation loads subdirectory pages and navigation metadata from frontmatter
-- **Dynamic Page Titles**: AppBar title updates based on current route
-- **Inline Bible Verses**: Converted block-level BibleVerse to inline spans with tooltips
-- **Migration Script**: Enhanced to support section-specific migrations (`--section=XX.name --domain=target`)
-- **Centered AppBar**: Title center-aligned with spacers, icons properly positioned
+- **Enabled @nuxt/content module**: Replaced custom regex markdown parser with professional SQL-based system
+- **Plain Text Bible References**: Changed from `<BibleVerse reference="..." />` MDC to `John 3:16 (ESV)` plain text
+- **Correct Content Location**: Moved from `/public/content/` to `/content/` (default @nuxt/content location)
+- **content.config.ts**: Multi-domain collection configuration using `CONTENT` env var
+- **Migration Script**: Updated to preserve plain text and write to `/content/{domain}/`
+- **Page Components**: Use `queryCollection('content').path().first()` instead of custom loaders
+- **Bible Tooltips**: Optimized to single scan per page via `watch` + `onMounted` + `nextTick`
+- **Removed Duplicates**: Deleted `v-card-subtitle` rendering (auto-extracted description caused duplication)
+- **List Styles**: Added `ol` (ordered list) support with proper padding in blockquotes
+- **Deleted Files**: BibleVerse.vue component, useContent.ts, useContentConfig.ts, MarkdownContent.vue
 
-**Result:** Navigation shows all pages, titles update on route change, Bible verses flow inline with text
-
-### 2025-10-06: Print Functionality with Tooltips
-**Problem:** No way to print pages without navigation elements. AppBar icons lacked tooltips for usability.
-
-**Solution:**
-- Added print button to AppBar that calls `window.print()`
-- Created `/app/assets/css/print.css` with `@media print` rules
-- Print CSS hides navigation, renders links and Bible verses as plain text
-- Added Vuetify v-tooltip to all AppBar icons (menu, print, theme)
+**Performance:**
+- Eliminated 66% of unnecessary scans (3 scans → 1 scan per page load)
+- Single manual trigger after ContentRenderer completes
+- All 14 unit tests passing
 
 **Result:**
-- Printer-friendly output with content only
-- Icon tooltips improve usability and discoverability
-
-### 2025-10-06: Markdown Rendering Consolidation & Blockquote VCards
-**Problem:** Multiple markdown rendering components (`MarkdownRenderer.vue`, `ContentRenderer.vue`) with duplicate logic. Blockquotes rendered as plain HTML `<blockquote>` tags instead of Material Design cards.
-
-**Solution:**
-- Created single `MarkdownContent.vue` component consolidating all markdown rendering
-- Parses markdown into typed blocks: `blockquote`, `bible-verse`, `html`
-- Renders blockquotes directly as VCard components in template (not dynamic component creation)
-- Blockquote styling: serif font (Georgia, Times New Roman), no left border (VCard elevation provides distinction)
-- Removed old components: `MarkdownRenderer.vue`, `ContentRenderer.vue`, `BlockquoteCard.vue`
-- Created `/app/assets/css/markdown.css` for shared styles (DRY principle)
-- Globally imported in `nuxt.config.ts` via `css` array
-
-**Result:**
-- Single source of truth for markdown rendering
-- Blockquotes display as Material Design VCards with serif font
-- Cleaner architecture, easier to maintain and debug
-- All markdown features work: headers, bold, italic, links, BibleVerse components, Bible tooltips
-
-### 2025-10-05: Navigation Rail and Theme Persistence Implementation
-**Problem:** Mobile navigation broken (clicks did nothing), desktop lacked pin functionality, theme preference not persisting across refreshes.
-
-**Solution:**
-- Created comprehensive navigation rail system matching assessor project:
-  - `AppBar.vue`: Dynamic sizing with `56px` offset for rail, receives `showMenuToggle` prop
-  - `AppNavigation.vue`: Pin button, hover expansion, custom navigation buttons with active highlighting
-  - `default.vue`: Pin state management with `loadPinState/savePinState`, defaults to pinned on desktop
-  - Hover state tracked always (not conditionally) for smooth unpin transition
-- Created `useAppTheme.ts` composable:
-  - Stores theme in localStorage with key `theme-preference`
-  - Auto-loads and applies saved theme on mount
-  - `toggleTheme()` function for AppBar button
-
-**Result:**
-- Mobile: Hamburger menu → temporary overlay → closes after navigation
-- Desktop: Pinned by default, pin button toggles rail mode with hover expansion
-- Theme persists across page refreshes
-- Text stays visible while hovering after unpinning (smooth UX)
+- Professional markdown parsing with full spec support
+- SEO-friendly plain text Bible references
+- 446 Bible verses working across 31 kingdom pages
+- Human-readable content for GitHub editing
+- Proper hydration (no SSR/client mismatches)
 
 ## Recent Refactorings (Archived)
 

@@ -10,9 +10,9 @@
       <v-card-title v-if="page.title" class="text-h4 font-weight-bold">
         {{ page.title }}
       </v-card-title>
-      <v-card-text class="content-body">
+      <div class="content-body">
         <ContentRenderer :value="page" />
-      </v-card-text>
+      </div>
     </div>
   </article>
 </template>
