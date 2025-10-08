@@ -236,18 +236,10 @@ onMounted(() => {
 │   │   └── bible-book-names.ts        # 66 Bible book whitelist + regex patterns
 │   └── app.vue                    # Root component
 ├── content/                  # @nuxt/content default location (SINGLE SOURCE OF TRUTH)
-│   ├── son/                  # Content for son.ofgod.info
-│   │   ├── index.md          # Root page
-│   │   └── page.md           # Nested pages (direct .md files)
-│   ├── kingdom/              # Content for kingdom.ofgod.info
-│   │   ├── index.md          # Root page
-│   │   ├── darkness.md       # Nested page
-│   │   └── church/           # Subdirectory
-│   │       └── history.md
-│   ├── church/               # Content for church.ofgod.info
-│   │   └── index.md
-│   └── ofgod/                # Content for ofgod.info
-│       └── index.md
+│   ├── {domain}/             # Content for {domain}.ofgod.info
+│   │   ├── index.md          # Home page
+│   │   └── ...               # Nested md pages
+│   └── ...
 ├── content.config.ts         # Multi-domain collection configuration (@nuxt/content)
 ├── scripts/
 │   └── migrate-grav.ts       # Grav to Nuxt migration (writes to /content/)
@@ -257,65 +249,18 @@ onMounted(() => {
 
 ## Migration Script
 
-The `scripts/migrate-grav.ts` script converts Grav content to Nuxt-compatible markdown:
+The `scripts/migrate-grav.ts` converts Grav content to `/content/{domain}/` with plain text Bible references preserved.
 
-### Features
-- Converts Grav directory structure to Nuxt Content structure
-- Detects and converts Bible verses to interactive components (96 verses detected in test)
-- Preserves internal links (45 links preserved in test)
-- Supports dry-run mode for testing
-- Progress tracking for 454 files
-- Handles various Bible verse formats:
-  - Standard: `John 3:16 (ESV)`
-  - Ranges: `Matthew 9:18-19,23-26 (ESV)`
-  - Multi-chapter: `2 Corinthians 4:16 - 5:9 (ESV)`
-
-### Usage
+**Usage:**
 ```bash
-# Test with single page
-npm run migrate -- --test --dry-run
-
-# Migrate single page
-npm run migrate -- --test
-
-# Migrate all pages
-npm run migrate
-
-# Dry run all pages
-npm run migrate -- --dry-run
-
-# Limit to specific number of pages
-npm run migrate -- --limit=10
+npm run migrate -- --section=04.kingdom --domain=kingdom  # Targeted migration
+npm run migrate -- --test --dry-run                       # Test mode
+npm run migrate -- --limit=10                             # Limit pages
 ```
 
 ## Bible Verse System
 
-Two complementary approaches for displaying Bible verses:
-
-### BibleVerse Vue Component
-Interactive Vuetify popups for explicit Bible references in content:
-
-**Usage in Markdown/Content:**
-```markdown
-Read <BibleVerse reference="John 3:16" translation="ESV" /> for God's love.
-```
-
-**Features:**
-- Vuetify v-menu popup with verse text
-- Translation chips (ESV=blue, KJV=purple, NIV=green, etc.)
-- "Read Full Context" button opens BibleGateway with correct translation
-- Mobile touch: tap to toggle popup
-- Desktop: hover to show popup
-- API caching for performance
-- Skeleton loader while fetching
-
-**Supported Translations:**
-- ESV (English Standard Version) - maps to bible-api.com WEB
-- KJV (King James Version) - native support
-- NIV, NKJV - map to WEB with BibleGateway link in correct translation
-
-### Plugin Auto-Detection
-Automatically finds and enhances plain-text Bible references using whitelist of 66 Bible book names:
+Plugin auto-detects plain-text Bible references and adds interactive tooltips:
 
 **Auto-detected Formats:**
 - Standard: `John 3:16`, `Genesis 1:1`
@@ -336,35 +281,9 @@ Automatically finds and enhances plain-text Bible references using whitelist of 
 
 ## Content Loading
 
-### Build Time (SSG Pre-rendering with Multi-Domain)
-During `npm run generate`, Nuxt pre-renders all routes for the specified domain:
+**Build Time (SSG):** `npm run generate` pre-renders all routes from `/content/{domain}/` selected by `CONTENT` env var. @nuxt/content queries pages, extracts frontmatter, renders markdown to HTML with Bible tooltips. SEO-friendly complete HTML output.
 
-**Example: Building for son.ofgod.info**
-```bash
-CONTENT=son npm run generate
-```
-
-1. `useContentConfig()` reads `CONTENT=son` environment variable
-2. Nitro prerenderer discovers routes (`/`, `/subpage`, etc.)
-3. For each route, pages execute server-side
-4. `useContentPage('/')` → reads `/public/content/son/index.md` (root page)
-5. `useContentPage('/subpage')` → reads `/public/content/son/subpage.md` (direct file)
-6. YAML frontmatter extracted (title, description, etc.)
-7. `MarkdownRenderer` converts markdown to HTML with BibleVerse components
-8. Complete HTML written to `.output/public/index.html` (clean path, no `/son` prefix)
-9. **SEO benefit:** Search engines see fully-rendered HTML with all content
-
-### Runtime (Client Navigation)
-When users navigate between pages on `son.ofgod.info`:
-
-1. User navigates to `/subpage`
-2. Browser loads pre-rendered HTML (instant content visibility)
-3. Vue hydrates the page (makes it interactive)
-4. For client-side navigation, `useContentPage('/subpage')` fetches `/content/son/subpage.md`
-5. Bible tooltips plugin enhances plain-text references after DOM update
-6. Internal links work via Vue Router (no page reload)
-
-**Key:** Content files organized by domain in `/public/content/{domain}/`, build-time selection via `CONTENT` env var.
+**Runtime:** Pre-rendered HTML loads instantly, Vue hydrates for interactivity, Bible tooltips enhance plain-text references.
 
 ## Usage Instructions
 
@@ -419,108 +338,33 @@ npm run migrate -- --test                                       # Single page
 npm run migrate -- --limit=10                                   # Limit pages
 ```
 
+## MCP Tools
+
+Use the playwright MCP tool to:
+* simulate user actions
+* browse the website
+* troubleshoot problems
+* view console errors
+* inspect deployed content
+* capture screenshots of styling issues
+
+Remember to close your playwright browser when you are done with your investigation.
+
 ## Production Deployment
 
-### Multi-Domain Deployment Strategy
-
-**Each domain requires a separate build** with the appropriate `CONTENT` environment variable:
-
+**Build per domain:**
 ```bash
-# Build for each domain
-CONTENT=son npm run generate      # son.ofgod.info
-CONTENT=kingdom npm run generate  # kingdom.ofgod.info
-CONTENT=church npm run generate   # church.ofgod.info
-CONTENT=ofgod npm run generate    # ofgod.info
+CONTENT=son npm run generate      # → deploy .output/public/ to son.ofgod.info
+CONTENT=kingdom npm run generate  # → deploy .output/public/ to kingdom.ofgod.info
 ```
 
-**Output:** `.output/public/` directory contains complete static site for that domain
-
-### Deployment Process
-
-**For each domain:**
-1. Build with correct `CONTENT` value
-2. Upload `.output/public/` to hosting provider
-3. Configure domain to point to deployment
-
-**Example: Deploying to Netlify**
-```bash
-# Build for son.ofgod.info
-CONTENT=son npm run generate
-
-# Deploy to Netlify
-netlify deploy --prod --dir=.output/public
-
-# Repeat for each domain with different CONTENT value
-```
-
-**Hosting Options:**
-- Netlify (recommended - supports build env vars)
-- Vercel (recommended - supports build env vars)
-- GitHub Pages
-- AWS S3 + CloudFront
-- Any static hosting service
-
-### Deployment Configuration
-
-**No server required:**
-- Pure static HTML/CSS/JS
-- All content is pre-rendered into HTML files at build time
-- SEO-friendly: search engines can crawl and index all content
-
-**SEO Benefits:**
-- SSR enabled for pre-rendering during build (`ssr: true`)
-- Each page generates complete HTML file with all content
-- Meta tags (title, description, OpenGraph) included in static HTML
-- Search engine bots see fully-rendered content without JavaScript
-- Interactive features (Bible tooltips, Vue components) enhance UX after page load
-
-**URL Structure:**
-- Clean URLs with no content prefix
-- `son.ofgod.info/` loads from `/content/son/index.md`
-- `son.ofgod.info/subpage` loads from `/content/son/subpage.md`
-- No `/son` prefix in URLs
+**Hosting:** Netlify, Vercel, GitHub Pages, S3+CloudFront - any static host. Pure static HTML/CSS/JS, SEO-friendly with SSR pre-rendering, clean URLs (no domain prefix).
 
 ## Theme Configuration
 
-The Vuetify theme is configured in `nuxt.config.ts` with Material Design 3 compliance:
+Vuetify theme in `nuxt.config.ts` with MD3 compliance. All components use `rgb(var(--v-theme-*))` variables for automatic light/dark mode adaptation. No hardcoded colors.
 
-**Theme Colors** (synced with `/assess/assessor` project):
-- Light and dark mode color palettes
-- Custom semantic colors: primary, secondary, error, warning, info, success
-- Surface variants: surface, surface-rail, surface-appbar
-- Proper contrast ratios with `on-*` colors for text readability
-
-**Component Defaults** (MD3 compliant):
-- Form controls: VTextField, VTextarea, VSelect, VCheckbox, VRadioGroup
-- Layout: VCard, VCardActions, VContainer
-- Interactive: VBtn (pill-shaped, flat variant), VDataTable, VDialog, VAlert
-- Navigation: VTabs, VAppBar, VNavigationDrawer
-- Additional: VChip, VSwitch, VListItem, VMenu
-
-**Theme Variables Usage:**
-- All components use `rgb(var(--v-theme-*))` for theme-aware colors
-- Automatic adaptation to light/dark mode
-- No hardcoded colors to ensure readability in all themes
-
-## Future Enhancements
-
-1. **Full Migration**: Complete migration of all 454 pages from Grav CMS
-2. **Search Enhancements**: Add debouncing, result highlighting, keyboard navigation
-3. **Navigation Features**: Add bookmarking, recently visited pages, navigation history
-4. **TOC Enhancements**: Add scroll progress indicator, sticky headers, smooth scroll animations
-5. **Performance**: Implement virtual scrolling for large navigation trees (100+ pages)
-6. **Accessibility**: Add ARIA labels, keyboard shortcuts, screen reader support
-
-## Important Notes
-
-- **No Database**: This project intentionally avoids databases for simplicity and performance
-- **Static First**: Everything is pre-rendered at build time for optimal performance
-- **Lightweight**: Custom solutions over heavy frameworks to avoid memory issues
-- **Bible Content**: Special handling for Bible verses with hover functionality
-
-## File Formats
-
-### Markdown Frontmatter
+## Markdown Frontmatter
 ```yaml
 ---
 title: Page Title
@@ -535,179 +379,74 @@ navigation:
 
 ## Troubleshooting
 
-### Dev Server Won't Start
-- Check if port 3000 is in use
-- Clear `.nuxt/` directory and rebuild: `rm -rf .nuxt && npm run dev`
-
-### Content Not Loading
-- Verify markdown files exist in `/content/{domain}/` directory (SINGLE SOURCE OF TRUTH for @nuxt/content)
-- Check `CONTENT` environment variable is set correctly (son, kingdom, church, ofgod, eternal)
-- Check browser console for fetch errors
-- Ensure frontmatter is valid YAML (title, published, etc.)
-- **IMPORTANT:** Content must be in `/content/{domain}/` (default @nuxt/content location)
-- If duplicate content directories exist, delete the wrong ones to avoid confusion
-
-### Wrong Content Loading
-- Check `CONTENT` env var: `echo $CONTENT` or check `.env` file
-- Ensure you're using correct content directory name (lowercase: son, not Son)
-- Restart dev server after changing `.env` file
-- Verify content exists:
-  - Root: `/content/{CONTENT}/index.md`
-  - Nested: `/content/{CONTENT}/page.md`
+### Dev Server / Content Issues
+- Port 3000 in use? Clear `.nuxt/` and rebuild: `rm -rf .nuxt && npm run dev`
+- Content must be in `/content/{domain}/` (SINGLE SOURCE OF TRUTH)
+- Check `CONTENT` env var is correct (son, kingdom, church, ofgod, eternal)
+- Verify valid YAML frontmatter (title, published, navigation)
+- Restart dev server after changing `.env`
 
 ### Tree Navigation Issues
-- **Navigation tree not loading:**
-  - Check `useNavigationTree.ts` is building tree correctly
-  - Verify all pages have `navigation: { title, order }` in frontmatter
-  - Check browser console for errors in `buildTreeFromPages()`
-- **Tree not expanding to current page:**
-  - Verify `NavigationTree.vue` is calling `expandToPath()` on mount
-  - Check that route path matches page paths in tree
-- **Siblings not collapsing (Option B behavior):**
-  - Ensure `handleToggle()` in `NavigationTree.vue` collapses siblings at same level
-  - Check that `expandedIds` Set is properly managed
-- **Chevron icons not showing:**
-  - Verify `mdi-chevron-right` and `mdi-chevron-down` icons are available
-  - Check that nodes with children render chevrons
+- Check pages have `navigation: { title, order }` in frontmatter
+- Verify `expandToPath()` called on mount, siblings collapse properly
+- Check console for `buildTreeFromPages()` errors
 
 ### Breadcrumb Issues
-- **Breadcrumbs not showing:**
-  - Check `generateBreadcrumbs()` is querying pages successfully
-  - Verify `BreadcrumbNav.vue` receives breadcrumbs prop
-  - Check browser console for errors
-- **Wrong page titles in breadcrumbs:**
-  - Ensure pages have `title` in frontmatter
-  - Verify `queryCollection('content').path().first()` returns correct pages
-- **Ellipsis not working:**
-  - Check breadcrumb logic in `useBreadcrumbs.ts` (3+ segments → ellipsis)
-  - Verify ellipsis navigates 3 levels up
-  - Test with different path depths
+- Ensure pages have `title` in frontmatter
+- Check `useBreadcrumbs.ts` logic (3+ segments → ellipsis)
+- Verify `queryCollection('content').path().first()` returns correct pages
 
 ### Table of Contents Issues
-- **TOC showing wrong headings (from different page):**
-  - Check `generateTOC()` clears `tocItems` immediately at start
-  - Verify observer is disconnected before creating new one
-  - Ensure layout calls `generateTOC(null)` on route change
-  - Add 100ms timeout after ContentRenderer completes
-- **TOC not showing at all:**
-  - Verify page has 2+ headings (H1-H3)
-  - Check `shouldShowTOC` computed property
-  - Ensure `contentContainer` ref is properly set
-- **Wrong headings detected:**
-  - Check selector specificity in `useTableOfContents.ts`
-  - Should use: `article h1, article h2, article h3, .content-body h1, ...`
-  - Avoid picking up navigation headings
-- **Active heading not highlighting:**
-  - Verify IntersectionObserver is properly initialized
-  - Check `rootMargin` and `threshold` options
-  - Ensure heading elements have IDs
+- **Wrong headings (cross-page):** Check `generateTOC()` clears `tocItems` immediately, observer disconnected before new one
+- **Not showing:** Page needs 2+ headings (H1-H3), verify `contentContainer` ref set
+- **Wrong headings:** Check selector specificity in `useTableOfContents.ts` (avoid navigation headings)
+- **Active not highlighting:** Verify IntersectionObserver initialized, heading elements have IDs
 
 ### Search Issues
-- **Search not finding pages:**
-  - Verify `queryCollection('content').all()` returns all pages
-  - Search only works on metadata fields: `title`, `description`, `navigation.title`, `excerpt`
-  - Full-text content search not available (limitation of current implementation)
-  - Test with page titles or descriptions
-- **Duplicate search results:**
-  - Fixed by path normalization in `SearchBox.vue` (2025-10-07)
-  - Uses `normalizePath()` to remove trailing slashes
-  - Single-pass filter+deduplicate algorithm
-- **Search results not clickable:**
-  - Ensure `@select` emit is handled correctly in `AppNavigation.vue`
-  - Check `navigateTo()` function works
-- **Mobile drawer not closing after search:**
-  - Verify `SearchBox` emits `select` event
-  - Check drawer `v-model` is set to false on selection in layout
+- Search only works on metadata: `title`, `description`, `navigation.title`, `excerpt` (not full-text)
+- Duplicates fixed by `normalizePath()` in `SearchBox.vue`
+- Check `@select` emit handled, drawer closes on selection
 
 ### Layout Issues
-- **Content width jumps when toggling sidebars:**
-  - Desktop layout should reserve 280px (left) + 240px (right) always
-  - Check `sidebar-hidden` class only hides content, not space
-  - Verify content area has fixed width, not flex
-- **Mobile drawer not appearing:**
-  - Check `v-navigation-drawer` has `temporary` prop
-  - Verify `v-model` is bound to `drawerOpen` ref
-  - Ensure hamburger button toggles `drawerOpen`
-- **Sidebars scroll with content:**
-  - Check `position: sticky` with `top: 56px` (app bar height)
-  - Verify `height: calc(100vh - 56px)` is set
-  - Ensure sidebar has `overflow-y: auto`
+- Desktop reserves 280px (left) + 240px (right) always - content fixed width
+- Mobile drawer needs `temporary` prop, `v-model` bound to `drawerOpen`
+- Sidebars: `position: sticky`, `top: 56px`, `height: calc(100vh - 56px)`
 
 ### Smart Scroll Issues
-- **App bar not hiding on scroll down:**
-  - Check `useSmartScroll.ts` is properly initialized
-  - Verify scroll threshold (100px) is appropriate
-  - Ensure `handleScroll()` is attached to window
-- **App bar not showing on scroll up:**
-  - Check scroll direction detection logic
-  - Verify `isAppBarVisible` is set to true on upward scroll
-- **App bar flickers:**
-  - Increase scroll threshold if too sensitive
-  - Check for conflicting scroll event listeners
+- Check `useSmartScroll.ts` initialized, threshold (100px), `handleScroll()` attached
+- Flickering? Increase threshold or check conflicting listeners
 
 ### Bible Verses Not Working
-**BibleVerse Component Issues:**
-- Ensure `reference` and `translation` props are provided
-- Check browser console for API errors
-- Verify bible-api.com is accessible: `curl https://bible-api.com/john%203:16`
-- Component should show skeleton loader while fetching
-
-**Plugin Auto-Detection Issues:**
-- Verify plugin loaded: Check browser console for "🔗 Bible Tooltips plugin starting..."
-- References need time to process after markdown rendering (500ms delay)
-- Check for styled blue underlined text on detected references
-- Plugin skips text inside BibleVerse components to avoid conflicts
-- **Shorthand not working?** Ensure full reference comes first: "John 14:16,26" (not ",26,16")
-- **False positives?** Plugin uses whitelist of 66 Bible books - "Read John" won't match
-- Run unit tests: `npm test` to verify regex patterns
-
-**Common Solutions:**
-- Clear browser cache if popups appear broken
-- Check that Vuetify is properly initialized
-- Verify bible-api.com is not blocked by firewall/adblocker
-- Inspect element: `data-reference` should contain full expanded reference (e.g., "John 14:26" for shorthand ",26")
+- Verify plugin loaded: Console shows "🔗 Bible Tooltips plugin starting..."
+- Check for blue underlined text on detected references
+- Shorthand must have full reference first: "John 14:16,26" (not ",26,16")
+- Whitelist prevents false positives - "Read John" won't match
+- Run `npm test` to verify regex patterns
+- Inspect element: `data-reference` should contain full expanded reference
+- Clear browser cache, check bible-api.com not blocked
 
 ### Print Preview Issues
-- **Links still styled:** Ensure `/app/assets/css/print.css` is imported in `nuxt.config.ts` css array
-- **Bible verses underlined:** Plugin uses `.bible-ref` class - print.css must target both `.bible-reference` and `.bible-ref`
-- **Navigation still visible:** Check `@media print` rules hide `.v-app-bar`, `.v-navigation-drawer`, `.app-bar`, `.app-navigation`
-- **Test print preview:** Use browser's print dialog (Ctrl+P / Cmd+P) or click print button in AppBar
+- Ensure `print.css` imported in `nuxt.config.ts`, targets `.bible-ref` class
+- Check `@media print` hides navigation elements
 
 ### TypeScript Errors
 - Run `npx nuxi prepare` to regenerate types
-- Ensure all imports are correct
-- Check that composables are in `app/composables/`
+- Check imports and composables location
 
 ### Unreadable Text / Theme Issues
-- **Symptom:** Text appears with similar color to background in light or dark mode
-- **Cause:** Hardcoded colors or undefined CSS variables (e.g., `--v-theme-on-surface-variant`)
-- **Solution:** Replace hardcoded colors with Vuetify theme variables using `rgb(var(--v-theme-*))`
-- **Available variables:** Check `nuxt.config.ts` theme colors (use `on-surface`, `on-background`, `on-primary`, etc.)
-- **Example fix:** Change `color: #1976d2` → `color: rgb(var(--v-theme-primary))`
-- **Testing:** Toggle light/dark mode to verify text readability in both themes
-
-### Markdown Rendering Issues
-- **Symptom:** Blockquotes not rendering as VCards
-- **Cause:** `ProseBlockquote.vue` component missing or not registered
-- **Solution:** Ensure `/app/components/content/ProseBlockquote.vue` exists and is properly configured
-- **Location:** Blockquote styles in `/app/assets/css/markdown.css`
+- Replace hardcoded colors with `rgb(var(--v-theme-*))` theme variables
+- Use `on-surface`, `on-background`, `on-primary` etc. from `nuxt.config.ts`
+- Toggle light/dark mode to verify readability
 
 ### Theme Not Persisting
-- **Theme reverts to light on refresh:** Ensure `useAppTheme` composable is used in AppBar, not direct Vuetify theme manipulation
-- **localStorage not saving:** Check `import.meta.client` guard in `useAppTheme.ts`, localStorage operations must be client-side only
-- **Theme key:** Stored as `theme-preference` in localStorage, defaults to `'light'` if not set
+- Use `useAppTheme` composable, not direct Vuetify theme manipulation
+- Check `import.meta.client` guard in `useAppTheme.ts`
+- Theme stored as `theme-preference` in localStorage
 
-### Hydration Mismatches & Bible Tooltips Not Working
-- **Symptom:** Vue warns about hydration class/node mismatches, Bible tooltips don't appear
-- **Cause:** Cached `.nuxt` build with old template, DOM replaced during hydration removes tooltip spans
-- **Solution:**
-  ```bash
-  rm -rf .nuxt .output
-  npx nuxi prepare
-  npm run dev
-  ```
-- **Prevention:** Always clear build cache after template changes (removing/adding v-card-subtitle, etc.)
-- **Bible Tooltips Timing:** Plugin scans after ContentRenderer completes via `watch` + `nextTick`
+### Hydration Mismatches
+- Clear build cache: `rm -rf .nuxt .output && npx nuxi prepare && npm run dev`
+- Always clear cache after template changes (v-card-subtitle, etc.)
+- Bible tooltips scan after ContentRenderer via `watch` + `nextTick`
 
 ## Recent Refactorings
 
@@ -780,99 +519,6 @@ navigation:
 - Human-readable content for GitHub editing
 - Proper hydration (no SSR/client mismatches)
 
-## Recent Refactorings (Archived)
-
-### 2025-10-05: Theme Synchronization and Color Fixes
-**Problem:** Unreadable text due to hardcoded colors in Bible tooltips plugin and undefined CSS variable (`--v-theme-on-surface-variant`) in blockquotes. Missing comprehensive component defaults compared to assessor project.
-
-**Solution:**
-- Replaced hardcoded colors in `/app/plugins/bible-tooltips.client.ts` with theme variables:
-  - Tooltip background: `#1976d2` → `rgb(var(--v-theme-primary))`
-  - Tooltip text: `white` → `rgb(var(--v-theme-on-primary))`
-  - Bible reference links: `#1976d2` → `rgb(var(--v-theme-primary))`
-- Fixed `/app/components/MarkdownRenderer.vue` blockquote color:
-  - Changed `rgb(var(--v-theme-on-surface-variant))` → `rgb(var(--v-theme-on-surface))`
-- Synced `/root/new/nuxt.config.ts` component defaults with `/assess/assessor`:
-  - Added comprehensive MD3-compliant component defaults
-  - Updated VBtn styling (pill-shaped, flat variant, transition-all)
-  - Added defaults for VCheckbox, VRadioGroup, VCardActions, VContainer, VDataTable, VDialog, VAlert, VTabs, VAppBar, VNavigationDrawer, VChip, VSwitch, VListItem, VMenu
-
-**Result:**
-- All text readable in both light and dark themes
-- Consistent Material Design 3 styling across all components
-- Automatic theme adaptation without hardcoded colors
-
-### 2025-10-05: Multi-Domain Content Hosting Implementation
-**Problem:** Need to host same codebase on multiple domains (son.ofgod.info, kingdom.ofgod.info, church.ofgod.info, ofgod.info) with different content, clean URLs (no content prefix in routes).
-
-**Solution:**
-- Created `useContentConfig()` composable to read `CONTENT` env var and provide content root
-- Updated `useContent.ts` to automatically prefix paths with content root (e.g., `/about` → `/content/son/about`)
-- Modified `nuxt.config.ts` to add runtime config for environment-based content selection
-- Updated `pages/index.vue` to load home page dynamically from content root
-- Updated `AppNavigation.vue` to use dynamic navigation based on content root
-- Added `.env.example` with documentation for multi-domain builds
-- Organized content in `/public/content/{domain}/` structure
-
-**Result:**
-- Single codebase supports multiple domains
-- Each domain gets separate build: `CONTENT=son npm run generate`
-- Clean URLs: `son.ofgod.info/subpage` loads `/content/son/subpage/index.md`
-- No path prefix in routes (automatic stripping)
-- Backward compatible with existing `eternal` content
-- Fully SEO-friendly with SSR pre-rendering
-
-### 2025-10-05: Fixed Content Duplication and Confirmed SEO Architecture
-**Problem 1:** Duplicate content directories - `/content/` had newer migrated files with `<BibleVerse>` components, while `/public/content/` had older plain-text version. App was using outdated content.
-
-**Problem 2:** Documentation incorrectly stated SSR was disabled, causing confusion about SEO capabilities.
-
-**Solution:**
-- Replaced `/public/content/` with newer `/content/` directory (deleted old, moved new)
-- Single source of truth: `/public/content/` is the only content location
-- Updated documentation to reflect actual architecture: SSR is **enabled** (`ssr: true`)
-- Confirmed SSG pre-renders all pages at build time with complete HTML
-- `useContent.ts` uses hybrid approach: filesystem reads during build, HTTP fetch during client navigation
-
-**Result:**
-- Site serves correct content with BibleVerse components and navigation metadata
-- Fully SEO-friendly with complete HTML pre-rendering
-- No runtime server required - works on static hosts
-
-### 2025-10-03: Hybrid Content Loading Architecture
-**Problem:** Server running out of memory, needed efficient content system for static site.
-
-**Solution:**
-- Implemented hybrid `useContent.ts` composable (server-side filesystem reads + client-side fetch)
-- Removed server-side content API (deleted `/server/` directory)
-- Moved content from `/app/public/content/` to `/public/content/`
-- Modified `[...slug].vue` to work with `useAsyncData()` for SSR compatibility
-- Content pre-rendered during build, available as static files for client navigation
-
-**Result:** Efficient static site with SSR pre-rendering for SEO, no runtime server needed.
-
-### 2025-10-03: Bible Verse Interactive Popup Upgrade
-- Upgraded basic tooltips to full interactive Vuetify popups
-- New `BibleVerse.vue` component with v-menu, translation chips, context links
-- Enhanced plugin with click-to-open and mobile touch support
-- `MarkdownRenderer` parses `<BibleVerse>` tags and renders as Vue components
-- Translation support: ESV, KJV, NIV with color-coded chips
-- "Read Full Context" button opens BibleGateway
-- Dual-system: components for explicit refs, plugin for auto-detection
-
-### 2025-10-03: Bible Reference Shorthand Expansion
-**Problem:** Users write shorthand like "John 14:16,26" or "Revelation 1:5, 17:14, 19:16" but each reference needs separate popup.
-
-**Solution:**
-- Implemented context-aware shorthand expansion in plugin
-- First match against whitelist of 66 Bible book names (prevents "Read John" false positives)
-- After matching full reference, detect comma-separated shorthands via regex
-- Expand shorthand with book name + chapter context (`,26` → `John 14:26`)
-- Create separate `<span>` elements for each expanded reference
-- Display shorthand text but use `data-reference` attribute for full reference
-- Tooltip title shows full expanded reference (not shorthand)
-- Created unit tests (`bible-tooltips.test.ts`) with 12 test cases - all passing
-- Extracted shared logic to `bible-verse-utils.ts` (DRY principle)
 
 # Coding Rules
 

@@ -24,3 +24,9 @@ ALWAYS:
 * Do not update sections in CLAUDE.md which are irrelevant to the recent changes or context.
 
 If you discover contradictions or mistakes in CLAUDE.md: Think carefully about it and find the correct content to update it with.
+
+If CLAUDE.md file size exceed > 40KB, you MUST clean up the CLAUDE.md file according to these clean up rules:
+* Remove any irrelevant entries of components or features that no longer exist
+* Remove the eldest 20% of memories of past mistakes
+* Replace verbose explanations with concise descriptions
+* Condense excessive examples
