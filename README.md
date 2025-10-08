@@ -7,9 +7,10 @@ A Nuxt 4 static site generator that converts markdown content to modern Vue.js w
 This project migrates content from markdown to statically generated websites using:
 - **Nuxt 4** for static site generation
 - **Vue 3** for reactive UI
-- **Vuetify 3** for Material Design components
-- **@nuxt/content v3** for content management
+- **Vuetify 3** for Material Design 3 components
+- **@nuxt/content v3** for content management with SQL-based queries
 - **TypeScript** for type safety
+- **Custom Prose Components** for enhanced markdown rendering (tables, blockquotes, links)
 
 ### Multi-Domain Architecture
 
@@ -120,6 +121,25 @@ navigation:
 ---
 ```
 
+### Markdown Tables
+
+Tables in markdown are automatically rendered as Material Design 3 data tables with sorting and responsive layout:
+
+```markdown
+| Name | Age | City |
+|------|-----|------|
+| John | 25  | New York |
+| Jane | 30  | Los Angeles |
+```
+
+**Features:**
+- Material Design 3 styling (Vuetify v-data-table)
+- Click column headers to sort
+- Responsive: Cards on mobile (< 600px)
+- Supports HTML in cells (links, **bold**, *italic*)
+- All rows shown (no pagination)
+- SEO-friendly: Server renders `<table>`, client enhances to v-data-table
+
 ## Testing
 
 ```bash
@@ -204,25 +224,31 @@ npm run migrate -- --limit=10          # Limit to 10 pages
 2. **Converts file structure**:
    - Grav: `/04.kingdom/article.md` → Nuxt: `/kingdom.md`
    - Root: `/article.md` → `/index.md`
-3. **Preserves Bible references**: `John 3:16 (ESV)` stays as plain text (not MDC)
-4. **Migrates images**: Copies images with smart naming
-5. **Updates links**: Internal links and image references updated automatically
-6. **Stores metadata**: Navigation order preserved in frontmatter
+3. **Resolves internal links**:
+   - Relative: `[text](christian)` → `[text](/church/history/christian.md)` (based on page path)
+   - Absolute: `[text](/04.kingdom/05.church)` → `[text](/church.md)` (strips prefixes)
+   - Adds `.md` for IDE preview (ProseA component strips for web)
+4. **Preserves Bible references**: `John 3:16 (ESV)` stays as plain text (not MDC)
+5. **Migrates images**: Copies images with smart naming, preserves extensions
+6. **Updates image links**: Markdown image references auto-updated to new filenames
+7. **Stores metadata**: Navigation order preserved in frontmatter
 
 ### Migration Output Example
 
 ```
 ╔════════════════════════════════════════════╗
-║           MIGRATION SUMMARY                        ║
+║           MIGRATION SUMMARY                ║
 ╠════════════════════════════════════════════╣
-║ Total Files:        31                             ║
-║ Processed:          31                             ║
-║ Bible Verses:       446                            ║
-║ Internal Links:     290                            ║
-║ Migrated Images:    13                             ║
-║ Errors:             0                              ║
+║ Total Files:        31                     ║
+║ Processed:          31                     ║
+║ Bible Verses:       446                    ║
+║ Internal Links:     316                    ║
+║ Migrated Images:    13                     ║
+║ Errors:             0                      ║
 ╚════════════════════════════════════════════╝
 ```
+
+**Important:** Migrated markdown files contain `.md` extensions in links (e.g., `[link](/page.md)`) for IDE preview compatibility. The custom ProseA component automatically strips `.md` extensions when rendering HTML for the browser.
 
 ## Project-Specific Deviations from Standard Nuxt
 
@@ -271,7 +297,47 @@ export default defineContentConfig({
 })
 ```
 
-### 4. Bible Reference Enhancement
+### 4. Custom Prose Components
+
+**Non-standard approach:** Custom Vue components replace default markdown rendering for tables, links, and blockquotes.
+
+**ProseTable.vue** - Renders markdown tables as Vuetify v-data-table:
+```vue
+<!-- Markdown table → v-data-table with sorting + mobile cards -->
+```
+
+**ProseA.vue** - Strips `.md` extensions from links at render time
+**ProseBlockquote.vue** - Renders blockquotes as Vuetify cards
+
+Why this approach:
+- **Material Design 3**: Consistent styling across all content
+- **Enhanced UX**: Tables get sorting, blockquotes get elevation/padding
+- **SEO preserved**: Server renders semantic HTML, client enhances
+- **SSR compatible**: Components handle both server and client rendering
+
+### 5. Dual-Context Markdown Links
+
+**Non-standard approach:** Links include `.md` extensions in markdown files but are stripped at render time.
+
+```markdown
+<!-- In markdown files (for IDE preview) -->
+[Link to page](/church/history.md)
+
+<!-- Rendered in browser (ProseA strips .md) -->
+<a href="/church/history">Link to page</a>
+```
+
+Why this approach:
+- **IDE preview**: VS Code previews markdown with clickable `.md` links
+- **Web routes**: Nuxt routes don't use `.md` extensions
+- **Single source**: One markdown file works in both contexts
+
+**Implementation:**
+- Migration script: Adds `.md` to internal links, skips image files
+- ProseA component (`app/components/content/ProseA.vue`): Strips `.md` during render
+- Result: DRY principle maintained
+
+### 6. Bible Reference Enhancement
 
 **Non-standard approach:** Client-side plugin enhances plain text after rendering.
 
@@ -318,6 +384,37 @@ npm run build     # ← Wrong (doesn't copy images)
 
 **Domain Switching:**
 When changing `CONTENT` env var, dev server auto-cleans `/public/` on next startup to prevent mixing domains.
+
+### 1a. Markdown Links Not Working in IDE
+
+**Problem:** Clicking markdown links in VS Code doesn't navigate to target file.
+
+**Common Causes:**
+1. **Missing .md extension**: Old links may not have `.md` extension
+2. **Wrong path**: Relative links not resolved correctly
+3. **File doesn't exist**: Target markdown file missing
+
+**Solution:**
+```bash
+# 1. Verify link format in markdown
+# ✓ Correct: [link](/church/history.md)
+# ✗ Wrong:   [link](/church/history)
+
+# 2. Check file exists
+ls -la /content/kingdom/church/history.md
+
+# 3. Re-migrate if needed (adds .md extensions)
+rm -rf /content/kingdom
+npm run migrate -- --section=04.kingdom --domain=kingdom
+
+# 4. Test in VS Code
+# Links should be clickable and navigate to target file
+```
+
+**Why .md extensions:**
+- VS Code expects `.md` in links for file preview
+- ProseA component strips `.md` for web routes
+- Best of both worlds: IDE preview + clean URLs
 
 ### 2. Wrong Content Domain Loading
 
@@ -397,7 +494,49 @@ rm -rf /content/kingdom
 npm run migrate -- --section=04.kingdom --domain=kingdom
 ```
 
-### 6. Build Size Issues
+### 6. Tables Not Rendering as v-data-table
+
+**Problem:** Markdown tables showing as plain HTML tables without sorting or Material Design styling.
+
+**Common Causes:**
+1. **ProseTable component not found**: Check `/app/components/content/ProseTable.vue` exists
+2. **Client-side hydration not complete**: Wait for page load, v-data-table renders after SSR
+3. **Console errors**: Check browser console for parsing errors
+
+**Solution:**
+```bash
+# 1. Verify ProseTable component exists
+ls -la app/components/content/ProseTable.vue
+
+# 2. Check browser console for errors
+# Should see: "[ProseTable] Parsed table: N columns, M rows"
+
+# 3. Verify table has proper structure in markdown
+# Must have <thead> and <tbody> (generated from markdown automatically)
+
+# Example working markdown table:
+cat << 'EOF' > content/kingdom/test.md
+---
+title: Test Table
+published: true
+---
+
+| Name | Age |
+|------|-----|
+| John | 25  |
+EOF
+
+# 4. Clear cache and restart
+rm -rf .nuxt .output
+npm run dev
+```
+
+**Table Structure Requirements:**
+- Must have header row (generates `<thead>`)
+- Must have at least one data row (generates `<tbody>`)
+- Cells can contain markdown formatting (will be preserved as HTML)
+
+### 7. Build Size Issues
 
 **Problem:** Build output larger than expected.
 

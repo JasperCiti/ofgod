@@ -78,18 +78,45 @@ class GravMigrator {
     console.log('')
 
     try {
-      // Step 1: Scan all Grav pages
-      // If sourceDir already points to a specific section, use it directly
+      // Step 1: Determine initial path from source directory
+      // Extract path from sourceDir structure
+      const baseSourceDir = path.resolve(path.dirname(path.dirname(__dirname)), 'eternal')
+      let initialPath = ''
+
+      if (this.sourceDir.includes('/pages/')) {
+        // Extract path after /pages/
+        const pagesIndex = this.sourceDir.indexOf('/pages/')
+        const afterPages = this.sourceDir.substring(pagesIndex + 7)
+        // Convert numbered Grav directories to clean paths
+        initialPath = afterPages
+          .split(path.sep)
+          .map(part => {
+            const matches = part.match(/^\d+\.(.+)$/)
+            return matches ? matches[1] : part
+          })
+          .filter(part => part.length > 0)
+          .join('/')
+
+        // Strip domain prefix if present
+        const domainPrefix = `${this.targetDomain}/`
+        if (initialPath.startsWith(domainPrefix)) {
+          initialPath = initialPath.substring(this.targetDomain.length + 1)
+        } else if (initialPath === this.targetDomain) {
+          initialPath = ''
+        }
+      }
+
+      // Step 2: Scan all Grav pages
       const scanDir = await fs.pathExists(path.join(this.sourceDir, 'pages'))
         ? path.join(this.sourceDir, 'pages')
         : this.sourceDir
-      await this.scanGravPages(scanDir, '', 0, limit)
+      await this.scanGravPages(scanDir, initialPath, 0, limit)
       console.log(`Found ${this.pages.length} pages to migrate\n`)
 
-      // Step 2: Create content structure
+      // Step 3: Create content structure
       await this.createContentStructure()
 
-      // Step 3: Print summary
+      // Step 4: Print summary
       this.printSummary()
     } catch (error) {
       console.error('Migration failed:', error)
@@ -122,7 +149,7 @@ class GravMigrator {
         const slug = dirMatches ? dirMatches[2] : dirName
 
         this.pages.push({
-          path: '', // Root index
+          path: relativePath, // Use relative path passed from migrate()
           frontmatter: data,
           content: body,
           template,
@@ -361,8 +388,8 @@ class GravMigrator {
         // Process content
         let processedContent = page.content
 
-        // Convert internal links
-        processedContent = this.convertInternalLinks(processedContent)
+        // Convert internal links (pass page path for relative link resolution)
+        processedContent = this.convertInternalLinks(processedContent, page.path)
 
         // Process image links (update to new filenames)
         processedContent = this.processImageLinks(processedContent, imageMap)
@@ -397,41 +424,79 @@ class GravMigrator {
     return transformed
   }
 
-  private convertInternalLinks(content: string): string {
-    // Pattern to match internal Grav links
-    const linkPattern = /\[([^\]]+)\]\(\/([^)]+)\)/g
+  private convertInternalLinks(content: string, pagePath: string): string {
+    // Pattern to match both absolute and relative internal links
+    // Matches: [text](/absolute) and [text](relative)
+    // But NOT images: ![text](url)
+    const linkPattern = /(?<!!)\[([^\]]+)\]\(([^)]+)\)/g
 
     return content.replace(linkPattern, (match, text, url) => {
-      // Check if it's an internal link (starts with /)
-      if (!url.startsWith('http')) {
-        this.stats.internalLinks++
-
-        // Strip numbered prefixes from URL parts (e.g., 05.church → church)
-        let cleanUrl = url
-          .split('/')
-          .map(part => {
-            // Remove Grav number prefix pattern: XX.name → name
-            const matches = part.match(/^\d+\.(.+)$/)
-            return matches ? matches[1] : part
-          })
-          .filter(part => part.length > 0)
-          .join('/')
-
-        // Strip domain prefix if present (e.g., kingdom/church → church)
-        // This ensures links work correctly when CONTENT=kingdom
-        const domainPrefix = `${this.targetDomain}/`
-        if (cleanUrl.startsWith(domainPrefix)) {
-          cleanUrl = cleanUrl.substring(this.targetDomain.length + 1)
-        }
-
-        // Ensure URL starts with /
-        if (!cleanUrl.startsWith('/')) {
-          cleanUrl = '/' + cleanUrl
-        }
-
-        return `[${text}](${cleanUrl})`
+      // Skip external URLs
+      if (url.startsWith('http://') || url.startsWith('https://')) {
+        return match
       }
-      return match
+
+      // Skip anchors and fragments
+      if (url.startsWith('#')) {
+        return match
+      }
+
+      // Skip image files (check file extension)
+      const imageExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg']
+      if (imageExtensions.some(ext => url.toLowerCase().endsWith(ext))) {
+        return match
+      }
+
+      this.stats.internalLinks++
+
+      let cleanUrl: string
+
+      if (url.startsWith('/')) {
+        // Absolute link: /04.kingdom/05.church/history
+        cleanUrl = url.substring(1) // Remove leading /
+      } else {
+        // Relative link: christian, messianic, etc.
+        // Resolve relative to current page path
+        const pageDir = pagePath || ''
+        cleanUrl = pageDir ? `${pageDir}/${url}` : url
+      }
+
+      // Strip numbered prefixes from URL parts (e.g., 05.church → church)
+      cleanUrl = cleanUrl
+        .split('/')
+        .map(part => {
+          // Handle fragments (e.g., page#anchor)
+          const [pagePart, fragment] = part.split('#')
+          const matches = pagePart.match(/^\d+\.(.+)$/)
+          const cleanPart = matches ? matches[1] : pagePart
+          return fragment ? `${cleanPart}#${fragment}` : cleanPart
+        })
+        .filter(part => part.length > 0)
+        .join('/')
+
+      // Strip domain prefix if present (e.g., kingdom/church → church)
+      const domainPrefix = `${this.targetDomain}/`
+      if (cleanUrl.startsWith(domainPrefix)) {
+        cleanUrl = cleanUrl.substring(this.targetDomain.length + 1)
+      }
+
+      // Ensure URL starts with /
+      if (!cleanUrl.startsWith('/')) {
+        cleanUrl = '/' + cleanUrl
+      }
+
+      // Add .md extension for IDE preview compatibility
+      // (ProseA component will strip this for web routes)
+      // Only add if not already present and not an anchor-only link
+      if (!cleanUrl.includes('#')) {
+        cleanUrl = cleanUrl + '.md'
+      } else {
+        // Handle fragments: /page#anchor → /page.md#anchor
+        const [urlPart, fragment] = cleanUrl.split('#')
+        cleanUrl = `${urlPart}.md#${fragment}`
+      }
+
+      return `[${text}](${cleanUrl})`
     })
   }
 

@@ -22,6 +22,26 @@ Migrates content from a Grav-based website (located at `../eternal`) to statical
 
 ## Architecture Decisions
 
+### Markdown Tables as v-data-table (2025-10-08)
+**Problem:** Standard markdown tables lacked Material Design 3 styling, sorting, and responsive mobile layout.
+
+**Solution:** Custom ProseTable component that parses markdown tables and renders as Vuetify v-data-table with full MD3 styling.
+
+**Implementation:**
+- `ProseTable.vue` - Intercepts markdown `<table>` elements
+- Server renders original `<table>` for SEO/accessibility
+- Client parses DOM on mount and extracts headers + rows
+- Renders v-data-table with sorting, no pagination (all rows shown)
+- Mobile responsive: auto-switches to card layout < 600px
+- Supports HTML content in cells (links, formatting preserved)
+
+**Components:**
+- `/app/types/table.ts` - TypeScript interfaces (TableHeader, TableItem, ParsedTable)
+- `/app/composables/useTableParser.ts` - Parsing logic (thead → headers, tbody → items)
+- `/app/components/content/ProseTable.vue` - SSR-compatible Prose component
+
+**Result:** Markdown tables get Material Design 3 styling with sorting and mobile responsiveness automatically.
+
 ### Vuetify Z-Index Hydration Fix (2025-10-08)
 **Problem:** VNavigationDrawer showed hydration mismatch warning: z-index 906 (server) vs 904 (client) in SSG builds.
 
@@ -67,15 +87,37 @@ CONTENT=church npm run dev  # auto-cleans old domain files
 npm run generate  # copies images once, builds static site
 ```
 
+### Dual-Context Markdown Links (2025-10-08)
+**Problem:** Markdown links needed `.md` extensions for IDE preview but web routes don't use extensions.
+
+**Solution:** Store links WITH `.md` in markdown files, strip at render time.
+
+**Migration Script** (`scripts/migrate-grav.ts`):
+- Converts relative links: `[text](christian)` → `[text](/church/history/christian.md)`
+- Converts absolute links: `[text](/04.kingdom/05.church)` → `[text](/church.md)`
+- Resolves relative to page path: `/church/history.md` + `christian` → `/church/history/christian.md`
+- Preserves fragments: `/page#anchor` → `/page.md#anchor`
+- Skips image files: `![](image.jpg)` stays `.jpg` (not `.jpg.md`)
+
+**ProseA Component** (`app/components/content/ProseA.vue`):
+- Strips `.md` during HTML rendering: `/page.md` → `/page`
+- External URLs pass through unchanged
+
+**Result:**
+- Markdown: `[link](/church/history.md)` ← works in VS Code
+- Web: `<a href="/church/history">` ← works in browser
+- DRY: Single source of truth
+
 ### Grav Migration Script with Image Support (2025-10-08)
-**Problem:** Migration script needed to migrate images alongside markdown with intelligent naming.
+**Problem:** Migration script needed to migrate images alongside markdown with intelligent naming and link resolution.
 
 **Solution:**
 - **Image Co-location**: Copies images to `/content/{domain}/` with markdown
 - **Smart Prefix**: `{page}.{imagename}.{ext}` but prevents duplication
   - `church.md` + `church.jpg` → `church.jpg` (NOT `church.church.jpg`)
   - `constantine.md` + `statue.jpg` → `constantine.statue.jpg`
-- **Link Updates**: Markdown image references auto-updated to new filenames
+- **Relative Link Resolution**: Resolves `christian` → `/church/history/christian.md` based on page path
+- **Image Protection**: Skips adding `.md` to image files
 - **Grav Pattern Handling**: Strips `XX.name` → `name`, stores order in frontmatter
 
 **Usage:**
@@ -84,7 +126,7 @@ npm run migrate -- --section=04.kingdom --domain=kingdom
 npm run migrate -- --dry-run  # Preview without writing
 ```
 
-**Result:** Migrated 31 pages with 446 Bible verses, 290 internal links, 13 images with smart naming.
+**Result:** Migrated 31 pages with 446 Bible verses, 316 internal links, 13 images.
 
 ### Tree Navigation System (2025-10-07)
 **Problem:** Icon-based navigation couldn't scale to hundreds of hierarchical articles.
@@ -213,11 +255,14 @@ CONTENT=kingdom npm run generate
 │   │   ├── AppNavigation.vue       # Tree navigation + search
 │   │   ├── AppTableOfContents.vue  # Right sidebar TOC
 │   │   └── content/
-│   │       └── ProseBlockquote.vue # Custom blockquote (VCard)
+│   │       ├── ProseA.vue            # Strips .md from links
+│   │       ├── ProseBlockquote.vue   # Custom blockquote (VCard)
+│   │       └── ProseTable.vue        # Renders tables as v-data-table
 │   ├── composables/
 │   │   ├── useBreadcrumbs.ts       # Generate breadcrumbs
 │   │   ├── useNavigationTree.ts    # Build tree from pages
 │   │   ├── useTableOfContents.ts   # Extract TOC from HTML
+│   │   ├── useTableParser.ts       # Parse HTML tables for v-data-table
 │   │   └── useSmartScroll.ts       # Smart app bar hide/show
 │   ├── pages/
 │   │   ├── index.vue               # Home (queries content)
@@ -225,6 +270,8 @@ CONTENT=kingdom npm run generate
 │   ├── plugins/
 │   │   ├── bible-tooltips.client.ts # Bible reference detection
 │   │   └── bible-tooltips.test.ts   # Unit tests
+│   ├── types/
+│   │   └── table.ts                 # Table interfaces (v-data-table)
 │   └── utils/
 │       ├── bible-verse-utils.ts     # Verse processing
 │       └── bible-book-names.ts      # 66 Bible book whitelist
@@ -273,10 +320,11 @@ navigation:
 - **Wrong domain**: Ensure `CONTENT` env var matches (check `.env` file)
 - **Production**: Run `npm run generate` (not `npm run build` - copies images first)
 
-### Migration Image Naming Issues
-- **Duplicate prefix**: Check if image name already matches page slug
-- **Wrong prefix**: Verify page slug matches expected name
-- Check migration output for `Migrated Images` count
+### Migration Issues
+- **Image naming**: Check if image name already matches page slug to avoid duplication
+- **Relative links wrong**: Ensure page path is correct in migration context
+- **Links missing .md**: Verify migration script adds `.md` to internal links
+- Check migration output for `Internal Links` and `Migrated Images` counts
 - Use `--dry-run` to preview without writing
 
 ### Content Not Loading
