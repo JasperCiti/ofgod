@@ -50,7 +50,6 @@
         temporary
         location="left"
         width="320"
-        class="mobile-drawer"
       >
         <div class="drawer-content">
           <!-- Search Box -->
@@ -258,10 +257,6 @@ onMounted(async () => {
 .content-area-mobile {
   width: 100%;
   overflow-y: auto;
-}
-
-.mobile-drawer {
-  z-index: 1010 !important;
 }
 
 .drawer-content {

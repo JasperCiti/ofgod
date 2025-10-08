@@ -28,7 +28,11 @@ export const useAppTheme = () => {
 
   // Apply theme to Vuetify
   const applyTheme = (theme: ThemeMode) => {
-    if (vuetifyTheme.global) {
+    // Use the new Vuetify 3.7+ API: theme.change()
+    if (vuetifyTheme && typeof (vuetifyTheme as any).change === 'function') {
+      (vuetifyTheme as any).change(theme)
+    } else if (vuetifyTheme.global) {
+      // Fallback for older versions
       vuetifyTheme.global.name.value = theme
     }
   }

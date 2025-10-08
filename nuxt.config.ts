@@ -40,6 +40,16 @@ export default defineNuxtConfig({
     }
   },
 
+  hooks: {
+    // Start image watcher when dev server starts
+    'ready': async (nuxt) => {
+      if (nuxt.options.dev) {
+        const { watchImages } = await import('./scripts/watch-images.js')
+        await watchImages()
+      }
+    }
+  },
+
   vuetify: {
     vuetifyOptions: {
       theme: {
@@ -181,7 +191,8 @@ export default defineNuxtConfig({
         },
         VNavigationDrawer: {
           elevation: 12,
-          color: 'surface-rail'
+          color: 'surface-rail',
+          style: 'z-index: 1010;'
         },
 
         // Additional Components

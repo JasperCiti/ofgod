@@ -25,7 +25,6 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
         viewport: { width: 1366, height: 768 }, // Typical budget laptop resolution
         launchOptions: {
-          executablePath: '/usr/bin/chromium-browser',
           args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',

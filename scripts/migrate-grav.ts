@@ -8,6 +8,8 @@ import matter from 'gray-matter'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
+const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg']
+
 interface GravPage {
   path: string
   frontmatter: Record<string, any>
@@ -17,6 +19,7 @@ interface GravPage {
   order: string
   visible: boolean
   depth: number
+  sourceDir: string  // Directory where the original markdown file is located
 }
 
 interface ContentPage {
@@ -36,6 +39,7 @@ interface MigrationStats {
   processed: number
   bibleVerses: number
   internalLinks: number
+  migratedImages: number
   errors: string[]
 }
 
@@ -48,6 +52,7 @@ class GravMigrator {
     processed: 0,
     bibleVerses: 0,
     internalLinks: 0,
+    migratedImages: 0,
     errors: []
   }
   private dryRun: boolean
@@ -124,7 +129,8 @@ class GravMigrator {
           slug,
           order,
           visible: dirMatches !== null,
-          depth: 0
+          depth: 0,
+          sourceDir: dir
         })
         this.stats.totalFiles++
 
@@ -170,7 +176,8 @@ class GravMigrator {
             slug,
             order,
             visible,
-            depth: depth + 1
+            depth: depth + 1,
+            sourceDir: itemPath
           })
           this.stats.totalFiles++
 
@@ -191,6 +198,110 @@ class GravMigrator {
     }
   }
 
+  /**
+   * Get all images in a directory
+   */
+  private async getImagesInDirectory(dirPath: string): Promise<string[]> {
+    if (!await fs.pathExists(dirPath)) {
+      return []
+    }
+
+    const items = await fs.readdir(dirPath)
+    const images: string[] = []
+
+    for (const item of items) {
+      const ext = path.extname(item).toLowerCase()
+      if (IMAGE_EXTENSIONS.includes(ext)) {
+        images.push(item)
+      }
+    }
+
+    return images
+  }
+
+  /**
+   * Get the prefix for a page (used for image naming)
+   */
+  private getPagePrefix(page: GravPage): string {
+    if (!page.path || page.path === '') {
+      // Root page: use domain name as prefix
+      return this.targetDomain
+    }
+    // Nested page: use the slug (last part of path)
+    return page.slug
+  }
+
+  /**
+   * Copy images for a page and return a map of old -> new filenames
+   */
+  private async copyPageImages(
+    sourcePageDir: string,
+    targetContentDir: string,
+    prefix: string
+  ): Promise<Map<string, string>> {
+    const imageMap = new Map<string, string>()
+    const images = await this.getImagesInDirectory(sourcePageDir)
+
+    for (const imageName of images) {
+      const sourcePath = path.join(sourcePageDir, imageName)
+      const ext = path.extname(imageName)
+      const baseName = path.basename(imageName, ext)
+
+      // Check if image name already starts with the prefix
+      // Example: if prefix is "church" and image is "church.jpg", don't duplicate
+      let newImageName: string
+      if (baseName === prefix || baseName.startsWith(`${prefix}.`)) {
+        // Already has correct prefix, keep original name
+        newImageName = imageName
+      } else {
+        // Add prefix: {prefix}.{originalname}{ext}
+        newImageName = `${prefix}.${baseName}${ext}`
+      }
+
+      const targetPath = path.join(targetContentDir, newImageName)
+
+      if (!this.dryRun) {
+        await fs.copy(sourcePath, targetPath)
+      }
+
+      imageMap.set(imageName, newImageName)
+      this.stats.migratedImages++
+    }
+
+    return imageMap
+  }
+
+  /**
+   * Update image references in markdown content
+   */
+  private processImageLinks(content: string, imageMap: Map<string, string>): string {
+    if (imageMap.size === 0) {
+      return content
+    }
+
+    // Pattern to match markdown images: ![alt](path)
+    const imagePattern = /!\[([^\]]*)\]\(([^)]+)\)/g
+
+    return content.replace(imagePattern, (match, alt, imagePath) => {
+      // Only process relative paths (not external URLs)
+      if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+        return match
+      }
+
+      // Extract just the filename from the path
+      const fileName = path.basename(imagePath)
+
+      // Check if this image is in our map
+      const newFileName = imageMap.get(fileName)
+      if (newFileName) {
+        return `![${alt}](${newFileName})`
+      }
+
+      // Image not found in map, keep original
+      return match
+    })
+  }
+
   private async createContentStructure() {
     for (const page of this.pages) {
       try {
@@ -201,22 +312,28 @@ class GravMigrator {
         // Convert Grav path to Nuxt Content path
         // Root pages (empty path) use index.md, nested pages use {name}.md directly
         let filePath: string
+        let targetContentDir: string
+
         if (!page.path || page.path === '') {
           // Root page: /content/{domain}/index.md
-          const contentDir = path.join(this.targetDir, 'content', this.targetDomain)
-          filePath = path.join(contentDir, 'index.md')
+          targetContentDir = path.join(this.targetDir, 'content', this.targetDomain)
+          filePath = path.join(targetContentDir, 'index.md')
           if (!this.dryRun) {
-            await fs.ensureDir(contentDir)
+            await fs.ensureDir(targetContentDir)
           }
         } else {
           // Nested page: /content/{domain}/path/to/page.md (no directory)
-          const contentDir = path.join(this.targetDir, 'content', this.targetDomain, path.dirname(page.path))
+          targetContentDir = path.join(this.targetDir, 'content', this.targetDomain, path.dirname(page.path))
           const fileName = `${path.basename(page.path)}.md`
-          filePath = path.join(contentDir, fileName)
+          filePath = path.join(targetContentDir, fileName)
           if (!this.dryRun) {
-            await fs.ensureDir(contentDir)
+            await fs.ensureDir(targetContentDir)
           }
         }
+
+        // Copy images and get mapping of old -> new filenames
+        const pagePrefix = this.getPagePrefix(page)
+        const imageMap = await this.copyPageImages(page.sourceDir, targetContentDir, pagePrefix)
 
         // Transform frontmatter
         const nuxtFrontmatter: ContentPage = {
@@ -246,6 +363,9 @@ class GravMigrator {
 
         // Convert internal links
         processedContent = this.convertInternalLinks(processedContent)
+
+        // Process image links (update to new filenames)
+        processedContent = this.processImageLinks(processedContent, imageMap)
 
         // Process Bible verses
         processedContent = this.processBibleVerses(processedContent)
@@ -360,6 +480,7 @@ class GravMigrator {
     console.log(`║ Processed:          ${this.stats.processed.toString().padEnd(22)} ║`)
     console.log(`║ Bible Verses:       ${this.stats.bibleVerses.toString().padEnd(22)} ║`)
     console.log(`║ Internal Links:     ${this.stats.internalLinks.toString().padEnd(22)} ║`)
+    console.log(`║ Migrated Images:    ${this.stats.migratedImages.toString().padEnd(22)} ║`)
     console.log(`║ Errors:             ${this.stats.errors.length.toString().padEnd(22)} ║`)
     console.log('╚════════════════════════════════════════════╝')
 

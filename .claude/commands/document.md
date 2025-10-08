@@ -1,6 +1,8 @@
-Remember your last changes by updating the CLAUDE.md file. 
+# Document the recent changes in CLAUDE.md and README.md
 
-Be concise so that future language models will be able to follow your instructions.
+## CLAUDE.md
+
+For CLAUDE.md be concise so that future language models will be able to follow your instructions.
 
 Keep the following sections in the CLAUDE.md up to date:
 
@@ -30,3 +32,21 @@ If CLAUDE.md file size exceed > 40KB, you MUST clean up the CLAUDE.md file accor
 * Remove the eldest 20% of memories of past mistakes
 * Replace verbose explanations with concise descriptions
 * Condense excessive examples
+
+## README.md
+
+Update README.md for human developers (not robots) who are interested in:
+* How to setup the project on a brand new developer machine: 
+  * which dependencies to install
+  * how to prepare the developer's machine
+* How to setup and run the project locally
+* How to run the tests
+* Specifically mention deviations from typical Nuxt setups that are specific to this project
+* Common pitfalls or mistakes to avoid
+* Coding rules and naming convention
+
+Unlike CLAUDE.md be descriptive and use proper human readable examples with comments to explain complex configurations.
+
+If the old README.md file becomes outdated, you must update all outdated sections
+
+Keep the README.md file below 50KB.
