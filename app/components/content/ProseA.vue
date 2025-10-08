@@ -24,7 +24,7 @@ interface ProseAProps {
 
 const props = defineProps<ProseAProps>()
 
-// Strip .md extension from href for web routes
+// Strip /content/{domain}/ prefix and .md extension from href for web routes
 // External URLs (http/https) are passed through unchanged
 const cleanHref = computed(() => {
   if (!props.href) return props.href
@@ -34,7 +34,24 @@ const cleanHref = computed(() => {
     return props.href
   }
 
+  // Don't modify anchor-only links
+  if (props.href.startsWith('#')) {
+    return props.href
+  }
+
+  let cleaned = props.href
+
+  // Strip /content/{domain}/ prefix from absolute paths (for web routing)
+  // Example: /content/kingdom/church/history.md → /church/history.md
+  // This allows IDE to navigate with full paths while web uses clean URLs
+  cleaned = cleaned.replace(/^\/content\/[^/]+/, '')
+
   // Strip .md extension from internal links (before any fragment/query)
-  return props.href.replace(/\.md(#|\?|$)/, '$1')
+  // Example: /church/history.md → /church/history
+  // Example: /church/history.md#section → /church/history#section
+  // Example: ../parent.md → ../parent
+  cleaned = cleaned.replace(/\.md(#|\?|$)/, '$1')
+
+  return cleaned
 })
 </script>

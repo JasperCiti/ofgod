@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import fs from 'fs-extra'
+import { statSync } from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import matter from 'gray-matter'
@@ -388,8 +389,8 @@ class GravMigrator {
         // Process content
         let processedContent = page.content
 
-        // Convert internal links (pass page path for relative link resolution)
-        processedContent = this.convertInternalLinks(processedContent, page.path)
+        // Convert internal links (pass page path and source directory for relative link resolution)
+        processedContent = this.convertInternalLinks(processedContent, page.path, page.sourceDir)
 
         // Process image links (update to new filenames)
         processedContent = this.processImageLinks(processedContent, imageMap)
@@ -424,7 +425,7 @@ class GravMigrator {
     return transformed
   }
 
-  private convertInternalLinks(content: string, pagePath: string): string {
+  private convertInternalLinks(content: string, pagePath: string, sourceDir: string): string {
     // Pattern to match both absolute and relative internal links
     // Matches: [text](/absolute) and [text](relative)
     // But NOT images: ![text](url)
@@ -449,51 +450,102 @@ class GravMigrator {
 
       this.stats.internalLinks++
 
+      // Parse URL and fragment
+      const fragmentIndex = url.indexOf('#')
+      const hasFragment = fragmentIndex !== -1
+      const urlWithoutFragment = hasFragment ? url.substring(0, fragmentIndex) : url
+      const fragment = hasFragment ? url.substring(fragmentIndex + 1) : undefined
+
       let cleanUrl: string
+      let isRelative = false
 
       if (url.startsWith('/')) {
         // Absolute link: /04.kingdom/05.church/history
-        cleanUrl = url.substring(1) // Remove leading /
+        cleanUrl = urlWithoutFragment.substring(1) // Remove leading /
+      } else if (url.startsWith('../')) {
+        // Parent link: ../parent or ../../grandparent
+        // Keep as relative
+        cleanUrl = urlWithoutFragment
+        isRelative = true
       } else {
         // Relative link: christian, messianic, etc.
-        // Resolve relative to current page path
-        const pageDir = pagePath || ''
-        cleanUrl = pageDir ? `${pageDir}/${url}` : url
+        // Check if it's a child directory or actual sibling file
+
+        if (!url.includes('/')) {
+          // Single segment - could be sibling file or child directory
+          // Check if source directory has a subdirectory matching this name (with or without number prefix)
+          let isChildDirectory = false
+
+          try {
+            const items = fs.readdirSync(sourceDir)
+            // Check for exact match or numbered prefix match (e.g., "03.christian")
+            isChildDirectory = items.some(item => {
+              const itemPath = path.join(sourceDir, item)
+              if (!statSync(itemPath).isDirectory()) return false
+
+              // Match exact name or strip numbered prefix
+              if (item === urlWithoutFragment) return true
+              const matches = item.match(/^\d+\.(.+)$/)
+              return matches && matches[1] === urlWithoutFragment
+            })
+          } catch (error) {
+            // If directory doesn't exist or can't be read, assume not a child
+            isChildDirectory = false
+          }
+
+          if (isChildDirectory) {
+            // It's a child directory - make absolute
+            const pageDir = pagePath || ''
+            cleanUrl = pageDir ? `${pageDir}/${urlWithoutFragment}` : urlWithoutFragment
+            isRelative = false
+          } else {
+            // It's a sibling file in same directory - keep relative
+            cleanUrl = urlWithoutFragment
+            isRelative = true
+          }
+        } else {
+          // Contains '/' - subdirectory link - make absolute
+          const pageDir = pagePath || ''
+          cleanUrl = pageDir ? `${pageDir}/${urlWithoutFragment}` : urlWithoutFragment
+          isRelative = false
+        }
       }
 
-      // Strip numbered prefixes from URL parts (e.g., 05.church → church)
-      cleanUrl = cleanUrl
-        .split('/')
-        .map(part => {
-          // Handle fragments (e.g., page#anchor)
-          const [pagePart, fragment] = part.split('#')
-          const matches = pagePart.match(/^\d+\.(.+)$/)
-          const cleanPart = matches ? matches[1] : pagePart
-          return fragment ? `${cleanPart}#${fragment}` : cleanPart
-        })
-        .filter(part => part.length > 0)
-        .join('/')
+      // If not relative, strip numbered prefixes and domain, then add /content/{domain}/ prefix
+      if (!isRelative) {
+        // Strip numbered prefixes from URL parts (e.g., 05.church → church)
+        cleanUrl = cleanUrl
+          .split('/')
+          .map(part => {
+            const matches = part.match(/^\d+\.(.+)$/)
+            return matches ? matches[1] : part
+          })
+          .filter(part => part.length > 0)
+          .join('/')
 
-      // Strip domain prefix if present (e.g., kingdom/church → church)
-      const domainPrefix = `${this.targetDomain}/`
-      if (cleanUrl.startsWith(domainPrefix)) {
-        cleanUrl = cleanUrl.substring(this.targetDomain.length + 1)
-      }
+        // Strip domain prefix if present (e.g., kingdom/church → church)
+        const domainPrefix = `${this.targetDomain}/`
+        if (cleanUrl.startsWith(domainPrefix)) {
+          cleanUrl = cleanUrl.substring(this.targetDomain.length + 1)
+        }
 
-      // Ensure URL starts with /
-      if (!cleanUrl.startsWith('/')) {
-        cleanUrl = '/' + cleanUrl
+        // Ensure URL starts with /
+        if (!cleanUrl.startsWith('/')) {
+          cleanUrl = '/' + cleanUrl
+        }
+
+        // Prepend /content/{domain}/ for IDE navigation support
+        // ProseA component will strip this prefix for web routes
+        cleanUrl = `/content/${this.targetDomain}${cleanUrl}`
       }
 
       // Add .md extension for IDE preview compatibility
       // (ProseA component will strip this for web routes)
-      // Only add if not already present and not an anchor-only link
-      if (!cleanUrl.includes('#')) {
-        cleanUrl = cleanUrl + '.md'
-      } else {
-        // Handle fragments: /page#anchor → /page.md#anchor
-        const [urlPart, fragment] = cleanUrl.split('#')
-        cleanUrl = `${urlPart}.md#${fragment}`
+      cleanUrl = cleanUrl + '.md'
+
+      // Reattach fragment if present
+      if (hasFragment) {
+        cleanUrl = `${cleanUrl}#${fragment}`
       }
 
       return `[${text}](${cleanUrl})`
