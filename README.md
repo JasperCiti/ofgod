@@ -322,20 +322,26 @@ Why this approach:
 ```markdown
 <!-- In markdown files (for IDE preview) -->
 [Link to page](/church/history.md)
+[Link with anchor](/church/history.md#section)
 
 <!-- Rendered in browser (ProseA strips .md) -->
 <a href="/church/history">Link to page</a>
+<a href="/church/history#section">Link with anchor</a>
 ```
 
 Why this approach:
 - **IDE preview**: VS Code previews markdown with clickable `.md` links
 - **Web routes**: Nuxt routes don't use `.md` extensions
 - **Single source**: One markdown file works in both contexts
+- **Fragments preserved**: Anchors and query strings work correctly
 
 **Implementation:**
-- Migration script: Adds `.md` to internal links, skips image files
-- ProseA component (`app/components/content/ProseA.vue`): Strips `.md` during render
-- Result: DRY principle maintained
+- Migration script: Adds `.md` to internal links, preserves fragments, skips image files
+- ProseA component (`app/components/content/ProseA.vue`): Strips `.md` using regex `/\.md(#|\?|$)/`
+  - Handles `/page.md` → `/page`
+  - Handles `/page.md#anchor` → `/page#anchor`
+  - Handles `/page.md?query=val` → `/page?query=val`
+- Result: DRY principle maintained, full URL feature support
 
 ### 6. Bible Reference Enhancement
 
@@ -385,19 +391,23 @@ npm run build     # ← Wrong (doesn't copy images)
 **Domain Switching:**
 When changing `CONTENT` env var, dev server auto-cleans `/public/` on next startup to prevent mixing domains.
 
-### 1a. Markdown Links Not Working in IDE
+### 1a. Markdown Links Not Working in IDE or Browser
 
-**Problem:** Clicking markdown links in VS Code doesn't navigate to target file.
+**Problem:** Clicking markdown links in VS Code doesn't navigate, or browser links show `.md` in URL.
 
 **Common Causes:**
-1. **Missing .md extension**: Old links may not have `.md` extension
+1. **Missing .md extension** (IDE issue): Old links may not have `.md` extension
 2. **Wrong path**: Relative links not resolved correctly
 3. **File doesn't exist**: Target markdown file missing
+4. **Links still have .md in HTML** (browser issue): ProseA component not working or rebuild needed
 
 **Solution:**
 ```bash
+# IDE Issues (links not working in VS Code)
+# ========================================
 # 1. Verify link format in markdown
 # ✓ Correct: [link](/church/history.md)
+# ✓ Correct: [link](/church/history.md#section)
 # ✗ Wrong:   [link](/church/history)
 
 # 2. Check file exists
@@ -407,13 +417,31 @@ ls -la /content/kingdom/church/history.md
 rm -rf /content/kingdom
 npm run migrate -- --section=04.kingdom --domain=kingdom
 
-# 4. Test in VS Code
-# Links should be clickable and navigate to target file
+# Browser Issues (links show .md in URL)
+# ========================================
+# 1. Verify ProseA component exists
+ls -la app/components/content/ProseA.vue
+
+# 2. Check regex pattern in ProseA.vue
+# Should be: replace(/\.md(#|\?|$)/, '$1')
+
+# 3. Rebuild to regenerate HTML
+npm run generate
+
+# 4. Inspect generated HTML (should NOT have .md)
+grep -o 'href="[^"]*\.md[^"]*"' .output/public/**/*.html
+# Should return empty (no matches)
+
+# 5. Test specific cases
+# /page.md → /page
+# /page.md#anchor → /page#anchor
+# /page.md?query=val → /page?query=val
 ```
 
 **Why .md extensions:**
-- VS Code expects `.md` in links for file preview
-- ProseA component strips `.md` for web routes
+- **Markdown files**: Links include `.md` for VS Code preview
+- **Generated HTML**: ProseA strips `.md` for clean web routes
+- **Fragments preserved**: Regex `/\.md(#|\?|$)/` handles anchors and query strings
 - Best of both worlds: IDE preview + clean URLs
 
 ### 2. Wrong Content Domain Loading

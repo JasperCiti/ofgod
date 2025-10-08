@@ -34,7 +34,7 @@ const cleanHref = computed(() => {
     return props.href
   }
 
-  // Strip .md extension from internal links
-  return props.href.replace(/\.md$/, '')
+  // Strip .md extension from internal links (before any fragment/query)
+  return props.href.replace(/\.md(#|\?|$)/, '$1')
 })
 </script>

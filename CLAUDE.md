@@ -100,12 +100,14 @@ npm run generate  # copies images once, builds static site
 - Skips image files: `![](image.jpg)` stays `.jpg` (not `.jpg.md`)
 
 **ProseA Component** (`app/components/content/ProseA.vue`):
-- Strips `.md` during HTML rendering: `/page.md` → `/page`
+- Strips `.md` during HTML rendering using regex: `/\.md(#|\?|$)/`
+- Handles fragments: `/page.md#anchor` → `/page#anchor`
+- Handles query strings: `/page.md?query=val` → `/page?query=val`
 - External URLs pass through unchanged
 
 **Result:**
-- Markdown: `[link](/church/history.md)` ← works in VS Code
-- Web: `<a href="/church/history">` ← works in browser
+- Markdown: `[link](/church/history.md#section)` ← works in VS Code
+- Web: `<a href="/church/history#section">` ← works in browser
 - DRY: Single source of truth
 
 ### Grav Migration Script with Image Support (2025-10-08)
@@ -319,6 +321,13 @@ navigation:
 - **Manual copy**: `CONTENT=kingdom npx tsx scripts/copy-images.ts`
 - **Wrong domain**: Ensure `CONTENT` env var matches (check `.env` file)
 - **Production**: Run `npm run generate` (not `npm run build` - copies images first)
+
+### Links with .md Extensions in Generated HTML
+- **Check ProseA component**: Verify `/app/components/content/ProseA.vue` exists
+- **Rebuild required**: Run `npm run generate` after ProseA changes
+- **Test fragments**: Links like `/page.md#anchor` should render as `/page#anchor`
+- **Inspect HTML**: Check `.output/public/**/*.html` for remaining `.md` extensions
+- **Regex pattern**: ProseA uses `/\.md(#|\?|$)/` to handle fragments and query strings
 
 ### Migration Issues
 - **Image naming**: Check if image name already matches page slug to avoid duplication
