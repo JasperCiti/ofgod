@@ -35,18 +35,31 @@ If CLAUDE.md file size exceed > 40KB, you MUST clean up the CLAUDE.md file accor
 
 ## README.md
 
-Update README.md for human developers (not robots) who are interested in:
-* How to setup the project on a brand new developer machine: 
-  * which dependencies to install
-  * how to prepare the developer's machine
-* How to setup and run the project locally
-* How to run the tests
-* Specifically mention deviations from typical Nuxt setups that are specific to this project
-* Common pitfalls or mistakes to avoid
-* Coding rules and naming convention
+Update README.md for human developers (not robots) well organized in main sections in the order:
+  * **Running the project locally**: How to setup the project on a brand new developer machine: 
+    * which dependencies to install
+    * how to prepare the developer's machine
+  * **Content layout**: Guide the users how to write proper content
+    * Different DNS domains and how content is separated by different domain directories
+    * The expected format of markdown files in the /content directory
+    * Supported markdown styles
+    * The expected location, naming and format of images used in md files
+    * The expected md linking format and rules (internal, absolute, relative, across domains and external websites)
+    * Valid fontmatter attributes
+    * How to configure navigation menus
+  * **Local development setup**: 
+    * A step-by-step tutorial on how to setup and run the project locally
+    * How to run the tests
+  * **Development guidelines**
+    * Specifically mention deviations from typical Nuxt setups that are specific to this project (without repeating earlier sections)
+    * Common pitfalls or mistakes to avoid (without repeating sections)
+    * Coding rules and naming convention
 
-Unlike CLAUDE.md be descriptive and use proper human readable examples with comments to explain complex configurations.
+The README.md file should start each section with a very concise TLDR section focusing only on the common or primary commands or configs followed by a detailed explanation and examples with comments.
+
+Always use `#` hashes for headers. Headers should be consistently in: Title Case
+Always use `*` for bullet points.  
 
 If the old README.md file becomes outdated, you must update all outdated sections
 
-Keep the README.md file below 50KB.
+Keep the README.md file < 60KB.

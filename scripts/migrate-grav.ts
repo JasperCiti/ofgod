@@ -339,20 +339,24 @@ class GravMigrator {
 
         // Convert Grav path to Nuxt Content path
         // Root pages (empty path) use index.md, nested pages use {name}.md directly
+        // Unpublished pages get .draft.md extension instead
         let filePath: string
         let targetContentDir: string
 
         if (!page.path || page.path === '') {
-          // Root page: /content/{domain}/index.md
+          // Root page: /content/{domain}/index.md or index.draft.md
           targetContentDir = path.join(this.targetDir, 'content', this.targetDomain)
-          filePath = path.join(targetContentDir, 'index.md')
+          const filename = page.frontmatter.published === false ? 'index.draft.md' : 'index.md'
+          filePath = path.join(targetContentDir, filename)
           if (!this.dryRun) {
             await fs.ensureDir(targetContentDir)
           }
         } else {
-          // Nested page: /content/{domain}/path/to/page.md (no directory)
+          // Nested page: /content/{domain}/path/to/page.md or page.draft.md (no directory)
           targetContentDir = path.join(this.targetDir, 'content', this.targetDomain, path.dirname(page.path))
-          const fileName = `${path.basename(page.path)}.md`
+          const baseName = path.basename(page.path)
+          const extension = page.frontmatter.published === false ? '.draft.md' : '.md'
+          const fileName = `${baseName}${extension}`
           filePath = path.join(targetContentDir, fileName)
           if (!this.dryRun) {
             await fs.ensureDir(targetContentDir)

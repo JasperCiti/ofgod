@@ -58,33 +58,57 @@ VNavigationDrawer: {
 
 **Result:** Consistent z-index between build and runtime, no hydration warnings.
 
-### Image Co-location with Domain Prefix Stripping (2025-10-08)
-**Problem:** Images needed co-location with markdown in `/content/` but URLs don't include domain prefix (e.g., `/church/history/page` not `/kingdom/church/history/page`).
+### Draft Content Exclusion System (2025-10-09)
+**Problem:** Unpublished content (`published: false`) needed to be excluded from builds/navigation but kept in repository for future publication.
 
-**Solution:** Automated image synchronization with path transformation:
+**Solution:** `.draft.md` file extension with intelligent image handling:
+- **Migration**: Files with `published: false` → renamed to `*.draft.md`
+- **Content Config**: `exclude: ['**/*.draft.md']` in `content.config.ts`
+- **Image Naming**: Draft page images named WITHOUT `.draft` (e.g., `constantine.draft.md` → `constantine.pic.jpg`)
+- **Image Exclusion**: Draft-only images stay in `/content/` but NOT copied to `/public/`
+
+**Implementation:**
+```typescript
+// content.config.ts
+source: {
+  exclude: ['**/*.draft.md'],  // Must be array (not string)
+  prefix: '/'  // Required for proper path generation
+}
+
+// scripts/watch-images.ts
+async function isDraftOnlyImage(imagePath: string): Promise<boolean> {
+  const prefix = fileName.split('.')[0]  // Extract page prefix
+  const hasPublished = await fs.pathExists(`${prefix}.md`)
+  const hasDraft = await fs.pathExists(`${prefix}.draft.md`)
+  return !hasPublished && hasDraft  // Skip if only draft exists
+}
+```
+
+**Result:**
+- Published content: Visible in navigation, images copied to `/public/`
+- Draft content: Excluded from builds, images stay in `/content/` only
+- Clean separation: No draft leakage to production
+
+### Image Co-location with Domain Prefix Stripping (2025-10-08)
+**Problem:** Images needed co-location with markdown in `/content/` but URLs don't include domain prefix.
+
+**Solution:** Automated image synchronization with path transformation and draft filtering:
 - **Source**: Images in `/content/{domain}/church/history/image.jpg`
 - **Target**: Copied to `/public/church/history/image.jpg` (domain prefix stripped)
-- **URL**: Accessible at `/church/history/image.jpg` ✓
-- **Domain Isolation**: Each build only contains its own domain's files in `/public/`
-- **Dev Mode Cleaning**: `npm run dev` cleans `/public/` first (preserves `favicon.ico`, `robots.txt`)
-- **Production**: `npm run generate` assumes clean CI/CD environment, no cleaning overhead
+- **Draft Filtering**: Images for draft-only pages NOT copied to `/public/`
+- **Domain Isolation**: Each build only contains its own domain's published files
 
 **File Watcher** (`scripts/watch-images.ts`):
 - Strips domain prefix: `/content/kingdom/church/` → `/public/church/`
-- Cleans `/public/` on dev startup (handles domain switching via `CONTENT` env var)
-- Watches `/content/{domain}/` and auto-copies images with correct paths
+- Filters draft images: Checks if `{page}.md` exists before copying `{page}.*.jpg`
+- Cleans `/public/` on dev startup (preserves `favicon.ico`, `robots.txt`)
 - Stability threshold: 500ms for large files
 
 **Developer Experience:**
 ```bash
-# Dev mode - auto-cleans and watches
-npm run dev  # cleans /public/ → copies images → watches for changes
-
-# Switch domains
+npm run dev  # cleans /public/ → copies published images → watches
 CONTENT=church npm run dev  # auto-cleans old domain files
-
-# Production
-npm run generate  # copies images once, builds static site
+npm run generate  # copies published images, builds static site
 ```
 
 ### Dual-Context Markdown Links (2025-10-08)
@@ -308,8 +332,40 @@ navigation:
 
 ## Troubleshooting
 
+### Content Config Issues (2025-10-09)
+**Problem:** No pages loading, navigation empty, content queries return nothing.
+
+**Root Cause:** Invalid `content.config.ts` configuration (wrong data types).
+
+**Solution:**
+```typescript
+// ❌ WRONG - exclude must be array, not string
+exclude: '**/*.draft.md'
+
+// ✅ CORRECT - array of glob patterns
+exclude: ['**/*.draft.md']
+
+// ❌ WRONG - missing prefix causes path issues
+source: { cwd: '...', include: '**/*.md' }
+
+// ✅ CORRECT - prefix required for navigation tree
+source: { cwd: '...', include: '**/*.md', prefix: '/' }
+```
+
+**Symptoms:**
+- Pages exist but don't appear in navigation
+- All pages show as top-level (no hierarchy)
+- Content queries return empty results
+
+**Fix:** Clear cache and verify config:
+```bash
+rm -rf .nuxt .output
+npm run dev
+# Check console for errors
+```
+
 ### Image Watcher Not Working
-- Check Nuxt `ready` hook in `nuxt.config.ts`
+- Check Nuxt `ready` hook in `nuxt.config.ts` (import path must be `'./scripts/watch-images'` NOT `'./scripts/watch-images.js'`)
 - Verify `CONTENT` env var is set correctly
 - Check console for "👀 Watching images in:" message
 - Restart dev server if watcher doesn't start
@@ -317,10 +373,20 @@ navigation:
 ### Images Not Appearing (404 errors)
 - **Check URL structure**: Images should be at `/church/history/image.jpg` (no domain prefix)
 - **Verify files exist**: `ls /public/church/history/` (domain prefix stripped in public)
+- **Draft images**: If page is `*.draft.md`, images WON'T copy to `/public/` (expected behavior)
 - **Dev mode**: Images auto-copied on startup. If missing, restart dev server
 - **Manual copy**: `CONTENT=kingdom npx tsx scripts/copy-images.ts`
 - **Wrong domain**: Ensure `CONTENT` env var matches (check `.env` file)
 - **Production**: Run `npm run generate` (not `npm run build` - copies images first)
+
+**Console Logs:**
+```bash
+# Published image copied:
+✓ Image added: church/history/constantine.statue.jpg
+
+# Draft image skipped:
+⊗ Skipped draft image: constantine.aqaba_church.jpg
+```
 
 ### Links with .md Extensions in Generated HTML
 - **Check ProseA component**: Verify `/app/components/content/ProseA.vue` exists

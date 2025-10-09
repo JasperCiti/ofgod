@@ -10,7 +10,9 @@ export default defineContentConfig({
       type: 'page',
       source: {
         cwd: path.resolve(`content/${contentDomain}`),
-        include: '**/*.md'
+        include: '**/*.md',
+        exclude: ['**/*.draft.md'],
+        prefix: '/'
       }
     })
   }

@@ -44,7 +44,7 @@ export default defineNuxtConfig({
     // Start image watcher when dev server starts
     'ready': async (nuxt) => {
       if (nuxt.options.dev) {
-        const { watchImages } = await import('./scripts/watch-images.js')
+        const { watchImages } = await import('./scripts/watch-images')
         await watchImages()
       }
     }

@@ -94,6 +94,15 @@ export async function watchImages() {
  */
 async function copyImage(sourcePath: string, log: boolean = true, action: string = 'copied') {
   try {
+    // Check if this is a draft-only image (no published .md file exists)
+    if (await isDraftOnlyImage(sourcePath)) {
+      if (log) {
+        const fileName = path.basename(sourcePath)
+        console.log(`⊗ Skipped draft image: ${fileName}`)
+      }
+      return
+    }
+
     // Get path relative to content/ directory, then strip domain prefix
     const contentDir = path.join(sourceDir, '..')
     const relativeFromContent = path.relative(contentDir, sourcePath)
@@ -117,6 +126,13 @@ async function copyImage(sourcePath: string, log: boolean = true, action: string
  */
 async function deleteImage(sourcePath: string) {
   try {
+    // Check if this was a draft-only image (should not have been in /public/ anyway)
+    if (await isDraftOnlyImage(sourcePath)) {
+      const fileName = path.basename(sourcePath)
+      console.log(`⊗ Draft image removed from content: ${fileName}`)
+      return
+    }
+
     // Get path relative to content/ directory, then strip domain prefix
     const contentDir = path.join(sourceDir, '..')
     const relativeFromContent = path.relative(contentDir, sourcePath)
@@ -131,6 +147,35 @@ async function deleteImage(sourcePath: string) {
   } catch (error) {
     console.error(`❌ Failed to delete ${sourcePath}:`, error)
   }
+}
+
+/**
+ * Check if an image belongs to a draft-only page (no published .md exists)
+ */
+async function isDraftOnlyImage(imagePath: string): Promise<boolean> {
+  const ext = path.extname(imagePath)
+  const fileName = path.basename(imagePath, ext)
+
+  // Extract page prefix from image name (e.g., "something.pic.jpg" → "something")
+  const parts = fileName.split('.')
+  if (parts.length < 2) {
+    // Single-part filename (no prefix) - assume it's a shared image, copy it
+    return false
+  }
+
+  const pagePrefix = parts[0]
+  const imageDir = path.dirname(imagePath)
+
+  // Check if corresponding published .md file exists
+  const publishedMdPath = path.join(imageDir, `${pagePrefix}.md`)
+  const hasPublishedVersion = await fs.pathExists(publishedMdPath)
+
+  // Check if only draft version exists
+  const draftMdPath = path.join(imageDir, `${pagePrefix}.draft.md`)
+  const hasDraftVersion = await fs.pathExists(draftMdPath)
+
+  // Skip copying if only draft exists (no published version)
+  return !hasPublishedVersion && hasDraftVersion
 }
 
 /**
