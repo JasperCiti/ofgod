@@ -31,47 +31,37 @@ export function useTableOfContents() {
       return
     }
 
-    // Find all headings (H1, H2, H3) - use a more specific selector to avoid navigation headings
-    const headings = container.querySelectorAll('article h1, article h2, article h3, .content-body h1, .content-body h2, .content-body h3')
+    // Find only H2 and H3 headings (skip H1 as it's the page title)
+    const headings = container.querySelectorAll('article h2, article h3, .content-body h2, .content-body h3')
 
-    if (headings.length <= 1) {
-      // Hide TOC if only 0-1 headings
+    if (headings.length < 2) {
+      // Hide TOC if less than 2 headings
       tocItems.value = []
       return
     }
 
-    // Determine the highest level heading present
-    let highestLevel = 6
-    headings.forEach(heading => {
-      const level = parseInt(heading.tagName.charAt(1))
-      if (level < highestLevel) {
-        highestLevel = level
-      }
-    })
-
-    // Build TOC items (show highest level + one level below)
+    // Build TOC items (H2 = level 1, H3 = level 2)
     const items: TocItem[] = []
-    const maxLevel = highestLevel + 1
 
     headings.forEach((heading, index) => {
       const level = parseInt(heading.tagName.charAt(1))
 
-      // Only include headings up to maxLevel
-      if (level <= maxLevel) {
-        // Ensure heading has an id for anchor links
-        let id = heading.id
-        if (!id) {
-          id = `heading-${index}-${heading.textContent?.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '') || index}`
-          heading.id = id
-        }
+      // H2 = level 1, H3 = level 2
+      const normalizedLevel = level === 2 ? 1 : 2
 
-        items.push({
-          id,
-          text: heading.textContent || '',
-          level: level - highestLevel + 1, // Normalize to 1-based level
-          element: heading as HTMLElement
-        })
+      // Ensure heading has an id for anchor links
+      let id = heading.id
+      if (!id) {
+        id = `heading-${index}-${heading.textContent?.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '') || index}`
+        heading.id = id
       }
+
+      items.push({
+        id,
+        text: heading.textContent || '',
+        level: normalizedLevel,
+        element: heading as HTMLElement
+      })
     })
 
     tocItems.value = items

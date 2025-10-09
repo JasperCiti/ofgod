@@ -29,6 +29,7 @@ logs
 /public/**/*.webp
 /public/**/*.gif
 /public/**/*.svg
+/public/**/*.yml
 
 # Keep static assets
 !/public/favicon.ico

@@ -5,6 +5,7 @@ import { statSync } from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import matter from 'gray-matter'
+import { stringify as yamlStringify } from 'yaml'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -24,13 +25,7 @@ interface GravPage {
 }
 
 interface ContentPage {
-  title: string
   description?: string
-  published: boolean
-  navigation?: {
-    title: string
-    order: number
-  }
   template?: string
   [key: string]: any
 }
@@ -41,7 +36,16 @@ interface MigrationStats {
   bibleVerses: number
   internalLinks: number
   migratedImages: number
+  menuFiles: number
   errors: string[]
+}
+
+interface MenuEntry {
+  slug: string
+  path?: string // Optional for non-local pages
+  externalUrl?: string // Optional for external links
+  order: number
+  title?: string // For external links
 }
 
 class GravMigrator {
@@ -54,6 +58,7 @@ class GravMigrator {
     bibleVerses: 0,
     internalLinks: 0,
     migratedImages: 0,
+    menuFiles: 0,
     errors: []
   }
   private dryRun: boolean
@@ -117,7 +122,10 @@ class GravMigrator {
       // Step 3: Create content structure
       await this.createContentStructure()
 
-      // Step 4: Print summary
+      // Step 4: Generate menu.yml files
+      await this.generateMenuFiles()
+
+      // Step 5: Print summary
       this.printSummary()
     } catch (error) {
       console.error('Migration failed:', error)
@@ -367,10 +375,11 @@ class GravMigrator {
         const pagePrefix = this.getPagePrefix(page)
         const imageMap = await this.copyPageImages(page.sourceDir, targetContentDir, pagePrefix)
 
-        // Transform frontmatter
+        // Extract title for H1 header
+        const pageTitle = page.frontmatter.title || this.titleCase(page.slug)
+
+        // Transform frontmatter (without title, published, navigation)
         const nuxtFrontmatter: ContentPage = {
-          title: page.frontmatter.title || this.titleCase(page.slug),
-          published: page.frontmatter.published !== false,
           ...this.transformFrontmatter(page.frontmatter)
         }
 
@@ -382,16 +391,14 @@ class GravMigrator {
           nuxtFrontmatter.template = page.template
         }
 
-        // Add navigation info if visible
-        if (page.visible && page.frontmatter.published !== false) {
-          nuxtFrontmatter.navigation = {
-            title: nuxtFrontmatter.title,
-            order: parseInt(page.order)
-          }
-        }
-
         // Process content
         let processedContent = page.content
+
+        // Shift existing headers down one level (H1→H2, H2→H3, etc.)
+        processedContent = this.shiftHeadersDown(processedContent)
+
+        // Prepend H1 title as first line
+        processedContent = `# ${pageTitle}\n\n${processedContent}`
 
         // Convert internal links (pass page path and source directory for relative link resolution)
         processedContent = this.convertInternalLinks(processedContent, page.path, page.sourceDir)
@@ -402,7 +409,16 @@ class GravMigrator {
         // Process Bible verses
         processedContent = this.processBibleVerses(processedContent)
 
-        const fileContent = matter.stringify(processedContent, nuxtFrontmatter)
+        // Create file content with frontmatter
+        // If frontmatter is empty, only add description if it exists, otherwise skip frontmatter
+        let fileContent: string
+        if (Object.keys(nuxtFrontmatter).length === 0) {
+          // No frontmatter - just content
+          fileContent = processedContent
+        } else {
+          // Has frontmatter - use gray-matter
+          fileContent = matter.stringify(processedContent, nuxtFrontmatter)
+        }
 
         if (!this.dryRun) {
           await fs.writeFile(filePath, fileContent)
@@ -417,8 +433,8 @@ class GravMigrator {
   private transformFrontmatter(frontmatter: Record<string, any>): Record<string, any> {
     const transformed: Record<string, any> = {}
 
-    // Skip certain Grav-specific fields
-    const skipFields = ['title', 'description', 'published', 'taxonomy', 'process', 'cache_enable', 'visible']
+    // Skip certain Grav-specific fields and new excluded fields
+    const skipFields = ['title', 'description', 'published', 'taxonomy', 'process', 'cache_enable', 'visible', 'navigation']
 
     for (const [key, value] of Object.entries(frontmatter)) {
       if (!skipFields.includes(key)) {
@@ -427,6 +443,30 @@ class GravMigrator {
     }
 
     return transformed
+  }
+
+  /**
+   * Shift all markdown headers down one level (H1→H2, H2→H3, etc.)
+   */
+  private shiftHeadersDown(content: string): string {
+    // Split content by lines
+    const lines = content.split('\n')
+    const processedLines: string[] = []
+
+    for (const line of lines) {
+      // Check if line starts with markdown header syntax
+      const headerMatch = line.match(/^(#{1,5})\s+(.*)$/)
+      if (headerMatch) {
+        // Add one more # to shift header down
+        const hashes = headerMatch[1]
+        const headerText = headerMatch[2]
+        processedLines.push(`#${hashes} ${headerText}`)
+      } else {
+        processedLines.push(line)
+      }
+    }
+
+    return processedLines.join('\n')
   }
 
   private convertInternalLinks(content: string, pagePath: string, sourceDir: string): string {
@@ -593,6 +633,79 @@ class GravMigrator {
       .join(' ')
   }
 
+  /**
+   * Generate menu.yml files for directories with sub-pages
+   */
+  private async generateMenuFiles() {
+    console.log('\nGenerating menu.yml files...')
+
+    // Group pages by their parent directory
+    const pagesByDir = new Map<string, GravPage[]>()
+
+    for (const page of this.pages) {
+      const parentDir = page.path ? path.dirname(page.path) : ''
+      const parentKey = parentDir || '/' // Root directory
+
+      if (!pagesByDir.has(parentKey)) {
+        pagesByDir.set(parentKey, [])
+      }
+      pagesByDir.get(parentKey)!.push(page)
+    }
+
+    // Generate menu.yml for each directory that has children
+    for (const [dirPath, pagesInDir] of pagesByDir) {
+      // Skip if no pages or only one page
+      if (pagesInDir.length <= 1) continue
+
+      // Filter out draft pages
+      const publishedPages = pagesInDir.filter(p => p.frontmatter.published !== false)
+
+      // Skip if no published pages after filtering
+      if (publishedPages.length === 0) continue
+
+      // Sort by order
+      publishedPages.sort((a, b) => parseInt(a.order) - parseInt(b.order))
+
+      // Build menu data
+      const menuData: Record<string, string | number> = {}
+
+      for (const page of publishedPages) {
+        const slug = page.slug
+        const pagePath = page.path || ''
+
+        // Determine if this is a local page (in same directory)
+        const pageDir = pagePath ? path.dirname(pagePath) : ''
+        const isLocal = pageDir === dirPath
+
+        if (isLocal) {
+          // Local page: use '.' to indicate same directory
+          menuData[slug] = '.'
+        } else {
+          // Non-local page: slug with absolute path
+          menuData[slug] = `/${pagePath}`
+        }
+      }
+
+      // Write menu.yml file
+      const targetDir = dirPath === '/' || dirPath === ''
+        ? path.join(this.targetDir, 'content', this.targetDomain)
+        : path.join(this.targetDir, 'content', this.targetDomain, dirPath)
+
+      const menuPath = path.join(targetDir, '_menu.yml')
+      const menuYaml = yamlStringify(menuData)
+
+      if (!this.dryRun) {
+        await fs.ensureDir(targetDir)
+        await fs.writeFile(menuPath, menuYaml, 'utf-8')
+      }
+
+      this.stats.menuFiles++
+      console.log(`  ✓ Generated _menu.yml for: ${dirPath || '/'}`)
+    }
+
+    console.log(`\nGenerated ${this.stats.menuFiles} _menu.yml files\n`)
+  }
+
   private printSummary() {
     console.log('╔════════════════════════════════════════════╗')
     console.log('║           MIGRATION SUMMARY                ║')
@@ -602,6 +715,7 @@ class GravMigrator {
     console.log(`║ Bible Verses:       ${this.stats.bibleVerses.toString().padEnd(22)} ║`)
     console.log(`║ Internal Links:     ${this.stats.internalLinks.toString().padEnd(22)} ║`)
     console.log(`║ Migrated Images:    ${this.stats.migratedImages.toString().padEnd(22)} ║`)
+    console.log(`║ Menu Files:         ${this.stats.menuFiles.toString().padEnd(22)} ║`)
     console.log(`║ Errors:             ${this.stats.errors.length.toString().padEnd(22)} ║`)
     console.log('╚════════════════════════════════════════════╝')
 

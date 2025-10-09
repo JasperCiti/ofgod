@@ -21,7 +21,7 @@
 
       <!-- Center Content Column (flexible) -->
       <v-main class="content-area">
-        <v-container class="py-8">
+        <v-container>
           <div ref="contentContainer">
             <slot />
           </div>
@@ -87,7 +87,7 @@
 
       <!-- Full-width Content -->
       <v-main class="content-area-mobile">
-        <v-container class="py-8">
+        <v-container>
           <div ref="contentContainer">
             <slot />
           </div>
@@ -206,7 +206,6 @@ onMounted(async () => {
 .desktop-layout {
   display: flex;
   min-height: calc(100vh - 56px);
-  margin-top: 56px;
 }
 
 .left-sidebar {
@@ -247,11 +246,6 @@ onMounted(async () => {
 .right-sidebar.sidebar-hidden {
   background-color: rgb(var(--v-theme-surface));
   border-left: none;
-}
-
-/* Mobile Layout */
-.mobile-layout {
-  margin-top: 56px;
 }
 
 .content-area-mobile {

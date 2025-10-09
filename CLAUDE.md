@@ -102,6 +102,7 @@ async function isDraftOnlyImage(imagePath: string): Promise<boolean> {
 - Strips domain prefix: `/content/kingdom/church/` → `/public/church/`
 - Filters draft images: Checks if `{page}.md` exists before copying `{page}.*.jpg`
 - Cleans `/public/` on dev startup (preserves `favicon.ico`, `robots.txt`)
+- **Synchronous copy**: Copies all images+menus BEFORE starting watcher (ensures files ready)
 - Stability threshold: 500ms for large files
 
 **Developer Experience:**
@@ -207,12 +208,81 @@ npm run migrate -- --dry-run  # Preview without writing
 ├── son/index.md       → https://son.ofgod.info/
 ├── kingdom/
 │   ├── index.md       → https://kingdom.ofgod.info/
+│   ├── _menu.yml      → Navigation menu config
 │   ├── page.md        → https://kingdom.ofgod.info/page
 │   └── church/
+│       ├── _menu.yml  → Submenu config
 │       └── history/
+│           ├── _menu.yml           → Submenu config
 │           ├── constantine.md
 │           └── constantine.statue.jpg  ← Co-located images
 ```
+
+### Frontmatter-Free Markdown with H1 Titles (2025-10-09)
+**Problem:** Frontmatter with `title`, `published`, `navigation` fields duplicated information and wasn't markdown-linter compliant.
+
+**Solution:** H1-based titles with `.draft.md` extensions for unpublished content:
+- **Title Extraction**: First H1 (`# Title`) in markdown becomes page title
+- **No Frontmatter**: `title`, `published`, `navigation` fields removed from frontmatter
+- **Header Shifting**: Existing H1→H2, H2→H3, etc. to make room for title H1
+- **Draft Files**: `published: false` → renamed to `*.draft.md` extension
+
+**Migration Script** (`scripts/migrate-grav.ts`):
+- Extracts `title` from Grav frontmatter
+- Prepends as H1 to markdown content
+- Shifts all existing headers down one level
+- Excludes `title`, `published`, `navigation` from output frontmatter
+- Renames files with `published: false` to `*.draft.md`
+
+**Navigation** (`useNavigationTree.ts`):
+- Extracts H1 from markdown body using regex
+- Supports both string content and @nuxt/content AST objects
+- Falls back to filename if no H1 found
+
+**TOC** (`useTableOfContents.ts`):
+- Always skips H1 (page title)
+- Shows H2 as level 1, H3 as level 2
+- Minimum 2 headings required to display
+
+**Result:** Clean markdown-linter compliant files, single source of truth for titles.
+
+### Menu-Based Navigation with _menu.yml (2025-10-09)
+**Problem:** Navigation order needed explicit control without frontmatter. Files needed alphabetical listing in directories.
+
+**Solution:** `_menu.yml` files define navigation order and structure (underscore prefix for alphabetical sorting):
+- **Local Files**: `slug: .` (points to `slug.md` in same directory)
+- **Relative Paths**: `slug: ./sub` (subdirectory)
+- **Absolute Paths**: `slug: /path/to/page` (cross-directory links)
+- **External URLs**: `'Title': http://url` (external websites)
+
+**Migration Script** (`scripts/migrate-grav.ts`):
+- Generates `_menu.yml` in directories with 2+ published pages
+- Uses Grav folder numbering for order (`01.page`, `02.page`)
+- Excludes `.draft.md` files from menus
+- Format: `slug: .` for local files, `slug: /path` for non-local
+
+**Image Watcher** (`scripts/watch-images.ts`):
+- Copies `_menu.yml` files to `/public/` (strips domain prefix)
+- Watches for changes and auto-syncs
+- Example: `/content/kingdom/church/_menu.yml` → `/public/church/_menu.yml`
+
+**Navigation Reader** (`useNavigationTree.ts`):
+- Fetches `_menu.yml` from `/public/` via HTTP (static files)
+- Parses YAML line-by-line, applies sequential order (0, 1, 2, ...)
+- Resolves paths: `.` → local, `./sub` → relative, `/path` → absolute, `http://` → external
+- Unlisted .md files appended alphabetically by H1 title
+- Missing `_menu.yml` → all files sorted alphabetically
+
+**Example _menu.yml:**
+```yaml
+darkness: .           # /darkness.md in same directory
+body: .              # /body.md in same directory
+external: ./church   # /church/external.md (relative)
+other: /other/path   # /other/path.md (absolute)
+'Google': https://google.com  # External link
+```
+
+**Result:** Explicit navigation control, alphabetical fallback, supports external links.
 
 ## Usage Instructions
 
@@ -303,32 +373,48 @@ CONTENT=kingdom npm run generate
 │       └── bible-book-names.ts      # 66 Bible book whitelist
 ├── content/                         # SINGLE SOURCE OF TRUTH
 │   └── {domain}/                    # Content per domain
-│       ├── index.md
-│       ├── page.md
+│       ├── _menu.yml                # Navigation menu config
+│       ├── index.md                 # Domain root page
+│       ├── page.md                  # Published page
+│       ├── draft.draft.md           # Unpublished page
 │       └── page.image.jpg           # Images co-located
 ├── public/                          # Auto-generated (gitignored)
-│   └── {domain}/
-│       └── page.image.jpg           # Auto-copied from /content/
+│   ├── _menu.yml                    # Auto-copied from /content/
+│   ├── page.image.jpg               # Auto-copied from /content/
+│   └── church/
+│       ├── _menu.yml                # Subdirectory menus
+│       └── image.jpg                # Domain prefix stripped
 ├── scripts/
-│   ├── migrate-grav.ts              # Grav migration with images
-│   ├── copy-images.ts               # One-time image copy
-│   └── watch-images.ts              # File watcher for images
+│   ├── migrate-grav.ts              # Grav migration (pages + images + menus)
+│   ├── copy-images.ts               # One-time copy (images + menus)
+│   └── watch-images.ts              # File watcher (images + menus)
 ├── content.config.ts                # @nuxt/content multi-domain config
 └── nuxt.config.ts                   # Nuxt config with watcher hook
 ```
 
-## Markdown Frontmatter
+## Markdown Format
 
+**Files:** `page.md` or `page.draft.md` (unpublished)
+
+**Structure:**
+```markdown
+# Page Title
+
+First paragraph content...
+
+## Section Heading
+
+Content...
+```
+
+**Frontmatter (Optional):**
 ```yaml
 ---
-title: Page Title
-description: Page description (optional)
-published: true
-navigation:
-  title: Nav Title    # Used in tree navigation
-  order: 1            # Sort order in navigation
+description: Page description (SEO meta tag)
 ---
 ```
+
+**Navigation:** Controlled by `_menu.yml` files (see Menu-Based Navigation section)
 
 ## Troubleshooting
 
@@ -364,11 +450,33 @@ npm run dev
 # Check console for errors
 ```
 
+### Navigation Menu Order Incorrect (2025-10-09)
+**Problem:** Navigation items displayed in alphabetical order instead of `_menu.yml` order.
+
+**Root Cause:** `_menu.yml` files not copied to `/public/` before frontend fetches them. When fetch fails, code falls back to alphabetical sorting.
+
+**Solution:** Modified `watchImages()` to synchronously copy all files BEFORE starting watcher:
+```typescript
+// scripts/watch-images.ts
+export async function watchImages() {
+  await cleanPublicDirectory()
+  await copyAllImages()  // ← Ensures files ready before Nuxt starts serving
+  // ... then start watcher with ignoreInitial: true
+}
+```
+
+**Fix:** Restart dev server to trigger synchronous copy. Files copied in order:
+1. Clean `/public/` (preserves favicon.ico, robots.txt)
+2. Copy all images and `_menu.yml` files synchronously
+3. Start watching for changes
+
 ### Image Watcher Not Working
 - Check Nuxt `ready` hook in `nuxt.config.ts` (import path must be `'./scripts/watch-images'` NOT `'./scripts/watch-images.js'`)
 - Verify `CONTENT` env var is set correctly
-- Check console for "👀 Watching images in:" message
+- Check console for "📦 Copying images and menus from:" message
+- Check console for "👀 Watching images and menus in:" message
 - Restart dev server if watcher doesn't start
+- Verify files copied: `ls /public/church/history/` should show `_menu.yml`
 
 ### Images Not Appearing (404 errors)
 - **Check URL structure**: Images should be at `/church/history/image.jpg` (no domain prefix)

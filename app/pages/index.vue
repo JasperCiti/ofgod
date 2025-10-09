@@ -7,12 +7,9 @@
       <v-alert type="error">Home page not found</v-alert>
     </div>
     <div v-else>
-      <v-card-title class="text-h4 font-weight-bold">
-        {{ page.title || 'Home' }}
-      </v-card-title>
-      <v-card-text class="content-body">
+      <div class="content-body">
         <ContentRenderer :value="page" />
-      </v-card-text>
+      </div>
     </div>
   </article>
 </template>
@@ -49,4 +46,3 @@ onMounted(() => {
   })
 })
 </script>
-

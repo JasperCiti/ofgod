@@ -3,6 +3,12 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
+  runtimeConfig: {
+    public: {
+      contentDomain: process.env.CONTENT
+    }
+  },
+
   typescript: {
     strict: true,
     typeCheck: true
@@ -154,7 +160,7 @@ export default defineNuxtConfig({
           class: 'justify-end pa-4'
         },
         VContainer: {
-          class: 'pa-6',
+          // class: 'pa-6',
         },
 
         // Interactive Components

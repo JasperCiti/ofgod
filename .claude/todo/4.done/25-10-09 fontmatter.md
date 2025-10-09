@@ -8,5 +8,18 @@ Replace all `title` attributes from the frontmatter (including the one in `navig
 
 Do not generate `navigation` attributes in the frontmatter with the migration script.
 
----
+Instead the migration script should generate a menu.yml file in each directory that contains sub-pages. This menu.yml file should indicate the order of the menu items and which page should be excluded from menu items (`.draft.md` files should always be excluded) and which menu items that links to non-local directories should be included as menu items. For example:
 
+```yaml
+local-page: # points to local-page.md in the same directory ()
+non-local-page: /another/non-local/path # points to /another/non-local/path/non-local-page.md
+'External Website': http://another.website.com/some/page
+```
+
+The example should produce the following menu items (assuming the md files contain H1 titles "The Local Page" and "The Non-Local Page"):
+
+```
+The Local Page
+The Non-Local Page
+External Website
+```

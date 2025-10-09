@@ -7,9 +7,6 @@
       <v-alert type="error">Page not found</v-alert>
     </div>
     <div v-else>
-      <v-card-title v-if="page.title" class="text-h4 font-weight-bold">
-        {{ page.title }}
-      </v-card-title>
       <div class="content-body">
         <ContentRenderer :value="page" />
       </div>
@@ -32,10 +29,11 @@ if (!page.value && !pending.value) {
 }
 
 // SEO meta tags
+// @nuxt/content v3 automatically extracts title from first H1
 useHead({
-  title: page.value?.title,
+  title: page.value?.title || 'Page',
   meta: [
-    { name: 'description', content: page.value?.description }
+    { name: 'description', content: page.value?.description || '' }
   ]
 })
 
@@ -56,10 +54,3 @@ onMounted(() => {
   })
 })
 </script>
-
-<style scoped>
-.content-body {
-  font-size: 1.1rem;
-  line-height: 1.8;
-}
-</style>

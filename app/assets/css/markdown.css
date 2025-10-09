@@ -2,35 +2,35 @@
 
 /* Headings */
 .content-body h1 {
-  font-size: 1.8rem;
-  margin-top: 2rem;
+  font-size: 2.6rem;
+  margin-top: 0; /* This is the first line of text, there should be no other text above it */
   margin-bottom: 1rem;
   font-weight: 600;
 }
 
 .content-body h2 {
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
   font-weight: 600;
 }
 
 .content-body h3 {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
   font-weight: 600;
 }
 
 .content-body h4 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
   font-weight: 600;
 }
 
 .content-body h5 {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
   font-weight: 600;

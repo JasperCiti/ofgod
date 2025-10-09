@@ -35,7 +35,9 @@ If CLAUDE.md file size exceed > 40KB, you MUST clean up the CLAUDE.md file accor
 
 ## README.md
 
-Update README.md for human developers (not robots) well organized in main sections in the order:
+Update README.md for human developers (not robots). 
+
+**IMPORTANT**, use the following well organized in main sections particularly in the following order:
   * **Running the project locally**: How to setup the project on a brand new developer machine: 
     * which dependencies to install
     * how to prepare the developer's machine
@@ -48,11 +50,10 @@ Update README.md for human developers (not robots) well organized in main sectio
     * Valid fontmatter attributes
     * How to configure navigation menus
   * **Local development setup**: 
-    * A step-by-step tutorial on how to setup and run the project locally
+    * A step-by-step tutorial on how to setup and run the project locally. Highlight common pitfalls or mistakes the user can make during the setup (exclude recent bug fixes)
     * How to run the tests
   * **Development guidelines**
     * Specifically mention deviations from typical Nuxt setups that are specific to this project (without repeating earlier sections)
-    * Common pitfalls or mistakes to avoid (without repeating sections)
     * Coding rules and naming convention
 
 The README.md file should start each section with a very concise TLDR section focusing only on the common or primary commands or configs followed by a detailed explanation and examples with comments.

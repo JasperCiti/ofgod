@@ -14,16 +14,18 @@ const targetDir = path.resolve(__dirname, '..', 'public')
 
 const IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg']
 const STATIC_FILES = ['favicon.ico', 'robots.txt']
+const MENU_FILE = '_menu.yml'
 
 /**
- * Copy all images from content to public directory (one-time)
+ * Copy all images and menu files from content to public directory (one-time)
  */
 export async function copyAllImages() {
-  console.log(`📦 Copying images from: ${sourceDir}`)
+  console.log(`📦 Copying images and menus from: ${sourceDir}`)
   console.log(`📦 Target directory: ${targetDir}`)
 
   let copiedCount = 0
 
+  // Copy images
   for (const ext of IMAGE_EXTS) {
     const pattern = `${sourceDir}/**/*.${ext}`
     const files = await getAllFiles(sourceDir, ext)
@@ -34,7 +36,16 @@ export async function copyAllImages() {
     }
   }
 
-  console.log(`✓ Copied ${copiedCount} image(s)\n`)
+  // Copy _menu.yml files
+  const menuFiles = await getAllFiles(sourceDir, 'yml')
+  for (const sourcePath of menuFiles) {
+    if (path.basename(sourcePath) === MENU_FILE) {
+      await copyMenuFile(sourcePath, false)
+      copiedCount++
+    }
+  }
+
+  console.log(`✓ Copied ${copiedCount} file(s)\n`)
 }
 
 /**
@@ -61,19 +72,26 @@ async function cleanPublicDirectory() {
 }
 
 /**
- * Watch images in content directory and sync to public directory
+ * Watch images and menu files in content directory and sync to public directory
  */
 export async function watchImages() {
   // Clean public directory first (handles domain switching)
   await cleanPublicDirectory()
-  console.log(`👀 Watching images in: ${sourceDir}`)
+
+  // Copy all existing files BEFORE starting watcher (ensures files are ready)
+  await copyAllImages()
+
+  console.log(`👀 Watching images and menus in: ${sourceDir}`)
   console.log(`👀 Target directory: ${targetDir}\n`)
 
-  const patterns = IMAGE_EXTS.map(ext => `${sourceDir}/**/*.${ext}`)
+  const patterns = [
+    ...IMAGE_EXTS.map(ext => `${sourceDir}/**/*.${ext}`),
+    `${sourceDir}/**/${MENU_FILE}`
+  ]
 
   const watcher = chokidar.watch(patterns, {
     persistent: true,
-    ignoreInitial: false, // Copy existing files on startup
+    ignoreInitial: true, // Files already copied above
     awaitWriteFinish: {
       stabilityThreshold: 500,
       pollInterval: 100
@@ -81,9 +99,27 @@ export async function watchImages() {
   })
 
   watcher
-    .on('add', (filePath) => copyImage(filePath, true, 'added'))
-    .on('change', (filePath) => copyImage(filePath, true, 'updated'))
-    .on('unlink', (filePath) => deleteImage(filePath))
+    .on('add', (filePath) => {
+      if (path.basename(filePath) === MENU_FILE) {
+        copyMenuFile(filePath, true, 'added')
+      } else {
+        copyImage(filePath, true, 'added')
+      }
+    })
+    .on('change', (filePath) => {
+      if (path.basename(filePath) === MENU_FILE) {
+        copyMenuFile(filePath, true, 'updated')
+      } else {
+        copyImage(filePath, true, 'updated')
+      }
+    })
+    .on('unlink', (filePath) => {
+      if (path.basename(filePath) === MENU_FILE) {
+        deleteMenuFile(filePath)
+      } else {
+        deleteImage(filePath)
+      }
+    })
     .on('error', (error) => console.error(`❌ Watcher error: ${error}`))
 
   return watcher
@@ -146,6 +182,50 @@ async function deleteImage(sourcePath: string) {
     }
   } catch (error) {
     console.error(`❌ Failed to delete ${sourcePath}:`, error)
+  }
+}
+
+/**
+ * Copy a single _menu.yml file from content to public
+ */
+async function copyMenuFile(sourcePath: string, log: boolean = true, action: string = 'copied') {
+  try {
+    // Get path relative to content/ directory, then strip domain prefix
+    const contentDir = path.join(sourceDir, '..')
+    const relativeFromContent = path.relative(contentDir, sourcePath)
+    const pathSegments = relativeFromContent.split(path.sep)
+    const relativePath = pathSegments.slice(1).join(path.sep) // Skip domain segment
+    const targetPath = path.join(targetDir, relativePath)
+
+    await fs.ensureDir(path.dirname(targetPath))
+    await fs.copy(sourcePath, targetPath)
+
+    if (log) {
+      console.log(`✓ Menu ${action}: ${relativePath}`)
+    }
+  } catch (error) {
+    console.error(`❌ Failed to copy menu ${sourcePath}:`, error)
+  }
+}
+
+/**
+ * Delete _menu.yml file from public directory
+ */
+async function deleteMenuFile(sourcePath: string) {
+  try {
+    // Get path relative to content/ directory, then strip domain prefix
+    const contentDir = path.join(sourceDir, '..')
+    const relativeFromContent = path.relative(contentDir, sourcePath)
+    const pathSegments = relativeFromContent.split(path.sep)
+    const relativePath = pathSegments.slice(1).join(path.sep) // Skip domain segment
+    const targetPath = path.join(targetDir, relativePath)
+
+    if (await fs.pathExists(targetPath)) {
+      await fs.remove(targetPath)
+      console.log(`✗ Menu deleted: ${relativePath}`)
+    }
+  } catch (error) {
+    console.error(`❌ Failed to delete menu ${sourcePath}:`, error)
   }
 }
 
