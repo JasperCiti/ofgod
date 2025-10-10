@@ -274,6 +274,33 @@ description: Brief page description for SEO and tooltips (optional)
 * ~~`published`~~ - Use `.draft.md` extension instead
 * ~~`navigation`~~ - Use `_menu.yml` files instead
 
+### Search Feature
+
+**Location:** Top of navigation sidebar (desktop) or drawer (mobile)
+
+**Search Behavior:**
+* **Client-side:** Searches all page titles, descriptions, keywords, and excerpts
+* **Real-time:** Results appear as you type
+* **Relevance Ranking:** Most relevant results appear first
+* **Deduplication:** Each page appears only once
+* **Limit:** Top 50 results shown
+
+**Relevance Factors:**
+1. **Field Priority:** Title matches > Keyword matches > Description matches > Excerpt matches
+2. **Match Quality:** Exact matches > StartsWith matches > Contains matches
+3. **Page Depth:** Shallow pages rank higher than deeply nested pages
+4. **Multi-field:** Pages matching in multiple fields get bonus points
+
+**Search Results Display:**
+* **Title:** Page title (clickable link)
+* **Path:** Full path with `/` separators (e.g., "church/history/crusades")
+* **Description Tooltip:** Hover to see page description (if available)
+
+**Example Search** ("church"):
+1. "The Church" - `church` (exact title match, top level)
+2. "The History of the Church" - `church/history` (title starts with query)
+3. "Bible Modifications" - `church/modifications` (keyword match)
+
 ### Navigation Menu Configuration
 
 **File:** `_menu.yml` (underscore prefix for alphabetical sorting)
@@ -377,10 +404,20 @@ CONTENT=kingdom npm run dev
 ### Running Tests
 
 ```bash
-npm test  # Runs Bible verse reference parsing tests
+npm test  # Runs all unit tests
+
+# Run specific test suites
+npm test -- useSearchRelevance  # Search relevance scoring tests
+npm test -- bible-tooltips      # Bible verse reference parsing tests
 ```
 
 **Test Coverage:**
+* Search relevance scoring (17 tests)
+  * Field weight prioritization
+  * Match quality scoring (exact/startsWith/contains)
+  * Path depth penalties
+  * Multi-field bonuses
+  * Tie-breaking with alphabetical sort
 * Bible verse regex patterns
 * Shorthand expansion (`John 14:16,26`)
 * Reference validation
@@ -640,6 +677,42 @@ npm run dev
 **Solution:** `AppNavigation` component now accepts `showSearch` prop:
 * Desktop: `<AppNavigation :show-search="true" />` (shows search)
 * Mobile: `<AppNavigation :show-search="false" />` (hides search, uses standalone)
+
+### Search Results Show Wrong Order
+
+**Symptom:** Search results appear in random order instead of by relevance
+
+**Cause:** Search relevance scoring not working or disabled
+
+**Check:**
+1. `useSearchRelevance.ts` composable exists
+2. `SearchBox.vue` imports and uses `sortByRelevance()`
+3. Browser console for JavaScript errors
+
+**Expected Behavior:**
+* Title matches appear first
+* Exact matches rank higher than partial matches
+* Shallow pages rank higher than deeply nested pages
+* Results with same score sorted alphabetically
+
+**Example** (searching "church"):
+1. `/church` (exact title match)
+2. `/church/history` (title starts with query)
+3. `/kingdom` (keyword match)
+4. `/body` (description match)
+
+### Search Result Breadcrumbs Incorrect
+
+**Symptom:** Search result breadcrumbs show incomplete paths (e.g., "church" instead of "church/history")
+
+**Cause:** Breadcrumb uses parent path instead of full path
+
+**Fix Applied (2025-10-10):** Changed from `segments.slice(0, -1).join('/')` to `segments.join('/')`
+
+**Correct Breadcrumbs:**
+* `/church` → "church"
+* `/church/history` → "church/history"
+* `/church/history/all-saints` → "church/history/all-saints"
 
 ## Migration from Grav CMS
 

@@ -54,6 +54,8 @@
 </template>
 
 <script setup lang="ts">
+import type { SearchableFields } from '~/composables/useSearchRelevance'
+
 interface SearchResult {
   path: string
   title: string
@@ -73,6 +75,9 @@ const searchResults = ref<SearchResult[]>([])
 // Shared tooltip configuration
 const tooltip = useTooltipConfig()
 
+// Relevance scoring
+const { sortByRelevance } = useSearchRelevance()
+
 /**
  * Normalize page path by removing trailing slashes
  */
@@ -89,7 +94,6 @@ function pageMatchesQuery(page: any, queryLower: string): boolean {
   const textMatch = (
     page.title?.toLowerCase().includes(queryLower) ||
     page.description?.toLowerCase().includes(queryLower) ||
-    page.navigation?.title?.toLowerCase().includes(queryLower) ||
     page.excerpt?.toLowerCase().includes(queryLower)
   )
 
@@ -128,17 +132,26 @@ async function handleSearch(query: string) {
       }
     }
 
-    // Map unique results (limit to 50)
-    searchResults.value = Array.from(uniquePages.values())
+    // Convert to array and prepare searchable fields
+    const matchingPages = Array.from(uniquePages.values()).map((page: any) => ({
+      ...page,
+      path: page.normalizedPath,
+    })) as SearchableFields[]
+
+    // Sort by relevance score
+    const sortedPages = sortByRelevance(matchingPages, query, (page) => page.title || 'Untitled')
+
+    // Map top 50 results to SearchResult interface
+    searchResults.value = sortedPages
       .slice(0, 50)
       .map((page: any) => {
-        const segments = page.normalizedPath.split('/').filter(Boolean)
+        const segments = page.path.split('/').filter(Boolean)
         return {
-          path: page.normalizedPath,
-          title: page.title || page.navigation?.title || 'Untitled',
+          path: page.path,
+          title: page.title || 'Untitled',
           breadcrumb: segments.length > 0
-            ? segments.slice(0, -1).join(' > ') || 'Home'
-            : 'Home',
+            ? segments.join('/')
+            : '/',
           description: page.description
         }
       })

@@ -334,6 +334,43 @@ description: Brief page description for tooltips and SEO
 
 **Result:** Hover tooltips in navigation/search, SEO-friendly HTML, no proprietary meta tags (Facebook/Twitter fall back to standard tags).
 
+### Search Relevance Ranking System (2025-10-10)
+**Problem:** Search results appeared in unpredictable database order. No prioritization by relevance.
+
+**Solution:** Multi-factor relevance scoring with field weights, match quality, and path depth penalties:
+- **Field Weights**: Title (10) > Keywords (7) > Description (3) > Excerpt (1)
+- **Match Quality**: Exact match (×3) > StartsWith (×2) > Contains (×1)
+- **Position Bonus**: +2 for matches at field start
+- **Multi-field Bonus**: +3 when query matches multiple fields
+- **Depth Penalty**: Shallow pages rank higher (-1 for 2 levels, -2 for 3+)
+- **Tie-breaking**: Alphabetical by title when scores equal
+
+**Implementation** (`useSearchRelevance.ts`):
+```typescript
+export const FIELD_WEIGHTS = {
+  title: 10,
+  keywords: 7,
+  description: 3,
+  excerpt: 1,
+} as const
+
+// Calculate relevance score
+const score = baseWeight * qualityMultiplier + positionBonus - depthPenalty
+```
+
+**Components:**
+- `app/composables/useSearchRelevance.ts` - Scoring logic
+- `app/composables/useSearchRelevance.test.ts` - 17 unit tests
+- `app/components/SearchBox.vue` - Integrates scoring and sorting
+
+**Example Ranking** (query: "church"):
+1. `/church` - Title exact match (score: 32)
+2. `/church/history` - Title startsWith (score: 22)
+3. `/kingdom` - Keywords match (score: 7)
+4. `/body` - Description match (score: 3)
+
+**Result:** Most relevant pages appear first, predictable ordering, better UX.
+
 ## Usage Instructions
 
 ### Setup
@@ -352,7 +389,9 @@ CONTENT=kingdom npm run dev    # Use specific content domain
 
 ### Testing
 ```bash
-npm test                       # Run unit tests (Bible reference parsing)
+npm test                       # Run all unit tests
+npm test -- useSearchRelevance # Run search relevance tests
+npm test -- bible-tooltips     # Run Bible reference parsing tests
 ```
 
 ### Building for Production
@@ -407,6 +446,7 @@ CONTENT=kingdom npm run generate
 │   ├── composables/
 │   │   ├── useBreadcrumbs.ts       # Generate breadcrumbs
 │   │   ├── useNavigationTree.ts    # Build tree from pages (includes description)
+│   │   ├── useSearchRelevance.ts   # Search relevance scoring
 │   │   ├── useSiteConfig.ts        # Multi-domain canonical URLs
 │   │   ├── useTableOfContents.ts   # Extract TOC from HTML
 │   │   ├── useTableParser.ts       # Parse HTML tables for v-data-table

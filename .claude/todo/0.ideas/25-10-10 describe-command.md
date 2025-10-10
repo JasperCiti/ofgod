@@ -1,1 +1,0 @@
-Create a Claude Code command that describe articles and populate the `description` frontmatter correctly.
