@@ -31,8 +31,8 @@
       <v-tooltip
         v-if="node.description"
         :text="node.description"
-        :location="tooltipLocation"
-        max-width="600"
+        :location="tooltip.location.value"
+        :max-width="tooltip.maxWidth"
       >
         <template #activator="{ props: tooltipProps }">
           <span
@@ -73,7 +73,6 @@
 
 <script setup lang="ts">
 import type { TreeNode as TreeNodeType } from '~/composables/useNavigationTree'
-import { useDisplay } from 'vuetify'
 
 const props = defineProps<{
   node: TreeNodeType
@@ -91,9 +90,8 @@ const hasChildren = computed(() => props.node.children && props.node.children.le
 const isExpanded = computed(() => props.expandedIds.has(props.node.id))
 const isActive = computed(() => props.node.path === props.activePath)
 
-// Responsive tooltip positioning
-const { mdAndUp } = useDisplay()
-const tooltipLocation = computed(() => mdAndUp.value ? 'end' : 'bottom')
+// Shared tooltip configuration
+const tooltip = useTooltipConfig()
 
 function handleToggle() {
   emit('toggle', props.node.id)

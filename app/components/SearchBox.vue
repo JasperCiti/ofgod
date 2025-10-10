@@ -21,8 +21,8 @@
           :key="result.path"
           :text="result.description"
           :disabled="!result.description"
-          :location="tooltipLocation"
-          max-width="600"
+          :location="tooltip.location.value"
+          :max-width="tooltip.maxWidth"
         >
           <template #activator="{ props: tooltipProps }">
             <v-list-item
@@ -54,8 +54,6 @@
 </template>
 
 <script setup lang="ts">
-import { useDisplay } from 'vuetify'
-
 interface SearchResult {
   path: string
   title: string
@@ -72,9 +70,8 @@ const emit = defineEmits<{
 const searchQuery = ref('')
 const searchResults = ref<SearchResult[]>([])
 
-// Responsive tooltip positioning
-const { mdAndUp } = useDisplay()
-const tooltipLocation = computed(() => mdAndUp.value ? 'end' : 'bottom')
+// Shared tooltip configuration
+const tooltip = useTooltipConfig()
 
 /**
  * Normalize page path by removing trailing slashes

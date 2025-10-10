@@ -266,7 +266,7 @@ description: Brief page description for SEO and tooltips (optional)
   * Tooltip when hovering navigation menu items
   * Tooltip when hovering search results
 * **Responsive:** Desktop tooltips appear to the right, mobile appear below
-* **Max-width:** 400px (prevents overlap with navigation bar)
+* **Max-width:** 600px (prevents overlap with navigation bar)
 * **Optional:** Pages work fine without description
 
 **Removed Attributes** (no longer used):
