@@ -8,6 +8,7 @@ export interface TreeNode {
   externalUrl?: string
   isExternal?: boolean
   description?: string
+  keywords?: string[]
 }
 
 /**
@@ -151,7 +152,8 @@ async function buildTreeFromPages(pages: any[]): Promise<TreeNode> {
       path,
       order,
       children: [],
-      description: page.description
+      description: page.description,
+      keywords: page.keywords
     }
 
     nodeMap.set(path, node)

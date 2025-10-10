@@ -85,12 +85,20 @@ function normalizePath(page: any): string {
  * Check if page matches search query
  */
 function pageMatchesQuery(page: any, queryLower: string): boolean {
-  return (
+  // Check title, description, navigation title, excerpt
+  const textMatch = (
     page.title?.toLowerCase().includes(queryLower) ||
     page.description?.toLowerCase().includes(queryLower) ||
     page.navigation?.title?.toLowerCase().includes(queryLower) ||
     page.excerpt?.toLowerCase().includes(queryLower)
   )
+
+  // Check keywords array
+  const keywordsMatch = page.keywords?.some((keyword: string) =>
+    keyword.toLowerCase().includes(queryLower)
+  )
+
+  return textMatch || keywordsMatch || false
 }
 
 /**
