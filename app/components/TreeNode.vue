@@ -27,8 +27,26 @@
       <!-- Active indicator dot -->
       <span v-else class="leaf-indicator" />
 
-      <!-- Node title -->
+      <!-- Node title with optional tooltip -->
+      <v-tooltip
+        v-if="node.description"
+        :text="node.description"
+        :location="tooltipLocation"
+        max-width="600"
+      >
+        <template #activator="{ props: tooltipProps }">
+          <span
+            v-bind="tooltipProps"
+            class="node-title"
+            :class="{ 'is-parent-title': hasChildren }"
+            @click="handleSelect"
+          >
+            {{ node.title }}
+          </span>
+        </template>
+      </v-tooltip>
       <span
+        v-else
         class="node-title"
         :class="{ 'is-parent-title': hasChildren }"
         @click="handleSelect"
@@ -55,6 +73,7 @@
 
 <script setup lang="ts">
 import type { TreeNode as TreeNodeType } from '~/composables/useNavigationTree'
+import { useDisplay } from 'vuetify'
 
 const props = defineProps<{
   node: TreeNodeType
@@ -71,6 +90,10 @@ const emit = defineEmits<{
 const hasChildren = computed(() => props.node.children && props.node.children.length > 0)
 const isExpanded = computed(() => props.expandedIds.has(props.node.id))
 const isActive = computed(() => props.node.path === props.activePath)
+
+// Responsive tooltip positioning
+const { mdAndUp } = useDisplay()
+const tooltipLocation = computed(() => mdAndUp.value ? 'end' : 'bottom')
 
 function handleToggle() {
   emit('toggle', props.node.id)

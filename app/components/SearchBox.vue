@@ -16,19 +16,29 @@
     <!-- Search Results -->
     <div v-if="searchQuery && searchResults.length > 0" class="search-results">
       <v-list density="compact">
-        <v-list-item
+        <v-tooltip
           v-for="result in searchResults"
           :key="result.path"
-          class="search-result-item"
-          @click="handleSelect(result.path)"
+          :text="result.description"
+          :disabled="!result.description"
+          :location="tooltipLocation"
+          max-width="600"
         >
-          <v-list-item-title class="result-title">
-            {{ result.title }}
-          </v-list-item-title>
-          <v-list-item-subtitle class="result-breadcrumb">
-            {{ result.breadcrumb }}
-          </v-list-item-subtitle>
-        </v-list-item>
+          <template #activator="{ props: tooltipProps }">
+            <v-list-item
+              v-bind="tooltipProps"
+              class="search-result-item"
+              @click="handleSelect(result.path)"
+            >
+              <v-list-item-title class="result-title">
+                {{ result.title }}
+              </v-list-item-title>
+              <v-list-item-subtitle class="result-breadcrumb">
+                {{ result.breadcrumb }}
+              </v-list-item-subtitle>
+            </v-list-item>
+          </template>
+        </v-tooltip>
       </v-list>
     </div>
 
@@ -44,10 +54,13 @@
 </template>
 
 <script setup lang="ts">
+import { useDisplay } from 'vuetify'
+
 interface SearchResult {
   path: string
   title: string
   breadcrumb: string
+  description?: string
 }
 
 const emit = defineEmits<{
@@ -58,6 +71,10 @@ const emit = defineEmits<{
 
 const searchQuery = ref('')
 const searchResults = ref<SearchResult[]>([])
+
+// Responsive tooltip positioning
+const { mdAndUp } = useDisplay()
+const tooltipLocation = computed(() => mdAndUp.value ? 'end' : 'bottom')
 
 /**
  * Normalize page path by removing trailing slashes
@@ -116,7 +133,8 @@ async function handleSearch(query: string) {
           title: page.title || page.navigation?.title || 'Untitled',
           breadcrumb: segments.length > 0
             ? segments.slice(0, -1).join(' > ') || 'Home'
-            : 'Home'
+            : 'Home',
+          description: page.description
         }
       })
   } catch (error) {

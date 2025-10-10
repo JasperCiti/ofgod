@@ -284,6 +284,56 @@ other: /other/path   # /other/path.md (absolute)
 
 **Result:** Explicit navigation control, alphabetical fallback, supports external links.
 
+### Description Tooltips & SEO Meta Tags (2025-10-10)
+**Problem:** Users needed contextual information about pages before navigating. Search engines/LLMs needed proper metadata.
+
+**Solution:** Optional `description` frontmatter with tooltips and standard HTML5 SEO meta tags:
+- **Tooltips**: Responsive positioning (right on desktop ≥960px, bottom on mobile)
+- **Max-width**: 600px prevents overlap with navigation (280px wide)
+- **SEO**: Standard `<meta name="description">`, `<link rel="canonical">`, `lang="en"`
+- **Multi-domain**: Dynamic canonical URLs via `useSiteConfig` composable
+
+**Implementation:**
+```typescript
+// TreeNode interface (useNavigationTree.ts)
+export interface TreeNode {
+  description?: string  // ← Optional description
+}
+
+// Responsive tooltip (TreeNode.vue, SearchBox.vue)
+const { mdAndUp } = useDisplay()
+const tooltipLocation = computed(() => mdAndUp.value ? 'end' : 'bottom')
+
+// SEO meta tags ([...slug].vue, index.vue)
+const siteConfig = useSiteConfig()
+useHead({
+  htmlAttrs: { lang: 'en' },
+  meta: [
+    { name: 'description', content: page.value?.description || '' },
+    { name: 'robots', content: 'index, follow' }
+  ],
+  link: [
+    { rel: 'canonical', href: `${siteConfig.canonicalBase}${route.path}` }
+  ]
+})
+```
+
+**Components:**
+- `useSiteConfig.ts` - Maps `CONTENT` env var to canonical domains
+- `TreeNode.vue` - Navigation tooltips (conditional `showSearch` prop)
+- `SearchBox.vue` - Search result tooltips
+- Desktop: `AppNavigation` with `showSearch={true}`
+- Mobile: Standalone `SearchBox` in drawer, `AppNavigation` with `showSearch={false}` (prevents duplicate)
+
+**Frontmatter Usage:**
+```yaml
+---
+description: Brief page description for tooltips and SEO
+---
+```
+
+**Result:** Hover tooltips in navigation/search, SEO-friendly HTML, no proprietary meta tags (Facebook/Twitter fall back to standard tags).
+
 ## Usage Instructions
 
 ### Setup
@@ -356,7 +406,8 @@ CONTENT=kingdom npm run generate
 │   │       └── ProseTable.vue        # Renders tables as v-data-table
 │   ├── composables/
 │   │   ├── useBreadcrumbs.ts       # Generate breadcrumbs
-│   │   ├── useNavigationTree.ts    # Build tree from pages
+│   │   ├── useNavigationTree.ts    # Build tree from pages (includes description)
+│   │   ├── useSiteConfig.ts        # Multi-domain canonical URLs
 │   │   ├── useTableOfContents.ts   # Extract TOC from HTML
 │   │   ├── useTableParser.ts       # Parse HTML tables for v-data-table
 │   │   └── useSmartScroll.ts       # Smart app bar hide/show
@@ -410,11 +461,17 @@ Content...
 **Frontmatter (Optional):**
 ```yaml
 ---
-description: Page description (SEO meta tag)
+description: Brief page description for SEO meta tags and navigation tooltips
 ---
 ```
 
 **Navigation:** Controlled by `_menu.yml` files (see Menu-Based Navigation section)
+
+**Description Usage:**
+- Shows as tooltip when hovering navigation menu items (desktop: right, mobile: bottom)
+- Shows as tooltip when hovering search results
+- Included in HTML `<meta name="description">` for SEO/LLMs
+- Optional field - pages without description work normally
 
 ## Troubleshooting
 

@@ -1,14 +1,15 @@
 <template>
   <div class="navigation-sidebar" ref="sidebarContainer">
-    <!-- Search Box (sticky at top) -->
+    <!-- Search Box (sticky at top) - only on desktop -->
     <SearchBox
+      v-if="showSearch"
       class="search-sticky"
       @select="handleSearchSelect"
       @clear="showTree = true"
       @search-active="handleSearchActive"
     />
 
-    <v-divider />
+    <v-divider v-if="showSearch" />
 
     <!-- Navigation Tree or Search Results -->
     <div v-if="showTree" class="tree-container" ref="treeContainer">
@@ -30,6 +31,10 @@
 
 <script setup lang="ts">
 import { useNavigationTree } from '~/composables/useNavigationTree'
+
+const props = defineProps<{
+  showSearch?: boolean
+}>()
 
 const emit = defineEmits<{
   select: [path: string]

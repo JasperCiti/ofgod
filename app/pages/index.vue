@@ -22,10 +22,16 @@ const { data: page, pending } = await useAsyncData(
 )
 
 // SEO meta tags
+const siteConfig = useSiteConfig()
 useHead({
   title: page.value?.title || 'Home',
+  htmlAttrs: { lang: 'en' },
   meta: [
-    { name: 'description', content: page.value?.description || '' }
+    { name: 'description', content: page.value?.description || '' },
+    { name: 'robots', content: 'index, follow' }
+  ],
+  link: [
+    { rel: 'canonical', href: siteConfig.canonicalBase }
   ]
 })
 

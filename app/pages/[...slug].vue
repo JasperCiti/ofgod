@@ -30,10 +30,16 @@ if (!page.value && !pending.value) {
 
 // SEO meta tags
 // @nuxt/content v3 automatically extracts title from first H1
+const siteConfig = useSiteConfig()
 useHead({
   title: page.value?.title || 'Page',
+  htmlAttrs: { lang: 'en' },
   meta: [
-    { name: 'description', content: page.value?.description || '' }
+    { name: 'description', content: page.value?.description || '' },
+    { name: 'robots', content: 'index, follow' }
+  ],
+  link: [
+    { rel: 'canonical', href: `${siteConfig.canonicalBase}${route.path}` }
   ]
 })
 

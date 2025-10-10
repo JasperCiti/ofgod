@@ -118,9 +118,16 @@ More content...
 **Optional Frontmatter:**
 ```yaml
 ---
-description: Page description for SEO meta tags
+description: Brief page description for SEO and navigation tooltips
 ---
 ```
+
+**Description Field Usage:**
+* **SEO:** Included in `<meta name="description">` tag for search engines/LLMs
+* **Navigation Tooltips:** Shows on hover in navigation tree (desktop: right, mobile: bottom)
+* **Search Tooltips:** Shows on hover in search results
+* **Max-width:** 600px (wraps to multiple lines if longer)
+* **Optional:** Pages without description work normally
 
 ### Supported Markdown Styles
 
@@ -248,9 +255,19 @@ page-slug.descriptive-name.jpg
 **Valid Attributes:**
 ```yaml
 ---
-description: Page description for SEO meta tags (optional)
+description: Brief page description for SEO and tooltips (optional)
 ---
 ```
+
+**Description Attribute:**
+* **Purpose:** SEO meta tags + navigation/search tooltips
+* **Where it appears:**
+  * `<meta name="description">` in HTML `<head>` (for Google, LLMs, etc.)
+  * Tooltip when hovering navigation menu items
+  * Tooltip when hovering search results
+* **Responsive:** Desktop tooltips appear to the right, mobile appear below
+* **Max-width:** 400px (prevents overlap with navigation bar)
+* **Optional:** Pages work fine without description
 
 **Removed Attributes** (no longer used):
 * ~~`title`~~ - Use H1 header instead
@@ -580,6 +597,49 @@ kill -9 $(lsof -t -i:3000)
 # Restart
 npm run dev
 ```
+
+### TypeScript Errors After Clean
+
+**Symptom:** `Cannot read file '/root/ofgod/.nuxt/tsconfig.server.json'`
+
+**Cause:** `.nuxt` directory was deleted but TypeScript checker starts before Nuxt regenerates it
+
+**Fix:**
+```bash
+# Regenerate TypeScript config BEFORE starting dev server
+npx nuxi prepare
+npm run dev
+```
+
+**Why this happens:** When you delete `.nuxt`, TypeScript expects config files immediately, but Nuxt generates them asynchronously. Running `npx nuxi prepare` ensures they exist before starting.
+
+**When to use:**
+* After deleting `.nuxt` directory
+* After cache corruption errors
+* After installing new Nuxt modules
+
+### Tooltips Not Appearing
+
+**Check:**
+1. Page has `description` in frontmatter
+2. Vuetify `useDisplay()` working (responsive tooltips)
+3. Browser console for errors
+
+**Fix:**
+```bash
+# Clear cache and rebuild
+rm -rf .nuxt .output
+npx nuxi prepare
+npm run dev
+```
+
+### Duplicate SearchBox on Mobile
+
+**Old Issue (Fixed):** Mobile drawer showed two search boxes
+
+**Solution:** `AppNavigation` component now accepts `showSearch` prop:
+* Desktop: `<AppNavigation :show-search="true" />` (shows search)
+* Mobile: `<AppNavigation :show-search="false" />` (hides search, uses standalone)
 
 ## Migration from Grav CMS
 

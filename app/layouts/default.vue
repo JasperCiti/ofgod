@@ -15,6 +15,7 @@
       >
         <AppNavigation
           v-show="sidebarsVisible"
+          :show-search="true"
           @select="handleNavSelect"
         />
       </aside>
@@ -80,6 +81,7 @@
 
           <!-- Navigation Tree -->
           <AppNavigation
+            :show-search="false"
             @select="handleMobileNavSelect"
           />
         </div>
