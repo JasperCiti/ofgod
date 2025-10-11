@@ -1,27 +1,22 @@
----
-title: The Church
-published: true
-navigation:
-  title: The Church
-  order: 5
----
+# The Church
 
-Today [the meaning of "church" has changed](/bible/translations/differences/ekklesia) to the church system which includes the church building, organisational structures, culture and theology of a church denomination which always have to submits under some sort of human authority other than [God's Spirit](/god/spirit). This was accomplished by the [adaption of the teachings of Moses, the prophets, Jesus and his apostles](/church/modifications) over many years of [church council meetings, crusades and reformations](/church/history). Although almost every [Christian](/bible/concepts/christian) church claim to submit under the authority of [Jesus Christ](/god/son), many has reduced him to a mascot for their club to support their leadership's will. 
 
-# The original [body of Christ](/body)
+Today [the meaning of "church" has changed](/content/kingdom/bible/translations/differences/ekklesia.md) to the church system which includes the church building, organisational structures, culture and theology of a church denomination which always have to submits under some sort of human authority other than [God's Spirit](/content/kingdom/god/spirit.md). This was accomplished by the [adaption of the teachings of Moses, the prophets, Jesus and his apostles](/content/kingdom/church/modifications.md) over many years of [church council meetings, crusades and reformations](/content/kingdom/church/history.md). Although almost every [Christian](/content/kingdom/bible/concepts/christian.md) church claim to submit under the authority of [Jesus Christ](/content/kingdom/god/son.md), many has reduced him to a mascot for their club to support their leadership's will. 
+
+# The original [body of Christ](/content/kingdom/body.md)
 
 From the bible we can tell that the earliest believers in Jesus Christ were persecuted by both Jew and Roman. They were the minority and considered as sect (Acts 24:2-5). These congregations:
 
 * **Guidance of the Holy Spirit**: The early church believed that the Holy Spirit was actively guiding them in their decisions. This led to a reliance on spiritual discernment and a willingness to follow the leading of the Spirit (Acts 1:24-26, 13:2-3, 15:28).
 * **Focus on missionary work**: The early church was committed to spreading the gospel (Matthew 28:19-20; Acts 1:8; Romans 10:14-15), and this was a primary focus of their activity. They were not as concerned with building up physical structures as they were with reaching out to others with the message of Christ.
 * **Shared possessions**: In the face of persecution, believers often had to rely on one another for support. This led to a strong sense of community and a willingness to share resources (Acts 2:44-45, 4:32-35).
-* **No written Bible**: The New Testament was not yet written, so believers relied on oral tradition, the teachings of the apostles like Paul's letters or the guidance of [God's Holy Spirit](/god/spirit) (John 14:26).
+* **No written Bible**: The New Testament was not yet written, so believers relied on oral tradition, the teachings of the apostles like Paul's letters or the guidance of [God's Holy Spirit](/content/kingdom/god/spirit.md) (John 14:26).
 * **No creeds or rule books**: Creeds were only declared during and after the reign on Constantine and rule books written after church councils were formed.
 * **No church buildings**: The early church did not officially meet in public church buildings. Instead, they often gathered in homes or other private spaces (Acts 12:12; Romans 16:5; 1 Corinthians 16:19; Colossians 4:15).
 * **Informal structure**: The early church did not have a formal hierarchy or a centralised institutional structure.
-* **Informal sacraments**: The early church did not have a formal sacramental system, like [Holy Communion](/life/communion). Instead, they participated in informal gatherings (Acts 2:46) that were focused on fellowship and [praise](/bible/concepts/praise).
+* **Informal sacraments**: The early church did not have a formal sacramental system, like [Holy Communion](/content/kingdom/life/communion.md). Instead, they participated in informal gatherings (Acts 2:46) that were focused on fellowship and [praise](/content/kingdom/bible/concepts/praise.md).
 
-These congregations represented [the body of Christ](/body) on Earth after Christ himself ascended to heaven. Christ Himself often referred to his body as [the bread of life](/bible/metaphors/bread) which meant members of his body is supposed to "feed" upon or "feed" each other (support) with their "gifts", resources, teachings and testimonies which is only possible with a great deal of trust. Trust comes with [fellowship](/bible/concepts/fellowship) a key aspect of the gospel of Christ to the glory of the Father (see Paul's letter openings and endings).  
+These congregations represented [the body of Christ](/content/kingdom/body.md) on Earth after Christ himself ascended to heaven. Christ Himself often referred to his body as [the bread of life](/content/kingdom/bible/metaphors/bread.md) which meant members of his body is supposed to "feed" upon or "feed" each other (support) with their "gifts", resources, teachings and testimonies which is only possible with a great deal of trust. Trust comes with [fellowship](/content/kingdom/bible/concepts/fellowship.md) a key aspect of the gospel of Christ to the glory of the Father (see Paul's letter openings and endings).  
 
 This does not mean that the example set by the apostles are the only acceptable culture to which we need to conform. Just because Jesus was a Jew, God does not expect you to become Jewish or to live in poverty like the original disciples who were persecuted. There is no need to persecute yourself. Worship God in your environment and setting and according to what is practical in your circumstances. For example Paul had to adapt to his Jewish audience in Jerusalem, and again he had to re-adapt to his Roman audience in Rome and re-adapt when he was put in prison. It would have been impractical for him to wear a formal church suit or to bring a church band along for worship.
 
@@ -31,7 +26,7 @@ This does not mean that the example set by the apostles are the only acceptable 
 
 Myth: *God's name is "Lord".*
 
-Truth: Although God identified Himself clearly as יְהוָ֖ה, which directly translates to the Tetragrammaton [YHVH](/god/name/father#yhvh), we noticed that some time before the birth of Jesus, the Jews replaced the God's name "YHVH" with "Adonai" which means "Lord" in English. This is also evident in the Greek manuscripts when the Jews refer to God as simply "Lord".
+Truth: Although God identified Himself clearly as יְהוָ֖ה, which directly translates to the Tetragrammaton [YHVH](/content/kingdom/god/name/father.md#yhvh), we noticed that some time before the birth of Jesus, the Jews replaced the God's name "YHVH" with "Adonai" which means "Lord" in English. This is also evident in the Greek manuscripts when the Jews refer to God as simply "Lord".
 
 The Jews replaced God's name out of respect for the Jewish tradition, of not uttering the sacred name of God, which was based around the concern of misusing the name of God.
 
@@ -41,7 +36,7 @@ Today, most modern Christians continue this ancient Jewish tradition because of 
 
 ## Believers are called Christians
 
-Myth: *You need to be called a [Christian](/bible/concepts/christian) to be saved.*
+Myth: *You need to be called a [Christian](/content/kingdom/bible/concepts/christian.md) to be saved.*
 
 Truth: It does not matter what people call you.
 
@@ -51,7 +46,7 @@ Around 62 AD the Greek-speaking citizens of Antioch started to call the believer
 
 Myth: *You can save an infant with baptism.*
 
-Truth: [Baptism](/eternal/saved/baptize) requires [faith](/eternal/saved/belief) and [repentance](/eternal/saved/repent) from the convert.
+Truth: [Baptism](/content/kingdom/eternal/saved/baptize.md) requires [faith](/content/kingdom/eternal/saved/belief.md) and [repentance](/content/kingdom/eternal/saved/repent.md) from the convert.
 
 In Tertullian (155-220), a sect leader in North Africa believed Baptism was not dependent on the faith of the receiver, although he was against infant baptism. However, a century later the church adopted his views and infant baptism became accepted by the church anyway.
 
@@ -59,7 +54,7 @@ In Tertullian (155-220), a sect leader in North Africa believed Baptism was not 
 
 Myth: *Christians have no responsibility to avoid anything that could place a curse on them.*
 
-Truth: Anyone, including Jesus was cursed. Everyone should avoid sin which could activate [curses](/life/curses) in their lives.
+Truth: Anyone, including Jesus was cursed. Everyone should avoid sin which could activate [curses](/content/kingdom/life/curses.md) in their lives.
 
 The doctrine the "Christians cannot be cursed" originates from Tertullian (155-220). Unfortunately many modern churches still hold onto this doctrine which causes Christians to be ignorant of the effect of generational curses, the occult, witchcraft, addictions or any consequences of sin.
 
@@ -107,13 +102,13 @@ Despite Martin Luther's 95 theses and his call that the church should stop wasti
 * Church buildings are monuments to the leadership who raised the funds to complete the project.
 
 The consequence of this is that:
-* Christians preach a gospel of coming to the church instead of [saving the lost soul](/eternal/save).
-* Expensive buildings require maintenance, tax-money, salaries, etc. This [drain the Christians money](/life/wealth/tithing) and skills so that those in need are often neglected.
+* Christians preach a gospel of coming to the church instead of [saving the lost soul](/content/kingdom/eternal/save.md).
+* Expensive buildings require maintenance, tax-money, salaries, etc. This [drain the Christians money](/content/kingdom/life/wealth/tithing.md) and skills so that those in need are often neglected.
 * Many Christians feel uncomfortable to deal with Christianity outside their "safe" church.
 
 ## The cross symbolizes Christ
 
-Myth: *Because Christ was crucified, [the cross symbol](/bible/symbolism/cross) honours him.*
+Myth: *Because Christ was crucified, [the cross symbol](/content/kingdom/bible/symbolism/cross.md) honours him.*
 
 Truth: The cross symbol was only publicly displayed since Constantine allowed Christianity in the Roman Empire. Some suggest that it was some sort of secret sign that Christians used to avoid persecution. Whatever the reason was, the bible does not mention any Christians displaying any crosses to anyone. 
 
@@ -123,15 +118,15 @@ It is also unlikely that someone would like to be identified or constantly being
 
 Myth: *Jesus was crucified on a cross shaped wooden structure*
 
-Truth: We do not know the exact shape of the structure, however from practical evidence and [the old Greek translation it was more likely a wooden pole or beam](/bible/symbolism/cross).
+Truth: We do not know the exact shape of the structure, however from practical evidence and [the old Greek translation it was more likely a wooden pole or beam](/content/kingdom/bible/symbolism/cross.md).
 
 ## Jesus was promoted to be God
 
-Myth: [*The Bible teaches that Jesus is God.*](/god/son/essence)
+Myth: [*The Bible teaches that Jesus is God.*](/content/kingdom/god/son/essence.md)
 
 Truth: Constantine needed to merge Jesus with Sol Invictus (the sun god) to legitimise himself as the Roman emperor.
 
-In 312 Constantine claimed to have a vision in 312 of [the cross](/bible/symbolism/cross) appearing in the light of the sun.
+In 312 Constantine claimed to have a vision in 312 of [the cross](/content/kingdom/bible/symbolism/cross.md) appearing in the light of the sun.
 
 In 324 at the Battle of Chrysopolis, Emperor Constantine became the sole ruler of the entire Roman Empire.  This had established Christianity as the dominant force of the Roman Empire.
 
@@ -139,24 +134,24 @@ In 325 the council of Nicaea, of which Emperor Constantine actively participated
 
 This creed also heavily influenced future bible translators and modern day Christianity, for example, today Christians:
 
-* Crucify God and claim that [the immortal God](/god/father) died (a contradiction and blasphemy).
-* [Pray](/god/concepts/prayer) to Jesus instead.
-* [Serve and worship](/god/son/essence/as-god/worship) Jesus instead of God.
-* Often expect Jesus to fulfil [God's Spirit](/god/spirit) role and is then surprised when no miracles happen.
+* Crucify God and claim that [the immortal God](/content/kingdom/god/father.md) died (a contradiction and blasphemy).
+* [Pray](/content/kingdom/god/concepts/prayer.md) to Jesus instead.
+* [Serve and worship](/content/kingdom/god/son/essence/as-god/worship.md) Jesus instead of God.
+* Often expect Jesus to fulfil [God's Spirit](/content/kingdom/god/spirit.md) role and is then surprised when no miracles happen.
 
 In addition, this puts Christians in a difficult position:
-* They need to live according to the unfair standard set by a perfect [god](/god/son/what-is-jeus/as-god/incarnation) which pretends to be a human.
+* They need to live according to the unfair standard set by a perfect [god](/content/kingdom/god/son/what-is-jeus/as-god/incarnation.md) which pretends to be a human.
 * They need to suffer as humans, while their immortal god had an unfair advantage because he was fully in control of his own persecution.
 
 ## Concept of the Trinity was accepted
 
 Myth: *The concept of the Trinity had always existed, it was only clarified by the church fathers.*
 
-Truth: The concept of [the Trinity contradict the Bible](/bible/doctrines/trinitarian). [There is only 1 God](/bible/concepts/shema), named [YHVH](/god/father/name) or introduced as God the Father by Jesus himself.
+Truth: The concept of [the Trinity contradict the Bible](/content/kingdom/bible/doctrines/trinitarian.md). [There is only 1 God](/content/kingdom/bible/concepts/shema.md), named [YHVH](/content/kingdom/god/father/name.md) or introduced as God the Father by Jesus himself.
 
 This was also one of the creeds proclaimed by the council of Nicaea in 325 to counter Arianism. The idea was invented by [Tertullian](https://en.wikipedia.org/wiki/Tertullian), a North African sect leader, who lived in the previous century, who was also previously rejected by the church.
 
-The consequence is that [it confuses the roles](/bible/interpretations/jesus) of [the Father](/god/father), [the Son](/god/son) and [the Holy Spirit](/god/spirit).
+The consequence is that [it confuses the roles](/content/kingdom/bible/interpretations/jesus.md) of [the Father](/content/kingdom/god/father.md), [the Son](/content/kingdom/god/son.md) and [the Holy Spirit](/content/kingdom/god/spirit.md).
 
 ## Sabbath moved to Sundays
 
@@ -187,7 +182,7 @@ In 325, the Council of Nicaea decreed that Easter should be celebrated. Easter o
 Note that some denominations still keep Passover, but they changed:
 * the date: from 14th day of the Hebrew month of Nisan to the first Sunday after the Paschal Full Moon
 * the meaning: originally the story of the Exodus from Egypt to the story of Jesus' life, death, and resurrection
-* the symbols: [the cross](#the-cross-symbolizes-christ) was introduced which was not part of the original passover and some denomination deliberately leave out the "Jewish" symbols and reduced the festival to a [Communion](/life/communion) with a small piece of bread and a sip of wine.
+* the symbols: [the cross](#the-cross-symbolizes-christ) was introduced which was not part of the original passover and some denomination deliberately leave out the "Jewish" symbols and reduced the festival to a [Communion](/content/kingdom/life/communion.md) with a small piece of bread and a sip of wine.
 
 ### Christmas
 
@@ -217,7 +212,7 @@ Although birthdays were never officially instituted by any church and the only m
 
 Myth: *Unless you belief in the Trinity and that Jesus is God Almighty, you cannot be saved.*
 
-Truth: The "[Trinity](/bible/doctrines/trinitarian)" doctrine was invented by Tertullian almost 200 years after the Gospels were written.  Athanasius I of Alexandria declared around 350 AD that Christians must believe in his creed ([Athanasian Creed](https://en.wikipedia.org/wiki/Athanasian_Creed)) or they will lose their salvation and "perish everlastingly". 
+Truth: The "[Trinity](/content/kingdom/bible/doctrines/trinitarian.md)" doctrine was invented by Tertullian almost 200 years after the Gospels were written.  Athanasius I of Alexandria declared around 350 AD that Christians must believe in his creed ([Athanasian Creed](https://en.wikipedia.org/wiki/Athanasian_Creed)) or they will lose their salvation and "perish everlastingly". 
 
 Athanasius did this to defend his teachings against [Arianism](https://en.wikipedia.org/wiki/Arianism), [Modalism](https://en.wikipedia.org/wiki/Sabellianism), [Eutychianism](https://en.wikipedia.org/wiki/Eutychianism) and [Nestorianism](https://en.wikipedia.org/wiki/Nestorianism).
 
@@ -249,7 +244,7 @@ In 382, St. Jerome translated the first Latin bible as per recommendations of Po
 
 Today most Christians mainly focus and only preach from the "New Testament" about Jesus, neglecting the Almighty God, His teachings, prophecies, ordinances and testimonies of the "Old Testament".
 
-The reason why Jesus was born was to reconcile man to [God the Father](/god/father), but instead [Christians made Jesus God](/god/son/essence) (Sol Invictus) and forgot about [the real God](/god).
+The reason why Jesus was born was to reconcile man to [God the Father](/content/kingdom/god/father.md), but instead [Christians made Jesus God](/content/kingdom/god/son/essence.md) (Sol Invictus) and forgot about [the real God](/content/kingdom/god.md).
 
 ## Bible names were changed
 
@@ -285,9 +280,9 @@ Myth: *If you attend the church meetings you will be saved* or *If you don't att
 
 Truth: No scripture correlate church attendance with salvation. In fact the church itself cannot even save anyone.
 
-The bible is clear that [salvation](/eternal/saved) come from [faith](/eternal/saved/belief) and [repentance](/eternal/saved/repent) by [baptism](/eternal/saved/baptize).
+The bible is clear that [salvation](/content/kingdom/eternal/saved.md) come from [faith](/content/kingdom/eternal/saved/belief.md) and [repentance](/content/kingdom/eternal/saved/repent.md) by [baptism](/content/kingdom/eternal/saved/baptize.md).
 
-However, it is not advisable to live in isolation with [the body of Christ](/body).
+However, it is not advisable to live in isolation with [the body of Christ](/content/kingdom/body.md).
 
 ## You need a preacher to explain the Bible
 
@@ -301,17 +296,17 @@ It was only until 1382 when John Wycliffe translated the Bible into English that
 
 Although the Council of Toulouse's decision was later reversed, the tradition is still very strong in modern churches. Many church members still belief that the bible is hard to understand and that we need a "preacher" with a theological degree to interpret the bible for us.
 
-The Bible says, let [God's Spirit](/god/spirit) teach you (John 14:26). There are also many Bible translations and resources available for free [online](/bible).
+The Bible says, let [God's Spirit](/content/kingdom/god/spirit.md) teach you (John 14:26). There are also many Bible translations and resources available for free [online](/content/kingdom/bible.md).
 
 ## The Catholic Church require pardons (money) for forgiveness of sin
 
 Myth: *Jesus sacrifice is not enough to forgive sin.*
 
-Truth: Only Jesus is [the Christ](/bible/concepts/christ) (saviour).
+Truth: Only Jesus is [the Christ](/content/kingdom/bible/concepts/christ.md) (saviour).
 
 The Catholic Church scam Christians into thinking that they need to pay the Church money for forgiveness. They often went as far to "reverse forgiveness", according to Martin Luther.
 
-The Protestant Reformation undid this scam and according to them [only God may forgive sin](/god/son/essence/as-god/claims/forgive). However, this causes contradictions because Jesus also forgave sin. Therefore, the Protestants still fanatically believe [the Trinity doctrine](/bible/doctrines/trinitarian) which explains how [Jesus is God](/god/son/essence/as-god).
+The Protestant Reformation undid this scam and according to them [only God may forgive sin](/content/kingdom/god/son/essence/as-god/claims/forgive.md). However, this causes contradictions because Jesus also forgave sin. Therefore, the Protestants still fanatically believe [the Trinity doctrine](/content/kingdom/bible/doctrines/trinitarian.md) which explains how [Jesus is God](/content/kingdom/god/son/essence/as-god.md).
 
 ## The Eucharist
 
@@ -319,7 +314,7 @@ Myth: *The Eucharist is the real presence of Christ's body and blood* (Transubst
 
 Truth: This unbiblical idea originated in the Roman Catholic and Orthodox churches and was inherited by the Lutheran, Anglican and Methodist churches.
 
-Today, it is still a hotly debated topic among different Christian denominations on what exactly [the bread of Christ](/bible/metaphors/bread) means. Bread is usually associated with fellowship and essential daily nourishment. These concepts are hard to implement in a mega church environment with hundreds of members who have no close relationship or knowledge of each other. 
+Today, it is still a hotly debated topic among different Christian denominations on what exactly [the bread of Christ](/content/kingdom/bible/metaphors/bread.md) means. Bread is usually associated with fellowship and essential daily nourishment. These concepts are hard to implement in a mega church environment with hundreds of members who have no close relationship or knowledge of each other. 
 
 ## Predestination theology (Calvanism)
 
@@ -349,7 +344,7 @@ Today, some "prosperity preachers" takes this idea further and claim that financ
 
 Myth: *Your "faith" determines your prosperity.*
 
-Truth: [The word "faith" means trust.](/life/faith) You cannot trust nothing. You have to trust God instead of your own "faith"-power or "gifts".
+Truth: [The word "faith" means trust.](/content/kingdom/life/faith.md) You cannot trust nothing. You have to trust God instead of your own "faith"-power or "gifts".
 
 In the mid-20th century a "faith movement" also known as "word of faith" or "prosperity gospel" gain popularity which focus on the individual's faith to enable him/her to obtain things or to make things happen. This dangerous teaching result in:
 
@@ -382,11 +377,11 @@ Another example is that in 1906, William J. Seymour, an African American ministe
 
 | Myth                                                                                          | Truth                                                                                                                                                                                                           |
 |-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| The "name of Jesus" is a phrase (like a magic word) that catches God's attention.             | The word ["name" means authority](/bible/concepts/name). It could be considered as a delegate of Jesus or under submission to Jesus' commands or teachings, you are authorized to request or do certain things. |
-| Paying obeisance to a superior and worshipping God or an idol is often confused.              | Paying obeisance to a human superior is allowed. [Worshipping](/bible/concepts/worship) an idol is forbidden.                                                                                                   |
-| Praise is confused with worship, e.g. singing hymns, dancing and art is considered "worship". | [Praise](/bible/concepts/praise) is a public declaration. [Worship](/bible/concepts/worship) is a sacrifice.                                                                                                    |
-| "Brother and sisters" is a way to address church members.                                     | When you support or are supported by [your family](/god/family) in faith, then they are truly your "brother" or "sister"                                                                                        |
-| "The armor of God" is scripture spoken out loud that somehow activates God's protection.      | ["The armor of God"](/bible/metaphors/armor) is a metaphor to remind us what **we** needs to do to protect ourselves.                                                                                           |
+| The "name of Jesus" is a phrase (like a magic word) that catches God's attention.             | The word ["name" means authority](/content/kingdom/bible/concepts/name.md). It could be considered as a delegate of Jesus or under submission to Jesus' commands or teachings, you are authorized to request or do certain things. |
+| Paying obeisance to a superior and worshipping God or an idol is often confused.              | Paying obeisance to a human superior is allowed. [Worshipping](/content/kingdom/bible/concepts/worship.md) an idol is forbidden.                                                                                                   |
+| Praise is confused with worship, e.g. singing hymns, dancing and art is considered "worship". | [Praise](/content/kingdom/bible/concepts/praise.md) is a public declaration. [Worship](/content/kingdom/bible/concepts/worship.md) is a sacrifice.                                                                                                    |
+| "Brother and sisters" is a way to address church members.                                     | When you support or are supported by [your family](/content/kingdom/god/family.md) in faith, then they are truly your "brother" or "sister"                                                                                        |
+| "The armor of God" is scripture spoken out loud that somehow activates God's protection.      | ["The armor of God"](/content/kingdom/bible/metaphors/armor.md) is a metaphor to remind us what **we** needs to do to protect ourselves.                                                                                           |
 
 ---
 

@@ -1,18 +1,13 @@
----
-title: The Body of Christ
-published: true
-navigation:
-  title: The Body of Christ
-  order: 1
----
+# The Body of Christ
+
 
 > I therefore, a prisoner for the Lord, urge you to walk in a manner worthy of the calling to which you have been called, with all humility and gentleness, with patience, bearing with one another in love, **eager to maintain the unity of the Spirit** in the bond of peace.
 >
 > There is
-> * **one body and one Spirit** (just as **you were called** to the one hope that belongs to [your call](/bible/concepts/calling))
-> * one [Lord](/god/son/christ),
-> * one [faith](/eternal/saved/belief),
-> * one [baptism](/eternal/saved/baptize),
+> * **one body and one Spirit** (just as **you were called** to the one hope that belongs to [your call](/content/kingdom/bible/concepts/calling.md))
+> * one [Lord](/content/kingdom/god/son/christ.md),
+> * one [faith](/content/kingdom/eternal/saved/belief.md),
+> * one [baptism](/content/kingdom/eternal/saved/baptize.md),
 > * one God and Father of all, who is over all and through all and in all.
 >
 > But grace was given to each one of us according to the measure of Christ’s gift.
@@ -37,7 +32,7 @@ For example when Saul persecuted Jesus' disciples, Jesus said Saul was persecuti
 
 Paul wrote that Jesus' disciples are "joined together" with Jesus into "one body":
 
-> For he himself is our peace, who has **made us both one** and has broken down in his flesh the dividing wall of hostility by abolishing the law of commandments expressed in ordinances, that he might create in himself **one new man** in place of the two, so making peace, and might **reconcile us both to God in one body** through the cross, thereby killing the hostility. And he came and preached peace to you who were far off and peace to those who were near. For through him we both have access in one Spirit to the Father. So then you are no longer strangers and aliens, but **you are fellow citizens with the saints and [members of the household of God](/god/family)**, built on the foundation of the apostles and prophets, Christ Jesus himself being the cornerstone, in whom the whole structure, being **joined together**, grows into a holy temple in the Lord. In him **you also are being built together into a dwelling place for God** by the Spirit. -- Ephesians 2:14-22 (ESV)
+> For he himself is our peace, who has **made us both one** and has broken down in his flesh the dividing wall of hostility by abolishing the law of commandments expressed in ordinances, that he might create in himself **one new man** in place of the two, so making peace, and might **reconcile us both to God in one body** through the cross, thereby killing the hostility. And he came and preached peace to you who were far off and peace to those who were near. For through him we both have access in one Spirit to the Father. So then you are no longer strangers and aliens, but **you are fellow citizens with the saints and [members of the household of God](/content/kingdom/god/family.md)**, built on the foundation of the apostles and prophets, Christ Jesus himself being the cornerstone, in whom the whole structure, being **joined together**, grows into a holy temple in the Lord. In him **you also are being built together into a dwelling place for God** by the Spirit. -- Ephesians 2:14-22 (ESV)
 
 Jesus said that when one serves with a prophet or righteous person, it is rewarded as if one was serving Jesus himself.
 
@@ -55,7 +50,7 @@ Which explains why Mark recorded that Jesus said:
 
 > For truly, I say to you, whoever gives you a cup of water to drink **because you belong to Christ** will by no means lose his **reward**. -- Mark 9:41 (ESV)
 
-# How the body is joined
+## How the body is joined
 
 > For just as the body is one and **has many members**, and **all the members of the body**, though many, are one body, so it is with Christ. For in one Spirit we were all **baptized into one body** — Jews or Greeks, slaves or free — and all were made to drink of one Spirit. For **the body does not consist of one member but of many**.
 >
@@ -81,7 +76,7 @@ Which explains why Mark recorded that Jesus said:
 >
 > -- 1 Corinthians 12:12-31 (ESV)
 
-*(Translators often confuse "[church](/church/history)" with "the body of Christ", the original Greek word "ekklésia" translates to "congregation")*
+*(Translators often confuse "[church](/content/kingdom/church/history.md)" with "the body of Christ", the original Greek word "ekklésia" translates to "congregation")*
 
 As Paul pointed out, the body is not a passive fan club, but each member should actively participate which his or her given gifts, talents or skills to support the body.
 
@@ -105,7 +100,7 @@ For example:
 
 This is perhaps an extreme example of how close the first congregation's fellowship were.
 
-[The responsibilities of the body of Christ has been handed over to various church institutions](/church/history) with the result that Christians are spiritually dying as they receive little to no nourishment because everyone is mainly focussed to support the church leadership and their agendas instead of nourishing the body of Christ and spreading the Gospel.
+[The responsibilities of the body of Christ has been handed over to various church institutions](/content/kingdom/church/history.md) with the result that Christians are spiritually dying as they receive little to no nourishment because everyone is mainly focussed to support the church leadership and their agendas instead of nourishing the body of Christ and spreading the Gospel.
 
 > And let the peace of Christ rule in your hearts, to which indeed **you were called in one body**. And be thankful. -- Colossians 3:15 (ESV)
 
@@ -113,10 +108,10 @@ When one eat or drink with other, you fellowship with those persons. This is the
 
 > Therefore, my beloved, flee from idolatry.  I speak as to sensible people; judge for yourselves what I say.
 >
-> The cup of blessing that we bless, is it not [a participation](/bible/concepts/fellowship) in the blood of Christ?  
-> ***The bread that we break, is it not [a participation](/bible/concepts/fellowship) in the body of Christ?***
+> The cup of blessing that we bless, is it not [a participation](/content/kingdom/bible/concepts/fellowship.md) in the blood of Christ?  
+> ***The bread that we break, is it not [a participation](/content/kingdom/bible/concepts/fellowship.md) in the body of Christ?***
 >
-> Because there is **[one bread](/bible/metaphors/bread)**, we who are many are **one body**, for we all [partake](/bible/concepts/fellowship) of the **[one bread](/bible/metaphors/bread)**.
+> Because there is **[one bread](/content/kingdom/bible/metaphors/bread.md)**, we who are many are **one body**, for we all [partake](/content/kingdom/bible/concepts/fellowship.md) of the **[one bread](/content/kingdom/bible/metaphors/bread.md)**.
 >
 > Consider the people of Israel: are not those who eat the sacrifices participants in the altar?  
 > What do I imply then? That food offered to idols is anything, or that an idol is anything?
@@ -131,9 +126,9 @@ It was never about what we eat and what we drink, but about with whom we are hav
 
 > Therefore **let no one pass judgment on you in questions of food and drink**, or with regard to a festival or a new moon or a Sabbath. These are a shadow of the things to come, but the substance belongs to Christ. Let no one disqualify you, insisting on asceticism and worship of angels, going on in detail about visions, puffed up without reason by his sensuous mind, and not holding fast to the Head, from whom **the whole body, nourished and knit together through its joints and ligaments, grows with a growth** that is from God. -- Colossians 2:16-19 (ESV)
 
-Therefore, the body of Christ, are the believers actively participating in [fellowship](/bible/concepts/fellowship) with their [gifts](/god/spirit/gifts), to nourish each other with the aim to grow the body in the Gospel of [Jesus Christ](/god/son).
+Therefore, the body of Christ, are the believers actively participating in [fellowship](/content/kingdom/bible/concepts/fellowship.md) with their [gifts](/content/kingdom/god/spirit/gifts.md), to nourish each other with the aim to grow the body in the Gospel of [Jesus Christ](/content/kingdom/god/son.md).
 
-# The purpose of the body
+## The purpose of the body
 
 Luke wrote that Jesus send 72 disciples to continue his work in different regions (Luke 1:1-16) and later they returned to report their success (Luke 1:17). These people could be seen as an example of the body of Christ. 
 
@@ -143,7 +138,7 @@ Then Luke wrote that Jesus warns them not to get distracted by their success:
 
 These people could be seen as an example of Jesus' "body" that continue his work to save people so that their names could be "written in heaven".
 
-## Striking the balance
+### Striking the balance
 
 > And behold, a lawyer stood up to put him *(the Lord Jesus)* to the test, saying, “Teacher, what shall I do to inherit eternal life?”   
 > He said to him, “What is written in the Law? How do you read it?”   

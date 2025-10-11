@@ -1,22 +1,17 @@
----
-title: Tertullian
-published: true
-navigation:
-  title: Tertullian
-  order: 7
----
+# Tertullian
 
-In 206 AD, [Tertullian](https://en.wikipedia.org/wiki/Tertullian) adopted [Montanism](/church/history/montanism)[^1] after being an orthodox Christian for about 2. He invented theological concepts like:
 
-* "Trinitas"[^2] which is Latin [Trinity](/bible/doctrines/trinitarian), however Tertullian's version of the Trinity was very complex and did lean towards [modalism](/bible/interpretations/jesus/comparison#modalism) [^3] which means "unam substantiam in tribus cohaerentibus" (only substance in three coherent and inseparable [Persons]) [^4] which is [still being used by many Latin churches today](https://www.scielo.org.za/scielo.php?script=sci_arttext&pid=S2074-77052021000100066).
+In 206 AD, [Tertullian](https://en.wikipedia.org/wiki/Tertullian) adopted [Montanism](/content/kingdom/church/history/montanism.md)[^1] after being an orthodox Christian for about 2. He invented theological concepts like:
+
+* "Trinitas"[^2] which is Latin [Trinity](/content/kingdom/bible/doctrines/trinitarian.md), however Tertullian's version of the Trinity was very complex and did lean towards [modalism](/content/kingdom/bible/interpretations/jesus/comparison.md#modalism) [^3] which means "unam substantiam in tribus cohaerentibus" (only substance in three coherent and inseparable [Persons]) [^4] which is [still being used by many Latin churches today](https://www.scielo.org.za/scielo.php?script=sci_arttext&pid=S2074-77052021000100066).
 * "substantia"[^5] which is Latin for substance which means ["material with particular physical characteristics"](https://dictionary.cambridge.org/dictionary/english/substance). [Tertullian used this term to explain that God was made up of 1 divine substance](https://www.jstor.org/stable/23954327). This differs from the modern view which sees the Trinity as 3 different substances, namely the Father, the Son and the Holy Spirit.
 * "persona"[^5] which is Latin for presence or person. [Tertullian used this term to explain that God was made up of 3 divine persons who shared a single "substance"](https://www.1517.org/articles/one-substance-with-the-father). [These terms balance unity and diversity within the Trinity](https://www.scielo.org.za/scielo.php?script=sci_arttext&pid=S2074-77052021000100066), such that God can both be viewed as 1 single God, but as 3 distinct persons which can interact with each other.
 * "subordinationism" which means that the persons within the Trinity has a hierarchical relationship[^6]. The Father was considered the supreme person, while the Son subordinated to Him. Tertullian also viewed the divine Son as inferior to the Father. This also differs from the modern view which sees the Trinity as 3 persons who are equal in dignity and authority."
-* "Verbum" which is Latin for "Word". Tertullian used this term to refer to the Greek [Logos](/bible/concepts/word) philosophy which teaches [the Son is "the Word"](/god/son/essence/as-god/word) to proof that he was pre-existed as a person of God before our creation. Although Tertullian did not invent this Greek philosophy, he documented it in Latin for the church.
+* "Verbum" which is Latin for "Word". Tertullian used this term to refer to the Greek [Logos](/content/kingdom/bible/concepts/word.md) philosophy which teaches [the Son is "the Word"](/content/kingdom/god/son/essence/as-god/word.md) to proof that he was pre-existed as a person of God before our creation. Although Tertullian did not invent this Greek philosophy, he documented it in Latin for the church.
 
 Tertullian wrote:
 
-> And at the same time [the mystery](/bible/concepts/mystery) of the oikonomia is safeguarded, for the unity is distributed in a Trinity. Placed in order, the three are the Father, Son, and Spirit. They are three, however, not in condition, but in degree; not in being, but in form; not in power, but in kind; of one being, however, and one condition and one power, because he is one God of whom degrees and forms and kinds are taken into account in the name of the Father, and of the Son, and of the Holy Spirit. -- [Against Praxeas](http://www.earlychristianwritings.com/text/tertullian17.html)
+> And at the same time [the mystery](/content/kingdom/bible/concepts/mystery.md) of the oikonomia is safeguarded, for the unity is distributed in a Trinity. Placed in order, the three are the Father, Son, and Spirit. They are three, however, not in condition, but in degree; not in being, but in form; not in power, but in kind; of one being, however, and one condition and one power, because he is one God of whom degrees and forms and kinds are taken into account in the name of the Father, and of the Son, and of the Holy Spirit. -- [Against Praxeas](http://www.earlychristianwritings.com/text/tertullian17.html)
 
 To summarise, according to Tertullian, the unity of God can be explained as:
 
@@ -37,7 +32,7 @@ Ironically Tertullian's doctrines and views were initially debated by the Church
 
 However, not all of Tertullian's views were acceptable to the church. For example, the following views were not accepted by the Church:
 
-* [Subordination](https://en.wikipedia.org/wiki/Subordinationism) of [the Son](/god/son) and [the Holy Spirit](/god/spirit) to [the Father](/god/father)
+* [Subordination](https://en.wikipedia.org/wiki/Subordinationism) of [the Son](/content/kingdom/god/son.md) and [the Holy Spirit](/content/kingdom/god/spirit.md) to [the Father](/content/kingdom/god/father.md)
 * Accepted the Apocrypha: Shepherd of Hermas, Judith, Enoch, Hebrews of Barnabas.
 * Tertullian expressed some reservations about Mary's virginity.
 

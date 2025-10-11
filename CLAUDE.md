@@ -22,6 +22,35 @@ Migrates content from a Grav-based website (located at `../eternal`) to statical
 
 ## Architecture Decisions
 
+### GitHub Edit Links (2025-10-10)
+**Problem:** Users needed ability to contribute content improvements directly via GitHub.
+
+**Solution:** "Edit on GitHub" button in app bar that dynamically generates correct GitHub URLs based on current page.
+
+**Implementation:**
+```typescript
+// useSiteConfig.ts - Extended with GitHub config
+interface SiteConfig {
+  githubRepo: string      // 'JasperCiti/ofgod'
+  githubBranch: string    // 'main'
+}
+
+// useGitHubEdit.ts - URL generator
+function getEditUrl(): string {
+  // Maps route path to content file
+  // / → content/{domain}/index.md
+  // /darkness → content/{domain}/darkness.md
+  // /church/history/constantine → content/{domain}/church/history/constantine.md
+}
+```
+
+**Components:**
+- [useSiteConfig.ts](app/composables/useSiteConfig.ts) - GitHub repo config per domain
+- [useGitHubEdit.ts](app/composables/useGitHubEdit.ts) - URL generation logic
+- [AppBar.vue](app/components/AppBar.vue) - Pencil icon button with `target="_blank"`
+
+**Result:** Every page has "Edit on GitHub" link with correct path to source markdown file.
+
 ### Markdown Tables as v-data-table (2025-10-08)
 **Problem:** Standard markdown tables lacked Material Design 3 styling, sorting, and responsive mobile layout.
 

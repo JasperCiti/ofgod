@@ -1,14 +1,18 @@
 ---
-title: Kingdom of God
-published: true
-navigation:
-  title: Kingdom of God
-  order: 4
+keywords:
+  - kingdom of heaven
+  - salvation
+  - righteousness
+  - gospel
+  - eternal life
 ---
+
+# Kingdom of God
+
 
 Also known as "the Kingdom of Heaven" according to Matthew.
 
-# Where is the Kingdom of God?
+## Where is the Kingdom of God?
 
 It is not a physical territory:
 
@@ -18,7 +22,7 @@ It spans across multiple realms:
 
 > Your kingdom come, Your will be done, on **earth as it is in heaven**. -- Matthew 6:10 (ESV)
 
-# Why do we need the Kingdom of God?
+## Why do we need the Kingdom of God?
 
 > * Whoever believes in the Son has eternal life.
 > * Whoever does not obey the Son shall not see life, but the wrath of God remains on him.
@@ -35,7 +39,7 @@ Paul taught:
 
 and
 
-> To the saints and faithful brothers *[in (with)](/bible/translations/differences/en)* Christ at Colossae...
+> To the saints and faithful brothers *[in (with)](/content/kingdom/bible/translations/differences/en.md)* Christ at Colossae...
 >
 > And so, from the day we heard, we have not ceased to pray for you, asking that
 > * you may be **filled with the knowledge of his will in all spiritual wisdom and understanding**,
@@ -56,7 +60,7 @@ and this is how God respond:
 
 > “Because he holds fast to Me in love,
 > 1. I will **deliver** him;
-> 2. I will **protect** him, because he knows My [name](/god/name).
+> 2. I will **protect** him, because he knows My [name](/content/kingdom/god/name.md).
 > 3. When he calls to me, **I will answer** him;
 > 4. I will **be with him** in trouble;
 > 5. I will **rescue him** and honor him.
@@ -65,11 +69,11 @@ and this is how God respond:
 >
 > -- Psalm 91:14-16 (ESV)
 
-# Who is part of the Kingdom of God?
+## Who is part of the Kingdom of God?
 
 Jesus very first teaching recorded by Matthew 5-7, was about "the Kingdom of Heaven" and he opens with the statement:
 
-> Blessed are [the poor in spirit](/bible/idioms#poor-in-the-spirit): **for theirs is the kingdom of heaven**. -- Matthew 5:3 (ESV)
+> Blessed are [the poor in spirit](/content/kingdom/bible/idioms.md#poor-in-the-spirit): **for theirs is the kingdom of heaven**. -- Matthew 5:3 (ESV)
 
 This is perhaps a reference to:
 
@@ -107,17 +111,17 @@ James also warned:
 
 > Now when they heard this **they were cut to the heart**, and said to Peter and the rest of the apostles, “Brothers, what shall we do?”
 >
-> And Peter said to them, “[Repent](/eternal/saved/repent) and [be baptized](/eternal/saved/baptize) every one of you in [the name](/bible/concepts/name) of [Jesus](/god/son) [Christ](/god/son/christ) for the forgiveness of your [sins](/bible/concepts/sin), and you will receive [the gift](/god/spirit/gifts) of [the Holy Spirit](/god/spirit). For [the promise](/god/covenants/christ) is for you and for your children and for all who are far off, everyone whom [the Lord](/god/father/name#lord) our [God](/god) calls to himself.”
+> And Peter said to them, “[Repent](/content/kingdom/eternal/saved/repent.md) and [be baptized](/content/kingdom/eternal/saved/baptize.md) every one of you in [the name](/content/kingdom/bible/concepts/name.md) of [Jesus](/content/kingdom/god/son.md) [Christ](/content/kingdom/god/son/christ.md) for the forgiveness of your [sins](/content/kingdom/bible/concepts/sin.md), and you will receive [the gift](/content/kingdom/god/spirit/gifts.md) of [the Holy Spirit](/content/kingdom/god/spirit.md). For [the promise](/content/kingdom/god/covenants/christ.md) is for you and for your children and for all who are far off, everyone whom [the Lord](/content/kingdom/god/father/name.md#lord) our [God](/content/kingdom/god.md) calls to himself.”
 >
-> And with many other words he bore witness and continued to exhort them, saying, [“Save yourselves from this crooked generation.”](/eternal/saved)
+> And with many other words he bore witness and continued to exhort them, saying, [“Save yourselves from this crooked generation.”](/content/kingdom/eternal/saved.md)
 >
 > So those who received his word were baptized, and there were **added that day about three thousand souls**.
 >
 > -- Acts 2:37-41 (ESV)
 
-# Who rules over the Kingdom of God?
+## Who rules over the Kingdom of God?
 
-> **The LORD ([YHVH](/god/name#yhvh)) has established his throne in the heavens, and His kingdom rules over all.**
+> **The LORD ([YHVH](/content/kingdom/god/name.md#yhvh)) has established his throne in the heavens, and His kingdom rules over all.**
 >
 > Bless the LORD, O you His angels, you mighty ones who do His word, obeying the voice of His word!  
 > Bless the LORD, all His hosts, His ministers, who do His will!  
@@ -143,17 +147,17 @@ Paul also wrote:
 > I do not cease to give thanks for you, remembering you in my prayers, that **the God of our Lord Jesus Christ**, the Father of glory, may give you the Spirit of wisdom and of revelation in the knowledge of Him, having the eyes of your hearts enlightened, that you may know what is the hope to which He has called you, what are the riches of His glorious inheritance in the saints, and what is the immeasurable greatness of His power toward us who believe, according to the working of His great might that He worked in Christ when
 > 1. He raised him from the dead and
 > 2. seated him at His right hand in the heavenly places, far above all rule and authority and power and dominion, and above every name that is named, not only in this age but also in the one to come.
-> 3. And He put all things under his feet and gave him as head over all things to the church, which is [his body](/body), the fullness of Him who fills all in all. -- Ephesians 1:16-23 (ESV)
+> 3. And He put all things under his feet and gave him as head over all things to the church, which is [his body](/content/kingdom/body.md), the fullness of Him who fills all in all. -- Ephesians 1:16-23 (ESV)
 
 According to Paul, Jesus did not replace God, but instead that Jesus acts as a delegate under the authority of his God. (1 Corinthians 3:23, 11:3)
 
 > Now when all things are made subject to him, then **the Son himself will also be subject to Him** who put all things under him, that God may be all in all. -- 1 Corinthians 15:28 (NKJV)
 
-# When is the Kingdom of God?
+## When is the Kingdom of God?
 
-> Now after John was arrested, Jesus came into Galilee, proclaiming the gospel of God, and saying, “**The time is fulfilled, and the kingdom of God is at hand** *[near or has approached]*; [repent](/eternal/saved/repent) and [believe in the gospel](/eternal/saved/belief).” -- Mark 1:14 (ESV)
+> Now after John was arrested, Jesus came into Galilee, proclaiming the gospel of God, and saying, “**The time is fulfilled, and the kingdom of God is at hand** *[near or has approached]*; [repent](/content/kingdom/eternal/saved/repent.md) and [believe in the gospel](/content/kingdom/eternal/saved/belief.md).” -- Mark 1:14 (ESV)
 
-# What is the Kingdom of God?
+## What is the Kingdom of God?
 
 > Why do you pass judgment on your brother?   
 > Or you, why do you despise your brother?
@@ -162,21 +166,21 @@ According to Paul, Jesus did not replace God, but instead that Jesus acts as a d
 >
 > for it is written,
 >
->> “As I live, says [the LORD](/god/father/name#lord), every knee shall bow to me, and every tongue shall confess to God.” -- Isaiah 45:23
+>> “As I live, says [the LORD](/content/kingdom/god/father/name.md#lord), every knee shall bow to me, and every tongue shall confess to God.” -- Isaiah 45:23
 >
-> So then [each of us will give an account of himself to God](/eternal/judgement).
+> So then [each of us will give an account of himself to God](/content/kingdom/eternal/judgement.md).
 >
 > Therefore let us not pass judgment on one another any longer, but rather decide never to put a stumbling block or hindrance in the way of a brother. I know and am persuaded in the Lord Jesus that nothing is unclean in itself, but it is unclean for anyone who thinks it unclean. For if your brother is grieved by what you eat, you are no longer walking in love. By what you eat, do not destroy the one for whom Christ died. So do not let what you regard as good be spoken of as evil.
 >
 > For **the kingdom of God** is not a matter of eating and drinking but of **righteousness and peace and joy** *[in [by]](/bible/translations/differences/en)* the Holy Spirit.
 >
-> Whoever thus serves [Christ](/god/son/christ) is **acceptable to God** and approved by men. So then let us pursue what makes for **peace and for mutual upbuilding**.
+> Whoever thus serves [Christ](/content/kingdom/god/son/christ.md) is **acceptable to God** and approved by men. So then let us pursue what makes for **peace and for mutual upbuilding**.
 >
 > -- Romans 14:10-19 (ESV)
 
 Jesus explains the Kingdom of God with parables (Matthew 13:10-17; Mark 4:10-12).
 
-## The parable of the wedding invitation
+### The parable of the wedding invitation
 
 > And again Jesus spoke to them in parables, saying, 
 > 
@@ -206,8 +210,8 @@ Comparison:
 
 | Parable                        | Reality                                                                                               |
 | ------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| The king                       | [God the Father](/god/father) (Matthew 25:34)                                                         |
-| The king's son                 | [The Son of God](/god/son) (Matthew 3:17)                                                             |
+| The king                       | [God the Father](/content/kingdom/god/father.md) (Matthew 25:34)                                                         |
+| The king's son                 | [The Son of God](/content/kingdom/god/son.md) (Matthew 3:17)                                                             |
 | The feast                      | God the Father's rewards (Matthew 5:12)                                                               |
 | The king's servants            | God's servants like John (Matthew 3:1-3), Jesus (Matthew 4:17) and their disciples (Matthew 28:19-20) |
 | Those who were invited         | Israel (Matthew 3:5-6)                                                                                |
@@ -216,38 +220,38 @@ Comparison:
 | Those who are not worthy       | The "gentiles" who accept Christ's authority (Matthew 21:43-45, 23:39)                                |
 | The king looking at the guests | The judgement day (John 12:48)                                                                        |
 | A man with no wedding garment  | The "wicked servants" that dishonor God's son (Matthew 24:48-51)                                      |
-| Outer darkness                 | [Hell](/bible/concepts/hell) (Matthew 24:51)                                                          |
+| Outer darkness                 | [Hell](/content/kingdom/bible/concepts/hell.md) (Matthew 24:51)                                                          |
 | The few chosen                 | The "faithful servants" of God (Matthew 24:45-47)                                                     |
 
 Explanation:
 
-1. God the Father ([YHVH](/god/name#yhvh)) originally chosen Israel to be His nation.
-2. The Father's invitation is [the Gospel of Salvation](/eternal/saved) which leads people to [repentance](/eternal/saved/repent) so that they could live in [righteousness with God](/bible/concepts/righteousness). 
+1. God the Father ([YHVH](/content/kingdom/god/name.md#yhvh)) originally chosen Israel to be His nation.
+2. The Father's invitation is [the Gospel of Salvation](/content/kingdom/eternal/saved.md) which leads people to [repentance](/content/kingdom/eternal/saved/repent.md) so that they could live in [righteousness with God](/content/kingdom/bible/concepts/righteousness.md). 
 3. The purpose of the Gospel to prepare a people group to serve His Son.
 4. This was initially proclaimed by God's servants like John the Baptist, but he was persecuted for doing so.
 5. The scribes and pharisees stirred up the Jews to persecute God's servants in Jerusalem, therefore Jerusalem were condemned.
 6. This persecution caused the Gospel to spread to foreign non-Jewish regions like the Greek and Roman territories who known by the Jews as the "gentiles" which were previously not considered "worthy" of the Gospel according to the Jews.
 7. The "faithful servants" are the disciples who trusted God by risking their lives to spread the Gospel and who stayed faithful in the face of persecution.
-8. The "wicked servants" are those who dishonor God's Son, the Christ. They often consider themselves ["Christians"](/bible/concepts/christian) but refuse to obey Christ who is supposed to be their Lord. This pride dishonors the Son of God like the man with the wrong wedding garment.
+8. The "wicked servants" are those who dishonor God's Son, the Christ. They often consider themselves ["Christians"](/content/kingdom/bible/concepts/christian.md) but refuse to obey Christ who is supposed to be their Lord. This pride dishonors the Son of God like the man with the wrong wedding garment.
 9. Jesus also warned that God will judge all "guests" and that the "wicked" will be cast into "outer darkness" which is a place of "weeping and gnashing of teeth".
 
 When the almighty God of the universe invite guests to His son's special occasion, He expects them to be:
     * to be ready on time (see other parables)
     * clean (of sin)
     * with the proper garment (to honor His son)
-    * to live in "[righteousness](/bible/concepts/righteousness), peace and joy" with the other attendees which is God Himself, His son and the other guests
+    * to live in "[righteousness](/content/kingdom/bible/concepts/righteousness.md), peace and joy" with the other attendees which is God Himself, His son and the other guests
 
 Only these will be "chosen" for "the wedding feast". In other words, God, the Father will selectively reward (Matthew 5:44-6:20) those who honored His invitation.
 
 Earlier in the same book, Matthew recorded Jesus first teaching:
 
-> Blessed are the [poor in spirit](/bible/idioms#poor-in-the-spirit), for [theirs is **the kingdom of heaven**](#who-is-part-of-the-kingdom-of-god).  
+> Blessed are the [poor in spirit](/content/kingdom/bible/idioms.md#poor-in-the-spirit), for [theirs is **the kingdom of heaven**](#who-is-part-of-the-kingdom-of-god).  
 > Blessed are those who mourn, for they shall be comforted.  
 > Blessed are the meek, for they shall inherit the earth.  
 > Blessed are those who hunger and thirst for righteousness, for they shall be satisfied.  
 > Blessed are the merciful, for they shall receive mercy.  
 > Blessed are the pure in heart, for they shall see God.  
-> Blessed are the peacemakers, for they shall be called [sons of God](/god/sons-of-god).  
+> Blessed are the peacemakers, for they shall be called [sons of God](/content/kingdom/god/sons-of-god.md).  
 >
 > -- Matthew 5:3-9 (ESV)
 
@@ -258,7 +262,7 @@ But then Jesus warns:
 > Blessed are those who are persecuted for righteousness' sake, for theirs is **the kingdom of heaven**.  
 > Blessed are you when others revile you and persecute you and utter all kinds of evil against you falsely on my account.
 >
-> Rejoice and be glad, for **your reward is great in [heaven](/bible/concepts/heaven)**, for so they persecuted the prophets who were before you.
+> Rejoice and be glad, for **your reward is great in [heaven](/content/kingdom/bible/concepts/heaven.md)**, for so they persecuted the prophets who were before you.
 >
 > -- Matthew 5:3-12 (ESV)
 
@@ -270,9 +274,9 @@ Our goal should not be to get persecuted, but to be effective on Earth.
 
 Then Jesus explains with the parable...
 
-## Parable of the lamp
+### Parable of the lamp
 
-> You are [the light](/bible/metaphors/light) of the world. A city set on a hill cannot be hidden. Nor do people light a lamp and put it under a basket, but on a stand, and it gives light to all in the house. 
+> You are [the light](/content/kingdom/bible/metaphors/light.md) of the world. A city set on a hill cannot be hidden. Nor do people light a lamp and put it under a basket, but on a stand, and it gives light to all in the house. 
 > 
 > In the same way, let your light shine before others, so that they may **see your good works** and **give glory to your Father** Who is in heaven.
 > 
@@ -284,7 +288,7 @@ Because of the way that many modern bibles are divided into sections, people oft
 
 The world will measure "the good works" of "the sons of God" according to "the laws or the prophets". If their works are not good, it cannot "give glory to the Father". This means there is a moral standard for "the sons of God".
 
-Now some Christians would argue, these laws were only relevant to the Jews in Jesus' time, because Jesus "fulfilled the laws" at his [crucifixion](/god/son/crucifixion) which happened only a few year later. Therefore, they assume these "laws" are deprecated and may be ignored today. 
+Now some Christians would argue, these laws were only relevant to the Jews in Jesus' time, because Jesus "fulfilled the laws" at his [crucifixion](/content/kingdom/god/son/crucifixion.md) which happened only a few year later. Therefore, they assume these "laws" are deprecated and may be ignored today. 
 
 There are 3 problems with this assumption:
 
@@ -294,15 +298,15 @@ There are 3 problems with this assumption:
 
 > Therefore whoever relaxes one of the least of these commandments and teaches others to do the same will be called least **in the kingdom of heaven**, but whoever does them and teaches them will be called great **in the kingdom of heaven**. -- Matthew 5:19 (ESV)
 
-Note, that both those who "relaxes" and those who "teaches" these commandments are "in the kingdom of heaven". This implies that "good works" is not a condition for [salvation](/eternal/saved). [You cannot earn your salvation](/god/son/crucifixion), no matter how hard you try. Jesus also makes this point in the next verse:
+Note, that both those who "relaxes" and those who "teaches" these commandments are "in the kingdom of heaven". This implies that "good works" is not a condition for [salvation](/content/kingdom/eternal/saved.md). [You cannot earn your salvation](/content/kingdom/god/son/crucifixion.md), no matter how hard you try. Jesus also makes this point in the next verse:
 
-> For I tell you, unless your [righteousness](/bible/concepts/righteousness) exceeds that of the scribes and Pharisees, **you will never enter the kingdom of heaven**. -- Matthew 5:20 (ESV)
+> For I tell you, unless your [righteousness](/content/kingdom/bible/concepts/righteousness.md) exceeds that of the scribes and Pharisees, **you will never enter the kingdom of heaven**. -- Matthew 5:20 (ESV)
 
 Preachers, translators and commentators often have difficulty to explain what "righteousness" mean. In perhaps an over simplified layman's terms it simply mean, to be in a right standing (good relationship) with God. However, you cannot be in right standing with any person if you do not trust the person or if there are unforgiven issues between you. The same applies to God. 
 
 "Righteousness" with God is only possible if we at least:
-1. [trust (belief) God](/eternal/saved/belief), and
-2. [repented](/eternal/saved/repent) from our [sin](/bible/concepts/sin) against God
+1. [trust (belief) God](/content/kingdom/eternal/saved/belief.md), and
+2. [repented](/content/kingdom/eternal/saved/repent.md) from our [sin](/content/kingdom/bible/concepts/sin.md) against God
 
 Obviously this requires [humility](#who-is-part-of-the-kingdom-of-god). 
 
@@ -328,7 +332,7 @@ But staying out of trouble is not Jesus' standard. He goes even another step fur
 
 > You have heard that it was said, ‘You shall love your neighbor and hate your enemy.’ 
 > 
-> But I say to you, 'Love your enemies and pray for those who persecute you', so that you may be [sons of your Father Who is in heaven](/god/sons-of-god). 
+> But I say to you, 'Love your enemies and pray for those who persecute you', so that you may be [sons of your Father Who is in heaven](/content/kingdom/god/sons-of-god.md). 
 > 
 > For He makes His sun rise on the evil and on the good, and sends rain on the just and on the unjust. 
 > 
@@ -353,7 +357,7 @@ Then Jesus summarizes his teaching by saying:
 
 These "laws" are not comfortable. It is hard but worth it because it leads to life (Matthew 7:13-14).
 
-## Parable of the good and bad fruit
+### Parable of the good and bad fruit
 
 > Beware of false prophets, who come to you in sheep's clothing but inwardly are ravenous wolves. You will **recognize them by their fruits**. 
 > 
@@ -379,7 +383,7 @@ Jesus will also judge people according to their "fruit":
 > 
 > -- Matthew 7:21-23 (ESV)
 
-## Parable of the house on the rock
+### Parable of the house on the rock
 
 To guard against [false teachings](#parable-of-the-good-and-bad-fruit), we aught to anchor ourselves his teachings by living it:
 
@@ -405,7 +409,7 @@ Matthew 11-12 records how John, Jesus and his disciples experienced resistence f
 
 Then Jesus explains why their ministry is ineffective in some cases.
 
-## Parable of the sower
+### Parable of the sower
 
 > And great crowds gathered about him *[Jesus]*, so that he got into a boat and sat down. And the whole crowd stood on the beach. And he told them many things in parables, saying: 
 > 
@@ -436,9 +440,9 @@ The English definition of "understand" is to become aware..., to know..., to lea
 
 But the Greek definition of "understand" is to "put together" or "to comprehend". In other words, the audience also has a responsibility to put together or to put in an effort to comprehend what they just learned. In other words to practically apply the teaching to their own lives.  
 
-## Parable of the unexpected thief
+### Parable of the unexpected thief
 
-Jesus also warns that [God's judgement](/eternal/judgement), will be unexpected:
+Jesus also warns that [God's judgement](/content/kingdom/eternal/judgement.md), will be unexpected:
 
 > “But concerning that day and hour no one knows, not even the angels of heaven, nor the Son, but the Father only. For as were the days of Noah, so will be the coming of the Son of Man. For as in those days before the flood they were eating and drinking, marrying and giving in marriage, until the day when Noah entered the ark, and they were unaware until the flood came and swept them all away, so will be the coming of the Son of Man.
 >
@@ -461,7 +465,7 @@ According to what will we be judged?
 
 Jesus' next parables give the answer.
 
-## Parable of the servants
+### Parable of the servants
 
 > Who then is the faithful and wise servant?
 > 
@@ -471,7 +475,7 @@ Jesus' next parables give the answer.
 > 
 > -- Matthew 24:45-51 (ESV)
 
-## Parable of the virgins
+### Parable of the virgins
 
 > Then **the kingdom of heaven** will be like ten virgins who took their lamps and went to meet the bridegroom. Five of them were foolish, and five were wise. For when the foolish took their lamps, they took no oil with them, but the wise took flasks of oil with their lamps. As the bridegroom was delayed, they all became drowsy and slept. 
 > 
@@ -491,7 +495,7 @@ Jesus' next parables give the answer.
 > 
 > -- Matthew 25:1-13 (ESV)
 
-## Parable of the stewards
+### Parable of the stewards
 
 > For it will be like a man going on a journey, who called his servants and entrusted to them his property. To one he gave five talents, to another two, to another one, to each according to his ability. Then he went away. 
 > 
@@ -513,9 +517,9 @@ Jesus' next parables give the answer.
 > 
 > -- Matthew 25:14-30 (ESV)
 
-## Meaning of the parables
+### Meaning of the parables
 
-> When [the Son of Man](/god/son/essence/of-man) comes in his glory, and all the angels with him, then [he will sit on his glorious throne](#who-rules-over-the-kingdom-of-god). 
+> When [the Son of Man](/content/kingdom/god/son/essence/of-man.md) comes in his glory, and all the angels with him, then [he will sit on his glorious throne](#who-rules-over-the-kingdom-of-god). 
 > 
 > Before him will be gathered all the nations, and he will separate people one from another as a shepherd separates the sheep from the goats. And he will place the sheep on his right, but the goats on the left. 
 > 
@@ -528,7 +532,7 @@ Jesus' next parables give the answer.
 >
 > Then the righteous will answer him, saying, ‘Lord, when did we see you hungry and feed you, or thirsty and give you drink? And when did we see you a stranger and welcome you, or naked and clothe you? And when did we see you sick or in prison and visit you?’ 
 > 
-> And the king will answer them, ‘Truly, I say to you, as you did it to one of the least of these [my brothers](/god/family), you did it to me.’
+> And the king will answer them, ‘Truly, I say to you, as you did it to one of the least of these [my brothers](/content/kingdom/god/family.md), you did it to me.’
 > 
 > “Then he will say to those on his left, ‘Depart from me, you cursed, into the eternal fire prepared for the devil and his angels. For 
 > * I was hungry and you gave me no food, 
@@ -545,21 +549,21 @@ Jesus' next parables give the answer.
 >
 > -- Matthew 25:31-46 (ESV)
 
-# What is the counter of the Kingdom of God?
+## What is the counter of the Kingdom of God?
 
 Inherently all humans have a need of belonging to a community and to have a greater purpose than merely surviving. Sometimes non-religious clubs try to fulfil this need without God. 
 
 Clubs often give their members a purpose, a sense of belonging or recognition and often some sort of security. While clubs are often healthy for social interaction, collaboration, knowledge or resource sharing, it should never be considered the ultimate goal in life as a replacement for the Kingdom of God.
 
-The same could also be said about [churches](/church). There are many members of the body of Christ that meet in the name of a church as a religious club. Depending on the culture and circumstances it is often more practical to meet in a public place than a private home. 
+The same could also be said about [churches](/content/kingdom/church.md). There are many members of the body of Christ that meet in the name of a church as a religious club. Depending on the culture and circumstances it is often more practical to meet in a public place than a private home. 
 
-Some church denomination even claims to be [the body of Christ](/body). While in reality the body of Christ is much bigger than any church. This is evident when spirit filled believers from different places in the world often move in the same direction with prayers or support complementing each other without having physical contact or knowledge of each other.
+Some church denomination even claims to be [the body of Christ](/content/kingdom/body.md). While in reality the body of Christ is much bigger than any church. This is evident when spirit filled believers from different places in the world often move in the same direction with prayers or support complementing each other without having physical contact or knowledge of each other.
 
 | The body of Christ                                                         | Some Churches                                                                     |
 | -------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| Worship [the almighty God, the Father](/god/father)                        | May idolise the church leader                                                     |
-| Submit to [the Lord Jesus Christ](/god/son)'s commands                     | Submit to the human church authority instead. Jesus is often reduced to a mascot. |
-| Guided by [the Holy Spirit of God](/god/spirit)                            | Guided by institutional church [creeds](/church/history) or rules         |
+| Worship [the almighty God, the Father](/content/kingdom/god/father.md)                        | May idolise the church leader                                                     |
+| Submit to [the Lord Jesus Christ](/content/kingdom/god/son.md)'s commands                     | Submit to the human church authority instead. Jesus is often reduced to a mascot. |
+| Guided by [the Holy Spirit of God](/content/kingdom/god/spirit.md)                            | Guided by institutional church [creeds](/content/kingdom/church/history.md) or rules         |
 | Decentralised body                                                         | Centralised church membership                                                     |
 | Meet wherever practical                                                    | Meet in expensive church buildings                                                |
 | Focus on expanding God's Kingdom (saving the lost, serving the community)  | Focus on attracting more church members or financial income                       |

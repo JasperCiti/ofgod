@@ -1,10 +1,5 @@
----
-title: Valentine's Day
-published: true
-navigation:
-  title: Valentine's Day
-  order: 16
----
+# Valentine's Day
+
 
 In 494, Pope Gelasius I banned the pagan festival of Lupercalia and instituted **Valentine's Day** on 14 February. Some [sources](https://www.patheos.com/blogs/oldwaysinmoderntimes/2023/02/lupercalia-origins-and-modern-day-celebrations/) suggest that this was done to Christianize the pagan festival Lupercalia which was celebrated on 15 February. 
 

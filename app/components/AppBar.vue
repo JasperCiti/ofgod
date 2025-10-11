@@ -21,17 +21,32 @@
     <BreadcrumbNav :breadcrumbs="breadcrumbs" class="flex-grow-1" />
 
     <!-- Action buttons (right-aligned) -->
-    <v-tooltip text="Print page" location="bottom">
-      <template v-slot:activator="{ props }">
-        <v-btn v-bind="props" icon="mdi-printer" @click="handlePrint" class="mr-2" />
-      </template>
-    </v-tooltip>
 
     <v-tooltip text="Toggle theme" location="bottom">
       <template v-slot:activator="{ props }">
         <v-btn v-bind="props" icon="mdi-brightness-6" @click="toggleTheme" />
       </template>
     </v-tooltip>
+
+    <v-tooltip text="Print page" location="bottom">
+      <template v-slot:activator="{ props }">
+        <v-btn v-bind="props" icon="mdi-printer" @click="handlePrint" class="mr-2" />
+      </template>
+    </v-tooltip>
+
+    <v-tooltip text="Edit on GitHub" location="bottom">
+      <template v-slot:activator="{ props }">
+        <v-btn
+          v-bind="props"
+          icon="mdi-pencil"
+          :href="editUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mr-2"
+        />
+      </template>
+    </v-tooltip>
+    
   </v-app-bar>
 </template>
 
@@ -49,6 +64,7 @@ const emit = defineEmits<{
 
 const route = useRoute()
 const { toggleTheme } = useAppTheme()
+const { getEditUrl } = useGitHubEdit()
 
 // Generate breadcrumbs for current route
 const breadcrumbs = ref<BreadcrumbItem[]>([])
@@ -56,6 +72,9 @@ const breadcrumbs = ref<BreadcrumbItem[]>([])
 async function loadBreadcrumbs() {
   breadcrumbs.value = await generateBreadcrumbs(route.path)
 }
+
+// Generate GitHub edit URL
+const editUrl = computed(() => getEditUrl())
 
 // Watch for route changes
 watch(() => route.path, () => {

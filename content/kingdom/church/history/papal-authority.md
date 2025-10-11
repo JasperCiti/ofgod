@@ -1,10 +1,5 @@
----
-title: The Papal Authority
-published: true
-navigation:
-  title: The Papal Authority
-  order: 23
----
+# The Papal Authority
+
 
 In 1302 Pope Boniface VIII declared:
 

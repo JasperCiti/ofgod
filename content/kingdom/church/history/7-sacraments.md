@@ -1,12 +1,7 @@
----
-title: The 7 Sacraments
-published: true
-navigation:
-  title: The 7 Sacraments
-  order: 21
----
+# The 7 Sacraments
 
-In 1215, [the Fourth Lateran Council](https://www.catholic.org/encyclopedia/view.php?id=6883) was convened by Pope Innocent III and was attended by over 400 bishops from all over Europe. The council's decree on **7 sacraments that are necessary for [salvation](/eternal/saved)**, namely:
+
+In 1215, [the Fourth Lateran Council](https://www.catholic.org/encyclopedia/view.php?id=6883) was convened by Pope Innocent III and was attended by over 400 bishops from all over Europe. The council's decree on **7 sacraments that are necessary for [salvation](/content/kingdom/eternal/saved.md)**, namely:
 
 1. Baptism
 2. Confirmation

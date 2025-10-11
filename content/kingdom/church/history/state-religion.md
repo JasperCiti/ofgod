@@ -1,10 +1,5 @@
----
-title: The Roman Catholic state religion
-published: true
-navigation:
-  title: The Roman Catholic state religion
-  order: 13
----
+# The Roman Catholic state religion
+
 
 In 379 [Theodosius I](https://en.wikipedia.org/wiki/Theodosius_I) became [emperor and co-reigned](https://www.britannica.com/biography/Theodosius-I) with [Gratian](https://en.wikipedia.org/wiki/Gratian).
 
@@ -14,7 +9,7 @@ On 24 November 380, [Theodosius expelled Demophilus](https://www.catholic.com/en
 
 In January 381, [Theodosius closed Arian chapels](https://revelationbyjesuschrist.com/theodosius/) which resulted in a riot by the citizens.
 
-# The Niceno-Constantinopolitan Creed
+## The Niceno-Constantinopolitan Creed
 
 In July 381, the First Council of Constantinople expanded [the Nicaea Creed](https://en.wikipedia.org/wiki/Nicene_Creed) to address Arianism disputes. This version is:
 

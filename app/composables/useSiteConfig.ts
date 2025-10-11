@@ -2,28 +2,38 @@ interface SiteConfig {
   domain: string
   siteName: string
   canonicalBase: string
+  githubRepo: string
+  githubBranch: string
 }
 
 const SITE_CONFIGS = {
   son: {
     domain: 'son.ofgod.info',
     siteName: 'Son of God',
-    canonicalBase: 'https://son.ofgod.info'
+    canonicalBase: 'https://son.ofgod.info',
+    githubRepo: 'JasperCiti/ofgod',
+    githubBranch: 'main'
   },
   kingdom: {
     domain: 'kingdom.ofgod.info',
     siteName: 'Kingdom of God',
-    canonicalBase: 'https://kingdom.ofgod.info'
+    canonicalBase: 'https://kingdom.ofgod.info',
+    githubRepo: 'JasperCiti/ofgod',
+    githubBranch: 'main'
   },
   church: {
     domain: 'church.ofgod.info',
     siteName: 'Church of God',
-    canonicalBase: 'https://church.ofgod.info'
+    canonicalBase: 'https://church.ofgod.info',
+    githubRepo: 'JasperCiti/ofgod',
+    githubBranch: 'main'
   },
   eternal: {
     domain: 'ofgod.info',
     siteName: 'Of God',
-    canonicalBase: 'https://ofgod.info'
+    canonicalBase: 'https://ofgod.info',
+    githubRepo: 'JasperCiti/ofgod',
+    githubBranch: 'main'
   }
 } as const
 

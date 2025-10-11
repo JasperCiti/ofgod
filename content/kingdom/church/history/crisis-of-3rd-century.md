@@ -1,10 +1,5 @@
----
-title: The Crisis of the Third Century
-published: true
-navigation:
-  title: The Crisis of the Third Century
-  order: 8
----
+# The Crisis of the Third Century
+
 
 [The Crisis of the Third Century](https://worldhistoryedu.com/crisis-of-the-thrid-century/) started in 235 where there were political instability and division in the Roman Empire. During this period, [26 emperors ruled](https://courses.lumenlearning.com/atd-herkimer-westerncivilization/chapter/crises-of-the-roman-empire/), by which many of them were quickly removed from their thrones after only a few months. 
 

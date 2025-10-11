@@ -1,10 +1,5 @@
----
-title: The History of the Church
-published: true
-navigation:
-  title: The History of the Church
-  order: 20
----
+# The Crusades
+
 
 In 1071, [the Byzantine Empire lost territory to the Muslims](https://en.wikipedia.org/wiki/Crusades) after the Battle of Manzikert. Therefore, [the empire used religious motivations in attempt to regain control](https://en.wikipedia.org/wiki/Crusades) of *"the holy places"* (Israel). Religious motivations included:
 * Defending Christianity

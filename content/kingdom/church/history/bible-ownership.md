@@ -1,10 +1,5 @@
----
-title: Bible Ownership
-published: true
-navigation:
-  title: Bible Ownership
-  order: 22
----
+# Bible Ownership
+
 
 In 1229, [the Council of Toulouse](https://en.wikipedia.org/wiki/Council_of_Toulouse) decree: 
 

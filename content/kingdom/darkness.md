@@ -1,22 +1,17 @@
----
-title: World of Darkness
-published: true
-navigation:
-  title: World of Darkness
-  order: 0
----
+# World of Darkness
 
-# The Owner of our world
+
+## The Owner of our world
 
 If one consider all the suffering, injustice and wickeness in our world, it is easy to belief that the devil is reigning over our world. However, the Bible scriptures says otherwise:
 
-## God owns everything
+### God owns everything
 
-> **The earth is [the LORD](/god/father/name#yhvh)’s, and all its fullness, the world and those who dwell therein.** -- Psalms 24:1 (NKJV)
+> **The earth is [the LORD](/content/kingdom/god/father/name.md#yhvh)’s, and all its fullness, the world and those who dwell therein.** -- Psalms 24:1 (NKJV)
 
 And King David believed God is the supreme ruler:
 
-> [The LORD](/god/father/name#yhvh) has established His throne in heaven, and **His kingdom rules over all**.  
+> [The LORD](/content/kingdom/god/father/name.md#yhvh) has established His throne in heaven, and **His kingdom rules over all**.  
 > Bless the LORD, you His angels, who excel in strength, who do His word, heeding the voice of His word.  
 > Bless the LORD, all you His hosts, you ministers of His, who do His pleasure.  
 > Bless the LORD, all His works, in all places of His dominion.  
@@ -26,9 +21,9 @@ And King David believed God is the supreme ruler:
 
 and
 
-> Therefore David blessed [The LORD](/god/father/name#yhvh) before all the assembly; and David said:
+> Therefore David blessed [The LORD](/content/kingdom/god/father/name.md#yhvh) before all the assembly; and David said:
 >
-> “Blessed are You, Lord God of Israel, our [Father](/god/father), forever and ever.  
+> “Blessed are You, Lord God of Israel, our [Father](/content/kingdom/god/father.md), forever and ever.  
 > Yours, O Lord, is the greatness: the power and the glory, the victory and the majesty;  
 > For **all that is in heaven and in earth is Yours**;  
 > **Yours is the kingdom**, O Lord, and **You are exalted as head over all**.  
@@ -50,7 +45,7 @@ In addition, Jesus also implied that God is in control even to the smallest deta
 >
 > -- Matthew 10:29-30 (NKJV)
 
-## Delegated authority to humanity
+### Delegated authority to humanity
 
 Though God is the absolute sovereign and owner, He chose to delegate real authority to humanity:
 
@@ -62,7 +57,7 @@ Though God is the absolute sovereign and owner, He chose to delegate real author
 >
 > -- Genesis 1:26 (NKJV)
 
-Some reason that [the fall of man](/eternal) cancelled this privilege based on the devil's own words: 
+Some reason that [the fall of man](/content/kingdom/eternal.md) cancelled this privilege based on the devil's own words: 
 
 > And the devil took him up and showed him all the kingdoms of the world in a moment of time, and said to him *(Jesus)*, 
 >
@@ -94,13 +89,13 @@ King David also wrote:
 
 God gave humans genuine dominion - authority that could be used properly or abused. This sets the stage for understanding how evil entered the world.
 
-# The Battle for Control
+## The Battle for Control
 
 We were given dominion, but we lost it. How? Through idolatry - the root of all sin:
 
 > Therefore put to death your members which are on the earth: fornication, uncleanness, passion, evil desire, and covetousness, **which is idolatry**. -- Colossians 3:5 (NKJV)
 
-[Sin](/bible/concepts/sin) is caused by [idolatry](/bible/concepts/idolatry).
+[Sin](/content/kingdom/bible/concepts/sin.md) is caused by [idolatry](/content/kingdom/bible/concepts/idolatry.md).
 
 > Then his mind changes, and he **transgresses; He commits offense, ascribing this [power](https://biblehub.com/hebrew/3581.htm) to his god**. -- Habakkuk 1:11 (NKJV)
 
@@ -112,7 +107,7 @@ According to Habakkuk, idolatry is "ascribing power" [(ability, might, strength,
 
 The reason why we worry or serve two masters is because we don't trust God. 
 
-## 1. Doubting God
+### 1. Doubting God
 
 Jesus explained through the parable of the sower why we fail to trust God (Mark 4:2-20; Matthew 13:3-23; Luke 8:4-18):
 
@@ -127,7 +122,7 @@ Jesus explained through the parable of the sower why we fail to trust God (Mark 
   * Wealth: We prioritize "the riches of this world" above God (for example the rich man (Luke 18:18-25))
   * Popularity: We prioritize "the desires of others" above God (for example Adam (Genesis 3), King Saul (1 Samuel 13, 15), King Solomon (1 Kings 11), King Ahab (1 Kings 18))
 
-### Consequences of doubt
+#### Consequences of doubt
 
 When we doubt God, we seek **independance from God** because **we do not trust** that God will meet our needs.
 
@@ -147,20 +142,20 @@ Even Jesus had to face these same temptations (Matthew 4; Luke 4):
 
 Our lack of trust in God makes us vulnerable to temptations.
 
-## 2. Coping mechanisms
+### 2. Coping mechanisms
 
 We are all mortal beings that need godly provision, protection and acknowledgement. We were not meant to live independantly from God. Without God, we have to resort to coping mechanisms.
 
 It would be impossible to list every single sin here. These are just some over-simplified scenarios to illustrate that every coping mechanism leads to some sort of sin. 
 
-### Coping with discontentment
+#### Coping with discontentment
 * Jealousy: Discontent with God's provision, therefore they covet what other people have - this often leads to envy, slander, theft or murder
 * Gluttony: Discontent with situation, therefore resorting to overconsumption as a coping mechanism - often at the cost of their health
 * Lust: Discontent with the level of intimacy with God, therefore they resort to sexual gratification as a substitute which leads to sexual fantasies, seduction, kidnapping or rape.
 * Greed: Discontent with God's provision, therefore they hoard resources - often at the cost of others
 * Slothfulness: Often associated with people who gave up hope (Proverbs 21:25–26) - often leads to despair
 
-### Coping with fear
+#### Coping with fear
 * Wrath: Fear they need to defend themselves against an offender by responding with wrath which may lead to malice.
 * Manipulation: Fear they need to control others which may lead to betrayal, extortion, deception, bribery, witchcraft, rebellion, etc.
 * Compromise: Some fear rejections by people more than God's authority. This often leads to disobedience.
@@ -168,7 +163,7 @@ It would be impossible to list every single sin here. These are just some over-s
 * Greed: Fear that they may lack in the future, therefore they hoard resources - often at the cost of others
 * Slothfulness: Some fear failure (Proverbs 22:13; Ecclesiastes 11:4) - leads to unnecessary procrastination and damage
 
-### Pride
+#### Pride
 Pride is present when we do not acknowledge God's authority.
 * Arrogance: Disregard God's authority by self-idolization may lead to disrespectful behavior which may encourage others to retaliate in response.
 * Impatience: Disregard God's timing because they believe they know better than God - this often leads to theft, disobedience, rebellion or violence
@@ -176,9 +171,9 @@ Pride is present when we do not acknowledge God's authority.
 * Resentment: Disregard God's judgement, but cannot execute own justice, so they resort to passive sin like envy, bitterness and unforgiveness.
 * Slothfulness: Caused by entitlement or pride (Proverbs 26:16) - leads to neglecting responsibilities and damage
 
-## 3. Defilement
+### 3. Defilement
 
-Sin always defiles what God declared [holy](/bible/concepts/holy) or honoured like:
+Sin always defiles what God declared [holy](/content/kingdom/bible/concepts/holy.md) or honoured like:
 
 * Time: Dedicated time for special events or sabaths (Genesis 2:3; Exodus 16:22-26, 31:14-15, 35:2; Deuteronomy 5:12)
 * Environment: Land, cities, water and air (Exodus 3:4-5, 15:13, 26:33-34, 28:35, 28:42-43, 29:31, 40:9-11, Joshua 5:15).
@@ -219,7 +214,7 @@ Sin always defiles what God declared [holy](/bible/concepts/holy) or honoured li
 
 There are many more example in the Bible.
 
-## 4. Seperation from God
+### 4. Seperation from God
 
 Our sins create a cascade of defilement which separates us from our Holy God.
 
@@ -234,7 +229,7 @@ Our sins create a cascade of defilement which separates us from our Holy God.
 >
 > -- Isaiah 59:1-3 (NKJV)
 
-## 5. Guilt
+### 5. Guilt
 
 The universal principle is that when someone was wronged, someone needs to "pay" for the damage (for example: Exodus 22:1-15; Numbers 5:6-7; Leviticus 6:1-5).
 
@@ -251,7 +246,7 @@ That is why the accuser as the right to condemn sinners (for example Job 1:6-12;
 
 To cope with condemnation, we resort to more coping mechanisms, creating more sin. It's like trying to extinguish fire with oil. We believe the lie that we have "no choice" or must "temporarily" do wrong.
 
-# How the devil rules
+## How the devil rules
 
 While it might seem like the devil is the god of this world, he technically does not own anyone or even have any dominion by himself. 
 
@@ -271,7 +266,7 @@ This is how the devil "rules" the world:
 5. All these selfish desires leads to **sin**
 6. All sin causes **defilement** of time, environment, life, objects, data, sound, relationships
 7. Defilement has 3 consequences:
-   * God is holy and do not compromise on defilement. Therefore we are **separated from God** ([unrighteousness](/bible/concepts/righteousness))
+   * God is holy and do not compromise on defilement. Therefore we are **separated from God** ([unrighteousness](/content/kingdom/bible/concepts/righteousness.md))
    * Defilement causes corruption, damage, pain and death to God's creation
    * Guilt leads to condemnation which leads to destruction and death
 8. To compensate for these consequences, we apply **more coping mechanisms** independant from God
@@ -334,11 +329,11 @@ According to (Luke 4:18-21), Jesus also quoted:
 >
 > -- Isaiah 61:1 (NKJV)
 
-## The Kingdom of Darkness
+### The Kingdom of Darkness
 
 Scripture does not reveals two competing gods, but one sovereign God and a rebellious creature who exploits human disobedience. Paul clarifies:
 
-> But even if our gospel is veiled, it is veiled to those who are perishing, **whose minds the god of this age has blinded**, who do not [believe](/life/faith)... -- 2 Corinthians 4:3-4 (NKJV)
+> But even if our gospel is veiled, it is veiled to those who are perishing, **whose minds the god of this age has blinded**, who do not [believe](/content/kingdom/life/faith.md)... -- 2 Corinthians 4:3-4 (NKJV)
 
 However, in this context it means that "those whose minds are blinded" follow a false "god" instead of the true God. Paul explains it more clearly in Ephesians:
 
@@ -348,7 +343,7 @@ However, in this context it means that "those whose minds are blinded" follow a 
 >
 > -- Eph`siyim / Ephesians 2:1-3 TS2009 
 
-*Note: Some [bible translations](/bible/translations) like the NIV replace "authority" with "kingdom" which is an incorrect translation of the book of Ephesians according to the Strong's Concordance. Other bible translations like the KJV or ESV replaces "authority" with "power" which could be correct as long as we understand that the devil received his "power" by "the authority" that we gave him in our disobedience to God.*
+*Note: Some [bible translations](/content/kingdom/bible/translations.md) like the NIV replace "authority" with "kingdom" which is an incorrect translation of the book of Ephesians according to the Strong's Concordance. Other bible translations like the KJV or ESV replaces "authority" with "power" which could be correct as long as we understand that the devil received his "power" by "the authority" that we gave him in our disobedience to God.*
 
 "The ruler" is an evil spirit that tempt us to be disobedient by lust and wrath so that we may loose our God given authority. Sin makes us vulnerable to "the wicked one"'s influence according to John:
 
@@ -411,11 +406,11 @@ We have not been left under the mercy of evil rulers who are under the influence
 
 > He *(God)* removes kings and raises up kings. -- Daniel 2:21 (NKJV)
 
-# Defeating darkness
+## Defeating darkness
 
-## Deliverance
+### Deliverance
 
-> He *(God, the Father)* has **delivered us from the power of darkness** and conveyed us into [the kingdom of the Son](/kingdom) of His love, in whom we have [redemption through his blood](/god/covenants/christ), the forgiveness of sins. -- Colossians 1:13-14 (NKJV)
+> He *(God, the Father)* has **delivered us from the power of darkness** and conveyed us into [the kingdom of the Son](/content/kingdom/kingdom.md) of His love, in whom we have [redemption through his blood](/content/kingdom/god/covenants/christ.md), the forgiveness of sins. -- Colossians 1:13-14 (NKJV)
 
 "The power" that the devil have is nothing but a "legal demand" of "debt":
 
@@ -475,13 +470,13 @@ Some argue that this command was only given to Jesus' direct disciples, but Mark
 >
 > ...
 >
-> The seventy-two returned with joy, saying, “Lord, even the demons are subject to us in your [name *(authority)*](/bible/concepts/name)!” 
+> The seventy-two returned with joy, saying, “Lord, even the demons are subject to us in your [name *(authority)*](/content/kingdom/bible/concepts/name.md)!” 
 >
 > -- Luke 10:1,17 (ESV)
 
 John witnessed that Jesus taught:
 
-> “Truly, truly, I say to you, **whoever** believes in me **will also do the works that I do; and greater works than these will he do**, because I am going to the Father. Whatever you ask in my [name *(authority)*](/bible/concepts/name), this I will do, that the Father may be glorified in the Son. If you ask me anything in my [name *(authority)*](/bible/concepts/name), I will do it. -- John 14:12-14 ESV
+> “Truly, truly, I say to you, **whoever** believes in me **will also do the works that I do; and greater works than these will he do**, because I am going to the Father. Whatever you ask in my [name *(authority)*](/content/kingdom/bible/concepts/name.md), this I will do, that the Father may be glorified in the Son. If you ask me anything in my [name *(authority)*](/content/kingdom/bible/concepts/name.md), I will do it. -- John 14:12-14 ESV
 
 The name "Jesus" is not some magic word that forces demons into submission. The key is to ask in Jesus' authority. Authority is received by humility:
 
@@ -513,7 +508,7 @@ Your goal should be to "draw near to God": This means you need to "cleanse" (rep
 
 Humility is often associated with powerlessness, but ironically it is the humble that "the Lord will lift up".
 
-## Changing Your Thoughts
+### Changing Your Thoughts
 
 > **Be anxious for nothing**, but in everything **by prayer and supplication, with thanksgiving, let your requests be made known to God**; and the peace of God, which surpasses all understanding, will **guard your hearts and minds** through Christ Jesus. Finally, brethren, 
 > * whatever things are true, 
@@ -549,27 +544,27 @@ God personally said to Job that we should "depart from evil".
 
 > Behold, the fear of the Lord, that is wisdom, and to **depart from evil** is understanding. -- Job 28:28 (NKJV)
 
-## The armor of God
+### The armor of God
 
 None of us is invincible. We all need to be on guard and willing to fight back for God's Kingdom.
 
 > For we **do not wrestle against flesh and blood**, but against principalities, against powers, against the rulers of the darkness of this age, against spiritual hosts of wickedness in the heavenly places.
 >
-> Therefore take up [the whole armor of God](/life/armor), that you may be able to withstand in the evil day, and having done all, to stand.
+> Therefore take up [the whole armor of God](/content/kingdom/life/armor.md), that you may be able to withstand in the evil day, and having done all, to stand.
 >
 > -- Ephesians 6:12-13 (NKJV)
 
 The "armor of God" is:
 
-1. [truth](/bible/metaphors/light): Guard your [reputation](/bible/concepts/name) by speaking the truth (2 Corinthians 6:7)
-2. [righteousness](/bible/concepts/righteousness): Guard your heart against [idols](/bible/concepts/idolatry) by [loving God instead](/eternal/saved/love) (1 Thessalonians 5:8; 2 Corinthians 6:6)
-3. [the good news](/bible/concepts/testimony): [Spread the revelation of God's Kingdom](/bible/concepts/testimony)
-4. [faith/trust](/life/faith): [Trust God](/bible/concepts/faith) when under attack in difficult times
-5. [salvation](/bible/concepts/salvation): Guard your mind against temptations, [sin](/bible/concepts/sin) and condemnation (1 Thessalonians 5:8-9; Romans 12:2)
-6. [word of God](/bible/concepts/word): Obey God's word (1 John 2:3-6)
-7. [prayer & supplication](/life/prayer): Persevere by earnestly and [humbly](/bible/concepts/humility) praying for all the saints (Romans 12:12)
+1. [truth](/content/kingdom/bible/metaphors/light.md): Guard your [reputation](/content/kingdom/bible/concepts/name.md) by speaking the truth (2 Corinthians 6:7)
+2. [righteousness](/content/kingdom/bible/concepts/righteousness.md): Guard your heart against [idols](/content/kingdom/bible/concepts/idolatry.md) by [loving God instead](/content/kingdom/eternal/saved/love.md) (1 Thessalonians 5:8; 2 Corinthians 6:6)
+3. [the good news](/content/kingdom/bible/concepts/testimony.md): [Spread the revelation of God's Kingdom](/content/kingdom/bible/concepts/testimony.md)
+4. [faith/trust](/content/kingdom/life/faith.md): [Trust God](/content/kingdom/bible/concepts/faith.md) when under attack in difficult times
+5. [salvation](/content/kingdom/bible/concepts/salvation.md): Guard your mind against temptations, [sin](/content/kingdom/bible/concepts/sin.md) and condemnation (1 Thessalonians 5:8-9; Romans 12:2)
+6. [word of God](/content/kingdom/bible/concepts/word.md): Obey God's word (1 John 2:3-6)
+7. [prayer & supplication](/content/kingdom/life/prayer.md): Persevere by earnestly and [humbly](/content/kingdom/bible/concepts/humility.md) praying for all the saints (Romans 12:12)
 
-## The Importance of Prayer
+### The Importance of Prayer
 
 > **Watch and pray**, **lest you enter into temptation**. The spirit indeed is willing, but the flesh is weak. -- Matthew 26:41 (NKJV)
 
@@ -577,7 +572,7 @@ And Jesus taught his disciples to pray:
 
 > In this manner, therefore, pray:
 >
-> Our Father in heaven, Hallowed be **Your name _[(authority)](/bible/concepts/name)_**.
+> Our Father in heaven, Hallowed be **Your name _[(authority)](/content/kingdom/bible/concepts/name.md)_**.
 >
 > **Your kingdom come. Your will be done** on earth as it is in heaven.
 >
@@ -608,15 +603,15 @@ Paul also advises:
 
 > **Be anxious for nothing**, but in everything **by prayer and supplication, with thanksgiving, let your requests be made known to God**; and the peace of God, which surpasses all understanding, will **guard your hearts and minds** through Christ Jesus. -- Philippians 4:6-7 (NKJV)
 
-## The Importance of the Kingdom of God
+### The Importance of the Kingdom of God
 
 When you doubt God and try to handle things yourself, Jesus advises:
 
 > **Seek first the kingdom of God and His righteousness**, and all these things shall be added to you. Therefore **do not worry** about tomorrow, for tomorrow will worry about its own things. Sufficient for the day is its own trouble. -- Matthew 6:34 (NKJV)
 
-That is why Jesus' first recorded sermon was "preaching [the gospel of the kingdom](/kingdom)" (Matthew 4:23 NKJV)
+That is why Jesus' first recorded sermon was "preaching [the gospel of the kingdom](/content/kingdom/kingdom.md)" (Matthew 4:23 NKJV)
 
-## Eternal life through obedience
+### Eternal life through obedience
 
 We need to obey God according to Jesus's word (John 14:23-24) and be taught by the Holy Spirit (John 14:26) so that we can live in union with the Father and Jesus (John 14:20) as Jesus repeatedly taught in John 14, confirmed with the parable of the vine in John 15, explained in John 16 and prayed in John 17.
 
@@ -646,7 +641,7 @@ James summarized [the devil's strategy](#how-the-devil-rules):
 
 Then James, provide 5 practical defenses against sin:
 
-### 1. Addressing Discontentment
+#### 1. Addressing Discontentment
 
 Instead of focusing on what you lack, focus on "every perfect gift from the Father" (James 1:16-18).
 
@@ -664,7 +659,7 @@ Moses even commanded:
 
 > When you have eaten and are full, then you shall bless the Lord your God for the good land which He has given you. -- Deuteronomy 8:10 (NKJV)
 
-### 2. Addressing Wrath
+#### 2. Addressing Wrath
 
 Instead of focusing on retaliation, stay calm and focus on understanding the offender's view in "meekness" to resolve the conflict (James 1:19-21).
 
@@ -683,7 +678,7 @@ The reason you usually want to retaliate is because you either doubt God's judgm
 >
 > -- Psalm 37:8-9 (NKJV)
 
-### 3. Addressing Slothfulness
+#### 3. Addressing Slothfulness
 
 Instead of being slothful, be a "doer of the word" because God "blesses" obedience (James 1:22-25).
 
@@ -696,7 +691,7 @@ Slothfulness is caused by:
   * lack of dicipline (Proverbs 6:6-11, 20:13, 24:30-34)
   * avoiding discomfort (Proverbs 20:4, 21:17, 26:13-16)
 
-### 4. Addressing Pride
+#### 4. Addressing Pride
 
 Instead of being proud, seek your reward by serving the weak (James 1:26-27)
 
@@ -720,19 +715,19 @@ Peter advised:
 
 > **Humble yourselves**, therefore, under the mighty hand of God so that at the proper time He may exalt you, **casting all your anxieties on Him**, because He cares for you.
 >
-> **Be sober-minded; be watchful**. Your adversary the devil prowls around like a roaring lion, seeking someone to devour. **Resist him**, **firm in your faith [*(trust in God)*](/life/faith)**, knowing that the same kinds of suffering are being experienced by your brotherhood throughout the world. And after you have suffered a little while, the God of all grace, Who has called you to his eternal glory in Christ, will Himself restore, confirm, strengthen, and establish you. 
+> **Be sober-minded; be watchful**. Your adversary the devil prowls around like a roaring lion, seeking someone to devour. **Resist him**, **firm in your faith [*(trust in God)*](/content/kingdom/life/faith.md)**, knowing that the same kinds of suffering are being experienced by your brotherhood throughout the world. And after you have suffered a little while, the God of all grace, Who has called you to his eternal glory in Christ, will Himself restore, confirm, strengthen, and establish you. 
 >
 > To Him be the dominion forever and ever. Amen.
 >
 > -- 1 Peter 5:6-11 (ESV)
 
-### 5. Addressing Partiality
+#### 5. Addressing Partiality
 
 Instead of favoring the rich, be impartial (James 2:1-11).
 
 > If you show partiality, **you commit sin**, and are convicted by the law as transgressors. -- James 2:9 (NKJV)
 
-## Accountability
+### Accountability
 
 The kingdom of God is not a Jesus fan-club for convenience. It's a place where you are accountable to God and to one another.
 
@@ -743,7 +738,7 @@ The kingdom of God is not a Jesus fan-club for convenience. It's a place where y
 >
 > And if he refuses to listen even to the church, let him be to you as a Gentile and a tax collector. 
 >
-> Truly, I say to you, whatever **you** bind on earth shall be bound in heaven, and whatever **you** loose on earth shall be loosed in heaven. Again I say to you, if two of **you agree** on earth about anything they ask, it will be done for them by my Father in heaven. For where two or three are gathered in my *name ([authority](/bible/concepts/name))*, there am I [among](https://biblehub.com/greek/3319.htm) them.”
+> Truly, I say to you, whatever **you** bind on earth shall be bound in heaven, and whatever **you** loose on earth shall be loosed in heaven. Again I say to you, if two of **you agree** on earth about anything they ask, it will be done for them by my Father in heaven. For where two or three are gathered in my *name ([authority](/content/kingdom/bible/concepts/name.md))*, there am I [among](https://biblehub.com/greek/3319.htm) them.”
 >
 > Then Peter came up and said to him, “Lord, how often will my brother sin against me, and I forgive him? As many as seven times?”   
 > Jesus said to him, “I do not say to you seven times, but seventy-seven times. Therefore the kingdom of heaven may be compared to...”
@@ -754,7 +749,7 @@ Then Jesus tells the parable of the servant who refused to forgive his debtor as
 
 The kingdom of God advances in the light of community and accountability. When you walk in the light together, you expose darkness not to shame, but to heal and restore.
 
-# The Kingdom of God
+## The Kingdom of God
 
 > He who **dwells in the shelter of the Most High will abide in the shadow of the Almighty**. I will say to the LORD, “My refuge and my fortress, my God, **in whom I trust**.” -- Psalm 91:1-2 (ESV)
 
@@ -762,7 +757,7 @@ and this is how God respond:
 
 > “Because he holds fast to Me in love,
 > 1. I will **deliver** him;
-> 2. I will **protect** him, because he knows My [name](/god/name).
+> 2. I will **protect** him, because he knows My [name](/content/kingdom/god/name.md).
 > 3. When he calls to me, **I will answer** him;
 > 4. I will **be with him** in trouble;
 > 5. I will **rescue him** and honor him.
@@ -773,7 +768,7 @@ and this is how God respond:
 
 In contrast to those who live in darkness, Paul wrote:
 
-> To the saints and faithful brothers *[in (with)](/bible/translations/differences/en)* Christ at Colossae...
+> To the saints and faithful brothers *[in (with)](/content/kingdom/bible/translations/differences/en.md)* Christ at Colossae...
 >
 > And so, from the day we heard, we have not ceased to pray for you, asking that
 > * you may be **filled with the knowledge of his will in all spiritual wisdom and understanding**,
