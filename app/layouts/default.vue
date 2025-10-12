@@ -1,46 +1,45 @@
 <template>
   <v-app>
-    <!-- App Bar with smart hide -->
-    <AppBar
-      :is-visible="isAppBarVisible"
-      @toggle-menu="handleToggleMenu"
-    />
+    <!-- App Bar -->
+    <AppBar @toggle-menu="handleToggleMenu" />
 
     <!-- Desktop Layout (md and up) -->
-    <div v-if="mdAndUp" class="desktop-layout">
-      <!-- Left Sidebar Column (280px - always present) -->
-      <aside
-        class="left-sidebar"
-        :class="{ 'sidebar-hidden': !sidebarsVisible, 'sidebar-shifted': currentScrollY > 0 }"
-      >
-        <AppNavigation
-          v-show="sidebarsVisible"
-          :show-search="true"
-          @select="handleNavSelect"
-        />
-      </aside>
+    <div v-if="mdAndUp" class="desktop-wrapper">
+      <div class="desktop-layout">
+        <!-- Left Sidebar Column (280px - always present) -->
+        <aside
+          class="left-sidebar"
+          :class="{ 'sidebar-hidden': !sidebarsVisible }"
+        >
+          <AppNavigation
+            v-show="sidebarsVisible"
+            :show-search="true"
+            @select="handleNavSelect"
+          />
+        </aside>
 
-      <!-- Center Content Column (flexible) -->
-      <v-main class="content-area">
-        <v-container>
-          <div ref="contentContainer">
-            <slot />
-          </div>
-        </v-container>
-      </v-main>
+        <!-- Center Content Column (flexible) -->
+        <v-main class="content-area">
+          <v-container>
+            <div ref="contentContainer">
+              <slot />
+            </div>
+          </v-container>
+        </v-main>
 
-      <!-- Right Sidebar Column (240px - conditional) -->
-      <aside
-        v-if="shouldShowTOC"
-        class="right-sidebar"
-        :class="{ 'sidebar-hidden': !sidebarsVisible, 'sidebar-shifted': currentScrollY > 0 }"
-      >
-        <AppTableOfContents
-          v-show="sidebarsVisible"
-          :toc-items="tocItems"
-          :active-id="activeHeadingId"
-        />
-      </aside>
+        <!-- Right Sidebar Column (240px - conditional) -->
+        <aside
+          v-if="shouldShowTOC"
+          class="right-sidebar"
+          :class="{ 'sidebar-hidden': !sidebarsVisible }"
+        >
+          <AppTableOfContents
+            v-show="sidebarsVisible"
+            :toc-items="tocItems"
+            :active-id="activeHeadingId"
+          />
+        </aside>
+      </div>
     </div>
 
     <!-- Mobile Layout (sm and below) -->
@@ -100,30 +99,26 @@
 </template>
 
 <script setup lang="ts">
-import { useSmartScroll } from '~/composables/useSmartScroll'
 import { useTableOfContents } from '~/composables/useTableOfContents'
 
 const { mdAndUp } = useDisplay()
 const route = useRoute()
 
-// Smart scroll for app bar
-const { isAppBarVisible, currentScrollY } = useSmartScroll()
-
-// Sidebar state (no persistence)
-const sidebarsVisible = ref(true)
-const drawerOpen = ref(false)
-
 // Table of Contents state
 const contentContainer = ref<HTMLElement>()
 const { tocItems, activeId: activeHeadingId, shouldShowTOC, generateTOC } = useTableOfContents()
 
-// Initialize sidebars visibility based on screen size
+// Sidebar state - initialize based on screen size
+const sidebarsVisible = ref(mdAndUp.value)
+const drawerOpen = ref(false)
+
+// Update sidebars visibility when screen size changes
 watch(mdAndUp, (newValue) => {
   sidebarsVisible.value = newValue
   if (!newValue) {
     drawerOpen.value = false
   }
-}, { immediate: true })
+})
 
 /**
  * Handle toggle menu (hamburger click)
@@ -204,6 +199,11 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+/* Desktop Wrapper - clips overflow for slide animations */
+.desktop-wrapper {
+  overflow-x: hidden;
+}
+
 /* Desktop Layout */
 .desktop-layout {
   display: flex;
@@ -216,24 +216,17 @@ onMounted(async () => {
   background-color: rgb(var(--v-theme-surface-rail));
   border-right: 1px solid rgb(var(--v-theme-outline-bars));
   overflow: hidden;
-  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-  position: sticky;
-  top: 56px;
-  height: calc(100vh - 56px);
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 
 .left-sidebar.sidebar-hidden {
-  background-color: rgb(var(--v-theme-surface));
+  background-color: rgb(var(--v-theme-background));
   border-right: none;
-}
-
-.left-sidebar.sidebar-shifted {
-  transform: translateY(-56px);
+  transform: translateX(-280px);
 }
 
 .content-area {
   flex: 1;
-  overflow-y: auto;
   min-width: 0;
 }
 
@@ -243,19 +236,13 @@ onMounted(async () => {
   background-color: rgb(var(--v-theme-surface-rail));
   border-left: 1px solid rgb(var(--v-theme-outline-bars));
   overflow: hidden;
-  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-  position: sticky;
-  top: 56px;
-  height: calc(100vh - 56px);
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 
 .right-sidebar.sidebar-hidden {
-  background-color: rgb(var(--v-theme-surface));
+  background-color: rgb(var(--v-theme-background));
   border-left: none;
-}
-
-.right-sidebar.sidebar-shifted {
-  transform: translateY(-56px);
+  transform: translateX(240px);
 }
 
 .content-area-mobile {

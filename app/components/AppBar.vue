@@ -2,7 +2,6 @@
   <v-app-bar
     height="56"
     class="app-bar"
-    :class="{ 'is-hidden': !isVisible }"
     flat
   >
     <!-- Hamburger menu (always visible) -->
@@ -54,10 +53,6 @@
 import { generateBreadcrumbs } from '~/composables/useBreadcrumbs'
 import type { BreadcrumbItem } from '~/composables/useBreadcrumbs'
 
-const props = defineProps<{
-  isVisible?: boolean
-}>()
-
 const emit = defineEmits<{
   'toggle-menu': []
 }>()
@@ -89,12 +84,6 @@ const handlePrint = () => {
 <style scoped>
 .app-bar {
   z-index: 1000 !important;
-  transition: transform 0.2s ease;
-  transform: translateY(0);
-}
-
-.app-bar.is-hidden {
-  transform: translateY(-100%);
 }
 
 /* Ensure breadcrumbs don't overlap with buttons */

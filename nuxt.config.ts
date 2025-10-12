@@ -88,8 +88,7 @@ export default defineNuxtConfig({
               'on-info': '#ffffff',
               'on-success': '#ffffff',
               outline: '#d0d7de',
-              'outline-bars': '#f3f4f6',
-              scrim: '#000000',
+              'outline-bars': '#f3f4f6'
             }
           },
           dark: {
@@ -119,8 +118,7 @@ export default defineNuxtConfig({
               'on-info': '#ffffff',
               'on-success': '#ffffff',
               outline: '#30363d',
-              'outline-bars': '#161b22',
-              scrim: '#000000',
+              'outline-bars': '#161b22'
             }
           }
         }
