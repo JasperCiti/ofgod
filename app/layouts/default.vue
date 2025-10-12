@@ -11,7 +11,7 @@
       <!-- Left Sidebar Column (280px - always present) -->
       <aside
         class="left-sidebar"
-        :class="{ 'sidebar-hidden': !sidebarsVisible }"
+        :class="{ 'sidebar-hidden': !sidebarsVisible, 'sidebar-shifted': currentScrollY > 0 }"
       >
         <AppNavigation
           v-show="sidebarsVisible"
@@ -33,7 +33,7 @@
       <aside
         v-if="shouldShowTOC"
         class="right-sidebar"
-        :class="{ 'sidebar-hidden': !sidebarsVisible }"
+        :class="{ 'sidebar-hidden': !sidebarsVisible, 'sidebar-shifted': currentScrollY > 0 }"
       >
         <AppTableOfContents
           v-show="sidebarsVisible"
@@ -107,7 +107,7 @@ const { mdAndUp } = useDisplay()
 const route = useRoute()
 
 // Smart scroll for app bar
-const { isAppBarVisible } = useSmartScroll()
+const { isAppBarVisible, currentScrollY } = useSmartScroll()
 
 // Sidebar state (no persistence)
 const sidebarsVisible = ref(true)
@@ -216,7 +216,7 @@ onMounted(async () => {
   background-color: rgb(var(--v-theme-surface-rail));
   border-right: 1px solid rgb(var(--v-theme-outline-bars));
   overflow: hidden;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   position: sticky;
   top: 56px;
   height: calc(100vh - 56px);
@@ -225,6 +225,10 @@ onMounted(async () => {
 .left-sidebar.sidebar-hidden {
   background-color: rgb(var(--v-theme-surface));
   border-right: none;
+}
+
+.left-sidebar.sidebar-shifted {
+  transform: translateY(-56px);
 }
 
 .content-area {
@@ -239,7 +243,7 @@ onMounted(async () => {
   background-color: rgb(var(--v-theme-surface-rail));
   border-left: 1px solid rgb(var(--v-theme-outline-bars));
   overflow: hidden;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   position: sticky;
   top: 56px;
   height: calc(100vh - 56px);
@@ -248,6 +252,10 @@ onMounted(async () => {
 .right-sidebar.sidebar-hidden {
   background-color: rgb(var(--v-theme-surface));
   border-left: none;
+}
+
+.right-sidebar.sidebar-shifted {
+  transform: translateY(-56px);
 }
 
 .content-area-mobile {

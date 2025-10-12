@@ -451,12 +451,37 @@ npm test -- bible-tooltips      # Bible verse reference parsing tests
 * `_menu.yml` files control order (fetched via HTTP, not @nuxt/content query)
 * Alphabetical fallback for unlisted pages
 
+**6. Material Design 3 Styling:**
+* Text fields use `rounded="pill"` for semi-circular ends (MD3 spec)
+* Configured globally in `nuxt.config.ts` VTextField defaults
+* All inputs inherit pill shape without component-specific overrides
+
 ### Coding Rules
 
 **DRY Principle (Mandatory):**
 * Every piece of knowledge has single source of truth
 * No duplication of code, data, logic, or configuration
 * Changes should only require modification in ONE place
+
+**CSS Unit Guidelines (Mandatory):**
+* **Use `rem` for all spacing/sizing:** padding, margin, border-radius, font-size, etc.
+* **Use `px` ONLY for:** sidebar widths (280px), border widths (1px), z-index
+* **Why:** `rem` scales with user font preferences (accessibility), prevents visual bugs
+* **Conversion:** 0.25rem=4px, 0.5rem=8px, 0.75rem=12px, 1rem=16px, 1.75rem=28px
+
+```css
+/* ✅ CORRECT */
+.search-box {
+  padding: 0.75rem;
+  border-radius: 1.75rem;
+}
+
+/* ❌ WRONG */
+.search-box {
+  padding: 12px;
+  border-radius: 28px;
+}
+```
 
 **Empty Types:**
 * `undefined` - Uninitialized fields

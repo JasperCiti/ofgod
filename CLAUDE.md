@@ -22,6 +22,34 @@ Migrates content from a Grav-based website (located at `../eternal`) to statical
 
 ## Architecture Decisions
 
+### MD3 Pill-Shaped Input Boxes (2025-10-12)
+**Problem:** Text fields had moderately rounded corners (`rounded="lg"`) but didn't match Material Design 3 spec for pill-shaped inputs with semi-circular ends.
+
+**Solution:** Configure Vuetify theme defaults to use `rounded="pill"` for all VTextField components.
+
+**Implementation:**
+```typescript
+// nuxt.config.ts - VTextField defaults
+VTextField: {
+  rounded: 'pill',  // MD3 pill shape (9999px border-radius)
+  variant: 'outlined',
+  hideDetails: 'auto',
+}
+```
+
+**Why Pill Shape:**
+- MD3 spec requires semi-circular ends on text inputs
+- Vuetify's `rounded="pill"` applies `border-radius: 9999px`
+- Creates perfect semi-circles on left/right sides
+- Consistent with modern Material Design 3 aesthetic
+
+**Benefits:**
+- Theme-level configuration ensures consistency across all text fields
+- No need for component-specific border-radius overrides
+- Search box, forms, and all inputs automatically get MD3 styling
+
+**Result:** All text fields throughout the app now have proper MD3 pill-shaped borders matching the specification.
+
 ### GitHub Edit Links (2025-10-10)
 **Problem:** Users needed ability to contribute content improvements directly via GitHub.
 
@@ -672,6 +700,59 @@ export async function watchImages() {
 - Never duplicate code, data, logic, or configuration across multiple files
 - Establish a single source of truth for each piece of information
 - Changes should only require modification in ONE place
+
+### CSS Unit Guidelines - MANDATORY
+
+**Use `rem` units for all spacing and sizing** (padding, margin, border-radius, font-size, etc.)
+
+**Exceptions - Use `px` only for:**
+- **Sidebar widths** (e.g., `280px` for navigation drawer) - affected by screen width breakpoints
+- **Border widths** (e.g., `1px` borders)
+- **z-index values** (dimensionless)
+
+**Rationale:**
+- `rem` units scale with user font preferences (accessibility)
+- Maintains consistent spacing across different screen sizes
+- Prevents visual issues like backgrounds leaking outside rounded borders
+
+**Conversion Reference:**
+```css
+/* Default: 1rem = 16px */
+0.25rem = 4px   /* Small spacing */
+0.5rem  = 8px   /* Medium spacing */
+0.75rem = 12px  /* Large spacing */
+1rem    = 16px  /* Standard spacing */
+1.5rem  = 24px  /* Extra large */
+1.75rem = 28px  /* Pill border radius */
+```
+
+**Examples:**
+```css
+/* ✅ CORRECT - Use rem */
+.search-box {
+  padding: 0.75rem;
+  border-radius: 1.75rem;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* ❌ WRONG - Don't use px for spacing */
+.search-box {
+  padding: 12px;
+  border-radius: 28px;
+  margin-top: 8px;
+}
+
+/* ✅ CORRECT - Sidebar width uses px */
+.v-navigation-drawer {
+  width: 280px;
+}
+
+/* ✅ CORRECT - Border width uses px */
+.card {
+  border: 1px solid;
+}
+```
 
 ### Empty Types
 

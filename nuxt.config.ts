@@ -64,62 +64,62 @@ export default defineNuxtConfig({
           light: {
             dark: false,
             colors: {
-              primary: '#2564e0',
-              secondary: '#ffffff',
-              selectable: '#dfe1e5',
-              error: '#d64d5b',
-              warning: '#c29e4a',
-              info: '#548af7',
-              success: '#6aab73',
-              background: '#f3f4f5',
+              primary: '#0969da',     // GitHub link
+              secondary: '#656d76',   // GitHub gray
+              selectable: '#dbe3eb',
+              error: '#d1242f',        // GitHub red
+              warning: '#bf8700',      // GitHub yellow/orange
+              info: '#0969da',         // Info blue
+              success: '#1a7f37',      // GitHub green
+              background: '#f6f8fa',
               surface: '#ffffff',
-              'surface-rail': '#dfe1e5',
-              'surface-appbar': '#e7eaed',
+              'surface-rail': '#edf1f5',
+              'surface-appbar': '#e4eaf0',
               'on-surface-rail': '#32302a',
               'on-surface-appbar': '#000000',
-              'on-background': '#51424e',
-              'on-surface': '#2a241b',
+              'on-background': '#24292f',
+              'on-surface': '#24292f',
               'on-primary': '#ffffff',
-              'on-secondary': '#25211d',
-              'on-selectable': '#25211d',
+              'on-secondary': '#ffffff',
+              'on-selectable': '#24292f',
               'on-selected': '#000000',
               'on-error': '#ffffff',
               'on-warning': '#000000',
               'on-info': '#ffffff',
               'on-success': '#ffffff',
-              outline: '#a6a4a1',
-              'outline-bars': '#e1e0dd',
+              outline: '#d0d7de',
+              'outline-bars': '#f3f4f6',
               scrim: '#000000',
             }
           },
           dark: {
             dark: true,
             colors: {
-              primary: '#4584ff',
-              secondary: '#2b2d30',
-              selectable: '#454749',
-              error: '#d64d5b',
-              warning: '#c29e4a',
-              info: '#548af7',
-              success: '#6aab73',
-              background: '#1e1f22',
-              surface: '#2b2d30',
-              'surface-rail': '#343638',
-              'surface-appbar': '#3c3e41',
+              primary: '#58a6ff',      // GitHub link,
+              secondary: '#8b949e',    // GitHub dark gray
+              selectable: '#313943',
+              error: '#f85149',        // GitHub dark red
+              warning: '#d29922',      // GitHub dark yellow
+              info: '#58a6ff',         // Info blue
+              success: '#3fb950',      // GitHub dark green
+              background: '#161b22',
+              surface: '#0d1117',
+              'surface-rail': '#1f252d',
+              'surface-appbar': '#282f38',
               'on-surface-rail': '#ced0d6',
               'on-surface-appbar': '#ffffff',
-              'on-background': '#aebdb2',
-              'on-surface': '#d5dbe4',
-              'on-primary': '#ffffff',
-              'on-secondary': '#dadee2',
-              'on-selectable': '#dadee2',
+              'on-background': '#c9d1d9',
+              'on-surface': '#c9d1d9',
+              'on-primary': '#0d1117',
+              'on-secondary': '#0d1117',
+              'on-selectable': '#c9d1d9',
               'on-selected': '#ffffff',
               'on-error': '#ffffff',
               'on-warning': '#ffffff',
               'on-info': '#ffffff',
               'on-success': '#ffffff',
-              outline: '#595959',
-              'outline-bars': '#1e1f22',
+              outline: '#30363d',
+              'outline-bars': '#161b22',
               scrim: '#000000',
             }
           }
@@ -129,7 +129,7 @@ export default defineNuxtConfig({
       defaults: {
         // Form Controls
         VTextField: {
-          rounded: 'lg',
+          rounded: 'pill',
           variant: 'outlined',
           hideDetails: 'auto',
         },

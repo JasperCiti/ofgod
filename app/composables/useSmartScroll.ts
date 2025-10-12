@@ -3,6 +3,7 @@
  */
 export function useSmartScroll() {
   const isAppBarVisible = ref(true)
+  const currentScrollY = ref(0)
   const lastScrollY = ref(0)
   const scrollThreshold = 100
 
@@ -12,25 +13,25 @@ export function useSmartScroll() {
   function handleScroll() {
     if (!import.meta.client) return
 
-    const currentScrollY = window.scrollY
+    currentScrollY.value = window.scrollY
 
     // Always show if at top
-    if (currentScrollY <= scrollThreshold) {
+    if (currentScrollY.value <= scrollThreshold) {
       isAppBarVisible.value = true
-      lastScrollY.value = currentScrollY
+      lastScrollY.value = currentScrollY.value
       return
     }
 
     // Scrolling down - hide app bar
-    if (currentScrollY > lastScrollY.value && currentScrollY > scrollThreshold) {
+    if (currentScrollY.value > lastScrollY.value && currentScrollY.value > scrollThreshold) {
       isAppBarVisible.value = false
     }
     // Scrolling up - show app bar
-    else if (currentScrollY < lastScrollY.value) {
+    else if (currentScrollY.value < lastScrollY.value) {
       isAppBarVisible.value = true
     }
 
-    lastScrollY.value = currentScrollY
+    lastScrollY.value = currentScrollY.value
   }
 
   // Debounced scroll handler
@@ -60,6 +61,7 @@ export function useSmartScroll() {
   })
 
   return {
-    isAppBarVisible
+    isAppBarVisible,
+    currentScrollY
   }
 }
