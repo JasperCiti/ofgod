@@ -41,7 +41,7 @@ Prompt the user about each warning detected and ask the user if it should be cor
 - [ ] Check that bible verses are quoted correctly from the bible
 - [ ] Check that the author's sentences are readable without unnecessary repetitions (except for quoted text)
 - [ ] Old Testament bible verses generally refer to `the LORD` with `LORD` in ALL CAPITAL LETTERS and New Testament bible verses generally refer to `the Lord` with only the L of Lord in capital letters.
-- [ ] Suggest how sarcasm or rhetorical questions could be rewritten to non offensive statements or conclusions.
+- [ ] Warn if the author's tone appear arrogant, offensive or divisive. Suggest how sarcasm or rhetorical questions could be rewritten to kind friendly statements or conclusions.
 - [ ] Warn about opinions of the author that is not factually proven unless the author specifically says it is his opinion ("I think...", "It seems like...", "Possible interpretations are...")
 
 Report any issues found with specific line numbers and suggested fixes. Provide a summary of conformance and any recommended improvements.
@@ -79,4 +79,3 @@ Critically evaluate every statement of the author and recommend how it could be 
 - [ ] Check for reasoning errors or fallacies. The author's evidence should be logically valid
 - [ ] Suggest how critiques would respond to this article and what counter arguments they may use against this article.
 - [ ] For each counter argument, suggest a potential improvement to address each counter argument of critiques with supporting evidence like common sense, bible scriptures or links to reputable external websites.
-

@@ -12,7 +12,6 @@
           :class="{ 'sidebar-hidden': !sidebarsVisible }"
         >
           <AppNavigation
-            v-show="sidebarsVisible"
             :show-search="true"
             @select="handleNavSelect"
           />
@@ -21,7 +20,7 @@
         <!-- Center Content Column (flexible) -->
         <v-main class="content-area">
           <v-container>
-            <div ref="contentContainer">
+            <div ref="desktopContentContainer">
               <slot />
             </div>
           </v-container>
@@ -34,7 +33,6 @@
           :class="{ 'sidebar-hidden': !sidebarsVisible }"
         >
           <AppTableOfContents
-            v-show="sidebarsVisible"
             :toc-items="tocItems"
             :active-id="activeHeadingId"
           />
@@ -54,7 +52,7 @@
         <div class="drawer-content">
           <!-- Search Box -->
           <SearchBox
-            @select="handleSearchSelect"
+            @select="handleMobileSelection"
           />
 
           <v-divider class="my-2" />
@@ -70,7 +68,7 @@
                   :toc-items="tocItems"
                   :active-id="activeHeadingId"
                   :show-header="false"
-                  @item-click="handleTocClick"
+                  @item-click="handleMobileSelection"
                 />
               </v-expansion-panel-text>
             </v-expansion-panel>
@@ -81,7 +79,7 @@
           <!-- Navigation Tree -->
           <AppNavigation
             :show-search="false"
-            @select="handleMobileNavSelect"
+            @select="handleMobileSelection"
           />
         </div>
       </v-navigation-drawer>
@@ -89,12 +87,15 @@
       <!-- Full-width Content -->
       <v-main class="content-area-mobile">
         <v-container>
-          <div ref="contentContainer">
+          <div ref="mobileContentContainer">
             <slot />
           </div>
         </v-container>
       </v-main>
     </div>
+
+    <!-- Footer Bar (always visible on all layouts) -->
+    <AppFooter />
   </v-app>
 </template>
 
@@ -105,8 +106,12 @@ const { mdAndUp } = useDisplay()
 const route = useRoute()
 
 // Table of Contents state
-const contentContainer = ref<HTMLElement>()
+const desktopContentContainer = ref<HTMLElement>()
+const mobileContentContainer = ref<HTMLElement>()
 const { tocItems, activeId: activeHeadingId, shouldShowTOC, generateTOC } = useTableOfContents()
+
+// Computed ref that returns the correct container based on screen size
+const contentContainer = computed(() => mdAndUp.value ? desktopContentContainer.value : mobileContentContainer.value)
 
 // Sidebar state - initialize based on screen size
 const sidebarsVisible = ref(mdAndUp.value)
@@ -142,106 +147,159 @@ function handleNavSelect(path: string) {
 }
 
 /**
- * Handle navigation selection (mobile)
+ * Handle any selection in mobile drawer (navigation, search, or TOC)
+ * Auto-closes drawer after selection
  */
-function handleMobileNavSelect(path: string) {
-  // Auto-close drawer on mobile
+function handleMobileSelection(path?: string) {
   drawerOpen.value = false
-  navigateTo(path)
+  if (path) {
+    navigateTo(path)
+  }
 }
 
 /**
- * Handle search selection (mobile)
- */
-function handleSearchSelect(path: string) {
-  drawerOpen.value = false
-  navigateTo(path)
-}
-
-/**
- * Handle TOC click (mobile)
- */
-function handleTocClick() {
-  // Auto-close drawer on mobile after TOC click
-  drawerOpen.value = false
-}
-
-/**
- * Generate TOC when content changes
+ * Generate TOC when route changes (navigation)
  */
 watch(() => route.path, async () => {
   // Clear TOC immediately when route changes
   generateTOC(null)
 
-  // Wait for content to render
+  // Wait for content to render (double nextTick for ContentRenderer)
   await nextTick()
-  await nextTick() // Double wait for ContentRenderer
+  await nextTick()
 
-  // Add small delay to ensure ContentRenderer has completed
+  // Increased delay to ensure v-main structure is fully rendered
   setTimeout(() => {
     if (contentContainer.value) {
       generateTOC(contentContainer.value)
     }
-  }, 100)
-}, { immediate: true })
+  }, 200)
+})
 
-// Generate TOC on mount
+/**
+ * Generate TOC on initial mount
+ * Separate from watch to ensure refs are available
+ */
 onMounted(async () => {
+  // Wait for content to render (ContentRenderer needs time)
+  await nextTick()
   await nextTick()
   await nextTick()
 
-  setTimeout(() => {
-    if (contentContainer.value) {
-      generateTOC(contentContainer.value)
-    }
-  }, 100)
+  // Immediate attempt
+  if (contentContainer.value) {
+    generateTOC(contentContainer.value)
+    console.log('TOC generated on mount (immediate)')
+  }
+
+  // Multiple delayed attempts with increasing delays
+  const delays = [100, 300, 600, 1000]
+  delays.forEach((delay) => {
+    setTimeout(() => {
+      if (contentContainer.value) {
+        const currentLength = tocItems.value.length
+        generateTOC(contentContainer.value)
+        if (tocItems.value.length !== currentLength) {
+          console.log(`TOC updated on mount (${delay}ms): ${currentLength} -> ${tocItems.value.length} items`)
+        }
+      }
+    }, delay)
+  })
 })
 </script>
 
-<style scoped>
-/* Desktop Wrapper - clips overflow for slide animations */
-.desktop-wrapper {
+<style>
+/* Global: Prevent horizontal scroll on body */
+body {
   overflow-x: hidden;
+  max-width: 100vw;
 }
 
-/* Desktop Layout */
+/* CSS Variables - must be unscoped */
+:root {
+  --app-bar-height: 56px;
+  --footer-height: 56px;
+  --sidebar-transition: 0.3s ease;
+}
+
+/* Print styles - hide navigation elements */
+@media print {
+  .left-sidebar,
+  .right-sidebar {
+    display: none !important;
+  }
+
+  .content-area {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100% !important;
+  }
+}
+</style>
+
+<style scoped>
+
+/* Desktop Wrapper - clips overflow for slide animations */
+.desktop-wrapper {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  overflow-y: visible;
+  position: relative;
+}
+
+/* Desktop Layout - full height flex container */
 .desktop-layout {
   display: flex;
-  min-height: calc(100vh - 56px);
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+/* Shared sidebar styles - fixed positioning with independent scrolling */
+.left-sidebar,
+.right-sidebar {
+  flex-shrink: 0;
+  background-color: rgb(var(--v-theme-surface-rail));
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 1100;
+  transition: background-color var(--sidebar-transition),
+              border-color var(--sidebar-transition),
+              transform var(--sidebar-transition);
+  will-change: transform;
 }
 
 .left-sidebar {
+  left: 0;
   width: 280px;
-  flex-shrink: 0;
-  background-color: rgb(var(--v-theme-surface-rail));
-  border-right: 1px solid rgb(var(--v-theme-outline-bars));
-  overflow: hidden;
-  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  transform: translateX(0);
 }
 
 .left-sidebar.sidebar-hidden {
   background-color: rgb(var(--v-theme-background));
-  border-right: none;
   transform: translateX(-280px);
 }
 
 .content-area {
   flex: 1;
   min-width: 0;
+  margin-left: 280px;
+  margin-right: 240px;
 }
 
 .right-sidebar {
+  right: 0;
   width: 240px;
-  flex-shrink: 0;
-  background-color: rgb(var(--v-theme-surface-rail));
-  border-left: 1px solid rgb(var(--v-theme-outline-bars));
-  overflow: hidden;
-  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  transform: translateX(0);
 }
 
 .right-sidebar.sidebar-hidden {
   background-color: rgb(var(--v-theme-background));
-  border-left: none;
   transform: translateX(240px);
 }
 

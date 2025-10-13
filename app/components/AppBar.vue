@@ -86,9 +86,27 @@ const handlePrint = () => {
   z-index: 1000 !important;
 }
 
+/* Desktop: Add margins to prevent sidebar overlap */
+@media (min-width: 960px) {
+  .app-bar :deep(.v-toolbar__content) {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-left: 280px;
+    margin-right: 240px;
+    max-width: calc(100vw - 280px - 240px);
+  }
+}
+
 /* Ensure breadcrumbs don't overlap with buttons */
 .flex-grow-1 {
   flex-grow: 1;
   min-width: 0;
+}
+
+/* Print: Hide AppBar */
+@media print {
+  .app-bar {
+    display: none !important;
+  }
 }
 </style>

@@ -623,42 +623,6 @@ ls /public/church/_menu.yml
 
 **Root Cause:** `_menu.yml` files must be in `/public/` for frontend to fetch them. If missing, navigation falls back to alphabetical sorting. Dev server now copies these files synchronously on startup before serving requests.
 
-### Links Have .md Extensions in Browser
-
-**Check:**
-* `ProseA.vue` component exists
-* Cleared cache: `rm -rf .nuxt .output`
-* Rebuild required after changes
-
-### Content Not Loading
-
-**Check:**
-1. `CONTENT` env var: `echo $CONTENT`
-2. Directory exists: `ls /content/kingdom/`
-3. Files have H1: `head /content/kingdom/page.md`
-
-**Fix:**
-```bash
-# Clear cache
-rm -rf .nuxt .output
-npm run dev
-```
-
-### Dev Server Crashes
-
-**Check:**
-* Node.js version: `node --version` (18+ required)
-* Port 3000 available: `lsof -i :3000`
-* Syntax errors in markdown/YAML
-
-**Fix:**
-```bash
-# Kill process on port 3000
-kill -9 $(lsof -t -i:3000)
-
-# Restart
-npm run dev
-```
 
 ### TypeScript Errors After Clean
 
@@ -703,41 +667,6 @@ npm run dev
 * Desktop: `<AppNavigation :show-search="true" />` (shows search)
 * Mobile: `<AppNavigation :show-search="false" />` (hides search, uses standalone)
 
-### Search Results Show Wrong Order
-
-**Symptom:** Search results appear in random order instead of by relevance
-
-**Cause:** Search relevance scoring not working or disabled
-
-**Check:**
-1. `useSearchRelevance.ts` composable exists
-2. `SearchBox.vue` imports and uses `sortByRelevance()`
-3. Browser console for JavaScript errors
-
-**Expected Behavior:**
-* Title matches appear first
-* Exact matches rank higher than partial matches
-* Shallow pages rank higher than deeply nested pages
-* Results with same score sorted alphabetically
-
-**Example** (searching "church"):
-1. `/church` (exact title match)
-2. `/church/history` (title starts with query)
-3. `/kingdom` (keyword match)
-4. `/body` (description match)
-
-### Search Result Breadcrumbs Incorrect
-
-**Symptom:** Search result breadcrumbs show incomplete paths (e.g., "church" instead of "church/history")
-
-**Cause:** Breadcrumb uses parent path instead of full path
-
-**Fix Applied (2025-10-10):** Changed from `segments.slice(0, -1).join('/')` to `segments.join('/')`
-
-**Correct Breadcrumbs:**
-* `/church` → "church"
-* `/church/history` → "church/history"
-* `/church/history/all-saints` → "church/history/all-saints"
 
 ## Migration from Grav CMS
 

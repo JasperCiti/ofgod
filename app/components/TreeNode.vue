@@ -1,13 +1,20 @@
 <template>
   <div class="tree-node-wrapper">
+    <!-- Separator rendering -->
+    <v-divider
+      v-if="node.isSeparator"
+      :style="{ marginLeft: `${depth * 1.25}rem`, marginTop: '0.5rem', marginBottom: '0.5rem', marginRight: '0.5rem' }"
+    />
+
     <div
+      v-else
       class="tree-node"
       :class="{
         'is-active': isActive,
         'is-parent': hasChildren,
         'is-expanded': isExpanded
       }"
-      :style="{ paddingLeft: `${depth * 20}px` }"
+      :style="{ paddingLeft: `${depth * 1.25}rem` }"
     >
       <!-- Expand/collapse chevron for parent nodes -->
       <v-btn
@@ -90,6 +97,11 @@ const hasChildren = computed(() => props.node.children && props.node.children.le
 const isExpanded = computed(() => props.expandedIds.has(props.node.id))
 const isActive = computed(() => props.node.path === props.activePath)
 
+// Debug: Log separator nodes
+if (import.meta.dev && props.node.isSeparator) {
+  console.log('[TreeNode] Rendering separator:', props.node)
+}
+
 // Shared tooltip configuration
 const tooltip = useTooltipConfig()
 
@@ -110,12 +122,12 @@ function handleSelect() {
 .tree-node {
   display: flex;
   align-items: center;
-  min-height: 44px;
-  padding: 4px 8px;
+  min-height: 2.75rem;
+  padding: 0.25rem 0.5rem;
   cursor: pointer;
   transition: background-color 0.15s ease;
-  border-radius: 4px;
-  margin: 2px 0;
+  border-radius: 0.25rem;
+  margin: 0.125rem 0;
 }
 
 .tree-node:hover {
@@ -128,14 +140,14 @@ function handleSelect() {
 }
 
 .chevron-button {
-  margin-right: 4px;
+  margin-right: 0.25rem;
   flex-shrink: 0;
 }
 
 .leaf-indicator {
-  width: 24px;
-  height: 24px;
-  margin-right: 4px;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.25rem;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -144,8 +156,8 @@ function handleSelect() {
 
 .leaf-indicator::before {
   content: '';
-  width: 6px;
-  height: 6px;
+  width: 0.375rem;
+  height: 0.375rem;
   border-radius: 50%;
   background-color: transparent;
   transition: background-color 0.15s ease;
@@ -182,7 +194,7 @@ function handleSelect() {
 /* Touch target size for mobile */
 @media (max-width: 599px) {
   .tree-node {
-    min-height: 48px;
+    min-height: 3rem;
   }
 }
 </style>

@@ -190,7 +190,7 @@ export default defineNuxtConfig({
           color: 'primary'
         },
         VAppBar: {
-          elevation: 6,
+          elevation: 1,
           color: 'surface-appbar'
         },
         VNavigationDrawer: {
