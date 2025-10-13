@@ -6,16 +6,23 @@
     <!-- Desktop Layout (md and up) -->
     <div v-if="mdAndUp" class="desktop-wrapper">
       <div class="desktop-layout">
-        <!-- Left Sidebar Column (280px - always present) -->
-        <aside
-          class="left-sidebar"
-          :class="{ 'sidebar-hidden': !sidebarsVisible }"
+        <!-- Left Sidebar (Navigation) -->
+        <v-navigation-drawer
+          v-model="sidebarsVisible"
+          permanent
+          absolute
+          location="left"
+          width="280"
+          :touchless="true"
+          :scrim="false"
+          :disableRouteWatcher="true"
+          class="desktop-drawer-left"
         >
           <AppNavigation
             :show-search="true"
             @select="handleNavSelect"
           />
-        </aside>
+        </v-navigation-drawer>
 
         <!-- Center Content Column (flexible) -->
         <v-main class="content-area">
@@ -26,17 +33,24 @@
           </v-container>
         </v-main>
 
-        <!-- Right Sidebar Column (240px - conditional) -->
-        <aside
+        <!-- Right Sidebar (Table of Contents) -->
+        <v-navigation-drawer
           v-if="shouldShowTOC"
-          class="right-sidebar"
-          :class="{ 'sidebar-hidden': !sidebarsVisible }"
+          v-model="sidebarsVisible"
+          permanent
+          absolute
+          location="right"
+          width="240"
+          :touchless="true"
+          :scrim="false"
+          :disableRouteWatcher="true"
+          class="desktop-drawer-right"
         >
           <AppTableOfContents
             :toc-items="tocItems"
             :active-id="activeHeadingId"
           />
-        </aside>
+        </v-navigation-drawer>
       </div>
     </div>
 
@@ -59,11 +73,11 @@
 
           <!-- "On This Page" Section (mobile only) -->
           <v-expansion-panels v-if="shouldShowTOC" flat>
-            <v-expansion-panel>
+            <v-expansion-panel color="surface-rail">
               <v-expansion-panel-title class="toc-panel-title">
                 On This Page
               </v-expansion-panel-title>
-              <v-expansion-panel-text>
+              <v-expansion-panel-text class="bg-surface-rail">
                 <AppTableOfContents
                   :toc-items="tocItems"
                   :active-id="activeHeadingId"
@@ -224,8 +238,7 @@ body {
 
 /* Print styles - hide navigation elements */
 @media print {
-  .left-sidebar,
-  .right-sidebar {
+  .v-navigation-drawer {
     display: none !important;
   }
 
@@ -256,51 +269,33 @@ body {
   position: relative;
 }
 
-/* Shared sidebar styles - fixed positioning with independent scrolling */
-.left-sidebar,
-.right-sidebar {
-  flex-shrink: 0;
-  background-color: rgb(var(--v-theme-surface-rail));
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  height: 100%;
+/* Desktop drawers - fixed positioning with independent scrolling */
+.desktop-layout :deep(.v-navigation-drawer.desktop-drawer-left),
+.desktop-layout :deep(.v-navigation-drawer.desktop-drawer-right) {
+  position: fixed !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: auto !important;
+  right: auto !important;
+  height: 100vh !important;
+  z-index: 1100 !important;
   overflow-y: auto;
-  overflow-x: hidden;
-  z-index: 1100;
-  transition: background-color var(--sidebar-transition),
-              border-color var(--sidebar-transition),
-              transform var(--sidebar-transition);
-  will-change: transform;
 }
 
-.left-sidebar {
-  left: 0;
-  width: 280px;
-  transform: translateX(0);
+.desktop-layout :deep(.v-navigation-drawer.desktop-drawer-left) {
+  left: 0 !important;
 }
 
-.left-sidebar.sidebar-hidden {
-  background-color: rgb(var(--v-theme-background));
-  transform: translateX(-280px);
+.desktop-layout :deep(.v-navigation-drawer.desktop-drawer-right) {
+  right: 0 !important;
 }
 
+/* Content area - Vuetify handles spacing automatically via --v-layout-* vars */
 .content-area {
   flex: 1;
   min-width: 0;
-  margin-left: 280px;
-  margin-right: 240px;
-}
-
-.right-sidebar {
-  right: 0;
-  width: 240px;
-  transform: translateX(0);
-}
-
-.right-sidebar.sidebar-hidden {
-  background-color: rgb(var(--v-theme-background));
-  transform: translateX(240px);
+  /* Remove custom margins - Vuetify calculates based on drawer width */
+  margin: 0 !important;
 }
 
 .content-area-mobile {

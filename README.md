@@ -456,6 +456,12 @@ npm test -- bible-tooltips      # Bible verse reference parsing tests
 * Configured globally in `nuxt.config.ts` VTextField defaults
 * All inputs inherit pill shape without component-specific overrides
 
+**7. Vuetify Layout System with Fixed Positioning:**
+* Desktop sidebars use VNavigationDrawer components for MD3 styling
+* CSS overrides force `position: fixed` for sticky behavior (not typical Vuetify usage)
+* Content spacing managed by Vuetify's `--v-layout-left/right` CSS variables
+* Hybrid approach: Vuetify styling + custom positioning requirements
+
 ### Coding Rules
 
 **DRY Principle (Mandatory):**

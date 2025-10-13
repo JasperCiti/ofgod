@@ -192,7 +192,7 @@ function handleSelect(path: string) {
   max-height: calc(100vh - 12.5rem);
   overflow-y: auto;
   margin-top: 0.5rem;
-  background-color: rgb(var(--v-theme-surface));
+  background-color: rgb(var(--v-theme-surface-rail));
   border-radius: 0.5rem;
   border: 1px solid rgb(var(--v-theme-outline-bars));
 }

@@ -22,6 +22,133 @@ Migrates content from a Grav-based website (located at `../eternal`) to statical
 
 ## Architecture Decisions
 
+### Mobile TOC Background Color Consistency (2025-10-13)
+**Problem:** TOC background color differed between desktop and mobile layouts. Desktop showed correct `surface-rail` color, but mobile showed white `surface` color instead.
+
+**Root Cause:** Component layering differences:
+- **Desktop**: TOC directly inside VNavigationDrawer (inherits `surface-rail` background)
+- **Mobile**: TOC wrapped in VExpansionPanel → VExpansionPanelText component
+- VExpansionPanelText defaults to `surface` (white) background, overriding TOC's own `surface-rail` style
+- SearchBox search results also used `surface` instead of `surface-rail`
+
+**Solution:** Force `surface-rail` background on wrapper components:
+```vue
+<!-- Mobile drawer expansion panel -->
+<v-expansion-panel-text class="bg-surface-rail">
+  <AppTableOfContents ... />
+</v-expansion-panel-text>
+```
+
+```css
+/* SearchBox search results */
+.search-results {
+  background-color: rgb(var(--v-theme-surface-rail));
+}
+```
+
+**Result:** Consistent `surface-rail` background across all navigation elements (TOC, search results, navigation tree) on both desktop and mobile.
+
+### VNavigationDrawer Migration with Fixed Positioning (2025-10-13)
+**Problem:** Custom `<aside>` sidebars lacked Material Design 3 elevation shadows and theme consistency. Vuetify component defaults weren't applying.
+
+**Solution:** Migrated to VNavigationDrawer with CSS overrides for fixed positioning:
+- **Component**: Use VNavigationDrawer for theme integration (elevation, colors)
+- **Positioning**: Override with `position: fixed !important` for sticky behavior
+- **Layout**: Vuetify manages content spacing via CSS variables (`--v-layout-left/right`)
+
+**Implementation:**
+```vue
+<!-- VNavigationDrawer with absolute + custom classes -->
+<v-navigation-drawer
+  v-model="sidebarsVisible"
+  permanent
+  absolute
+  location="left"
+  width="280"
+  class="desktop-drawer-left"
+>
+```
+
+```css
+/* Force fixed positioning at viewport top */
+.desktop-layout :deep(.v-navigation-drawer.desktop-drawer-left),
+.desktop-layout :deep(.v-navigation-drawer.desktop-drawer-right) {
+  position: fixed !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  height: 100vh !important;
+  z-index: 1100 !important;  /* Above AppBar (1000) */
+  overflow-y: auto;           /* Independent scrolling */
+}
+
+/* Let Vuetify handle content margins */
+.content-area {
+  margin: 0 !important;  /* Vuetify uses --v-layout-* vars */
+}
+```
+
+**Benefits:**
+- ✅ MD3 elevation shadows automatically applied (elevation: 12 from theme config)
+- ✅ Theme colors and component defaults inherited
+- ✅ Fixed positioning preserved (sidebars at top, above AppBar)
+- ✅ Independent scrolling maintained
+- ✅ Vuetify's responsive layout system handles content spacing
+- ✅ Reduced custom CSS by ~45 lines
+
+**Result:** Hybrid approach combining Vuetify styling with custom positioning requirements.
+
+### Simplified Layout Architecture (2025-10-12)
+**Problem:** Complex sticky sidebar positioning with smart-scrolling AppBar created race conditions, difficult state management, TOC visibility bugs on initial page load, and sidebars scrolling out of view.
+
+**Solution:** Simplified to standard page scrolling with animated sidebar slide-in/out:
+- **Removed**: Sticky positioning (`position: sticky`), smart scroll detection (`useSmartScroll` composable), internal scroll containers, AppBar auto-hide behavior
+- **Kept**: Sidebar slide animations (`transform: translateX`), clipping via `overflow-x: hidden`
+- **Added**: Sidebar `padding-top: 56px` to avoid AppBar overlap
+
+**Implementation:**
+```typescript
+// Removed useSmartScroll composable entirely
+// Simplified sidebar state - initialize based on screen size immediately
+const sidebarsVisible = ref(mdAndUp.value)
+
+// Update on screen resize only (no immediate: true watch)
+watch(mdAndUp, (newValue) => {
+  sidebarsVisible.value = newValue
+})
+
+// CSS: Normal page scroll
+.desktop-wrapper {
+  overflow-x: hidden;  // Clips sliding sidebars
+}
+
+.desktop-layout {
+  display: flex;
+  min-height: calc(100vh - 56px);  // Fixed 56px for AppBar
+}
+
+.left-sidebar, .right-sidebar {
+  padding-top: 56px;           // Avoid AppBar overlap
+  transition: transform 0.3s ease;  // Smooth slide animation
+  // No position: sticky, no top, no height
+}
+
+.sidebar-hidden {
+  transform: translateX(-280px);  // Left slides left
+  transform: translateX(240px);   // Right slides right
+}
+```
+
+**Benefits:**
+- Standard window scroll behavior (predictable, familiar)
+- No scroll synchronization bugs
+- Simpler state management (no scroll position tracking)
+- TOC displays immediately on first page load
+- Sidebars scroll naturally with page content (no disappearing)
+- 50% reduction in layout-related code
+- AppBar always visible (no confusing auto-hide)
+
+**Result:** Clean, simple layout that works reliably. Page scrolls normally, sidebars slide in/out smoothly.
+
 ### MD3 Pill-Shaped Input Boxes (2025-10-12)
 **Problem:** Text fields had moderately rounded corners (`rounded="lg"`) but didn't match Material Design 3 spec for pill-shaped inputs with semi-circular ends.
 
@@ -226,8 +353,6 @@ npm run migrate -- --dry-run  # Preview without writing
 - `useBreadcrumbs.ts` - Generate breadcrumbs from route
 - `useNavigationTree.ts` - Build hierarchical tree from flat pages
 - `useTableOfContents.ts` - Generate TOC from rendered HTML
-- `useSmartScroll.ts` - Smart hide/show app bar
-- `useSidebarState.ts` - Manage sidebar visibility
 
 ### @nuxt/content v3 & Plain Text Bible Verses (2025-10-07)
 **Problem:** Custom markdown parser was reinventing the wheel. MDC Bible verse syntax broke SEO.
@@ -311,6 +436,7 @@ npm run migrate -- --dry-run  # Preview without writing
 - **Relative Paths**: `slug: ./sub` (subdirectory)
 - **Absolute Paths**: `slug: /path/to/page` (cross-directory links)
 - **External URLs**: `'Title': http://url` (external websites)
+- **Separators**: `unique-key: ---` (non-clickable horizontal divider for visual grouping)
 
 **Migration Script** (`scripts/migrate-grav.ts`):
 - Generates `_menu.yml` in directories with 2+ published pages
@@ -326,7 +452,8 @@ npm run migrate -- --dry-run  # Preview without writing
 **Navigation Reader** (`useNavigationTree.ts`):
 - Fetches `_menu.yml` from `/public/` via HTTP (static files)
 - Parses YAML line-by-line, applies sequential order (0, 1, 2, ...)
-- Resolves paths: `.` → local, `./sub` → relative, `/path` → absolute, `http://` → external
+- Resolves paths: `.` → local, `./sub` → relative, `/path` → absolute, `http://` → external, `---` → separator
+- Separators render as `<v-divider>` with no interaction (non-clickable)
 - Unlisted .md files appended alphabetically by H1 title
 - Missing `_menu.yml` → all files sorted alphabetically
 
@@ -334,6 +461,9 @@ npm run migrate -- --dry-run  # Preview without writing
 ```yaml
 darkness: .           # /darkness.md in same directory
 body: .              # /body.md in same directory
+church: .            # /church.md in same directory
+sep1: ---            # Horizontal divider separator
+about: .             # /about.md in same directory
 external: ./church   # /church/external.md (relative)
 other: /other/path   # /other/path.md (absolute)
 'Google': https://google.com  # External link
@@ -502,12 +632,12 @@ CONTENT=kingdom npm run generate
 │   │       └── ProseTable.vue        # Renders tables as v-data-table
 │   ├── composables/
 │   │   ├── useBreadcrumbs.ts       # Generate breadcrumbs
-│   │   ├── useNavigationTree.ts    # Build tree from pages (includes description)
+│   │   ├── useNavigationTree.ts    # Build tree from pages
 │   │   ├── useSearchRelevance.ts   # Search relevance scoring
-│   │   ├── useSiteConfig.ts        # Multi-domain canonical URLs
+│   │   ├── useSiteConfig.ts        # Multi-domain canonical URLs + GitHub config
+│   │   ├── useGitHubEdit.ts        # Generate GitHub edit URLs
 │   │   ├── useTableOfContents.ts   # Extract TOC from HTML
-│   │   ├── useTableParser.ts       # Parse HTML tables for v-data-table
-│   │   └── useSmartScroll.ts       # Smart app bar hide/show
+│   │   └── useTableParser.ts       # Parse HTML tables for v-data-table
 │   ├── pages/
 │   │   ├── index.vue               # Home (queries content)
 │   │   └── [...slug].vue           # Dynamic pages
@@ -689,6 +819,39 @@ export async function watchImages() {
 ### Theme Not Persisting
 - Use `useAppTheme` composable (not direct Vuetify manipulation)
 - Theme stored in localStorage as `theme-preference`
+
+### TOC Not Appearing on First Page Load (2025-10-12)
+**Problem:** Table of Contents (right sidebar) doesn't appear when loading the home page directly, only after navigation.
+
+**Root Cause:** Using `watch(() => route.path, ..., { immediate: true })` alone causes the watch to run during setup BEFORE template refs are available. At that moment, `contentContainer.value` is `undefined` and TOC generation fails silently.
+
+**Solution:** Both `watch` and `onMounted` are required - they serve different purposes:
+- `onMounted`: Handles initial page load (refs guaranteed available)
+- `watch`: Handles route changes during navigation (refs already available)
+
+**Implementation:**
+```typescript
+// Watch for navigation (without immediate)
+watch(() => route.path, async () => {
+  generateTOC(null)
+  await nextTick()
+  await nextTick()
+  setTimeout(() => {
+    if (contentContainer.value) generateTOC(contentContainer.value)
+  }, 100)
+})
+
+// Handle initial mount separately
+onMounted(async () => {
+  await nextTick()
+  await nextTick()
+  setTimeout(() => {
+    if (contentContainer.value) generateTOC(contentContainer.value)
+  }, 100)
+})
+```
+
+**Fix:** Never remove `onMounted` in favor of `watch` with `immediate: true` when dealing with template refs.
 
 ## Coding Rules
 
