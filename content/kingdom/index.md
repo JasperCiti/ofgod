@@ -1,4 +1,5 @@
 ---
+description: Jesus preached the Kingdom of God throughout His ministry. What is this present Kingdom that extends beyond churches? Discover this fundamental Gospel truth.
 keywords:
   - kingdom of heaven
   - salvation
