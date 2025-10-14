@@ -17,12 +17,16 @@ Fix the following problems immediately without asking the user:
 - [ ] File extension: .md for published, .draft.md for unpublished
 - [ ] Internal links use .md extension: `[text](/content/path/page.md)`
 - [ ] Links are absolute paths from the project root, for example `/content/church/history/page.md`
+- [ ] Do not modify external links
 - [ ] Fragments preserved: `/page.md#anchor`
 - [ ] Images co-located in same directory as markdown, unless it links to an external website
 - [ ] Image naming: `{page}.{descriptor}.{ext}` (avoid duplication if the image has the same name as the page, for example `church.church.jpg`
 - [ ] Alt text provided for accessibility
 - [ ] Bible verses contains the full bible book name, for example: `John 3:16 (ESV)`
 - [ ] Shorthand notation correct: `John 14:16,26` (full reference first)
+- [ ] Bible verses of different books are separated by semi-colons `;`, for example: `Genesis 1; Exodus 1:1; Leviticus 1`
+- [ ] Bible verses of the same book but different chapters are separated by a comma and a space `, ` for example `Genesis 1:1, 2:1, 3:1`
+- [ ] Bible verses of the same book and chapter are separated by a comma only `,` (without spaces) for example `Genesis 1:1-3,5-7,11,13`
 - [ ] Markdown linter compliant
 - [ ] Fix grammar and spelling errors, **except** in quoted text which should be quoted as-is
 - [ ] Logical heading hierarchy (no skipped levels)
@@ -37,8 +41,10 @@ Fix the following problems immediately without asking the user:
 Prompt the user about each warning detected and ask the user if it should be corrected or ignored.
 
 - [ ] No broken internal links (verify target files exist)
+- [ ] Check if page of external links exist and contains the content the link suggest to provide
 - [ ] If multiple pages in directory, verify _menu.yml exists
 - [ ] Check that bible verses are quoted correctly from the bible
+- [ ] Check that the correct bible verses was referenced by comparing the context/sentence in which the bible verse appear. For example `Jesus said love your enemies (Genesis 1:1)` is wrong because that is not what Genesis 1:1 says.
 - [ ] Check that the author's sentences are readable without unnecessary repetitions (except for quoted text)
 - [ ] Old Testament bible verses generally refer to `the LORD` with `LORD` in ALL CAPITAL LETTERS and New Testament bible verses generally refer to `the Lord` with only the L of Lord in capital letters.
 - [ ] Warn if the author's tone appear arrogant, offensive or divisive. Suggest how sarcasm or rhetorical questions could be rewritten to kind friendly statements or conclusions.

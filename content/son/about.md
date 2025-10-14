@@ -4,8 +4,6 @@ description: About the main author of this website
 
 # About the author
 
-Dear Fellow Believer,
-
 My journey with faith has been anything but conventional. From atheism to exploring various Christian traditions including megachurches to house churches with envolvement in various traditional protestants, charismatic and messianic congregations. I've spent years asking questions about God, the Bible, and what it truly means to follow Christ.
 
 ## A Shared Journey of Discovery
