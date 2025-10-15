@@ -16,7 +16,7 @@ This website is the fruit of that ongoing exploration. I'm still learning, still
 
 My intention is to draw a clear distinction between **God the Father** and **the Son of God**. I have no intention to blaspheme God or to uncrown the Lord Jesus, but instead to **glorify both in their rightful positions**.
 
-The central problem I'm addressing is that Christianity often mixes the Father, the Son, and the Holy Spirit's roles, nature, and character. This confusion makes many Bible scriptures very challenging to interpret and leaves Christians uncertain about fundamental truths.
+The central problem I'm addressing is that Christianity often mixes the Father, the Son, and the Holy Spirit's roles, nature, and character. This confusion makes many [Bible scriptures](https://word.ofgod.info) very challenging to interpret and leaves Christians uncertain about fundamental truths.
 
 ### The Purpose: Back to Basics
 

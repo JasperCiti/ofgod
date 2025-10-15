@@ -20,7 +20,7 @@ I want to help fellow believers have more faith in God and understand what it me
 
 Many Christians understand "the Kingdom" and "the Church" to be the same thing, and I respect that perspective. However, this website explores what I believe is a biblical distinction between them—the Kingdom of God is the reign and rule of God that encompasses all who submit to His authority, while the church represents organized gatherings of believers. I present this view with humility and invite you to discover these truths alongside me.
 
-You'll find here careful attention to biblical texts, exploration of themes that intrigue me, and honest wrestling with questions that many of us have wondered about. Some topics might be unfamiliar. Some interpretations might differ from what you've heard before. That's okay — in fact, that's part of the journey.
+You'll find here careful attention to [biblical texts](https://word.ofgod.info), exploration of themes that intrigue me, and honest wrestling with questions that many of us have wondered about. Some topics might be unfamiliar. Some interpretations might differ from what you've heard before. That's okay — in fact, that's part of the journey.
 
 ### Full Transparency
 

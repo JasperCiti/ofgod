@@ -12,7 +12,7 @@ Throughout this journey, I've become increasingly fascinated by what the Bible t
 
 This website is the fruit of that ongoing exploration. I'm still learning, still discovering new depths in familiar passages, and still amazed by how much there is to understand about [our Father God](https://ofgod.info) and His [son](https://son.ofgod.info) Jesus who is the Christ and our Lord.
 
-This website exists to help Christians discover their full inheritance and calling in Christ. While churches and Christian institutions may play important roles in our spiritual lives, they can sometimes unintentionally limit our understanding of what God has made available to us. My goal is to explore the fullness of what Scripture reveals about our identity, authority, and destiny in the body of Christ and to empower believers to reach their full potential in the [Kingdom of God](https://kingdom.ofgod.info).
+This website exists to help Christians discover their full inheritance and calling in Christ. While churches and Christian institutions may play important roles in our spiritual lives, they can sometimes unintentionally limit our understanding of what God has made available to us. My goal is to explore the fullness of what the [Word of God](https://word.ofgod.info) reveals about our identity, authority, and destiny in the body of Christ and to empower believers to reach their full potential in the [Kingdom of God](https://kingdom.ofgod.info).
 
 ### The Heart Behind This Website
 
