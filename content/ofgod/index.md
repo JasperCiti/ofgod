@@ -9,7 +9,7 @@ Have you ever struggled to understand who God really is?
 
 Perhaps you've wondered whether you can truly trust Him, or maybe you've questioned what His character is actually like. Many people carry misconceptions about God—viewing Him as distant, angry, or unpredictable. For some, these distorted views stem from painful experiences with earthly fathers who fell short. For others, religious traditions have obscured the true picture of who God is. The tragedy is that many don't know what the Bible actually reveals about His nature and personality.
 
-Christians typically call God "our Heavenly Father" because that is how Jesus introduced Him (Matthew 6:9, 11:27; Luke 11:2; John 14:6-11, 17:1-5). But this title only begins to describe who He is. In this article, we'll explore the comprehensive picture of God that Scripture provides, examining His many [titles](#titles-of-god), [attributes](#attributes-of-god), and [personal characteristics](#personality-of-god) so you can discover for yourself the Father that Jesus intended to reveal.
+Christians typically call God "our Heavenly Father" because that is how Jesus introduced Him (Matthew 6:9, 11:27; Luke 11:2; John 17:1-5). But this title only begins to describe who He is. In this article, we'll explore the comprehensive picture of God that Scripture provides, examining His many [titles](#titles-of-god), [attributes](#attributes-of-god), and [personal characteristics](#personality-of-god) so you can discover for yourself the Father that Jesus intended to reveal.
 
 ## How the Bible Identifies God
 
@@ -22,15 +22,15 @@ God's name is transliterated from Hebrew as [YHVH](https://eternal.family.co.za/
 * "Rock" / "Fortress" / "Stronghold" / "Refuge" / "Shield" *(Adonai Tsuri v'goali / Adonai Sal'i)* (Genesis 15:1; Deuteronomy 32:4; 1 Samuel 2:2; 2 Samuel 22:2,47; Psalm 18:2, 19:14, 31:3, 46:1,7, 84:11, 91:2, 115:9-11, 142:5; Isaiah 48:17)
 * "The God Who Sees" *(El Roi)* (Genesis 16:13)
 * "The Everlasting God" *(El Olam)* (Genesis 21:33; Isaiah 40:28)
-* "LORD who provides" *(Adonai Yireh / Yahweh Yireh)* meaning "God will provide" (Genesis 22:2,14)
+* "LORD who provides" *(Adonai Yireh / Yahweh Yireh)* (Genesis 22:2,14)
 * "God of Abraham, Isaac, and Jacob" (Exodus 3:6,15-16)
 * "[I AM THAT I AM](https://eternal.family.co.za/god/father/i-am)" / "who was and who is" *(Ehyeh asher Ehyeh)* (Exodus 3:14–15; Isaiah 48:12; Revelation 1:8; Revelation 4:8; Revelation 11:17; Revelation 16:5)
-* "LORD of hosts/armies" *(Adonai Tseva'ot)* (Exodus 12:41; 1 Samuel 1:11, 4:4, 15:2, 17:45; 2 Samuel 6:2,18, 7:8,26; 1 Kings 18:15; 2 Kings 3:14; 1 Chronicles 17:7,24; Psalm 24:10, 46:8,12, 48:9, 80:20, 84:2,4,9,13, 89:9; Isaiah 1:9,24, 3:1,15, 5:7; Amos 4:13, 5:14,27, 6:8; Micah 4:4; Nahum 2:14, 3:5; Habakkuk 2:13; Zephaniah 2:9; Haggai 1:2,5,7,9,14, 2:4,6,11,23; Zechariah1:3,6,12,14; Malachi 1:4,6,8,13, 2:2,4,7,12,16, 3:1,5,7,10,14,17,19,21)
 * "God Almighty" *(El Shaddai)* (Exodus 15:6)
 * "LORD your healer" *(Adonai Roph'ekha)* (Exodus 15:26)
 * "LORD my Miracle/Banner" *(Adonai Nissi)* (Exodus 17:15)
 * "LORD your Sanctifier" *(Adonai Mekaddishkhem)* (Exodus 31:13)
 * "LORD is Peace" *(Adonai Shalom)* (Judges 6:24)
+* "LORD of hosts/armies" *(Adonai Tseva'ot)* (1 Samuel 1:11, 4:4, 15:2, 17:45; 2 Samuel 6:2,18, 7:8,26; 1 Kings 18:15; 2 Kings 3:14; 1 Chronicles 17:7,24; Psalm 24:10, 46:8,12, 48:9, 80:20, 84:2,4,9,13, 89:9; Isaiah 1:9,24, 3:1,15, 5:7; Amos 4:13, 5:14,27, 6:8; Micah 4:4; Nahum 2:14, 3:5; Habakkuk 2:13; Zephaniah 2:9; Haggai 1:2,5,7,9,14, 2:4,6,11,23; Zechariah1:3,6,12,14; Malachi 1:4,6,8,13, 2:2,4,7,12,16, 3:1,5,7,10,14,17,19,21)
 * "Strength of Israel" (1 Samuel 15:29; 2 Samuel 22:2)
 * "Redeemer" (Job 19:25; Psalm 19:14; Isaiah 41:14, 44:6, 47:4, 48:17, 49:7, 54:5)
 * "Holy One of Israel" (2 Kings 19:22; Psalm 71:22, 78:41, 89:18; Proverbs 9:10, 30:3; Isaiah 1:4, 5:19, 5:24, 10:20, 12:6, 17:7, 29:19, 29:23, 30:11-15, 31:1, 37:23, 40:25, 41:14-20, 43:3, 43:14-15, 45:11, 47:4, 48:17, 49:7, 54:5, 55:5, 60:9, 60:14; Jeremiah 50:29, 51:5; Ezekiel 39:7; Hosea 11:9-12; Habakkuk 1:12)
@@ -109,40 +109,38 @@ While God's titles often emphasize His roles and relationships, His attributes d
 
 While God's attributes describe what He is like in His essential being, His personality reveals how He relates to humanity and expresses His character through His actions and emotions. Different religions and denominations have various views about who God is. If we strictly consider only Bible scripture, then God is revealed as the following person:
 
-* God is our saviour (2 Samuel 22:3; Psalm 106:21; Isaiah 43:3,11, 45:15,21, 49:26, 60:16, 63:8; Jeremiah 14:8; Hosea 13:4; Luke 1:47; 1 Timothy 1:1, 2:3, 4:10; Titus 1:3, 2:10, 3:4; Jude 25)
-* God is perfect (Deuteronomy 32:4; 2 Samuel 22:31; Psalm 18:30; Matthew 5:48)
-* God is the only wise God (Psalm 136:5; Daniel 2:20-22; Romans 16:27; 1 Timothy 1:17; Jude 25)
-* God is glorious (Exodus 15:11; 1 Chronicles 29:11; Psalm 19:1, 24:7-10, 29:1-3; Isaiah 6:3, 42:8; Ezekiel 1:28; Luke 2:14; John 17:5; Romans 11:36; Ephesians 3:21; Revelation 4:11)
 * God is a fair judge (Genesis 18:25; Psalm 7:8-11, 9:7-8,19, 50:4-6, 67:4, 75:2, 96:10-13, 98:9; Isaiah 3:13-14, 33:22, 51:5; Jeremiah 11:20; Ezekiel 7:3,8,27)
+* God provides for and takes care of creation (Genesis 22:14; Psalm 104:27-28, 145:15-16, 147:9; Matthew 6:26,30-33, 7:11, 10:29-31; Luke 12:24; Philippians 4:19; James 1:17; 1 Peter 5:7)
+* God is glorious (Exodus 15:11; 1 Chronicles 29:11; Psalm 19:1, 24:7-10, 29:1-3; Isaiah 6:3, 42:8; Ezekiel 1:28; Luke 2:14; John 17:5; Romans 11:36; Ephesians 3:21; Revelation 4:11)
 * God is compassionate and merciful, delighting in showing mercy (Exodus 34:6; Deuteronomy 4:31; Psalm 86:15, 103:8, 145:8; Joel 2:13; Micah 7:18)
-* God is gracious or slow to anger (Exodus 34:6; Numbers 14:17; Nehemiah 9:17; Psalm 86:15, 103:8, 145:8; Jonah 4:2)
+* God is patient (Exodus 34:6; Numbers 14:17; Nehemiah 9:17; Psalm 86:15, 103:8, 145:8; Jonah 4:2; Romans 2:4, 9:22; 1 Peter 3:20; 2 Peter 3:9,15)
 * God is abounding in love (Exodus 34:6; Numbers 14:17; Psalm 86:15, 103:8)
-* God is faithful (Deuteronomy 7:9; Psalm 36:5, 89:1-2,8, 119:90; Lamentations 3:22-23; 1 Corinthians 1:9; 1 Thessalonians 5:24; 2 Thessalonians 3:3; Hebrews 10:23)
 * God does not lie (Exodus 34:6; Numbers 23:19; Deuteronomy 7:9; Titus 1:2; Hebrews 6:18)
 * God forgives wickedness, rebellion and sin (Exodus 34:7; Numbers 14:17; Psalm 86:5, 103:3; Isaiah 55:7; Micah 7:18; Matthew 6:14-15; Mark 11:25; Acts 13:38; Ephesians 1:7; 1 John 1:9)
-* God does not need to repent (Numbers 23:19; 1 Samuel 15:29)
 * God is holy (Leviticus 11:44-45, 19:2, 20:26; Joshua 24:19; 1 Samuel 2:2; Psalm 99:9; Isaiah 6:3; Revelation 4:8)
-* God is good (Psalm 25:8, 34:8, 86:5, 100:5, 107:1, 119:68, 136:1, 145:9; Nahum 1:7; Mark 10:18)
+* God does not need to repent (Numbers 23:19; 1 Samuel 15:29)
+* God is perfect (Deuteronomy 32:4; 2 Samuel 22:31; Psalm 18:30; Matthew 5:48)
+* God is faithful (Deuteronomy 7:9; Psalm 36:5, 89:1-2,8, 119:90; Lamentations 3:22-23; 1 Corinthians 1:9; 1 Thessalonians 5:24; 2 Thessalonians 3:3; Hebrews 10:23)
+* God is our saviour (2 Samuel 22:3; Psalm 106:21; Isaiah 43:3,11, 45:15,21, 49:26, 60:16, 63:8; Jeremiah 14:8; Hosea 13:4; Luke 1:47; 1 Timothy 1:1, 2:3, 4:10; Titus 1:3, 2:10, 3:4; Jude 25)
 * God is righteous (Psalm 11:7, 119:137, 145:17; Isaiah 45:21; Jeremiah 12:1; Daniel 9:14; John 17:25; 2 Timothy 4:8)
+* God is good (Psalm 25:8, 34:8, 86:5, 100:5, 107:1, 119:68, 136:1, 145:9; Nahum 1:7; Mark 10:18)
 * God is loving/love (Psalm 36:7, 136:1-26; Jeremiah 31:3; John 3:16; Romans 5:8; 1 John 4:8,16)
 * God is a refuge and strength (Psalm 46:1, 62:7-8)
 * God is a father to the fatherless and a judge and protector of the widows (Psalm 68:5, 146:9; Deuteronomy 10:18)
-* God provides for and takes care of creation (Genesis 22:14; Psalm 104:27-28, 145:15-16, 147:9; Matthew 6:26,30-33, 7:11, 10:29-31; Luke 12:24; Philippians 4:19; James 1:17; 1 Peter 5:7)
+* God is the only wise God (Psalm 136:5; Daniel 2:20-22; Romans 16:27; 1 Timothy 1:17; Jude 25)
 * God is near to those who call upon Him (Psalm 145:18; James 4:8)
 * God is willing to reason together (Isaiah 1:18)
 * God teaches (Isaiah 48:17, 54:13; Psalm 25:8-9, 32:8)
 * God does not rule by violence but by His Spirit (Zechariah 4:6)
-* God desires all people to be saved (1 Timothy 2:4; 2 Peter 3:9)
-* God does good to both friend and enemy (Matthew 5:45; Luke 6:35)
+* God does good to both good and evil (Matthew 5:45; Luke 6:35)
 * God rewards people (Matthew 6:1,4,6,18; Hebrews 11:6)
-* God reveals Himself only to certain people (Matthew 11:25-27; Luke 10:21)
-* God so loved the world that He sent his beloved [son](https://son.ofgod.info) to save it (John 3:16-18; Romans 5:8; 1 John 4:9-10)
-* God is patient and longsuffering (Romans 2:4, 9:22; 1 Peter 3:20; 2 Peter 3:9,15)
-* God has no partiality (Romans 2:11; Deuteronomy 10:17; Job 34:19; Acts 10:34; Ephesians 6:9; Colossians 3:25)
-* God gives generously without finding fault (James 1:5)
-* God comforts those in tribulation (2 Corinthians 1:3-4; Isaiah 51:12, 66:13)
-* God disciplines those He loves (Hebrews 12:6-10; Proverbs 3:11-12; Revelation 3:19)
+* God wants people to seek Him (Matthew 11:25-27; Luke 10:21)
+* God sent His beloved [son](https://son.ofgod.info) to save it (John 3:16-18; Romans 5:8; 1 John 4:9-10)
 * God is kind (Luke 6:35; Romans 2:4; Ephesians 2:7; Titus 3:4)
+* God has no partiality (Romans 2:11; Deuteronomy 10:17; Job 34:19; Acts 10:34; Ephesians 6:9; Colossians 3:25)
+* God comforts those in tribulation (2 Corinthians 1:3-4; Isaiah 51:12, 66:13)
+* God desires all people to be saved (1 Timothy 2:4; 2 Peter 3:9)
+* God disciplines those He loves (Hebrews 12:6-10; Proverbs 3:11-12; Revelation 3:19)
 * God is light with no darkness in Him (1 John 1:5; James 1:17)
 
 ## Knowing God Personally
