@@ -81,8 +81,6 @@ onMounted(() => {
     // Update reactive data
     headers.value = parsed.headers
     items.value = parsed.items
-
-    console.log(`[ProseTable] Parsed table: ${parsed.headers.length} columns, ${parsed.items.length} rows`)
   })
 })
 </script>

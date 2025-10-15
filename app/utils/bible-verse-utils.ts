@@ -14,15 +14,43 @@ export interface ProcessedBibleVerse {
   translation: string
 }
 
+export interface ParsedReference {
+  reference: string  // Reference without translation (e.g., "John 3:16")
+  translation: string  // Translation code (e.g., "ESV", defaults to "ESV")
+}
+
+/**
+ * Parse a Bible reference and extract translation
+ * @param fullReference - Full reference with optional translation (e.g., "John 3:16 (KJV)" or "John 3:16")
+ * @returns Parsed reference object with reference and translation
+ */
+export function parseReference(fullReference: string): ParsedReference {
+  // Match translation in parentheses at the end: (ESV), (KJV), etc.
+  const match = fullReference.match(/^(.+?)\s*\(([A-Z]+)\)\s*$/)
+
+  if (match && match[1] && match[2]) {
+    return {
+      reference: match[1].trim(),
+      translation: match[2]
+    }
+  }
+
+  // No translation specified, default to ESV
+  return {
+    reference: fullReference.trim(),
+    translation: 'ESV'
+  }
+}
+
 const MAX_VERSES = 4
 
 /**
  * Process Bible API response and truncate to first 4 verses if needed
  * @param data - Response from bible-api.com
- * @param reference - Optional reference string to detect comma-separated verses
+ * @param _reference - Optional reference string (reserved for future use)
  * @returns Processed verse text with translation and ellipsis if truncated
  */
-export function processBibleVerseText(data: BibleApiResponse, reference?: string): ProcessedBibleVerse {
+export function processBibleVerseText(data: BibleApiResponse, _reference?: string): ProcessedBibleVerse {
   let text = ''
   let wasTruncated = false
 

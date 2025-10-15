@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { createBibleHubInterlinearUrl } from './bible-verse-utils'
+import { createBibleHubInterlinearUrl, parseReference } from './bible-verse-utils'
 
 /**
  * Unit tests for BibleHub interlinear URL generation
@@ -78,5 +78,71 @@ describe('BibleHub Interlinear URL Generation', () => {
   it('should handle chapter with large verse number', () => {
     const url = createBibleHubInterlinearUrl('Psalm 119:105')
     expect(url).toBe('https://biblehub.com/interlinear/psalm/119-105.htm')
+  })
+})
+
+/**
+ * Unit tests for Bible reference parsing with translation extraction
+ */
+describe('parseReference', () => {
+  it('should parse reference with ESV translation', () => {
+    const result = parseReference('John 3:16 (ESV)')
+    expect(result.reference).toBe('John 3:16')
+    expect(result.translation).toBe('ESV')
+  })
+
+  it('should parse reference with KJV translation', () => {
+    const result = parseReference('Genesis 1:1 (KJV)')
+    expect(result.reference).toBe('Genesis 1:1')
+    expect(result.translation).toBe('KJV')
+  })
+
+  it('should parse reference with NIV translation', () => {
+    const result = parseReference('Matthew 5:3-12 (NIV)')
+    expect(result.reference).toBe('Matthew 5:3-12')
+    expect(result.translation).toBe('NIV')
+  })
+
+  it('should default to ESV when no translation specified', () => {
+    const result = parseReference('John 3:16')
+    expect(result.reference).toBe('John 3:16')
+    expect(result.translation).toBe('ESV')
+  })
+
+  it('should default to ESV for chapter-only reference', () => {
+    const result = parseReference('Psalm 23')
+    expect(result.reference).toBe('Psalm 23')
+    expect(result.translation).toBe('ESV')
+  })
+
+  it('should handle extra whitespace around translation', () => {
+    const result = parseReference('John 3:16  (ESV)  ')
+    expect(result.reference).toBe('John 3:16')
+    expect(result.translation).toBe('ESV')
+  })
+
+  it('should handle references with extra whitespace', () => {
+    const result = parseReference('  John 3:16  ')
+    expect(result.reference).toBe('John 3:16')
+    expect(result.translation).toBe('ESV')
+  })
+
+  it('should parse cross-chapter range with translation', () => {
+    const result = parseReference('2 Corinthians 4:16-5:9 (ESV)')
+    expect(result.reference).toBe('2 Corinthians 4:16-5:9')
+    expect(result.translation).toBe('ESV')
+  })
+
+  it('should handle translation codes with varying lengths', () => {
+    const result = parseReference('John 3:16 (NKJV)')
+    expect(result.reference).toBe('John 3:16')
+    expect(result.translation).toBe('NKJV')
+  })
+
+  it('should not parse lowercase translations', () => {
+    // Lowercase should not match - treated as no translation
+    const result = parseReference('John 3:16 (esv)')
+    expect(result.reference).toBe('John 3:16 (esv)')
+    expect(result.translation).toBe('ESV')
   })
 })

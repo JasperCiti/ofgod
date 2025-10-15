@@ -18,19 +18,20 @@ export const BIBLE_BOOK_NAMES = [
 
 /**
  * Creates Bible reference detection patterns using book name whitelist
- * @returns Array of RegExp patterns for matching Bible references
+ * @returns Array of RegExp patterns for matching Bible references (with optional translation in brackets)
  */
 export function createBibleReferencePatterns(): RegExp[] {
   const bookPattern = BIBLE_BOOK_NAMES.join('|').replace(/\s/g, '\\s+')
+  const translationPattern = '(?:\\s*\\([A-Z]+\\))?'  // Optional (ESV), (KJV), etc.
 
   return [
-    // Cross-chapter range: "2 Corinthians 4:16-5:9"
-    new RegExp(`\\b(${bookPattern})\\s+(\\d+):(\\d+)-(\\d+):(\\d+)\\b`, 'g'),
-    // Same chapter range: "John 3:16-18" - ensure we don't match if followed by another colon
-    new RegExp(`\\b(${bookPattern})\\s+(\\d+):(\\d+)-(\\d+)\\b(?!:)`, 'g'),
-    // Single verse: "John 3:16" - ensure we don't match if followed by dash or comma
-    new RegExp(`\\b(${bookPattern})\\s+(\\d+):(\\d+)\\b(?![-:])`, 'g'),
-    // Chapter only: "John 3", "Psalm 23" - ensure not followed by colon
-    new RegExp(`\\b(${bookPattern})\\s+(\\d+)\\b(?!\\s*:)`, 'g')
+    // Cross-chapter range: "2 Corinthians 4:16-5:9 (ESV)"
+    new RegExp(`\\b(${bookPattern})\\s+(\\d+):(\\d+)-(\\d+):(\\d+)${translationPattern}\\b`, 'g'),
+    // Same chapter range: "John 3:16-18 (ESV)" - ensure we don't match if followed by another colon
+    new RegExp(`\\b(${bookPattern})\\s+(\\d+):(\\d+)-(\\d+)${translationPattern}\\b(?!:)`, 'g'),
+    // Single verse: "John 3:16 (ESV)" - ensure we don't match if followed by dash or comma
+    new RegExp(`\\b(${bookPattern})\\s+(\\d+):(\\d+)${translationPattern}\\b(?![-:])`, 'g'),
+    // Chapter only: "John 3 (ESV)", "Psalm 23 (ESV)" - ensure not followed by colon
+    new RegExp(`\\b(${bookPattern})\\s+(\\d+)${translationPattern}\\b(?!\\s*:)`, 'g')
   ]
 }

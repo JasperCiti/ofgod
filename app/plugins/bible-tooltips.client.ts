@@ -1,5 +1,5 @@
 // Custom Bible Verse Tooltip Plugin using Bible-API.com
-import { processBibleVerseText, createBibleHubInterlinearUrl, type ProcessedBibleVerse } from '~/utils/bible-verse-utils'
+import { processBibleVerseText, createBibleHubInterlinearUrl, parseReference, type ProcessedBibleVerse } from '~/utils/bible-verse-utils'
 import { createBibleReferencePatterns } from '~/utils/bible-book-names'
 
 export default defineNuxtPlugin((nuxtApp) => {
@@ -44,30 +44,45 @@ export default defineNuxtPlugin((nuxtApp) => {
       }, { capture: true })
     }
 
-    private async fetchVerse(reference: string): Promise<ProcessedBibleVerse> {
-      if (this.cache.has(reference)) {
-        return this.cache.get(reference)!
+    private async fetchVerse(fullReference: string): Promise<ProcessedBibleVerse> {
+      if (this.cache.has(fullReference)) {
+        return this.cache.get(fullReference)!
       }
+
+      // Parse reference to extract translation (defaults to ESV)
+      const { reference, translation } = parseReference(fullReference)
 
       try {
         // Using bible-api.com which supports CORS and is free
-        const response = await fetch(`https://bible-api.com/${encodeURIComponent(reference)}`)
+        // Format: https://bible-api.com/John+3:16?translation=esv
+        const url = `https://bible-api.com/${encodeURIComponent(reference)}?translation=${translation.toLowerCase()}`
+        const response = await fetch(url)
         if (!response.ok) {
-          throw new Error('API request failed')
+          throw new Error(`API request failed with status ${response.status}`)
         }
 
         const data = await response.json()
         const result = processBibleVerseText(data, reference)
 
         if (!result.text) {
-          return { text: 'Verse not found', translation: 'KJV' }
+          return {
+            text: 'Click the links below to read this verse:',
+            translation: translation
+          }
         }
 
-        this.cache.set(reference, result)
+        // Override translation with the requested one
+        result.translation = translation
+
+        this.cache.set(fullReference, result)
         return result
       } catch (error) {
-        console.error('Error fetching verse:', error)
-        return { text: `Read ${reference} at BibleGateway.com`, translation: '' }
+        console.warn('Bible API unavailable:', error)
+        // Return friendly message with working links
+        return {
+          text: 'Click the links below to read this verse:',
+          translation: translation
+        }
       }
     }
 

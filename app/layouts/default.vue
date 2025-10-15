@@ -203,19 +203,14 @@ onMounted(async () => {
   // Immediate attempt
   if (contentContainer.value) {
     generateTOC(contentContainer.value)
-    console.log('TOC generated on mount (immediate)')
   }
 
-  // Multiple delayed attempts with increasing delays
+  // Multiple delayed attempts with increasing delays (for slow ContentRenderer)
   const delays = [100, 300, 600, 1000]
   delays.forEach((delay) => {
     setTimeout(() => {
       if (contentContainer.value) {
-        const currentLength = tocItems.value.length
         generateTOC(contentContainer.value)
-        if (tocItems.value.length !== currentLength) {
-          console.log(`TOC updated on mount (${delay}ms): ${currentLength} -> ${tocItems.value.length} items`)
-        }
       }
     }, delay)
   })

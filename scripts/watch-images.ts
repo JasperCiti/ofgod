@@ -151,15 +151,32 @@ export async function watchImages() {
 }
 
 /**
- * Copy a single image from content to public
+ * Transform content path to public path (strips domain prefix)
+ * Example: /content/kingdom/church/image.jpg → /public/church/image.jpg
  */
-async function copyImage(sourcePath: string, log: boolean = true, action: string = 'copied') {
+function getPublicPath(sourcePath: string): { relativePath: string, targetPath: string } {
   const sourceDir = getSourceDir()
   const targetDir = getTargetDir()
+  const contentDir = path.join(sourceDir, '..')
+  const relativeFromContent = path.relative(contentDir, sourcePath)
+  const pathSegments = relativeFromContent.split(path.sep)
+  const relativePath = pathSegments.slice(1).join(path.sep) // Skip domain segment
+  const targetPath = path.join(targetDir, relativePath)
+  return { relativePath, targetPath }
+}
 
+/**
+ * Copy a single file from content to public (images or menus)
+ */
+async function copyFile(
+  sourcePath: string,
+  fileType: 'Image' | 'Menu',
+  log: boolean = true,
+  action: string = 'copied'
+) {
   try {
-    // Check if this is a draft-only image (no published .md file exists)
-    if (await isDraftOnlyImage(sourcePath)) {
+    // Check if this is a draft-only image (skip menus, they don't have draft checks)
+    if (fileType === 'Image' && await isDraftOnlyImage(sourcePath)) {
       if (log) {
         const fileName = path.basename(sourcePath)
         console.log(`⊗ Skipped draft image: ${fileName}`)
@@ -167,18 +184,13 @@ async function copyImage(sourcePath: string, log: boolean = true, action: string
       return
     }
 
-    // Get path relative to content/ directory, then strip domain prefix
-    const contentDir = path.join(sourceDir, '..')
-    const relativeFromContent = path.relative(contentDir, sourcePath)
-    const pathSegments = relativeFromContent.split(path.sep)
-    const relativePath = pathSegments.slice(1).join(path.sep) // Skip domain segment
-    const targetPath = path.join(targetDir, relativePath)
+    const { relativePath, targetPath } = getPublicPath(sourcePath)
 
     await fs.ensureDir(path.dirname(targetPath))
     await fs.copy(sourcePath, targetPath)
 
     if (log) {
-      console.log(`✓ Image ${action}: ${relativePath}`)
+      console.log(`✓ ${fileType} ${action}: ${relativePath}`)
     }
   } catch (error) {
     console.error(`❌ Failed to copy ${sourcePath}:`, error)
@@ -186,30 +198,22 @@ async function copyImage(sourcePath: string, log: boolean = true, action: string
 }
 
 /**
- * Delete image from public directory
+ * Delete a single file from public directory (images or menus)
  */
-async function deleteImage(sourcePath: string) {
-  const sourceDir = getSourceDir()
-  const targetDir = getTargetDir()
-
+async function deleteFile(sourcePath: string, fileType: 'Image' | 'Menu') {
   try {
-    // Check if this was a draft-only image (should not have been in /public/ anyway)
-    if (await isDraftOnlyImage(sourcePath)) {
+    // Check if this was a draft-only image (skip menus)
+    if (fileType === 'Image' && await isDraftOnlyImage(sourcePath)) {
       const fileName = path.basename(sourcePath)
       console.log(`⊗ Draft image removed from content: ${fileName}`)
       return
     }
 
-    // Get path relative to content/ directory, then strip domain prefix
-    const contentDir = path.join(sourceDir, '..')
-    const relativeFromContent = path.relative(contentDir, sourcePath)
-    const pathSegments = relativeFromContent.split(path.sep)
-    const relativePath = pathSegments.slice(1).join(path.sep) // Skip domain segment
-    const targetPath = path.join(targetDir, relativePath)
+    const { relativePath, targetPath } = getPublicPath(sourcePath)
 
     if (await fs.pathExists(targetPath)) {
       await fs.remove(targetPath)
-      console.log(`✗ Image deleted: ${relativePath}`)
+      console.log(`✗ ${fileType} deleted: ${relativePath}`)
     }
   } catch (error) {
     console.error(`❌ Failed to delete ${sourcePath}:`, error)
@@ -217,53 +221,31 @@ async function deleteImage(sourcePath: string) {
 }
 
 /**
+ * Copy a single image from content to public
+ */
+async function copyImage(sourcePath: string, log: boolean = true, action: string = 'copied') {
+  return copyFile(sourcePath, 'Image', log, action)
+}
+
+/**
+ * Delete image from public directory
+ */
+async function deleteImage(sourcePath: string) {
+  return deleteFile(sourcePath, 'Image')
+}
+
+/**
  * Copy a single _menu.yml file from content to public
  */
 async function copyMenuFile(sourcePath: string, log: boolean = true, action: string = 'copied') {
-  const sourceDir = getSourceDir()
-  const targetDir = getTargetDir()
-
-  try {
-    // Get path relative to content/ directory, then strip domain prefix
-    const contentDir = path.join(sourceDir, '..')
-    const relativeFromContent = path.relative(contentDir, sourcePath)
-    const pathSegments = relativeFromContent.split(path.sep)
-    const relativePath = pathSegments.slice(1).join(path.sep) // Skip domain segment
-    const targetPath = path.join(targetDir, relativePath)
-
-    await fs.ensureDir(path.dirname(targetPath))
-    await fs.copy(sourcePath, targetPath)
-
-    if (log) {
-      console.log(`✓ Menu ${action}: ${relativePath}`)
-    }
-  } catch (error) {
-    console.error(`❌ Failed to copy menu ${sourcePath}:`, error)
-  }
+  return copyFile(sourcePath, 'Menu', log, action)
 }
 
 /**
  * Delete _menu.yml file from public directory
  */
 async function deleteMenuFile(sourcePath: string) {
-  const sourceDir = getSourceDir()
-  const targetDir = getTargetDir()
-
-  try {
-    // Get path relative to content/ directory, then strip domain prefix
-    const contentDir = path.join(sourceDir, '..')
-    const relativeFromContent = path.relative(contentDir, sourcePath)
-    const pathSegments = relativeFromContent.split(path.sep)
-    const relativePath = pathSegments.slice(1).join(path.sep) // Skip domain segment
-    const targetPath = path.join(targetDir, relativePath)
-
-    if (await fs.pathExists(targetPath)) {
-      await fs.remove(targetPath)
-      console.log(`✗ Menu deleted: ${relativePath}`)
-    }
-  } catch (error) {
-    console.error(`❌ Failed to delete menu ${sourcePath}:`, error)
-  }
+  return deleteFile(sourcePath, 'Menu')
 }
 
 /**
