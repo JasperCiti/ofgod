@@ -22,6 +22,69 @@ Migrates content from a Grav-based website (located at `../eternal`) to statical
 
 ## Architecture Decisions
 
+### Environment Variable Loading Fix (2025-10-15)
+**Problem:** `CONTENT=ofgod npm run dev` defaulted to `eternal` directory. Command-line env vars were ignored.
+
+**Root Cause:** ES module top-level code runs at import time, capturing `process.env.CONTENT` before Nuxt loads `.env` or applies command-line overrides.
+
+**Solution:** Refactored to read `process.env.CONTENT` at runtime (inside functions), not at import time:
+```typescript
+// ❌ WRONG - Captured at import time
+const contentDomain = process.env.CONTENT || 'ofgod'
+const sourceDir = path.resolve('content', contentDomain)
+
+// ✅ CORRECT - Read at runtime
+function getContentDomain(): string {
+  return process.env.CONTENT || 'ofgod'
+}
+function getSourceDir(): string {
+  return path.resolve('content', getContentDomain())
+}
+```
+
+**Changes:**
+- [scripts/watch-images.ts](scripts/watch-images.ts) - Moved env var reads into `getContentDomain()`, `getSourceDir()`, `getTargetDir()` functions
+- [content.config.ts](content.config.ts) - Added fallback: `process.env.CONTENT || 'ofgod'`
+- [.env](.env) - Updated default from `kingdom` to `ofgod`, removed non-existent `eternal` references
+
+**Result:** Command-line overrides like `CONTENT=church npm run dev` now work correctly.
+
+### BibleHub Interlinear Links (2025-10-15)
+**Problem:** Bible verse tooltips only linked to BibleGateway. Users needed access to BibleHub's interlinear translation.
+
+**Solution:** Added second link in tooltip that generates BibleHub interlinear URLs from Bible references.
+
+**Implementation:**
+```typescript
+// bible-verse-utils.ts - URL generator
+export function createBibleHubInterlinearUrl(reference: string): string {
+  const match = reference.match(/^(.+?)\s+(\d+)(?::(\d+))?(?:-(\d+))?/)
+  if (!match || !match[1] || !match[2]) return 'https://biblehub.com/interlinear/'
+
+  const [, book, chapter, verse] = match
+  const bookSlug = book.toLowerCase().replace(/\s+/g, '_')
+
+  return verse
+    ? `https://biblehub.com/interlinear/${bookSlug}/${chapter}-${verse}.htm`
+    : `https://biblehub.com/interlinear/${bookSlug}/${chapter}.htm`
+}
+```
+
+**Tooltip HTML:**
+- Added "Interlinear" link next to "Read Full Context"
+- Uses Material Design translate icon (A with character symbols)
+- Flexbox layout with `gap: 0.75rem`, wraps on mobile
+- Opens in new tab with `rel="noopener noreferrer"`
+
+**URL Format:**
+- Verse: `biblehub.com/interlinear/john/3-16.htm`
+- Chapter: `biblehub.com/interlinear/psalm/23.htm`
+- Handles spaces: `1 Corinthians` → `1_corinthians`
+
+**Testing:** 15 unit tests in [bible-verse-utils.test.ts](app/utils/bible-verse-utils.test.ts)
+
+**Result:** Users can access original Greek/Hebrew interlinear translations directly from verse tooltips.
+
 ### Mobile TOC Background Color Consistency (2025-10-13)
 **Problem:** TOC background color differed between desktop and mobile layouts. Desktop showed correct `surface-rail` color, but mobile showed white `surface` color instead.
 
@@ -564,7 +627,7 @@ const score = baseWeight * qualityMultiplier + positionBonus - depthPenalty
 ```bash
 npm install
 
-# Set content domain (defaults to 'eternal')
+# Set content domain (defaults to 'ofgod')
 export CONTENT=kingdom  # or add to .env file
 ```
 
@@ -754,9 +817,32 @@ export async function watchImages() {
 2. Copy all images and `_menu.yml` files synchronously
 3. Start watching for changes
 
+### CONTENT Environment Variable Not Working (2025-10-15)
+**Problem:** Command-line `CONTENT=domain npm run dev` defaulting to wrong directory or ignoring env var.
+
+**Root Cause:** Environment variable captured at module import time instead of runtime. ES modules run top-level code immediately when imported.
+
+**Symptoms:**
+- `CONTENT=church npm run dev` shows "📦 Copying from: /content/ofgod/" (wrong domain)
+- Watcher copying files from default domain instead of specified one
+- Content from wrong domain appearing in navigation
+
+**Solution:**
+1. Check that `.env` file doesn't conflict with command-line value
+2. Verify default is `ofgod` (not `eternal`) in [scripts/watch-images.ts](scripts/watch-images.ts#L19) and [content.config.ts](content.config.ts#L6)
+3. Restart dev server completely: `Ctrl+C` then re-run with env var
+4. Clear cache if switching domains: `rm -rf .nuxt .output`
+
+**Correct Usage:**
+```bash
+CONTENT=church npm run dev       # Sets for single command
+export CONTENT=church; npm run dev  # Sets for session
+# OR edit .env file: CONTENT=church
+```
+
 ### Image Watcher Not Working
 - Check Nuxt `ready` hook in `nuxt.config.ts` (import path must be `'./scripts/watch-images'` NOT `'./scripts/watch-images.js'`)
-- Verify `CONTENT` env var is set correctly
+- Verify `CONTENT` env var is set correctly (see above)
 - Check console for "📦 Copying images and menus from:" message
 - Check console for "👀 Watching images and menus in:" message
 - Restart dev server if watcher doesn't start

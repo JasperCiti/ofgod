@@ -53,7 +53,7 @@ CONTENT=kingdom npm run dev  # Start dev server for kingdom domain
 * `son` - son.ofgod.info
 * `kingdom` - kingdom.ofgod.info
 * `church` - church.ofgod.info
-* `eternal` - ofgod.info (default)
+* `ofgod` - ofgod.info (default)
 
 ## Content Layout
 
@@ -80,7 +80,7 @@ Content is organized by domain in `/content/{domain}/`:
 ├── son/          → son.ofgod.info
 ├── kingdom/      → kingdom.ofgod.info
 ├── church/       → church.ofgod.info
-└── eternal/      → ofgod.info
+└── ofgod/        → ofgod.info (default)
 ```
 
 **Build:** Each domain requires separate build with `CONTENT` env var:
@@ -193,8 +193,9 @@ const example = 'value'
 John 3:16 (ESV)
 Matthew 5:3-12 (NIV)
 Psalm 23 (KJV)
+John 14:16,26  # Shorthand for multiple verses
 ```
-*Automatically enhanced with tooltips showing verse text*
+*Automatically enhanced with tooltips showing verse text + links to BibleGateway and BibleHub interlinear*
 
 ### Image Guidelines
 
@@ -364,7 +365,7 @@ CONTENT=kingdom npm run dev
    # Or create .env file (persists across sessions)
    echo "CONTENT=kingdom" > .env
    ```
-   *Common pitfall:* Forgetting to set `CONTENT` will default to `eternal` domain
+   *Common pitfall:* Forgetting to set `CONTENT` will default to `ofgod` domain
 
 3. **Start Development Server:**
    ```bash
@@ -396,10 +397,11 @@ CONTENT=kingdom npm run dev
 
 **Common Pitfalls:**
 
-* **Wrong domain showing:** Check `CONTENT` env var matches desired domain
+* **Wrong domain showing:** Check `CONTENT` env var matches desired domain (see troubleshooting below)
 * **Images 404:** Restart dev server to trigger initial image copy
 * **Navigation empty:** Verify `_menu.yml` files exist and are valid YAML
 * **Changes not reflecting:** Hard refresh browser (Cmd+Shift+R / Ctrl+Shift+R)
+* **Command-line CONTENT ignored:** `.env` file may conflict - delete `.env` or use `export CONTENT=domain` before running npm
 
 ### Running Tests
 
@@ -418,9 +420,15 @@ npm test -- bible-tooltips      # Bible verse reference parsing tests
   * Path depth penalties
   * Multi-field bonuses
   * Tie-breaking with alphabetical sort
-* Bible verse regex patterns
-* Shorthand expansion (`John 14:16,26`)
-* Reference validation
+* Bible verse regex patterns (14 tests)
+  * Reference parsing and detection
+  * Shorthand expansion (`John 14:16,26`)
+  * Cross-chapter ranges
+  * Reference validation
+* BibleHub URL generation (15 tests)
+  * Book name normalization (spaces to underscores)
+  * Verse and chapter-only references
+  * Handling of multi-word book names
 
 ## Development Guidelines
 
@@ -584,6 +592,50 @@ npm run preview
 ```
 
 ## Troubleshooting
+
+### CONTENT Environment Variable Not Working
+
+**Symptoms:**
+* Running `CONTENT=church npm run dev` shows wrong domain in console: `📦 Copying from: /content/ofgod/` or `/content/kingdom/`
+* Content from different domain appears in browser
+* Image watcher copying files from wrong directory
+
+**Causes:**
+1. `.env` file overriding command-line value
+2. Terminal session has conflicting `export CONTENT=...`
+3. Cached environment in shell
+
+**Fix:**
+
+**Option 1: Remove .env conflict**
+```bash
+# Delete or edit .env file
+rm .env
+# OR edit .env to match desired domain
+echo "CONTENT=church" > .env
+npm run dev
+```
+
+**Option 2: Use export**
+```bash
+export CONTENT=church
+npm run dev
+```
+
+**Option 3: Force inline (most reliable)**
+```bash
+# This ALWAYS overrides .env in most shells
+CONTENT=church npm run dev
+```
+
+**Verification:**
+Check console output on startup:
+```
+📦 Copying images and menus from: /root/ofgod/content/church
+```
+If you see `/content/ofgod/` or `/content/kingdom/` instead of your specified domain, the env var isn't being read correctly.
+
+**Technical Note:** Command-line env vars should override `.env` files, but some shells or environments may behave differently. Using `export` or editing `.env` directly is most reliable.
 
 ### Images Not Appearing (404)
 

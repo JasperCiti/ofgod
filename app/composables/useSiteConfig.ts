@@ -7,10 +7,10 @@ interface SiteConfig {
 }
 
 const SITE_CONFIGS = {
-  son: {
-    domain: 'son.ofgod.info',
-    siteName: 'Son of God',
-    canonicalBase: 'https://son.ofgod.info',
+  church: {
+    domain: 'church.ofgod.info',
+    siteName: 'Church of God',
+    canonicalBase: 'https://church.ofgod.info',
     githubRepo: 'JasperCiti/ofgod',
     githubBranch: 'main'
   },
@@ -21,20 +21,20 @@ const SITE_CONFIGS = {
     githubRepo: 'JasperCiti/ofgod',
     githubBranch: 'main'
   },
-  church: {
-    domain: 'church.ofgod.info',
-    siteName: 'Church of God',
-    canonicalBase: 'https://church.ofgod.info',
-    githubRepo: 'JasperCiti/ofgod',
-    githubBranch: 'main'
-  },
-  eternal: {
+  ofgod: {
     domain: 'ofgod.info',
     siteName: 'Of God',
     canonicalBase: 'https://ofgod.info',
     githubRepo: 'JasperCiti/ofgod',
     githubBranch: 'main'
-  }
+  },
+  son: {
+    domain: 'son.ofgod.info',
+    siteName: 'Son of God',
+    canonicalBase: 'https://son.ofgod.info',
+    githubRepo: 'JasperCiti/ofgod',
+    githubBranch: 'main'
+  },
 } as const
 
 export type ContentDomain = keyof typeof SITE_CONFIGS
@@ -44,7 +44,7 @@ export type ContentDomain = keyof typeof SITE_CONFIGS
  */
 export function useSiteConfig(): SiteConfig {
   const config = useRuntimeConfig()
-  const contentDomain = (config.public.contentDomain || 'eternal') as ContentDomain
+  const contentDomain = (config.public.contentDomain) as ContentDomain
 
-  return SITE_CONFIGS[contentDomain] || SITE_CONFIGS.eternal
+  return SITE_CONFIGS[contentDomain]
 }

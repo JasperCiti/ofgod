@@ -1,12 +1,12 @@
 // Custom Bible Verse Tooltip Plugin using Bible-API.com
-import { processBibleVerseText } from '~/utils/bible-verse-utils'
+import { processBibleVerseText, createBibleHubInterlinearUrl, type ProcessedBibleVerse } from '~/utils/bible-verse-utils'
 import { createBibleReferencePatterns } from '~/utils/bible-book-names'
 
 export default defineNuxtPlugin((nuxtApp) => {
   if (process.server) return
 
   class BibleTooltips {
-    private cache = new Map<string, string>()
+    private cache = new Map<string, ProcessedBibleVerse>()
     private tooltip: HTMLElement | null = null
     private overlay: HTMLElement | null = null
     private currentLockState = false
@@ -44,7 +44,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       }, { capture: true })
     }
 
-    private async fetchVerse(reference: string): Promise<string> {
+    private async fetchVerse(reference: string): Promise<ProcessedBibleVerse> {
       if (this.cache.has(reference)) {
         return this.cache.get(reference)!
       }
@@ -57,17 +57,17 @@ export default defineNuxtPlugin((nuxtApp) => {
         }
 
         const data = await response.json()
-        const finalText = processBibleVerseText(data, reference)
+        const result = processBibleVerseText(data, reference)
 
-        if (!finalText) {
-          return 'Verse not found'
+        if (!result.text) {
+          return { text: 'Verse not found', translation: 'KJV' }
         }
 
-        this.cache.set(reference, finalText)
-        return finalText
+        this.cache.set(reference, result)
+        return result
       } catch (error) {
         console.error('Error fetching verse:', error)
-        return `Read ${reference} at BibleGateway.com`
+        return { text: `Read ${reference} at BibleGateway.com`, translation: '' }
       }
     }
 
@@ -96,20 +96,20 @@ export default defineNuxtPlugin((nuxtApp) => {
 
       // Get computed theme colors from document root
       const computedStyle = getComputedStyle(document.documentElement)
-      const primaryColor = computedStyle.getPropertyValue('--v-theme-primary') || '53, 116, 240'
-      const onPrimaryColor = computedStyle.getPropertyValue('--v-theme-on-primary') || '255, 255, 255'
+      const appBarBgColor = computedStyle.getPropertyValue('--v-theme-surface-appbar') || '228, 234, 240'
+      const contentTextColor = computedStyle.getPropertyValue('--v-theme-on-surface') || '36, 41, 47'
 
       tooltip.style.cssText = `
         position: fixed;
-        background: rgb(${primaryColor});
-        color: rgb(${onPrimaryColor});
-        padding: 12px 16px;
-        border-radius: 8px;
-        font-size: 14px;
+        background: rgb(${appBarBgColor});
+        color: rgb(${contentTextColor});
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
         line-height: 1.4;
-        max-width: 400px;
+        max-width: 25rem;
         z-index: 10000;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.3);
         display: none;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       `
@@ -117,7 +117,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       return tooltip
     }
 
-    private showTooltip(element: HTMLElement, text: string, event: MouseEvent) {
+    private showTooltip(element: HTMLElement, verseData: ProcessedBibleVerse, event: MouseEvent) {
       if (!this.tooltip) {
         this.tooltip = this.createTooltip()
 
@@ -145,16 +145,34 @@ export default defineNuxtPlugin((nuxtApp) => {
       // Get full reference from data-reference attribute (handles shorthand expansion)
       const reference = (element as HTMLElement).getAttribute('data-reference') || element.textContent || ''
       const bibleGatewayUrl = `https://www.biblegateway.com/passage/?search=${encodeURIComponent(reference)}&version=ESV`
+      const bibleHubUrl = createBibleHubInterlinearUrl(reference)
+
+      // Get link color from CSS variables
+      const computedStyle = getComputedStyle(document.documentElement)
+      const linkColor = computedStyle.getPropertyValue('--v-theme-primary') || '9, 105, 218'
+      const outlineColor = computedStyle.getPropertyValue('--v-theme-outline') || '208, 215, 222'
+      const secondaryColor = computedStyle.getPropertyValue('--v-theme-secondary') || '101, 109, 118'
+
+      // Build title with translation
+      const title = verseData.translation
+        ? `${reference} <span style="color: rgb(${secondaryColor}); font-weight: 500;">(${verseData.translation})</span>`
+        : reference
 
       this.tooltip.innerHTML = `
-        <div style="font-weight: 600; margin-bottom: 4px;">${reference}</div>
-        <div style="line-height: 1.5; margin-bottom: 12px;">${text}</div>
-        <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 8px;">
-          <a href="${bibleGatewayUrl}" target="_blank" style="color: rgba(255,255,255,0.8); text-decoration: none; font-size: 13px; display: inline-flex; align-items: center; gap: 4px;">
-            <svg style="width: 14px; height: 14px; fill: currentColor;" viewBox="0 0 24 24">
+        <div style="font-weight: 600; margin-bottom: 0.25rem;">${title}</div>
+        <div style="line-height: 1.5; margin-bottom: 0.75rem;">${verseData.text}</div>
+        <div style="border-top: 1px solid rgb(${outlineColor}); padding-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
+          <a href="${bibleGatewayUrl}" target="_blank" rel="noopener noreferrer" style="color: rgb(${linkColor}); text-decoration: none; font-size: 0.8125rem; display: inline-flex; align-items: center; gap: 0.25rem;">
+            <svg style="width: 0.875rem; height: 0.875rem; fill: currentColor;" viewBox="0 0 24 24">
               <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
             </svg>
             Read Full Context
+          </a>
+          <a href="${bibleHubUrl}" target="_blank" rel="noopener noreferrer" style="color: rgb(${linkColor}); text-decoration: none; font-size: 0.8125rem; display: inline-flex; align-items: center; gap: 0.25rem;">
+            <svg style="width: 0.875rem; height: 0.875rem; fill: currentColor;" viewBox="0 0 24 24">
+              <path d="M12.87,15.07L10.33,12.56L10.36,12.53C12.1,10.59 13.34,8.36 14.07,6H17V4H10V2H8V4H1V6H12.17C11.5,7.92 10.44,9.75 9,11.35C8.07,10.32 7.3,9.19 6.69,8H4.69C5.42,9.63 6.42,11.17 7.67,12.56L2.58,17.58L4,19L9,14L12.11,17.11L12.87,15.07M18.5,10H16.5L12,22H14L15.12,19H19.87L21,22H23L18.5,10M15.88,17L17.5,12.67L19.12,17H15.88Z" />
+            </svg>
+            Interlinear
           </a>
         </div>
       `
@@ -201,14 +219,14 @@ export default defineNuxtPlugin((nuxtApp) => {
 
     private async handleMouseEnter(element: HTMLElement, reference: string, event: MouseEvent) {
       // Show loading tooltip immediately
-      this.showTooltip(element, 'Loading...', event)
+      this.showTooltip(element, { text: 'Loading...', translation: '' }, event)
 
       // Fetch verse
-      const verseText = await this.fetchVerse(reference)
+      const verseData = await this.fetchVerse(reference)
 
       // Only show if tooltip is still visible (not dismissed while fetching)
       if (this.tooltip && this.tooltip.style.display === 'block') {
-        this.showTooltip(element, verseText, event)
+        this.showTooltip(element, verseData, event)
       }
     }
 

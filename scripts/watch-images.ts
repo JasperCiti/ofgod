@@ -8,18 +8,38 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const contentDomain = process.env.CONTENT || 'eternal'
-const sourceDir = path.resolve(__dirname, '..', 'content', contentDomain)
-const targetDir = path.resolve(__dirname, '..', 'public')
-
 const IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg']
 const STATIC_FILES = ['favicon.ico', 'robots.txt']
 const MENU_FILE = '_menu.yml'
 
 /**
+ * Get content domain from environment variable (read at runtime, not import time)
+ */
+function getContentDomain(): string {
+  return process.env.CONTENT || 'ofgod'
+}
+
+/**
+ * Get source directory for content domain
+ */
+function getSourceDir(): string {
+  return path.resolve(__dirname, '..', 'content', getContentDomain())
+}
+
+/**
+ * Get target public directory
+ */
+function getTargetDir(): string {
+  return path.resolve(__dirname, '..', 'public')
+}
+
+/**
  * Copy all images and menu files from content to public directory (one-time)
  */
 export async function copyAllImages() {
+  const sourceDir = getSourceDir()
+  const targetDir = getTargetDir()
+
   console.log(`📦 Copying images and menus from: ${sourceDir}`)
   console.log(`📦 Target directory: ${targetDir}`)
 
@@ -52,6 +72,8 @@ export async function copyAllImages() {
  * Clean public directory except static files
  */
 async function cleanPublicDirectory() {
+  const targetDir = getTargetDir()
+
   console.log(`🧹 Cleaning public directory...`)
 
   if (!await fs.pathExists(targetDir)) {
@@ -75,6 +97,9 @@ async function cleanPublicDirectory() {
  * Watch images and menu files in content directory and sync to public directory
  */
 export async function watchImages() {
+  const sourceDir = getSourceDir()
+  const targetDir = getTargetDir()
+
   // Clean public directory first (handles domain switching)
   await cleanPublicDirectory()
 
@@ -129,6 +154,9 @@ export async function watchImages() {
  * Copy a single image from content to public
  */
 async function copyImage(sourcePath: string, log: boolean = true, action: string = 'copied') {
+  const sourceDir = getSourceDir()
+  const targetDir = getTargetDir()
+
   try {
     // Check if this is a draft-only image (no published .md file exists)
     if (await isDraftOnlyImage(sourcePath)) {
@@ -161,6 +189,9 @@ async function copyImage(sourcePath: string, log: boolean = true, action: string
  * Delete image from public directory
  */
 async function deleteImage(sourcePath: string) {
+  const sourceDir = getSourceDir()
+  const targetDir = getTargetDir()
+
   try {
     // Check if this was a draft-only image (should not have been in /public/ anyway)
     if (await isDraftOnlyImage(sourcePath)) {
@@ -189,6 +220,9 @@ async function deleteImage(sourcePath: string) {
  * Copy a single _menu.yml file from content to public
  */
 async function copyMenuFile(sourcePath: string, log: boolean = true, action: string = 'copied') {
+  const sourceDir = getSourceDir()
+  const targetDir = getTargetDir()
+
   try {
     // Get path relative to content/ directory, then strip domain prefix
     const contentDir = path.join(sourceDir, '..')
@@ -212,6 +246,9 @@ async function copyMenuFile(sourcePath: string, log: boolean = true, action: str
  * Delete _menu.yml file from public directory
  */
 async function deleteMenuFile(sourcePath: string) {
+  const sourceDir = getSourceDir()
+  const targetDir = getTargetDir()
+
   try {
     // Get path relative to content/ directory, then strip domain prefix
     const contentDir = path.join(sourceDir, '..')
